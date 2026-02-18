@@ -1,0 +1,160 @@
+/* ═══════════════════════════════ TESTIMONIALS ═══════════════════════════════ */
+.testimonials {
+    padding: 100px 0 80px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.testimonials-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    padding: 0 24px;
+}
+
+.testimonials-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 500;
+    color: #1a1a2e;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.testimonials-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* ─── Carousel ─── */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Gradient fade edges */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+}
+
+.carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 24px;
+    animation: scroll-infinite 30s linear infinite;
+    width: max-content;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* ─── Review Cards ─── */
+.review-card {
+    flex-shrink: 0;
+    width: 340px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.review-quote {
+    font-size: 0.88rem;
+    color: #1a1a2e;
+    line-height: 1.65;
+    font-weight: 400;
+    margin-bottom: 24px;
+    flex: 1;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.review-avatar {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #e0e0e0, #ccc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    overflow: hidden;
+}
+
+.review-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.review-role {
+    font-size: 0.72rem;
+    color: #999;
+    font-weight: 400;
+}
+
+/* ─── Infinite Scroll Animation ─── */
+@keyframes scroll-infinite {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+    .review-card {
+        width: 280px;
+        padding: 24px;
+    }
+
+    .testimonials-header {
+        margin-bottom: 30px;
+    }
+
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+        width: 40px;
+    }
+}

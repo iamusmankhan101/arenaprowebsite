@@ -1,0 +1,72 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 0;
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease, height 0.3s ease;
+}
+
+/* Invert logo to black and reduce size when scrolled */
+.navbar.scrolled .logo-img {
+    filter: invert(1) brightness(0);
+    height: 48px;
+}
+
+.navbar-cta {
+    background: var(--white);
+    color: var(--dark);
+    padding: 10px 24px;
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Update text color to white on hover (default) */
+.navbar-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    background: var(--dark);
+    color: var(--white);
+}
+
+/* On scrolled white navbar, adjust CTA button if needed */
+.navbar.scrolled .navbar-cta {
+    background: #004d43;
+    color: #ffffff;
+    border: none;
+}
+
+.navbar.scrolled .navbar-cta:hover {
+    background: #006356;
+    transform: translateY(-1px);
+}

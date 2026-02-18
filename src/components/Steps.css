@@ -1,0 +1,326 @@
+/* ═══════════════════════════════ STEPS SECTION ═══════════════════════════════ */
+.steps {
+    padding: 120px 24px 80px;
+    background: #f5f5f7;
+    position: relative;
+}
+
+.steps-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ─── Left Heading (sticky) ─── */
+.steps-heading {
+    position: sticky;
+    top: 120px;
+}
+
+.steps-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 500;
+    color: #1a1a2e;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.steps-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* ─── Cards Column ─── */
+.steps-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+}
+
+/* ─── Individual Step Card ─── */
+.step-card {
+    position: relative;
+    padding-left: 50px;
+}
+
+.step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    background: #004d43;
+    color: #cdec6a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 5;
+}
+
+/* Timeline line */
+.step-card::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    bottom: -30px;
+    width: 2px;
+    background: #ddd;
+}
+
+.step-card:last-child::before {
+    display: none;
+}
+
+.step-card-inner {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card-inner:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.step-card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.step-card-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.5;
+}
+
+/* ═══════════════════════════ STEP VISUALS ═════════════════════════════ */
+.step-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* ─── Step 1: Download ─── */
+.step1-phone {
+    width: 150px;
+    height: 200px;
+    background: #1a1a2e;
+    border-radius: 24px;
+    padding: 6px;
+    position: relative;
+    border: 2px solid #000;
+}
+
+.step1-phone-screen {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    padding: 12px;
+    text-align: left;
+}
+
+.step1-greeting {
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1a1a2e;
+}
+
+.step1-stats-row {
+    display: flex;
+    gap: 6px;
+}
+
+.step1-stat-box {
+    flex: 1;
+    height: 28px;
+    background: #f0f0f5;
+    border-radius: 6px;
+}
+
+.step1-badge {
+    position: absolute;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.step1-badge.app-store {
+    top: 10px;
+    right: -20px;
+    background: #1a1a2e;
+    color: #fff;
+}
+
+.step1-badge.play-store {
+    bottom: 30px;
+    left: -20px;
+    background: #fff;
+    color: #1a1a2e;
+    border: 1px solid #eee;
+}
+
+/* ─── Step 2: Account ─── */
+.step2-profile-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
+    width: 260px;
+    text-align: left;
+}
+
+.step2-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.step2-avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #c0c0c0, #888);
+    border-radius: 50%;
+}
+
+.step2-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.step2-email {
+    font-size: 0.7rem;
+    color: #999;
+}
+
+.step2-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f8f8fa;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.step2-option:hover {
+    background: #f0f0f5;
+}
+
+.step2-icon {
+    font-size: 1rem;
+}
+
+/* ─── Step 3: Get to work ─── */
+.step3-task-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
+    width: 260px;
+    text-align: left;
+}
+
+.step3-label {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.step3-task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a1a2e;
+    border-bottom: 1px solid #f2f2f5;
+}
+
+.step3-task:last-child {
+    border-bottom: none;
+}
+
+.step3-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step3-check.done {
+    background: #34c759;
+    border-color: #34c759;
+}
+
+.step3-check.done::after {
+    content: '✓';
+    color: white;
+    font-size: 10px;
+}
+
+/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+@media (max-width: 900px) {
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .steps-heading {
+        position: static;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .step-card {
+        padding-left: 40px;
+    }
+
+    .step-card-inner {
+        padding: 20px;
+    }
+
+    .step1-badge.app-store {
+        right: 0;
+    }
+
+    .step1-badge.play-store {
+        left: 0;
+    }
+}

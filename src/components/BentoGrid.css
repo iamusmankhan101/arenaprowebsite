@@ -1,0 +1,561 @@
+.bento-wrapper {
+    width: 100%;
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+    /* Light background */
+    display: flex;
+    justify-content: center;
+}
+
+.bento-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    /* Left, Center, Right */
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.bento-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Common Card Styles */
+.bento-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    transition: transform 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.icon {
+    font-size: 1.2rem;
+}
+
+/* Stats Card */
+.stats-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-item {
+    background: #f1f3f5;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #222;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Resume Card */
+.resume-card {
+    flex-grow: 1;
+}
+
+.resume-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.timeline-item h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.timeline-item p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.timeline-item .date {
+    font-size: 0.8rem;
+    color: #888;
+    background: #f1f3f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
+/* Contact Card */
+.mini-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.mini-contact-form input,
+.mini-contact-form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.mini-contact-form button {
+    background: #000;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Phone Mockup (Center Column) */
+.center-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-mockup {
+    width: 320px;
+    height: 650px;
+    background: #111;
+    border-radius: 40px;
+    padding: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.phone-case {
+    background: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.phone-header .notch {
+    width: 100px;
+    height: 25px;
+    background: #111;
+    margin: 0 auto;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.phone-content {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    height: 100%;
+    background: linear-gradient(180deg, #e0f7fa 0%, #ffffff 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+}
+
+.phone-content::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-img img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.profile-section h2 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+    color: #222;
+}
+
+.profile-section p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.book-call-btn {
+    background: #fff;
+    color: #4f46e5;
+    border: 1px solid #4f46e5;
+    padding: 0.8rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.testimonials-section {
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.testimonials-section h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-mini {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    gap: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-mini .avatar {
+    width: 30px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.testimonial-mini .text p {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Right Column */
+.stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stack-icon {
+    background: #f8f9fa;
+    height: 60px;
+    border-radius: 1rem;
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.stack-icon.apple {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg');
+}
+
+.stack-icon.android {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg');
+}
+
+.stack-icon.web {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg');
+}
+
+.stack-icon.tablet {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/644/644458.png');
+}
+
+
+/* FAQ Card */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.faq-item {
+    background: #f8f9fa;
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.faq-answer {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Showcase Card */
+.showcase-visual {
+    background: #333;
+    height: 150px;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen-preview {
+    width: 80%;
+    height: 60%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .bento-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .center-column {
+        grid-column: span 2;
+        order: -1;
+        /* Move phone to top on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .bento-container {
+        grid-template-columns: 1fr;
+    }
+
+    .center-column {
+        grid-column: span 1;
+    }
+}
+
+/* Image Styles */
+.phone-mockup-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 600px;
+    /* Ensure enough height */
+}
+
+.phone-main-image {
+
+    width: 340px;
+    height: auto;
+    border-radius: 2rem;
+    z-index: 10;
+    position: relative;
+}
+
+.floating-img {
+    position: absolute;
+    width: 170px;
+    /* Increased from 140px */
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    background: white;
+}
+
+/* Left Side Images */
+.floating-1 {
+    top: 5%;
+    left: -15%;
+    --rotation: -15deg;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-2 {
+    top: 40%;
+    left: -20%;
+    --rotation: 10deg;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.floating-3 {
+    bottom: -10%;
+    left: -15%;
+    --rotation: -5deg;
+    animation: float 5s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Right Side Images */
+.floating-4 {
+    top: 10%;
+    right: -15%;
+    --rotation: 15deg;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.floating-5 {
+    top: 45%;
+    right: -20%;
+    --rotation: -10deg;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.floating-6 {
+    bottom: -15%;
+    right: -15%;
+    --rotation: 15deg;
+    animation: float 5s ease-in-out infinite;
+    animation-delay: 2.5s;
+}
+
+.floating-5 {
+    top: 45%;
+    right: -20%;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .floating-img {
+        width: 100px;
+    }
+
+    .floating-1,
+    .floating-3 {
+        left: -5%;
+    }
+
+    .floating-2 {
+        left: -10%;
+    }
+
+    .floating-4,
+    .floating-6 {
+        right: -5%;
+    }
+
+    .floating-5 {
+        right: -10%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hide some floating images on mobile */
+    .floating-2,
+    .floating-5 {
+        display: none;
+    }
+
+    .floating-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .floating-3 {
+        bottom: 0;
+        left: 0;
+    }
+
+    .floating-4 {
+        top: 0;
+        right: 0;
+    }
+
+    .floating-6 {
+        bottom: 0;
+        right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-img {
+        width: 100px;
+    }
+
+    /* On mobile, maybe hide or reposition */
+    .floating-1 {
+        top: 5%;
+        left: 5%;
+    }
+
+    .floating-2 {
+        bottom: 5%;
+        right: 5%;
+    }
+}
+
+
+/* Floating Animation with Rotation */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(var(--rotation, 0deg));
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(var(--rotation, 0deg));
+    }
+
+    100% {
+        transform: translateY(0px) rotate(var(--rotation, 0deg));
+    }
+}
+
+.floating-img-delay {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Override defaults */
+.showcase-visual {
+    background: transparent;
+    border: none;
+    height: auto;
+    overflow: visible;
+}
