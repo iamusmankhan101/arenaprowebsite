@@ -46,7 +46,7 @@ const Hero = () => {
                 <div className="hero-phone-wrapper">
                     {/* Phone Device Image */}
                     <img
-                        src="/image/Copy of arena pro logoqr.png"
+                        src="/image/home.png"
                         alt="App Interface"
                         className="phone-img"
                         style={{ transform: `translateY(${scrollY * 0.1}px)` }}

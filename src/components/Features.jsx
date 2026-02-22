@@ -34,7 +34,7 @@ const Features = () => {
                             <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
-                            <div className="mofin-phone-mockup" style={{ background: 'transparent', padding: 0 }}>
+                            <div style={{ width: '140%', height: '140%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: '-15%', bottom: '-15%' }}>
                                 <img
                                     src="/image/Copy of arena pro logoqr (1).png"
                                     alt="Challenge Mode Interface"
@@ -93,7 +93,7 @@ const Features = () => {
                             <p className="mofin-desc">Invite friends, earn Rs. 300 instantly.</p>
                         </div>
                         <div className="mofin-visual-right-small">
-                            <div className="mofin-coin">💰</div>
+                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
