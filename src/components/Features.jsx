@@ -92,7 +92,7 @@ const Features = () => {
                             <h3 className="mofin-title">Refer & Earn</h3>
                             <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
-                        <div className="mofin-visual-right-small" style={{ right: '20px', bottom: '-130px' }}>
+                        <div className="mofin-visual-right-small" style={{ right: '-5px', bottom: '-130px' }}>
                             <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
                         </div>
                     </div>
