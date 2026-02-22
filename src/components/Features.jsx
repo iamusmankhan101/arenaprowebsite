@@ -34,25 +34,12 @@ const Features = () => {
                             <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
-                            <div className="mofin-phone-mockup">
-                                <div className="mp-screen">
-                                    <div className="mp-header">
-                                        <span>Squads</span>
-                                        <span>···</span>
-                                    </div>
-                                    <div className="mp-content">
-                                        <div className="mp-card">
-                                            <div className="mp-avatar">🦁</div>
-                                            <div className="mp-lines">
-                                                <div className="mpl mpl-1"></div>
-                                                <div className="mpl mpl-2"></div>
-                                            </div>
-                                        </div>
-                                        <div className="mp-stat-row">
-                                            <div className="mp-stat">Win Rate 85%</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="mofin-phone-mockup" style={{ background: 'transparent', padding: 0 }}>
+                                <img
+                                    src="/image/Copy of arena pro logoqr (1).png"
+                                    alt="Challenge Mode Interface"
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                />
                             </div>
                         </div>
                     </div>
@@ -90,19 +77,11 @@ const Features = () => {
                             <p className="mofin-desc">Geolocation-based venue finder to discover nearby turfs.</p>
                         </div>
                         <div className="mofin-visual-center">
-                            <div className="mofin-dark-card">
-                                <div className="mdc-header">
-                                    <span>Near You</span>
-                                    <span>MAP</span>
-                                </div>
-                                <div className="mdc-content">
-                                    <div className="mdc-loc">Sector 5</div>
-                                </div>
-                            </div>
-                            {/* Connecting Nodes */}
-                            <div className="mofin-node node-1">📍</div>
-                            <div className="mofin-node node-2">📍</div>
-                            <div className="mofin-node node-3">📍</div>
+                            <img
+                                src="/image/Copy of arena pro logoqr (2).png"
+                                alt="Interactive Map Search Interface"
+                                style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                            />
                         </div>
                     </div>
 
