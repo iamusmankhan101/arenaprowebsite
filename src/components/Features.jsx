@@ -104,7 +104,7 @@ const Features = () => {
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
                             <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
-                        <div className="mofin-visual-right-small" style={{ right: '90px', bottom: '-26px' }}>
+                        <div className="mofin-visual-right-small" style={{ right: '90px', bottom: '-21px' }}>
                             <img src="/image/D.png" alt="Real-Time Alerts" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
                         </div>
                     </div>
