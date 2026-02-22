@@ -90,22 +90,22 @@ const Features = () => {
                         <div className="feature-number">05</div>
                         <div className="mofin-text-col">
                             <h3 className="mofin-title">Refer & Earn</h3>
-                            <p className="mofin-desc">Invite friends, earn Rs. 300 instantly.</p>
+                            <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
-                        <div className="mofin-visual-right-small">
-                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
+                        <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
+                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '180px', height: '180px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
                     {/* 6. Real-Time Alerts (Pastel Purple - Bonus) */}
-                    <div className="feature-card mofin-purple">
+                    <div className="feature-card" style={{ background: 'transparent', boxShadow: 'none' }}>
                         <div className="feature-number">06</div>
                         <div className="mofin-text-col">
-                            <h3 className="mofin-title">Real-Time Alerts</h3>
-                            <p className="mofin-desc">Instant booking notifications.</p>
+                            <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
+                            <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
-                        <div className="mofin-visual-right-small">
-                            <div className="mofin-bell">🔔</div>
+                        <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
+                            <img src="/image/WhatsApp Image 2026-02-23 at 12.55.02 AM.jpeg" alt="Real-Time Alerts" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
