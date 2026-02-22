@@ -93,7 +93,7 @@ const Features = () => {
                             <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
                         <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
-                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '380px', height: '380px', objectFit: 'contain' }} />
+                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '330px', height: '330px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
@@ -104,7 +104,7 @@ const Features = () => {
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
                             <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
-                        <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
+                        <div className="mofin-visual-right-small" style={{ right: '110px', bottom: '10px' }}>
                             <img src="/image/D.png" alt="Real-Time Alerts" style={{ width: '250px', height: '250px', objectFit: 'contain' }} />
                         </div>
                     </div>
