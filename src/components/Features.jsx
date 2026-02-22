@@ -93,7 +93,7 @@ const Features = () => {
                             <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
                         <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
-                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '180px', height: '180px', objectFit: 'contain' }} />
+                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '380px', height: '380px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@ const Features = () => {
                             <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
                         <div className="mofin-visual-right-small" style={{ right: '10px', bottom: '10px' }}>
-                            <img src="/image/WhatsApp Image 2026-02-23 at 12.55.02 AM.jpeg" alt="Real-Time Alerts" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
+                            <img src="/image/D.png" alt="Real-Time Alerts" style={{ width: '250px', height: '250px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
