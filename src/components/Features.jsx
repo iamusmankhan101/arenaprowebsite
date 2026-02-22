@@ -34,7 +34,7 @@ const Features = () => {
                             <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
-                            <div style={{ width: '140%', height: '140%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: '-15%', bottom: '-15%' }}>
+                            <div style={{ width: '140%', height: '140%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: '-15%', bottom: '-5%' }}>
                                 <img
                                     src="/image/Copy of arena pro logoqr (1).png"
                                     alt="Challenge Mode Interface"
@@ -98,7 +98,7 @@ const Features = () => {
                     </div>
 
                     {/* 6. Real-Time Alerts (Pastel Purple - Bonus) */}
-                    <div className="feature-card" style={{ background: 'transparent', boxShadow: 'none' }}>
+                    <div className="feature-card" style={{ background: 'transparent', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}>
                         <div className="feature-number">06</div>
                         <div className="mofin-text-col">
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
