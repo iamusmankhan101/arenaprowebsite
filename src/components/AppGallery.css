@@ -1,6 +1,6 @@
 .app-gallery-section {
     padding: 100px 0;
-    background-color: #f4f6f9;
+    background-color: #ffffff;
     /* Matching the soft blue/gray from the reference */
     overflow-x: hidden;
     font-family: var(--font-family);
@@ -22,7 +22,7 @@
 }
 
 .secondary-color {
-    color: #0047ab;
+    color: #004d43;
     /* Modern Blue */
     font-family: 'Clash Display', sans-serif;
     font-weight: 500;
