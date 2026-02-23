@@ -65,19 +65,12 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[0] = el)}>
                         <div className="step-number">1</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step1-visual">
-                                <div className="step1-phone">
-                                    <div className="step1-phone-screen">
-                                        <div className="step1-greeting">Welcome to ArenaPro 🏆</div>
-                                        <div className="step1-stats-row">
-                                            <div className="step1-stat-box" style={{ background: '#4cd964' }}></div>
-                                            <div className="step1-stat-box" style={{ background: '#004d43' }}></div>
-                                            <div className="step1-stat-box" style={{ background: '#e8e435' }}></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="step1-badge app-store">App Store</div>
-                                <div className="step1-badge play-store">Play Store</div>
+                            <div className="step-visual step1-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img
+                                    src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png"
+                                    alt="Get it on Google Play"
+                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                />
                             </div>
                             <h3 className="step-card-title">Get the App</h3>
                             <p className="step-card-desc">Grab Arena Pro from your app store and put the ultimate sports hub right in your pocket.</p>
@@ -88,26 +81,14 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[1] = el)}>
                         <div className="step-number">2</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step2-visual">
-                                <div className="step2-profile-card">
-                                    <div className="step2-user">
-                                        <div className="step2-avatar"></div>
-                                        <div className="step2-user-info">
-                                            <div className="step2-name">Alex Striker</div>
-                                            <div className="step2-email">alex@sports.com</div>
-                                        </div>
-                                    </div>
-                                    <div className="step2-option">
-                                        <span className="step2-icon">⚽</span>
-                                        <span>Create a Team</span>
-                                    </div>
-                                    <div className="step2-option">
-                                        <span className="step2-icon">🔍</span>
-                                        <span>Find Venues</span>
-                                    </div>
-                                </div>
+                            <div className="step-visual step2-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img
+                                    src="/image/fd.png"
+                                    alt="Create an account profile preview"
+                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                />
                             </div>
-                            <h3 className="step-card-title">Join the Community</h3>
+                            <h3 className="step-card-title">Create an account</h3>
                             <p className="step-card-desc">Sign up in seconds and personalize your profile to play your way.</p>
                         </div>
                     </div>
@@ -116,22 +97,12 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[2] = el)}>
                         <div className="step-number">3</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step3-visual">
-                                <div className="step3-task-card">
-                                    <div className="step3-label">UPCOMING GAMES</div>
-                                    <div className="step3-task">
-                                        <span className="step3-check confirmed"></span>
-                                        <span>Friday Football</span>
-                                    </div>
-                                    <div className="step3-task">
-                                        <span className="step3-check confirmed"></span>
-                                        <span>Cricket Match</span>
-                                    </div>
-                                    <div className="step3-task">
-                                        <span className="step3-check"></span>
-                                        <span>Weekend Tennis</span>
-                                    </div>
-                                </div>
+                            <div className="step-visual step3-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img
+                                    src="/image/saa.png"
+                                    alt="Discover Arena Pro"
+                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                />
                             </div>
                             <h3 className="step-card-title">Discover Arena Pro</h3>
                             <p className="step-card-desc">Unlock a new level of play. Find local courts, meet your next teammates, and level up your game.</p>
