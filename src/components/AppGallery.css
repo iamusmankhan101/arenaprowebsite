@@ -12,7 +12,7 @@
     padding: 0 24px;
 }
 
-.app-gallery-title {
+.display {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     color: #0f172a;
@@ -20,7 +20,7 @@
     margin-bottom: 12px;
 }
 
-.highlight-text-blue {
+.secondary-color {
     color: #3b82f6;
     /* Modern Blue */
 }
@@ -37,32 +37,39 @@
     width: 100%;
     overflow: hidden;
     padding: 20px 0;
+    position: relative;
+    /* Soft fade on edges */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .app-gallery-track {
     display: flex;
     gap: 30px;
-    padding: 0 30px;
-    /* Horizontal auto-scroll */
-    overflow-x: auto;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE10+ */
-    scroll-snap-type: x mandatory;
+    width: max-content;
+    animation: scroll 40s linear infinite;
 }
 
-.app-gallery-track::-webkit-scrollbar {
-    display: none;
-    /* Safari and Chrome */
+.app-gallery-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-50% - 15px));
+    }
+
+    /* 50% = half the duplicated content, 15px = half the gap */
 }
 
 .ag-card {
-    flex: 0 0 calc(30% - 20px);
-    /* 3 cards visible roughly */
-    min-width: 320px;
+    flex: 0 0 320px;
+    width: 320px;
     height: 600px;
-    scroll-snap-align: center;
     border-radius: 28px;
     overflow: hidden;
     position: relative;
