@@ -21,7 +21,7 @@ const Hero = () => {
                 {/* Badges */}
                 <div className="hero-badges">
 
-                    <span className="badge badge-dark">LAUCNHING SOON</span>
+                    <span className="badge badge-dark">LAUNCHING SOON</span>
                 </div>
 
                 {/* Heading */}
