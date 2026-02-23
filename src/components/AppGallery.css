@@ -1,6 +1,6 @@
 .app-gallery-section {
     padding: 100px 0;
-    background-color: #f4f6f9;
+    background-color: #ffffff;
     /* Matching the soft blue/gray from the reference */
     overflow-x: hidden;
     font-family: var(--font-family);
@@ -18,11 +18,13 @@
     color: #0f172a;
     /* Dark slate */
     margin-bottom: 12px;
+    font-family: var(--font-family);
 }
 
 .secondary-color {
-    color: #3b82f6;
+    color: #e8ee26;
     /* Modern Blue */
+    font-family: var(--font-family);
 }
 
 .app-gallery-desc {
