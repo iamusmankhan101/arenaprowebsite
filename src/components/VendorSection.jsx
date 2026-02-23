@@ -25,7 +25,7 @@ const VendorSection = () => {
                             </div>
                             <div className="feature-text">
                                 <h3 className="feature-title">Efficient Booking Management</h3>
-                                <p className="feature-desc">Simplify court reservations, eliminate double-bookings, and manage your daily schedule effortlessly from a single, centralized dashboard.</p>
+                                <p className="feature-desc">Simplify indoor cricket ground, padel court, and football turf reservations in lahore, eliminate double-bookings, and manage your daily schedule effortlessly from a single, centralized dashboard.</p>
                             </div>
                         </div>
 

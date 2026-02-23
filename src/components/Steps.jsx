@@ -73,7 +73,7 @@ const Steps = () => {
                                 />
                             </div>
                             <h3 className="step-card-title">Get the App</h3>
-                            <p className="step-card-desc">Grab Arena Pro from your app store and put the ultimate sports hub right in your pocket.</p>
+                            <p className="step-card-desc">Grab Arena Pro from your app store and put the ultimate sports booking app right in your pocket.</p>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@ const Steps = () => {
                                 />
                             </div>
                             <h3 className="step-card-title">Create an account</h3>
-                            <p className="step-card-desc">Sign up in seconds and personalize your profile to play your way.</p>
+                            <p className="step-card-desc">Sign up in seconds to personalize your profile and easily manage your cricket grounds booking in Lahore.</p>
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@ const Steps = () => {
                                 />
                             </div>
                             <h3 className="step-card-title">Discover Arena Pro</h3>
-                            <p className="step-card-desc">Unlock a new level of play. Find local courts, meet your next teammates, and level up your game.</p>
+                            <p className="step-card-desc">Unlock a new level of play. Find a football turf near me, book top padel courts in Lahore, and meet your next teammates.</p>
                         </div>
                     </div>
                 </div>

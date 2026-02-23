@@ -82,18 +82,23 @@
     padding: 10px 24px;
     border-radius: 10px;
     backdrop-filter: blur(4px);
-    animation: pulseBadge 2s infinite ease-in-out;
+    animation: blinkLight 1.5s infinite ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-@keyframes pulseBadge {
+@keyframes blinkLight {
 
     0%,
     100% {
-        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
     }
 
     50% {
-        transform: scale(1.05);
+        opacity: 0.8;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.4);
     }
 }
 
