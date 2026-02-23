@@ -48,7 +48,7 @@ const Testimonials = () => {
         <section className="testimonials">
             <div className="testimonials-header">
                 <h2 className="testimonials-title">
-                    What our beta<br />clients are saying
+                    What our<br />clients are saying
                 </h2>
                 <p className="testimonials-subtitle">
                     Our financial management platform is transforming the way people manage
