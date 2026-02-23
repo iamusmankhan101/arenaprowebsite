@@ -39,10 +39,6 @@ const DownloadApp = () => {
                         </button>
                     </div>
 
-                    <div className="download-qrs-wrapper">
-                        <img src="/image/Copy of arena pro logoqr (1).png" alt="App Store QR" className="dl-qr-code" />
-                        <img src="/image/Copy of arena pro logoqr (3).png" alt="Google Play QR" className="dl-qr-code" />
-                    </div>
                 </div>
 
                 {/* Right Side: Phone Image Overlay Design */}

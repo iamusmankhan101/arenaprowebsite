@@ -31,8 +31,8 @@
 }
 
 .download-title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 500;
     line-height: 1.1;
     margin-bottom: 24px;
     font-family: 'Clash Display', sans-serif;
@@ -40,10 +40,10 @@
 }
 
 .download-description {
-    font-size: 1.1rem;
+    font-size: 0.7rem;
     line-height: 1.6;
     margin-bottom: 40px;
-    color: #e2e8f0;
+    color: #ffffff;
     font-weight: 500;
 }
 
