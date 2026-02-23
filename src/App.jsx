@@ -7,6 +7,7 @@ import Steps from './components/Steps'
 import AppGallery from './components/AppGallery'
 import Testimonials from './components/Testimonials'
 import DownloadApp from './components/DownloadApp'
+import VendorSection from './components/VendorSection'
 import Footer from './components/Footer'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Steps />
             <AppGallery />
             <Testimonials />
+            <VendorSection />
             <DownloadApp />
             <Footer />
         </div>
