@@ -19,7 +19,7 @@
 
 .features-title {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-weight: 500;
     color: #1f1f1f;
     line-height: 1.2;
 }
@@ -28,7 +28,7 @@
 .highlight-text {
     color: #004d43;
     /* Muted gray for "Standout Features" per reference */
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .features-grid {

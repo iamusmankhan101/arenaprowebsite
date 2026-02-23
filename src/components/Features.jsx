@@ -6,7 +6,7 @@ const Features = () => {
         <section className="features">
             <div className="features-container">
                 <header className="features-header">
-                    <span className="features-eyebrow">• ARENAPA PRO</span>
+
                     <h2 className="features-title">
                         Elevate Your<br />
                         <span className="highlight-text">Sports Experience</span>
