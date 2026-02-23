@@ -26,13 +26,13 @@ const Hero = () => {
 
                 {/* Heading */}
                 <h1 className="hero-title">
-                    Book Your Perfect Sports Venue<br />
-                    Anytime, Anywhere.
+                    Find and Book the Best Sports Venues<br />
+                    in Lahore.
                 </h1>
 
                 {/* Subtitle */}
                 <p className="hero-subtitle">
-                    Your game, your schedule, discover and reserve top sports venues with just a few taps <br />
+                    Stop searching for a football turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from an indoor cricket arena to the best padel tennis courts in lahore. <br />
                 </p>
 
                 {/* CTA Button */}

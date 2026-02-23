@@ -31,7 +31,7 @@ const Features = () => {
                         <div className="feature-number">02</div>
                         <div className="mofin-text-col">
                             <h3 className="mofin-title">Challenge Mode</h3>
-                            <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
+                            <p className="mofin-desc">Create teams, challenge local squads to indoor cricket, padel or futsal matches, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
                             <div className="mofin-challenge-image">
@@ -48,7 +48,7 @@ const Features = () => {
                         <div className="feature-number">03</div>
                         <div className="mofin-text-top">
                             <h3 className="mofin-title">Premium Venue Insights</h3>
-                            <p className="mofin-desc">Detailed venue profiles with amenity icons and reviews.</p>
+                            <p className="mofin-desc">Detailed profiles for the best padel courts in Lahore, cricket grounds, and premium turfs, complete with amenity icons and reviews.</p>
                         </div>
                         <div className="mofin-visual-bottom" style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '100%', paddingBottom: '20px' }}>
                             <img
@@ -64,7 +64,7 @@ const Features = () => {
                         <div className="feature-number">04</div>
                         <div className="mofin-text-top">
                             <h3 className="mofin-title">Interactive Map Search</h3>
-                            <p className="mofin-desc">Geolocation-based venue finder to discover nearby turfs.</p>
+                            <p className="mofin-desc">Geolocation-based venue finder to instantly discover a football turf near me or the closest padel courts near me.</p>
                         </div>
                         <div className="mofin-visual-center">
                             <img
@@ -92,7 +92,7 @@ const Features = () => {
                         <div className="feature-number">06</div>
                         <div className="mofin-text-col">
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
-                            <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
+                            <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant confirmations for your cricket grounds booking so you never miss a match.</p>
                         </div>
                         <div className="mofin-visual-right-small alerts-visual">
                             <img className="mofin-alerts-image" src="/image/D.png" alt="Real-Time Alerts" />
