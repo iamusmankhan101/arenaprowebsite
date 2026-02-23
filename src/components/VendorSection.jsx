@@ -91,7 +91,7 @@ const VendorSection = () => {
                 <div className="vendor-image-content">
                     <div className="vendor-image-circle"></div>
                     <img
-                        src="/image/GHJK.png"
+                        src="/image/jkl.png"
                         alt="Arena Pro Web Portal"
                         className="vendor-laptop-img"
                     />

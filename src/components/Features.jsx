@@ -50,21 +50,12 @@ const Features = () => {
                             <h3 className="mofin-title">Premium Venue Insights</h3>
                             <p className="mofin-desc">Detailed venue profiles with amenity icons and reviews.</p>
                         </div>
-                        <div className="mofin-visual-bottom">
-                            <div className="mofin-float-card">
-                                <div className="mfc-header">
-                                    <div className="mfc-icon">🏟️</div>
-                                    <div className="mfc-info">
-                                        <div className="mfc-title">Turf Arena</div>
-                                        <div className="mfc-sub">5.0 ⭐</div>
-                                    </div>
-                                    <div className="mfc-price">Rs. 800</div>
-                                </div>
-                                <div className="mfc-body">
-                                    <div className="mfc-tag">Parking ✅</div>
-                                    <div className="mfc-tag">Water 💧</div>
-                                </div>
-                            </div>
+                        <div className="mofin-visual-bottom" style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '100%', paddingBottom: '20px' }}>
+                            <img
+                                src="/image/GHJK.png"
+                                alt="Premium Venue Insights"
+                                style={{ width: '90%', height: 'auto', borderRadius: '16px', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))' }}
+                            />
                         </div>
                     </div>
 
