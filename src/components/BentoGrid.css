@@ -150,7 +150,8 @@
 }
 
 .phone-mockup {
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     height: 650px;
     background: #111;
     border-radius: 40px;
@@ -391,7 +392,8 @@
 
 .phone-main-image {
 
-    width: 340px;
+    width: 100%;
+    max-width: 340px;
     height: auto;
     border-radius: 2rem;
     z-index: 10;

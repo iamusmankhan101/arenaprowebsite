@@ -34,11 +34,10 @@ const Features = () => {
                             <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
-                            <div style={{ width: '140%', height: '140%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: '-15%', bottom: '-5%' }}>
+                            <div className="mofin-challenge-image">
                                 <img
                                     src="/image/Copy of arena pro logoqr (1).png"
                                     alt="Challenge Mode Interface"
-                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
                             </div>
                         </div>
@@ -78,9 +77,9 @@ const Features = () => {
                         </div>
                         <div className="mofin-visual-center">
                             <img
+                                className="mofin-map-image"
                                 src="/image/Copy of arena pro logoqr (2).png"
                                 alt="Interactive Map Search Interface"
-                                style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
                             />
                         </div>
                     </div>
@@ -92,8 +91,8 @@ const Features = () => {
                             <h3 className="mofin-title">Refer & Earn</h3>
                             <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
-                        <div className="mofin-visual-right-small" style={{ right: '-5px', bottom: '-130px' }}>
-                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
+                        <div className="mofin-visual-right-small refer-earn-visual">
+                            <img className="mofin-refer-image" src="/image/refer.png" alt="Refer and Earn" />
                         </div>
                     </div>
 
@@ -104,8 +103,8 @@ const Features = () => {
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
                             <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
-                        <div className="mofin-visual-right-small" style={{ right: '90px', bottom: '-20px' }}>
-                            <img src="/image/D.png" alt="Real-Time Alerts" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
+                        <div className="mofin-visual-right-small alerts-visual">
+                            <img className="mofin-alerts-image" src="/image/D.png" alt="Real-Time Alerts" />
                         </div>
                     </div>
 

@@ -469,6 +469,51 @@
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
+.mofin-challenge-image {
+    width: 140%;
+    height: 140%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -15%;
+    bottom: -5%;
+}
+
+.mofin-challenge-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mofin-map-image {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+.refer-earn-visual {
+    right: -5px;
+    bottom: -130px;
+}
+
+.mofin-refer-image {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+}
+
+.alerts-visual {
+    right: 90px;
+    bottom: -20px;
+}
+
+.mofin-alerts-image {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .features-grid {
@@ -482,14 +527,86 @@
         grid-column: auto;
     }
 
+    .mofin-gray-wide {
+        flex-direction: column;
+    }
+
     .mofin-phone-mockup {
         right: 0;
         bottom: -20px;
         transform: rotate(0);
+        position: relative;
+        margin: 0 auto;
     }
 
     .mofin-visual-right {
         justify-content: center;
         margin-top: 40px;
+        min-height: 250px;
+    }
+
+    .mofin-challenge-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        right: 0;
+        bottom: 0;
+    }
+
+    .mofin-visual-right-small {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .mofin-visual-right-small img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .alerts-visual,
+    .refer-earn-visual {
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .features {
+        padding: 60px 16px;
+    }
+
+    .feature-card {
+        padding: 30px 24px;
+        min-height: auto;
+    }
+
+    .mofin-title-large {
+        font-size: 3rem;
+    }
+
+    .mofin-bg-text {
+        font-size: 5rem;
+    }
+
+    .mofin-visual-right-small img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .mofin-map-image {
+        width: 100%;
+    }
+
+    .mfc-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .mfc-price {
+        align-self: flex-start;
     }
 }
