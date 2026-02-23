@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Steps from './components/Steps'
+import AppGallery from './components/AppGallery'
 import BentoGrid from './components/BentoGrid'
 import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
@@ -15,6 +16,7 @@ function App() {
       <Hero />
       <Features />
       <Steps />
+      <AppGallery />
       <BentoGrid />
       <Testimonials />
       <Footer />
