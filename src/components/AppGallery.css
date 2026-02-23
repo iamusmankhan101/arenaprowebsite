@@ -118,12 +118,39 @@
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
     .ag-card {
-        flex: 0 0 calc(45% - 15px);
+        flex: 0 0 320px;
     }
 }
 
 @media (max-width: 768px) {
+    .app-gallery-section {
+        padding: 60px 0;
+    }
+
     .ag-card {
-        flex: 0 0 85%;
+        flex: 0 0 260px;
+        width: 260px;
+        height: 500px;
+    }
+
+    .ag-phone-img {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .display {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ag-card {
+        flex: 0 0 220px;
+        width: 220px;
+        height: 420px;
+    }
+
+    .ag-phone-img {
+        max-width: 180px;
     }
 }
