@@ -79,8 +79,8 @@ const Steps = () => {
                                 <div className="step1-badge app-store">App Store</div>
                                 <div className="step1-badge play-store">Play Store</div>
                             </div>
-                            <h3 className="step-card-title">Download App</h3>
-                            <p className="step-card-desc">Get the app now on iOS and Android for free.</p>
+                            <h3 className="step-card-title">Get the App</h3>
+                            <p className="step-card-desc">Grab Arena Pro from your app store and put the ultimate sports hub right in your pocket.</p>
                         </div>
                     </div>
 
@@ -107,8 +107,8 @@ const Steps = () => {
                                     </div>
                                 </div>
                             </div>
-                            <h3 className="step-card-title">Create Profile</h3>
-                            <p className="step-card-desc">Set up your player profile and connect with friends.</p>
+                            <h3 className="step-card-title">Join the Community</h3>
+                            <p className="step-card-desc">Sign up in seconds and personalize your profile to play your way.</p>
                         </div>
                     </div>
 
@@ -133,8 +133,8 @@ const Steps = () => {
                                     </div>
                                 </div>
                             </div>
-                            <h3 className="step-card-title">Book & Play</h3>
-                            <p className="step-card-desc">Find your venue, book your slot, and enjoy the game.</p>
+                            <h3 className="step-card-title">Discover Arena Pro</h3>
+                            <p className="step-card-desc">Unlock a new level of play. Find local courts, meet your next teammates, and level up your game.</p>
                         </div>
                     </div>
                 </div>
