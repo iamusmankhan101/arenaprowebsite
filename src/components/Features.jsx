@@ -34,13 +34,6 @@ const Features = () => {
                             <p className="mofin-desc">Create teams, challenge squads, and track professional stats like Win Rate.</p>
                         </div>
                         <div className="mofin-visual-right">
-                            <div style={{ width: '140%', height: '140%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: '-15%', bottom: '-5%' }}>
-                                <img
-                                    src="/image/Copy of arena pro logoqr (1).png"
-                                    alt="Challenge Mode Interface"
-                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                />
-                            </div>
                         </div>
                     </div>
 
@@ -52,20 +45,6 @@ const Features = () => {
                             <p className="mofin-desc">Detailed venue profiles with amenity icons and reviews.</p>
                         </div>
                         <div className="mofin-visual-bottom">
-                            <div className="mofin-float-card">
-                                <div className="mfc-header">
-                                    <div className="mfc-icon">🏟️</div>
-                                    <div className="mfc-info">
-                                        <div className="mfc-title">Turf Arena</div>
-                                        <div className="mfc-sub">5.0 ⭐</div>
-                                    </div>
-                                    <div className="mfc-price">Rs. 800</div>
-                                </div>
-                                <div className="mfc-body">
-                                    <div className="mfc-tag">Parking ✅</div>
-                                    <div className="mfc-tag">Water 💧</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -77,11 +56,6 @@ const Features = () => {
                             <p className="mofin-desc">Geolocation-based venue finder to discover nearby turfs.</p>
                         </div>
                         <div className="mofin-visual-center">
-                            <img
-                                src="/image/Copy of arena pro logoqr (2).png"
-                                alt="Interactive Map Search Interface"
-                                style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
-                            />
                         </div>
                     </div>
 
@@ -93,7 +67,6 @@ const Features = () => {
                             <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
                         </div>
                         <div className="mofin-visual-right-small" style={{ right: '-5px', bottom: '-130px' }}>
-                            <img src="/image/refer.png" alt="Refer and Earn" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
                         </div>
                     </div>
 
@@ -105,7 +78,6 @@ const Features = () => {
                             <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant booking notifications.</p>
                         </div>
                         <div className="mofin-visual-right-small" style={{ right: '90px', bottom: '-20px' }}>
-                            <img src="/image/D.png" alt="Real-Time Alerts" style={{ width: '400px', height: '400px', objectFit: 'contain' }} />
                         </div>
                     </div>
 

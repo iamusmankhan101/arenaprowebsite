@@ -9,6 +9,16 @@
   box-sizing: border-box;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 600;
+}
+
 :root {
   --font-family: 'Montserrat', sans-serif;
   --blue-start: #a0d4f7;
