@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import './Features.css';
 
 const Features = () => {
@@ -54,16 +54,16 @@ const Features = () => {
                         <div className="mofin-visual-bottom">
                             <div className="mofin-float-card">
                                 <div className="mfc-header">
-                                    <div className="mfc-icon">🏟️</div>
+                                    <div className="mfc-icon">≡ƒÅƒ∩╕Å</div>
                                     <div className="mfc-info">
                                         <div className="mfc-title">Turf Arena</div>
-                                        <div className="mfc-sub">5.0 ⭐</div>
+                                        <div className="mfc-sub">5.0 Γ¡É</div>
                                     </div>
                                     <div className="mfc-price">Rs. 800</div>
                                 </div>
                                 <div className="mfc-body">
-                                    <div className="mfc-tag">Parking ✅</div>
-                                    <div className="mfc-tag">Water 💧</div>
+                                    <div className="mfc-tag">Parking Γ£à</div>
+                                    <div className="mfc-tag">Water ≡ƒÆº</div>
                                 </div>
                             </div>
                         </div>
