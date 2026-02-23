@@ -69,7 +69,7 @@ const Steps = () => {
                                 <img
                                     src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png"
                                     alt="Get it on Google Play"
-                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
                                 />
                             </div>
                             <h3 className="step-card-title">Get the App</h3>
@@ -85,7 +85,7 @@ const Steps = () => {
                                 <img
                                     src="/image/fd.png"
                                     alt="Create an account profile preview"
-                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
                                 />
                             </div>
                             <h3 className="step-card-title">Create an account</h3>
@@ -101,7 +101,7 @@ const Steps = () => {
                                 <img
                                     src="/image/saa.png"
                                     alt="Discover Arena Pro"
-                                    style={{ width: '80%', height: 'auto', objectFit: 'contain' }}
+                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
                                 />
                             </div>
                             <h3 className="step-card-title">Discover Arena Pro</h3>
