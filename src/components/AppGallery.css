@@ -70,67 +70,20 @@
     flex: 0 0 320px;
     width: 320px;
     height: 600px;
-    border-radius: 28px;
-    overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transform: scale(0.95);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Removed box-shadow, transform, border-radius */
 }
 
-.ag-card:hover {
-    transform: scale(1);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
-}
-
-.ag-inner {
-    width: 100%;
-    height: 100%;
-    padding: 50px 20px 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-.ag-content {
-    z-index: 2;
-    position: relative;
-    width: 100%;
-}
-
-.ag-card-title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.ag-card-desc {
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    margin-bottom: 40px;
-    min-height: 40px;
-    padding: 0 10px;
-}
+/* Removed ag-card hover effect */
 
 .ag-phone-img {
     width: 250px;
     height: auto;
-    border-radius: 36px;
-    /* Smooth corners for phone */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     margin: 0 auto;
     display: block;
     position: relative;
     z-index: 5;
-    /* Soft border mimicking a bezel */
-    border: 6px solid #1e293b;
-    background: #fff;
-    /* in case images have transparency */
+    /* Removed border-radius, box-shadow, border, background */
 }
 
 /* Background floating decors */
