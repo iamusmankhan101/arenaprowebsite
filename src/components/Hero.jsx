@@ -26,8 +26,7 @@ const Hero = () => {
 
                 {/* Heading */}
                 <h1 className="hero-title">
-                    Find and Book the Best Sports Venues<br />
-                    in Lahore.
+                    Find and Book the Best Sports Venues in Lahore.
                 </h1>
 
                 {/* Subtitle */}
