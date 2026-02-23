@@ -527,7 +527,9 @@
         grid-column: auto;
     }
 
-    .mofin-gray-wide {
+    .mofin-gray-wide,
+    .mofin-yellow,
+    .mofin-purple {
         flex-direction: column;
     }
 

@@ -49,7 +49,6 @@
 
 .app-gallery-track {
     display: flex;
-    gap: 30px;
     width: max-content;
     animation: scroll 40s linear infinite;
 }
@@ -64,10 +63,10 @@
     }
 
     100% {
-        transform: translateX(calc(-50% - 15px));
+        transform: translateX(-50%);
     }
 
-    /* 50% = half the duplicated content, 15px = half the gap */
+    /* 50% = exactly half the track width now that gap acts as margin */
 }
 
 .ag-card {
@@ -75,6 +74,7 @@
     width: 320px;
     height: 600px;
     position: relative;
+    margin-right: 30px;
     /* Removed box-shadow, transform, border-radius */
 }
 
@@ -128,14 +128,15 @@
     }
 
     .ag-card {
-        flex: 0 0 260px;
-        width: 260px;
-        height: 500px;
+        flex: 0 0 300px;
+        width: 300px;
+        height: 560px;
+        margin-right: 20px;
     }
 
     .ag-phone-img {
         width: 100%;
-        max-width: 220px;
+        max-width: 270px;
     }
 
     .display {
@@ -145,12 +146,13 @@
 
 @media (max-width: 480px) {
     .ag-card {
-        flex: 0 0 220px;
-        width: 220px;
-        height: 420px;
+        flex: 0 0 280px;
+        width: 280px;
+        height: 520px;
+        margin-right: 15px;
     }
 
     .ag-phone-img {
-        max-width: 180px;
+        max-width: 250px;
     }
 }
