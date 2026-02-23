@@ -20,7 +20,7 @@ const AppGallery = () => {
                                 src={`/image/app ui arena pro/${img}`}
                                 alt={`App Screen ${img}`}
                                 className="ag-phone-img"
-                                style={{ width: '100%', height: '100%', objectFit: 'contain', border: 'none', borderRadius: '0', boxShadow: 'none', margin: '0' }}
+                                style={{ width: '100%', height: '100%', objectFit: 'contain', border: 'none', borderRadius: '10px', boxShadow: 'none', margin: '0' }}
                             />
                         </div>
                     ))}
