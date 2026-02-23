@@ -26,7 +26,7 @@
 
 .vendor-title {
     font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.2;
     margin-bottom: 20px;
     color: #0f172a;
@@ -34,7 +34,7 @@
 }
 
 .vendor-highlight {
-    color: #4361ee;
+    color: #004d43;
     /* Blue color similar to reference */
 }
 
