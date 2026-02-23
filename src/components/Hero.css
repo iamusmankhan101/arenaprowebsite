@@ -89,7 +89,7 @@
     font-family: 'Clash Display', sans-serif;
     line-height: 1.12;
     color: #ffffff;
-    letter-spacing: -1.5px;
+    letter-spacing: 1px;
     margin-bottom: 18px;
     animation: fadeInUp 0.7s ease-out 0.12s both;
 }
