@@ -77,7 +77,13 @@ const Venues = () => {
     const [activeSport, setActiveSport] = useState('All');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-    const sports = ['All', 'Cricket', 'Football', 'Padel', 'Tennis'];
+    const sports = [
+        { name: 'All', icon: <LayoutGrid size={18} /> },
+        { name: 'Cricket', icon: <Target size={18} /> },
+        { name: 'Football', icon: <Football size={18} /> },
+        { name: 'Padel', icon: <Disc size={18} /> },
+        { name: 'Tennis', icon: <Trophy size={18} /> }
+    ];
 
     const filteredVenues = useMemo(() => {
         return mockVenues.filter(venue => {
@@ -125,14 +131,15 @@ const Venues = () => {
                     <div className="sports-pills">
                         {sports.map(sport => (
                             <button
-                                key={sport}
-                                className={`pill ${activeSport === sport ? 'active' : ''}`}
+                                key={sport.name}
+                                className={`pill ${activeSport === sport.name ? 'active' : ''}`}
                                 onClick={() => {
-                                    setActiveSport(sport);
+                                    setActiveSport(sport.name);
                                     setIsFilterOpen(false);
                                 }}
                             >
-                                {sport}
+                                <span className="pill-icon">{sport.icon}</span>
+                                <span className="pill-text">{sport.name}</span>
                             </button>
                         ))}
                     </div>
