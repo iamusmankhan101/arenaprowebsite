@@ -1,74 +1,19 @@
 import React, { useState, useMemo } from 'react';
 import Navbar from '../components/Navbar';
 import './Venues.css';
-import { Search, MapPin, Star, Clock, Trophy, Filter, X } from 'lucide-react';
+import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target } from 'lucide-react';
 
 const mockVenues = [
     {
-        id: 1,
-        name: "Model Town Sports Club",
-        location: "Model Town, Lahore",
+        id: 7,
+        name: "Super Sixes",
+        location: "Nasheman Iqbal Phase 1, Lahore",
         rating: 4.8,
-        reviews: 124,
-        price: "Rs. 3000/hr",
+        reviews: 156,
+        price: "1700 Pkr/Hour",
         sport: "Cricket",
         image: "/image/app ui arena pro/1.png",
-        tags: ["Indoor", "Premium", "Coaching"]
-    },
-    {
-        id: 2,
-        name: "Johar Town Futsal Arena",
-        location: "Johar Town, Lahore",
-        rating: 4.6,
-        reviews: 89,
-        price: "Rs. 2500/hr",
-        sport: "Football",
-        image: "/image/app ui arena pro/2.png",
-        tags: ["Floodlights", "Cafe", "Parking"]
-    },
-    {
-        id: 3,
-        name: "Gulberg Padel Courts",
-        location: "Gulberg III, Lahore",
-        rating: 4.9,
-        reviews: 56,
-        price: "Rs. 4000/hr",
-        sport: "Padel",
-        image: "/image/app ui arena pro/3.png",
-        tags: ["New", "A/C Stand", "Pro Gear"]
-    },
-    {
-        id: 4,
-        name: "Defense Cricket Academy",
-        location: "DHA Phase 5, Lahore",
-        rating: 4.7,
-        reviews: 210,
-        price: "Rs. 3500/hr",
-        sport: "Cricket",
-        image: "/image/app ui arena pro/4.png",
-        tags: ["Turf", "Analysis", "Members Only"]
-    },
-    {
-        id: 5,
-        name: "Elite Tennis Club",
-        location: "Garden Town, Lahore",
-        rating: 4.5,
-        reviews: 45,
-        price: "Rs. 2000/hr",
-        sport: "Tennis",
-        image: "/image/app ui arena pro/5.png",
-        tags: ["Clay Court", "Shower", "Lockers"]
-    },
-    {
-        id: 6,
-        name: "Arena Pro Hub",
-        location: "Cavalry Ground, Lahore",
-        rating: 5.0,
-        reviews: 320,
-        price: "Rs. 5000/hr",
-        sport: "Multi-sport",
-        image: "/image/app ui arena pro/6.png",
-        tags: ["Ultra Premium", "Steam Room", "Valet"]
+        tags: ["Indoor", "Net Practice", "Affordable"]
     }
 ];
 
@@ -80,7 +25,7 @@ const Venues = () => {
     const sports = [
         { name: 'All', icon: <LayoutGrid size={18} /> },
         { name: 'Cricket', icon: <Target size={18} /> },
-        { name: 'Football', icon: <Football size={18} /> },
+        { name: 'Football', icon: <Award size={18} /> },
         { name: 'Padel', icon: <Disc size={18} /> },
         { name: 'Tennis', icon: <Trophy size={18} /> }
     ];
@@ -180,7 +125,6 @@ const Venues = () => {
                                     </div>
                                     <div className="venue-footer">
                                         <div className="venue-price">{venue.price}</div>
-                                        <button className="book-btn">View Details</button>
                                     </div>
                                 </div>
                             </div>

@@ -53,6 +53,7 @@ const Navbar = () => {
                         <Link to="/" className="nav-link" onClick={closeMenu} style={{ '--i': 0 }}>Home</Link>
                         <Link to="/how-it-works" className="nav-link" onClick={closeMenu} style={{ '--i': 1 }}>How it Works</Link>
                         <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venues</Link>
+                        <Link to="/contact" className="nav-link" onClick={closeMenu} style={{ '--i': 3 }}>Contact</Link>
                     </div>
 
                     <div className="mobile-menu-footer">
