@@ -15,8 +15,9 @@
 
 .venues-h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 20px;
+    font-family: ClashDisplay-Regular;
 }
 
 .venues-h1 .highlight {
@@ -28,6 +29,7 @@
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto 40px;
+    color: #ffffff;
 }
 
 .search-container {
