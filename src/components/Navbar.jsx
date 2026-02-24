@@ -52,7 +52,7 @@ const Navbar = () => {
                     <div className="nav-links-wrapper">
                         <Link to="/" className="nav-link" onClick={closeMenu} style={{ '--i': 0 }}>Home</Link>
                         <Link to="/how-it-works" className="nav-link" onClick={closeMenu} style={{ '--i': 1 }}>How it Works</Link>
-                        <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venuer</Link>
+                        <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venues</Link>
                     </div>
 
                     <div className="mobile-menu-footer">

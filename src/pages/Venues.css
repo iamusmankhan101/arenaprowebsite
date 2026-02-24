@@ -1,0 +1,343 @@
+.venues-page {
+    background: #f8fafc;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.venues-hero {
+    background: linear-gradient(135deg, #004d43 0%, #0f172a 100%);
+    padding: 100px 5% 120px;
+    text-align: center;
+    color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.venues-h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.venues-h1 .highlight {
+    color: #e8ee26;
+}
+
+.venues-p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.search-icon {
+    color: #e8ee26;
+    margin-right: 15px;
+}
+
+.search-wrapper input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.search-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.venues-container {
+    max-width: 1200px;
+    margin: -60px auto 100px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* --- Filters --- */
+.filters-section {
+    background: white;
+    padding: 24px 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.filters-header h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.sports-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pill {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pill:hover {
+    border-color: #004d43;
+    color: #004d43;
+}
+
+.pill.active {
+    background: #004d43;
+    color: white;
+    border-color: #004d43;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.2);
+}
+
+.mobile-close-filter,
+.mobile-filter-btn {
+    display: none;
+}
+
+/* --- Grid Header --- */
+.venues-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-count {
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* --- Venue Grid --- */
+.venues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 32px;
+}
+
+.venue-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    border: 1px solid #f1f5f9;
+}
+
+.venue-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.venue-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.venue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.venue-card:hover .venue-image img {
+    transform: scale(1.1);
+}
+
+.venue-sport-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #e8ee26;
+    color: #0f172a;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.venue-info {
+    padding: 24px;
+}
+
+.venue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.venue-header h3 {
+    font-size: 1.25rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.venue-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.venue-loc {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.venue-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tag {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.venue-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.venue-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #004d43;
+}
+
+.book-btn {
+    background: #0f172a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-btn:hover {
+    background: #004d43;
+    transform: scale(1.05);
+}
+
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.reset-btn {
+    margin-top: 20px;
+    background: #004d43;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .venues-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .venues-hero {
+        padding: 80px 20px 100px;
+    }
+
+    .venues-container {
+        margin-top: -40px;
+    }
+
+    .filters-section {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        transition: left 0.4s ease;
+        padding: 40px 20px;
+    }
+
+    .filters-section.open {
+        left: 0;
+    }
+
+    .mobile-close-filter {
+        display: block;
+        background: none;
+        border: none;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .mobile-filter-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+}
