@@ -1,12 +1,13 @@
 .venues-page {
     background: #f8fafc;
     min-height: 100vh;
-    padding-top: 80px;
 }
 
 .venues-hero {
-    background: linear-gradient(135deg, #004d43 0%, #0f172a 100%);
-    padding: 100px 5% 120px;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 77, 67, 0.4)), url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 180px 5% 140px;
     text-align: center;
     color: white;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
