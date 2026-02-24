@@ -12,11 +12,10 @@ const HowItWorks = () => {
             {/* Dark Hero Section */}
             <section className="hiw-hero">
                 <div className="hiw-container">
-                    <span className="hiw-badge">YOUR NEW SPORTS HUB</span>
-                    <h1 className="hiw-title">Let's Build Your<br /><span>Sports SUCCESS Story</span></h1>
+                    <span className="hiw-badge">Arena Pro</span>
+                    <h1 className="hiw-title">Your New Sports Hub</h1>
                     <p className="hiw-subtitle">
-                        Experience the ultimate venue booking platform designed to connect players
-                        with the best sports facilities in Lahore.
+                        Experience the ultimate sports booking platform designed to connect players with the best indoor cricket in Lahore, premium padel courts, and top-rated football turf.
                     </p>
                     <button className="hiw-cta">Get Started Now →</button>
 
@@ -27,7 +26,7 @@ const HowItWorks = () => {
                     <div className="hiw-grid">
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <Search size={32} color="#e8ee26" strokeWidth={2} />
+                                <Search size={32} color="#004d43" strokeWidth={2} />
                             </div>
                             <h3>Find Venue</h3>
                             <p>Discover top-rated cricket grounds, futsal courts, and padel arenas near you instantly.</p>
@@ -35,7 +34,7 @@ const HowItWorks = () => {
                         </div>
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <CalendarClock size={32} color="#e8ee26" strokeWidth={2} />
+                                <CalendarClock size={32} color="#004d43" strokeWidth={2} />
                             </div>
                             <h3>Instant Booking</h3>
                             <p>Book your preferred slot in seconds with our real-time availability tracking system.</p>
@@ -43,7 +42,7 @@ const HowItWorks = () => {
                         </div>
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <Trophy size={32} color="#e8ee26" strokeWidth={2} />
+                                <Trophy size={32} color="#004d43" strokeWidth={2} />
                             </div>
                             <h3>Challenge Mode</h3>
                             <p>Create challenges, find local squads, and level up your game with competitive matches.</p>
