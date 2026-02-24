@@ -25,7 +25,7 @@ const Contact = () => {
         e.preventDefault();
         setStatus('loading');
 
-        const ACCESS_KEY = "4a9d7b4a-a4e9-4674-8b6b-4e8979685321"; // Temporary key - user can replace with theirs
+        const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d"; // Provided by user
 
         const data = {
             ...formData,
