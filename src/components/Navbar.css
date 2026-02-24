@@ -155,7 +155,7 @@
         right: -100%;
         width: 100%;
         height: 100vh;
-        background: radial-gradient(circle at top right, rgba(0, 77, 67, 0.98), rgba(15, 23, 42, 0.98));
+        background: #004d43;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
@@ -189,16 +189,17 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 24px;
         margin: 40px 0;
     }
 
     .nav-link {
-        font-size: 2rem;
-        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 600;
         color: white !important;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         opacity: 0;
         transform: translateY(20px);
         transition: all 0.4s ease;
@@ -263,5 +264,6 @@
         font-size: 0.8rem;
         color: rgba(255, 255, 255, 0.4);
         margin: 0;
+        padding-bottom: 30px;
     }
 }
