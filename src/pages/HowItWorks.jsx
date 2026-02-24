@@ -19,6 +19,15 @@ const HowItWorks = () => {
                     </p>
                     <button className="hiw-cta">Get Started Now →</button>
 
+                    {/* Central App Visual */}
+                    <div className="hiw-main-visual">
+                        <img
+                            src="/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg"
+                            alt="Arena Pro Platform Overview"
+                            className="hiw-hero-img"
+                        />
+                    </div>
+
                     {/* Floating Dashboard Cards Snippets */}
                     <div className="hiw-floating-cards">
                         <div className="hiw-card hiw-card-left">
@@ -37,10 +46,7 @@ const HowItWorks = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-
-            {/* Steps / Features Grid */}
-            <section className="hiw-content">
+                {/* Main Features Grid Consolidation */}
                 <div className="hiw-grid">
                     <div className="hiw-feature-card">
                         <div className="hiw-icon">🔍</div>
@@ -61,10 +67,11 @@ const HowItWorks = () => {
                         <a href="#" className="hiw-learn-more">Learn more →</a>
                     </div>
                 </div>
-            </section>
-
-            <Footer />
         </div>
+            </section >
+
+    <Footer />
+        </div >
     );
 };
 
