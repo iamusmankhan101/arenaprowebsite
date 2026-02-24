@@ -151,18 +151,22 @@
 }
 
 .hiw-feature-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     padding: 40px;
     border-radius: 24px;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     text-align: left;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 .hiw-feature-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(76, 217, 100, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(76, 217, 100, 0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .hiw-icon {

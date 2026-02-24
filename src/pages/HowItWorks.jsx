@@ -20,22 +20,7 @@ const HowItWorks = () => {
                     <button className="hiw-cta">Get Started Now →</button>
 
                     {/* Floating Dashboard Cards Snippets */}
-                    <div className="hiw-floating-cards">
-                        <div className="hiw-card hiw-card-left">
-                            <div className="hiw-card-header">
-                                <span className="hiw-card-label">BOOKINGS</span>
-                                <span className="hiw-card-value">1.2k+</span>
-                            </div>
-                            <div className="hiw-card-graph"></div>
-                        </div>
-                        <div className="hiw-card hiw-card-right">
-                            <div className="hiw-card-header">
-                                <span className="hiw-card-label">REVENUE</span>
-                                <span className="hiw-card-value">Rs. 450k</span>
-                            </div>
-                            <div className="hiw-card-graph secondary"></div>
-                        </div>
-                    </div>
+
 
                     {/* Main Features Grid Consolidation */}
                     <div className="hiw-grid">
