@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Menu, X, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Menu, X, Instagram } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -60,8 +60,6 @@ const Navbar = () => {
                         <button className="navbar-cta mobile-cta" onClick={closeMenu}>Download App</button>
                         <div className="mobile-socials">
                             <a href="#" className="social-icon"><Instagram size={20} /></a>
-                            <a href="#" className="social-icon"><Twitter size={20} /></a>
-                            <a href="#" className="social-icon"><Facebook size={20} /></a>
                         </div>
                         <p className="mobile-copy">© 2026 Arena Pro. All rights reserved.</p>
                     </div>
