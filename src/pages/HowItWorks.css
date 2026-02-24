@@ -5,41 +5,15 @@
 
 .hiw-hero {
     position: relative;
-    padding: 160px 5% 40px;
-    background: linear-gradient(135deg, #f0fff4 0%, #ffffff 50%, #f0f9ff 100%);
+    padding: 140px 5% 100px;
+    background: linear-gradient(135deg, rgba(240, 255, 244, 0.95) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(240, 249, 255, 0.95) 100%),
+        url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
     color: #0f172a;
     overflow: hidden;
-}
-
-.hiw-main-visual {
-    margin-top: 60px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 5;
-    animation: fadeInUp 1s ease-out;
-}
-
-.hiw-hero-img {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
-    border: 8px solid white;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .hiw-container {
