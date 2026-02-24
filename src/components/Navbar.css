@@ -32,10 +32,35 @@
     transition: filter 0.3s ease, height 0.3s ease;
 }
 
+.nav-links {
+    display: flex;
+    gap: 32px;
+    margin: 0 40px;
+}
+
+.nav-link {
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #4cd964;
+}
+
 /* Invert logo to black and reduce size when scrolled */
 .navbar.scrolled .logo-img {
     filter: invert(1) brightness(0);
     height: 48px;
+}
+
+.navbar.scrolled .nav-link {
+    color: var(--dark);
+}
+
+.navbar.scrolled .nav-link:hover {
+    color: #004d43;
 }
 
 .navbar-cta {
@@ -88,5 +113,9 @@
     .navbar-cta {
         padding: 8px 16px;
         font-size: 0.75rem;
+    }
+
+    .nav-links {
+        display: none;
     }
 }

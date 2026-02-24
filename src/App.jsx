@@ -1,29 +1,18 @@
-import './components/Navbar.css'
-import './components/Hero.css'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Steps from './components/Steps'
-import AppGallery from './components/AppGallery'
-import Testimonials from './components/Testimonials'
-import DownloadApp from './components/DownloadApp'
-import VendorSection from './components/VendorSection'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import HowItWorks from './pages/HowItWorks';
 
 function App() {
     return (
-        <div className="app">
-            <Navbar />
-            <Hero />
-            <Features />
-            <Steps />
-            <AppGallery />
-            <Testimonials />
-            <VendorSection />
-            <DownloadApp />
-            <Footer />
-        </div>
-    )
+        <Router>
+            <div className="app">
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/how-it-works" element={<HowItWorks />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;
