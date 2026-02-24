@@ -35,6 +35,7 @@
 .hiw-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
+    color: #ffffff;
     line-height: 1.1;
     margin-bottom: 24px;
 }
@@ -48,7 +49,7 @@
 
 .hiw-subtitle {
     font-size: 1.15rem;
-    color: #64748b;
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto 40px;
     line-height: 1.6;
@@ -154,7 +155,7 @@
     background: rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid #e8ee26;
+
     padding: 50px 40px;
     border-radius: 32px;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);

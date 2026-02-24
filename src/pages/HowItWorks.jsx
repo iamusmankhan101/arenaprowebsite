@@ -17,7 +17,7 @@ const HowItWorks = () => {
                     <p className="hiw-subtitle">
                         Experience the ultimate sports booking platform designed to connect players with the best indoor cricket in Lahore, premium padel courts, and top-rated football turf.
                     </p>
-                    <button className="hiw-cta">Get Started Now →</button>
+
 
                     {/* Floating Dashboard Cards Snippets */}
 
