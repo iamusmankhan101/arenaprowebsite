@@ -47,7 +47,7 @@ const Venues = () => {
             <section className="venues-hero">
                 <div className="venues-hero-content">
                     <h1 className="venues-h1">Find Your Perfect <span className="highlight">Arena</span></h1>
-                    <p className="venues-p">Book premium sports venues in Lahore with just a few taps.</p>
+                    <p className="venues-p">Book premium padel courts, football turf, and best indoor cricket in Lahore with just a few taps.</p>
 
                     <div className="search-container">
                         <div className="search-wrapper">

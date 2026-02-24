@@ -2,7 +2,8 @@
 .hero {
     position: relative;
     min-height: 80vh;
-    background: url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 77, 67, 0.7), rgba(0, 0, 0, 0.5)),
+        url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg') no-repeat center center/cover;
     display: flex;
     align-items: flex-start;
     justify-content: center;
