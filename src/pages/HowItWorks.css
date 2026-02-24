@@ -6,8 +6,7 @@
 .hiw-hero {
     position: relative;
     padding: 140px 5% 100px;
-    background: linear-gradient(135deg, rgba(240, 255, 244, 0.95) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(240, 249, 255, 0.95) 100%),
-        url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
+    background: url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
