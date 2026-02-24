@@ -45,33 +45,33 @@ const HowItWorks = () => {
                             <div className="hiw-card-graph secondary"></div>
                         </div>
                     </div>
-                </div>
-                {/* Main Features Grid Consolidation */}
-                <div className="hiw-grid">
-                    <div className="hiw-feature-card">
-                        <div className="hiw-icon">🔍</div>
-                        <h3>Find Venue</h3>
-                        <p>Discover top-rated cricket grounds, futsal courts, and padel arenas near you instantly.</p>
-                        <a href="#" className="hiw-learn-more">Learn more →</a>
-                    </div>
-                    <div className="hiw-feature-card">
-                        <div className="hiw-icon">📅</div>
-                        <h3>Instant Booking</h3>
-                        <p>Book your preferred slot in seconds with our real-time availability tracking system.</p>
-                        <a href="#" className="hiw-learn-more">Learn more →</a>
-                    </div>
-                    <div className="hiw-feature-card">
-                        <div className="hiw-icon">🤝</div>
-                        <h3>Challenge Mode</h3>
-                        <p>Create challenges, find local squads, and level up your game with competitive matches.</p>
-                        <a href="#" className="hiw-learn-more">Learn more →</a>
-                    </div>
-                </div>
-        </div>
-            </section >
 
-    <Footer />
-        </div >
+                    {/* Main Features Grid Consolidation */}
+                    <div className="hiw-grid">
+                        <div className="hiw-feature-card">
+                            <div className="hiw-icon">🔍</div>
+                            <h3>Find Venue</h3>
+                            <p>Discover top-rated cricket grounds, futsal courts, and padel arenas near you instantly.</p>
+                            <a href="#" className="hiw-learn-more">Learn more →</a>
+                        </div>
+                        <div className="hiw-feature-card">
+                            <div className="hiw-icon">📅</div>
+                            <h3>Instant Booking</h3>
+                            <p>Book your preferred slot in seconds with our real-time availability tracking system.</p>
+                            <a href="#" className="hiw-learn-more">Learn more →</a>
+                        </div>
+                        <div className="hiw-feature-card">
+                            <div className="hiw-icon">🤝</div>
+                            <h3>Challenge Mode</h3>
+                            <p>Create challenges, find local squads, and level up your game with competitive matches.</p>
+                            <a href="#" className="hiw-learn-more">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+        </div>
     );
 };
 
