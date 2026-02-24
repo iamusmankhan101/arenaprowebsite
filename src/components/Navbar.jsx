@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram, Twitter, Facebook } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -20,12 +20,21 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleMenu = () => setMobileOpen(!mobileOpen);
+    const toggleMenu = () => {
+        setMobileOpen(!mobileOpen);
+        // Prevent scrolling when menu is open
+        document.body.style.overflow = !mobileOpen ? 'hidden' : 'unset';
+    };
+
+    const closeMenu = () => {
+        setMobileOpen(false);
+        document.body.style.overflow = 'unset';
+    };
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
             <div className="navbar-container">
-                <Link to="/" className="navbar-logo" onClick={() => setMobileOpen(false)}>
+                <Link to="/" className="navbar-logo" onClick={closeMenu}>
                     <img src="/image/pitch it logo (500 x 200 px) (2).png" alt="ArenaPro" className="logo-img" />
                 </Link>
 
@@ -36,8 +45,25 @@ const Navbar = () => {
 
                 {/* Desktop and Mobile Links */}
                 <div className={`nav-links ${mobileOpen ? 'active' : ''}`}>
-                    <Link to="/how-it-works" className="nav-link" onClick={() => setMobileOpen(false)}>How it Works</Link>
-                    <button className="navbar-cta mobile-cta">Download App</button>
+                    <div className="mobile-menu-header">
+                        <img src="/image/pitch it logo (500 x 200 px) (2).png" alt="ArenaPro" className="mobile-logo-img" />
+                    </div>
+
+                    <div className="nav-links-wrapper">
+                        <Link to="/" className="nav-link" onClick={closeMenu} style={{ '--i': 0 }}>Home</Link>
+                        <Link to="/how-it-works" className="nav-link" onClick={closeMenu} style={{ '--i': 1 }}>How it Works</Link>
+                        <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venuer</Link>
+                    </div>
+
+                    <div className="mobile-menu-footer">
+                        <button className="navbar-cta mobile-cta" onClick={closeMenu}>Download App</button>
+                        <div className="mobile-socials">
+                            <a href="#" className="social-icon"><Instagram size={20} /></a>
+                            <a href="#" className="social-icon"><Twitter size={20} /></a>
+                            <a href="#" className="social-icon"><Facebook size={20} /></a>
+                        </div>
+                        <p className="mobile-copy">© 2026 Arena Pro. All rights reserved.</p>
+                    </div>
                 </div>
 
                 <button className="navbar-cta desktop-cta">Download App</button>

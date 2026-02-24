@@ -88,7 +88,7 @@ const Features = () => {
                     </div>
 
                     {/* 6. Real-Time Alerts (Pastel Purple - Bonus) */}
-                    <div className="feature-card" style={{ background: 'transparent', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}>
+                    <div className="feature-card mofin-purple" style={{ background: 'transparent', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}>
                         <div className="feature-number">06</div>
                         <div className="mofin-text-col">
                             <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>

@@ -23,6 +23,7 @@ const HowItWorks = () => {
 
 
                     {/* Main Features Grid Consolidation */}
+                    <h2 className="visually-hidden">Core Features</h2>
                     <div className="hiw-grid">
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">

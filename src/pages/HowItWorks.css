@@ -3,6 +3,18 @@
     min-height: 100vh;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .hiw-hero {
     position: relative;
     padding: 140px 5% 100px;

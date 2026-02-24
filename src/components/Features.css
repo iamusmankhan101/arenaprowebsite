@@ -509,8 +509,8 @@
 }
 
 .mofin-alerts-image {
-    width: 400px;
-    height: 400px;
+    width: 320px;
+    height: auto;
     object-fit: contain;
 }
 
@@ -568,7 +568,13 @@
         height: 250px;
     }
 
-    .alerts-visual,
+    .alerts-visual {
+        right: 0;
+        bottom: 0;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
     .refer-earn-visual {
         right: 0;
         bottom: 0;
@@ -594,8 +600,8 @@
     }
 
     .mofin-visual-right-small img {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: auto;
     }
 
     .mofin-map-image {
