@@ -6,7 +6,7 @@
 .hiw-hero {
     position: relative;
     padding: 160px 5% 100px;
-    background: radial-gradient(circle at top right, #f0fdf4 0%, #ffffff 70%);
+    background: linear-gradient(135deg, #f0fff4 0%, #ffffff 50%, #f0f9ff 100%);
     text-align: center;
     color: #0f172a;
     overflow: hidden;
