@@ -27,27 +27,27 @@ const HowItWorks = () => {
                     <div className="hiw-grid">
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <Search size={32} color="#004d43" strokeWidth={2} />
+                                <Search size={32} color="#e8ee26" strokeWidth={2} />
                             </div>
                             <h3>Find Venue</h3>
                             <p>Discover top-rated cricket grounds, futsal courts, and padel arenas near you instantly.</p>
-                            <a href="#" className="hiw-learn-more">Learn more →</a>
+
                         </div>
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <CalendarClock size={32} color="#004d43" strokeWidth={2} />
+                                <CalendarClock size={32} color="#e8ee26" strokeWidth={2} />
                             </div>
                             <h3>Instant Booking</h3>
                             <p>Book your preferred slot in seconds with our real-time availability tracking system.</p>
-                            <a href="#" className="hiw-learn-more">Learn more →</a>
+
                         </div>
                         <div className="hiw-feature-card">
                             <div className="hiw-icon">
-                                <Trophy size={32} color="#004d43" strokeWidth={2} />
+                                <Trophy size={32} color="#e8ee26" strokeWidth={2} />
                             </div>
                             <h3>Challenge Mode</h3>
                             <p>Create challenges, find local squads, and level up your game with competitive matches.</p>
-                            <a href="#" className="hiw-learn-more">Learn more →</a>
+
                         </div>
                     </div>
                 </div>

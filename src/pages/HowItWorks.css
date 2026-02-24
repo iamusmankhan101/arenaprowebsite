@@ -26,7 +26,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 2px;
-    color: #4cd964;
+    color: #e8ee26;
     text-transform: uppercase;
     margin-bottom: 24px;
     display: inline-block;
@@ -40,7 +40,7 @@
 }
 
 .hiw-title span {
-    background: linear-gradient(90deg, #4cd964, #a0d4f7);
+    background: linear-gradient(90deg, #e8ee26, #a0d4f7);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -225,7 +225,7 @@
 
 .hiw-learn-more:hover {
     gap: 12px;
-    color: #4cd964;
+    color: #e8ee26;
 }
 
 /* Detailed Process Section Styles */
@@ -258,7 +258,7 @@
 }
 
 .hiw-process-badge {
-    color: #4cd964;
+    color: #e8ee26;
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 2px;
@@ -275,7 +275,7 @@
 }
 
 .hiw-process-title span {
-    color: #4cd964;
+    color: #e8ee26;
     position: relative;
 }
 
@@ -286,7 +286,7 @@
     left: 0;
     width: 100%;
     height: 8px;
-    background: rgba(76, 217, 100, 0.2);
+    background: rgba(232, 238, 38, 0.2);
     border-radius: 4px;
 }
 
@@ -352,25 +352,25 @@
 }
 
 .hiw-step-card:hover .hiw-step-number {
-    color: rgba(76, 217, 100, 0.1);
+    color: rgba(232, 238, 38, 0.1);
 }
 
 .hiw-step-icon {
     width: 64px;
     height: 64px;
-    background: rgba(76, 217, 100, 0.1);
+    background: rgba(232, 238, 38, 0.1);
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4cd964;
+    color: #e8ee26;
     margin-bottom: 30px;
     transition: transform 0.3s ease;
 }
 
 .hiw-step-card:hover .hiw-step-icon {
     transform: scale(1.1) rotate(5deg);
-    background: #4cd964;
+    background: #e8ee26;
     color: #000000;
 }
 
