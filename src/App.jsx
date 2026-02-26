@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage';
 import HowItWorks from './pages/HowItWorks';
 import Venues from './pages/Venues';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     <Route path="/how-it-works" element={<HowItWorks />} />
                     <Route path="/venues" element={<Venues />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>
         </Router>
@@ -20,3 +22,4 @@ function App() {
 }
 
 export default App;
+

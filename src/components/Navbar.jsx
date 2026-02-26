@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Instagram } from 'lucide-react';
 import './Navbar.css';
 
-const Navbar = () => {
-    const [scrolled, setScrolled] = useState(false);
+const Navbar = ({ forceScrolled = false }) => {
+    const [scrolled, setScrolled] = useState(forceScrolled);
     const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
+        if (forceScrolled) return;
         const handleScroll = () => {
             if (window.scrollY > 50) {
                 setScrolled(true);
@@ -18,7 +19,7 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [forceScrolled]);
 
     const toggleMenu = () => {
         setMobileOpen(!mobileOpen);

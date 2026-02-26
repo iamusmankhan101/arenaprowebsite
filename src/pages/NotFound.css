@@ -1,0 +1,115 @@
+.not-found-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.not-found-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: #f4f7f6;
+    padding: 120px 24px 80px;
+    min-height: 70vh;
+}
+
+/* Giant faded "404" background text */
+.not-found-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Clash Display', 'Montserrat', sans-serif;
+    font-size: clamp(200px, 30vw, 450px);
+    font-weight: 700;
+    color: #004d43;
+    opacity: 0.06;
+    line-height: 1;
+    letter-spacing: -10px;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Centered content */
+.not-found-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+}
+
+.not-found-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.not-found-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #5a6a65;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.not-found-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #004d43;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 77, 67, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.not-found-btn:hover {
+    background: #003d35;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 77, 67, 0.4);
+}
+
+.not-found-btn:active {
+    transform: translateY(0);
+}
+
+.not-found-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.not-found-btn:hover svg {
+    transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .not-found-section {
+        padding: 100px 20px 60px;
+        min-height: 60vh;
+    }
+
+    .not-found-desc {
+        font-size: 14px;
+    }
+
+    .not-found-btn {
+        padding: 12px 28px;
+        font-size: 13px;
+    }
+}
