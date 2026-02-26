@@ -28,6 +28,17 @@ const mockVenues = [
             "/image/sports pitch arena.png"
         ],
         tags: ["Premium", "Indoor", "Professional"]
+    },
+    {
+        id: 9,
+        name: "Can Games",
+        location: "Ichhra Shershah Colony, Lahore",
+        rating: 4.7,
+        reviews: 92,
+        price: "2500 Pkr/Hour",
+        sports: ["Cricket", "Futsal"],
+        images: ["/image/WhatsApp Image 2026-02-27 at 12.58.33 AM.jpeg"],
+        tags: ["Premium", "Indoor", "Multi-Sport"]
     }
 ];
 
