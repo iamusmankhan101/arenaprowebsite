@@ -18,7 +18,7 @@
 .blog-badge {
     display: inline-block;
     background: rgba(255, 255, 255, 0.1);
-    color: #7ddfcf;
+    color: #004d43;
     padding: 8px 20px;
     border-radius: 50px;
     font-size: 0.85rem;
@@ -36,11 +36,11 @@
 }
 
 .blog-hero h1 .highlight {
-    color: #7ddfcf;
+    color: #004d43;
 }
 
 .blog-hero p {
-    color: #a0c4bf;
+    color: #000000;
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 30px;
