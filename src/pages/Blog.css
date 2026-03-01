@@ -17,7 +17,7 @@
 
 .blog-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff;
     color: #004d43;
     padding: 8px 20px;
     border-radius: 50px;
@@ -69,21 +69,21 @@
     width: 100%;
     padding: 14px 20px 14px 48px;
     border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
+    border: 2px solid #e0e0e0;
+    background: #ffffff;
+    color: #333;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .blog-search-wrapper input::placeholder {
-    color: #a0c4bf;
+    color: #999;
 }
 
 .blog-search-wrapper input:focus {
-    border-color: #7ddfcf;
-    background: rgba(255, 255, 255, 0.12);
+    border-color: #004d43;
+    box-shadow: 0 0 0 3px rgba(0, 77, 67, 0.1);
 }
 
 /* ─── Main Container ─── */
