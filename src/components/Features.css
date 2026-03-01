@@ -499,8 +499,8 @@
 }
 
 .mofin-refer-image {
-    width: 550px;
-    height: 550px;
+    width: 400px;
+    height: 400px;
     object-fit: contain;
 }
 
@@ -510,7 +510,7 @@
 }
 
 .mofin-alerts-image {
-    width: 450px;
+    width: 320px;
     height: auto;
     object-fit: contain;
 }
