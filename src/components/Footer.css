@@ -95,7 +95,7 @@
 
 .footer-contact-list li svg {
     flex-shrink: 0;
-    color: #7ddfcf;
+    color: #e8ee26;
 }
 
 .footer-contact-list a {
@@ -141,14 +141,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: #e8ee26;
     text-decoration: none;
     font-size: 1rem;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .social-link:hover {
-    background: #ffffff;
+    background: #e8ee26;
     color: #004d43;
     transform: translateY(-2px);
 }
