@@ -40,8 +40,8 @@
 }
 
 .footer-desc {
-    color: #a0a0b0;
-    line-height: 1.6;
+    color: #a0c4bf;
+    line-height: 1.7;
     margin-bottom: 24px;
     max-width: 300px;
 }
@@ -66,13 +66,65 @@
 }
 
 .footer-links a {
-    color: #a0a0b0;
+    color: #a0c4bf;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
 .footer-links a:hover {
     color: #ffffff;
+    padding-left: 4px;
+}
+
+/* ─── Contact List ─── */
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a0c4bf;
+}
+
+.footer-contact-list li svg {
+    flex-shrink: 0;
+    color: #7ddfcf;
+}
+
+.footer-contact-list a {
+    color: #a0c4bf;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-contact-list a:hover {
+    color: #ffffff;
+}
+
+/* ─── Download Button ─── */
+.footer-download-btn {
+    display: inline-block;
+    margin-top: 20px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-download-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.footer-playstore-img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 /* ─── Socials ─── */
@@ -97,7 +149,7 @@
 
 .social-link:hover {
     background: #ffffff;
-    color: #1a1a2e;
+    color: #004d43;
     transform: translateY(-2px);
 }
 
@@ -109,7 +161,7 @@
 }
 
 .copyright {
-    color: #ffffff;
+    color: #a0c4bf;
     font-size: 0.8rem;
 }
 
