@@ -30,6 +30,7 @@
     color: #004d43;
     /* Muted gray for "Standout Features" per reference */
     font-weight: 500;
+    
 }
 
 .features-grid {
@@ -498,8 +499,8 @@
 }
 
 .mofin-refer-image {
-    width: 400px;
-    height: 400px;
+    width: 550px;
+    height: 550px;
     object-fit: contain;
 }
 
@@ -509,7 +510,7 @@
 }
 
 .mofin-alerts-image {
-    width: 320px;
+    width: 450px;
     height: auto;
     object-fit: contain;
 }
@@ -584,6 +585,10 @@
 @media (max-width: 600px) {
     .features {
         padding: 60px 16px;
+    }
+
+    .features-title {
+        font-size: 2rem;
     }
 
     .feature-card {
