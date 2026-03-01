@@ -613,6 +613,18 @@
         width: 100%;
     }
 
+    .mofin-alerts-image {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .mofin-refer-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
     .mfc-header {
         flex-direction: column;
         align-items: flex-start;
