@@ -5,7 +5,7 @@ import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc
 
 const mockVenues = [
     {
-        id: 7,
+        id: 1,
         name: "Super Sixes",
         location: "Nasheman Iqbal Phase 1, Lahore",
         rating: 4.8,
@@ -16,7 +16,7 @@ const mockVenues = [
         tags: ["Indoor", "Net Practice", "Affordable"]
     },
     {
-        id: 8,
+        id: 2,
         name: "Sports Pitch Arena",
         location: "Nasheman Iqbal Phase 1, Lahore",
         rating: 4.9,
@@ -30,7 +30,7 @@ const mockVenues = [
         tags: ["Premium", "Indoor", "Professional"]
     },
     {
-        id: 9,
+        id: 3,
         name: "Can Games",
         location: "Ichhra Shershah Colony, Lahore",
         rating: 4.7,
