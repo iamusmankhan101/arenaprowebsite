@@ -241,7 +241,7 @@
 .contact-info-section {
     flex: 1;
     background: #004d43;
-    padding: 60px 40px;
+    padding: 60px 60px 60px 40px;
     color: white;
     display: flex;
     align-items: center;
