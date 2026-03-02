@@ -177,21 +177,11 @@ const Contact = () => {
                             <div className="info-blocks">
                                 <div className="info-block">
                                     <div className="info-icon">
-                                        <Headset size={24} />
+                                        <Phone size={24} />
                                     </div>
                                     <div className="info-text">
-                                        <span className="info-label">Hotline:</span>
-                                        <span className="info-value">+92 300 1234567</span>
-                                    </div>
-                                </div>
-
-                                <div className="info-block">
-                                    <div className="info-icon">
-                                        <MessageSquare size={24} />
-                                    </div>
-                                    <div className="info-text">
-                                        <span className="info-label">SMS / Whatsapp:</span>
-                                        <span className="info-value">+92 300 7654321</span>
+                                        <span className="info-label">Phone:</span>
+                                        <span className="info-value">0339 0078965</span>
                                     </div>
                                 </div>
 
@@ -201,7 +191,7 @@ const Contact = () => {
                                     </div>
                                     <div className="info-text">
                                         <span className="info-label">Email:</span>
-                                        <span className="info-value">support@arenapro.pk</span>
+                                        <span className="info-value">support@arenapropk.online</span>
                                     </div>
                                 </div>
                             </div>

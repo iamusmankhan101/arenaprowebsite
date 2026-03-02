@@ -1,0 +1,453 @@
+.area-page {
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.area-hero {
+    background: linear-gradient(rgba(0, 77, 67, 0.85), rgba(0, 77, 67, 0.85)), 
+                url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 180px 5% 140px;
+    text-align: center;
+    color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.area-hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Clash Display', sans-serif;
+    color: #ffffff;
+}
+
+.area-hero-content h1 .highlight {
+    color: #e8ee26;
+}
+
+.area-hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    color: #ffffff;
+}
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    background: #ffffff;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.search-icon {
+    color: #004d43;
+    margin-right: 15px;
+}
+
+.search-wrapper input {
+    background: transparent;
+    border: none;
+    color: #004d43;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.search-wrapper input::placeholder {
+    color: #999;
+}
+
+.area-container {
+    max-width: 1200px;
+    margin: -60px auto 100px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.filters-section {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.filters-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.filters-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #475569;
+    margin: 0;
+}
+
+.sports-pills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 77, 67, 0.1);
+    background: white;
+    color: #475569;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.pill-icon {
+    display: flex;
+    align-items: center;
+    color: #004d43;
+    transition: transform 0.3s ease;
+}
+
+.pill:hover {
+    transform: translateY(-4px);
+    border-color: #004d43;
+    color: #004d43;
+    box-shadow: 0 8px 15px rgba(0, 77, 67, 0.1);
+}
+
+.pill:hover .pill-icon {
+    transform: rotate(12deg) scale(1.1);
+}
+
+.pill.active {
+    background: #004d43;
+    color: white;
+    border-color: #004d43;
+    box-shadow: 0 10px 20px rgba(0, 77, 67, 0.3);
+    transform: translateY(-2px);
+}
+
+.pill.active .pill-icon {
+    color: #e8ee26;
+}
+
+.mobile-close-filter,
+.mobile-filter-btn {
+    display: none;
+}
+
+.area-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-count {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 32px;
+}
+
+.venue-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.venue-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.venue-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.venue-image-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-image {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.venue-card:hover .slider-nav {
+    opacity: 1;
+}
+
+.slider-nav:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+    left: 12px;
+}
+
+.slider-nav.next {
+    right: 12px;
+}
+
+.slider-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #e8ee26;
+    width: 18px;
+    border-radius: 10px;
+}
+
+.venue-sport-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #e8ee26;
+    color: #0f172a;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.venue-info {
+    padding: 24px;
+}
+
+.venue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.venue-header h3 {
+    font-size: 1.25rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.venue-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.venue-loc {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.venue-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tag {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.venue-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.venue-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #004d43;
+}
+
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.reset-btn {
+    margin-top: 20px;
+    background: #004d43;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .area-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .area-hero {
+        padding: 140px 5% 100px;
+    }
+
+    .area-hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .area-hero {
+        padding: 120px 20px 100px;
+    }
+
+    .area-hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .area-container {
+        margin-top: -40px;
+    }
+
+    .filters-section {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        transition: left 0.4s ease;
+        padding: 40px 20px;
+    }
+
+    .filters-section.open {
+        left: 0;
+    }
+
+    .mobile-close-filter {
+        display: block;
+        background: none;
+        border: none;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .mobile-filter-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+}
