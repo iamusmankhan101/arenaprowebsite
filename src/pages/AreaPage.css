@@ -4,8 +4,7 @@
 }
 
 .area-hero {
-    background: linear-gradient(rgba(0, 77, 67, 0.85), rgba(0, 77, 67, 0.85)), 
-                url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
+    background: url('/image/Whisk_d46323c90133a6db64e49b2ab1bf60f9dr.jpeg');
     background-size: cover;
     background-position: center;
     padding: 180px 5% 140px;
