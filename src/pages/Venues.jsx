@@ -12,7 +12,7 @@ const mockVenues = [
         reviews: 156,
         price: "1700 Pkr/Hour",
         sports: ["Cricket", "Futsal"],
-        images: ["/image/app ui arena pro/1.png"],
+        images: ["/image/WhatsApp Image 2026-03-02 at 3.49.53 PM.jpeg"],
         tags: ["Indoor", "Net Practice", "Affordable"]
     },
     {
