@@ -4,7 +4,6 @@ import Hero from '../components/Hero';
 import Features from '../components/Features';
 import Steps from '../components/Steps';
 import AppGallery from '../components/AppGallery';
-import Testimonials from '../components/Testimonials';
 import VendorSection from '../components/VendorSection';
 import DownloadApp from '../components/DownloadApp';
 import Footer from '../components/Footer';
@@ -17,7 +16,6 @@ function HomePage() {
             <Features />
             <Steps />
             <AppGallery />
-            <Testimonials />
             <VendorSection />
             <DownloadApp />
             <Footer />
