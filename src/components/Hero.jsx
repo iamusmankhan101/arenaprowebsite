@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Hero.css'
 
 const Hero = () => {
@@ -21,8 +22,7 @@ const Hero = () => {
             <div className="hero-container">
                 {/* Badges */}
                 <div className="hero-badges">
-
-                    <span className="badge badge-dark">LAUNCHING SOON</span>
+                    <Link to="/waitlist" className="badge badge-dark">Join Waitlist</Link>
                 </div>
 
                 {/* Heading */}
@@ -37,9 +37,9 @@ const Hero = () => {
 
                 {/* CTA Button */}
                 <div className="hero-cta-group">
-                    <a href="#" className="store-badge">
-                        <img src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png" alt="Get it on Google Play" />
-                    </a>
+                    <Link to="/waitlist" className="waitlist-cta-button">
+                        Join Waitlist
+                    </Link>
                 </div>
 
                 {/* Phone Mockup Area */}

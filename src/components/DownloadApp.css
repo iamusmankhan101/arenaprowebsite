@@ -55,6 +55,33 @@
     flex-wrap: wrap;
 }
 
+.waitlist-download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 48px;
+    background: #e8ee26;
+    color: #004d43;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(232, 238, 38, 0.3);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.waitlist-download-button:hover {
+    background: #f5fb3d;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(232, 238, 38, 0.5);
+}
+
+.waitlist-download-button:active {
+    transform: translateY(-1px);
+}
+
 .dl-btn {
     display: flex;
     align-items: center;

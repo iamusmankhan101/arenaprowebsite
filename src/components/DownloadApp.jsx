@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './DownloadApp.css';
 
 const DownloadApp = () => {
@@ -9,18 +10,16 @@ const DownloadApp = () => {
                 {/* Left Side: Text and Buttons */}
                 <div className="download-text-content">
                     <h2 className="download-title">
-                        Let's download free from apple and play store
+                        Join the Waitlist and Be the First to Book
                     </h2>
                     <p className="download-description">
-                        Let's download Arena Pro for free from the Apple App Store and Google Play Store. Experience our innovative platform designed for sports enthusiasts.
+                        Sign up now to get early access to Arena Pro. Be among the first to experience seamless sports venue booking in Lahore and get 20% off your first booking.
                     </p>
 
                     <div className="download-buttons-group">
-
-
-                        <a href="#" className="dl-store-badge">
-                            <img src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png" alt="Get it on Google Play" />
-                        </a>
+                        <Link to="/waitlist" className="waitlist-download-button">
+                            Join Waitlist Now
+                        </Link>
                     </div>
 
                 </div>
