@@ -42,7 +42,23 @@ function Waitlist() {
             try {
                 const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d";
                 
-                // 1. Send notification to admin
+                // 1. Save to Firebase
+                const firebaseResponse = await fetch('https://firestore.googleapis.com/v1/projects/arena-pro-97b5f/databases/(default)/documents/waitlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fields: {
+                            email: { stringValue: email },
+                            createdAt: { timestampValue: new Date().toISOString() },
+                            type: { stringValue: 'Early Access' },
+                            status: { stringValue: 'pending' },
+                        }
+                    }),
+                });
+
+                // 2. Send notification to admin
                 const adminResponse = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
@@ -76,7 +92,7 @@ The user will receive:
 
                 const adminData = await adminResponse.json();
 
-                // 2. Send confirmation email to user
+                // 3. Send confirmation email to user
                 const userResponse = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
@@ -118,13 +134,13 @@ If you didn't sign up for this, please ignore this email.
 
                 const userData = await userResponse.json();
 
-                if (adminData.success && userData.success) {
-                    console.log('Emails sent successfully to admin and user');
+                if (firebaseResponse.ok && adminData.success && userData.success) {
+                    console.log('Waitlist entry saved and emails sent successfully');
                     setIsSubmitted(true);
                     setShowModal(true);
                     setEmail('');
                 } else {
-                    console.error('Form submission failed:', { adminData, userData });
+                    console.error('Form submission failed');
                     alert('Something went wrong. Please try again.');
                 }
             } catch (error) {
