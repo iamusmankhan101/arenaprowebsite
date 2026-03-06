@@ -59,19 +59,13 @@ function Waitlist() {
                 });
 
                 // 2. Send notification to admin
-                const adminResponse = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        access_key: ACCESS_KEY,
-                        subject: 'New Waitlist Signup - Arena Pro 🎉',
-                        from_name: 'Arena Pro Waitlist',
-                        to_email: 'iamusmankhan101@gmail.com',
-                        email: email,
-                        message: `
+                const adminFormData = new FormData();
+                adminFormData.append('access_key', ACCESS_KEY);
+                adminFormData.append('subject', 'New Waitlist Signup - Arena Pro 🎉');
+                adminFormData.append('from_name', 'Arena Pro Waitlist');
+                adminFormData.append('to_email', 'iamusmankhan101@gmail.com');
+                adminFormData.append('email', email);
+                adminFormData.append('message', `
 New waitlist signup!
 
 Email: ${email}
@@ -83,28 +77,25 @@ The user will receive:
 ✓ 20% OFF their first booking
 ✓ Early access to new features
 ✓ Priority customer support
-                        `,
-                        'Waitlist Email': email,
-                        'Signup Date': new Date().toLocaleString(),
-                        'Type': 'Early Access Waitlist',
-                    }),
+                `);
+                adminFormData.append('Waitlist Email', email);
+                adminFormData.append('Signup Date', new Date().toLocaleString());
+                adminFormData.append('Type', 'Early Access Waitlist');
+
+                const adminResponse = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: adminFormData
                 });
 
                 const adminData = await adminResponse.json();
 
                 // 3. Send confirmation email to user
-                const userResponse = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        access_key: ACCESS_KEY,
-                        subject: 'Welcome to Arena Pro Waitlist! 🎉',
-                        from_name: 'Arena Pro',
-                        to_email: email,
-                        message: `
+                const userFormData = new FormData();
+                userFormData.append('access_key', ACCESS_KEY);
+                userFormData.append('subject', 'Welcome to Arena Pro Waitlist! 🎉');
+                userFormData.append('from_name', 'Arena Pro');
+                userFormData.append('to_email', email);
+                userFormData.append('message', `
 Hi there!
 
 Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
@@ -128,8 +119,11 @@ Support: support@arenapropk.online
 
 This email was sent to: ${email}
 If you didn't sign up for this, please ignore this email.
-                        `,
-                    }),
+                `);
+
+                const userResponse = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: userFormData
                 });
 
                 const userData = await userResponse.json();
