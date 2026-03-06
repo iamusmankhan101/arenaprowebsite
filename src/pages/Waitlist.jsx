@@ -65,8 +65,7 @@ function Waitlist() {
                 adminFormData.append('from_name', 'Arena Pro Waitlist');
                 adminFormData.append('to_email', 'iamusmankhan101@gmail.com');
                 adminFormData.append('email', email);
-                adminFormData.append('message', `
-New waitlist signup!
+                adminFormData.append('message', `New waitlist signup!
 
 Email: ${email}
 Signup Date: ${new Date().toLocaleString()}
@@ -76,11 +75,7 @@ Type: Early Access
 The user will receive:
 ✓ 20% OFF their first booking
 ✓ Early access to new features
-✓ Priority customer support
-                `);
-                adminFormData.append('Waitlist Email', email);
-                adminFormData.append('Signup Date', new Date().toLocaleString());
-                adminFormData.append('Type', 'Early Access Waitlist');
+✓ Priority customer support`);
 
                 const adminResponse = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
@@ -95,8 +90,7 @@ The user will receive:
                 userFormData.append('subject', 'Welcome to Arena Pro Waitlist! 🎉');
                 userFormData.append('from_name', 'Arena Pro');
                 userFormData.append('to_email', email);
-                userFormData.append('message', `
-Hi there!
+                userFormData.append('message', `Hi there!
 
 Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
 
@@ -118,8 +112,7 @@ Instagram: @arenapropk
 Support: support@arenapropk.online
 
 This email was sent to: ${email}
-If you didn't sign up for this, please ignore this email.
-                `);
+If you didn't sign up for this, please ignore this email.`);
 
                 const userResponse = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
