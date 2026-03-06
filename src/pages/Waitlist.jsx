@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './Waitlist.css';
 
 function Waitlist() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [showModal, setShowModal] = useState(false);
     const [timeLeft, setTimeLeft] = useState({
         days: 24,
         hours: 0,
         minutes: 0,
         seconds: 0
     });
+
+    useEffect(() => {
+        // Check if form was successfully submitted
+        if (searchParams.get('success') === 'true') {
+            setShowModal(true);
+            // Remove the success parameter from URL
+            searchParams.delete('success');
+            setSearchParams(searchParams);
+        }
+    }, [searchParams, setSearchParams]);
 
     useEffect(() => {
         // Set launch date to 24 days from now
@@ -33,15 +46,16 @@ function Waitlist() {
         return () => clearInterval(timer);
     }, []);
 
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     return (
         <>
             <Navbar />
             <div className="waitlist-page">
                 <div className="waitlist-container">
-                <div className="waitlist-badges">
-                    <span className="badge">Coming Soon</span>
-                    <span className="badge">Lahore</span>
-                </div>
+                
 
                 <h1 className="waitlist-title">
                     Book Your Game,<br />Own The Arena
@@ -76,7 +90,7 @@ function Waitlist() {
                     </div>
                 </div>
 
-                <div className="offer-badge">
+                <div className="offer-badge">g
                     <span className="offer-icon">🎁</span>
                     <span className="offer-text">Early members get <strong>50% OFF</strong> on their first booking!</span>
                 </div>
@@ -131,6 +145,55 @@ function Waitlist() {
                 </div>
             </div>
             </div>
+
+            {showModal && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+                        
+                        <div className="modal-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="32" fill="#e8ee26"/>
+                                <path d="M20 32L28 40L44 24" stroke="#004d43" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </div>
+                        
+                        <h2 className="modal-title">You're on the List! 🎉</h2>
+                        
+                        <p className="modal-description">
+                            Welcome to Arena Pro! You'll be among the first to experience seamless sports venue booking in Lahore.
+                        </p>
+                        
+                        <div className="modal-benefits">
+                            <div className="benefit-item">
+                                <span className="benefit-icon">✓</span>
+                                <span className="benefit-text">20% OFF your first booking</span>
+                            </div>
+                            <div className="benefit-item">
+                                <span className="benefit-icon">✓</span>
+                                <span className="benefit-text">Early access to new features</span>
+                            </div>
+                            <div className="benefit-item">
+                                <span className="benefit-icon">✓</span>
+                                <span className="benefit-text">Priority customer support</span>
+                            </div>
+                        </div>
+                        
+                        <p className="modal-footer">
+                            We'll notify you as soon as we launch. Get ready to own the arena!
+                        </p>
+                        
+                        <button className="modal-button" onClick={closeModal}>
+                            Got It!
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <Footer />
         </>
     );
