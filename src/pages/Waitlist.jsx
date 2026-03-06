@@ -36,14 +36,101 @@ function Waitlist() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (email) {
-            // Handle waitlist submission here
-            console.log('Email submitted:', email);
-            setIsSubmitted(true);
-            setShowModal(true);
-            setEmail('');
+            try {
+                const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d";
+                
+                // 1. Send notification to admin
+                const adminResponse = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: ACCESS_KEY,
+                        subject: 'New Waitlist Signup - Arena Pro 🎉',
+                        from_name: 'Arena Pro Waitlist',
+                        to_email: 'iamusmankhan101@gmail.com',
+                        email: email,
+                        message: `
+New waitlist signup!
+
+Email: ${email}
+Signup Date: ${new Date().toLocaleString()}
+Page: Waitlist
+Type: Early Access
+
+The user will receive:
+✓ 20% OFF their first booking
+✓ Early access to new features
+✓ Priority customer support
+                        `,
+                        'Waitlist Email': email,
+                        'Signup Date': new Date().toLocaleString(),
+                        'Type': 'Early Access Waitlist',
+                    }),
+                });
+
+                const adminData = await adminResponse.json();
+
+                // 2. Send confirmation email to user
+                const userResponse = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: ACCESS_KEY,
+                        subject: 'Welcome to Arena Pro Waitlist! 🎉',
+                        from_name: 'Arena Pro',
+                        to_email: email,
+                        message: `
+Hi there!
+
+Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
+
+🎁 As an early member, you'll receive:
+
+✓ 20% OFF your first booking
+✓ Early access to new features  
+✓ Priority customer support
+
+We're launching soon and will notify you as soon as we're live. Get ready to own the arena!
+
+Best regards,
+The Arena Pro Team
+
+---
+Arena Pro - Book Your Game, Own The Arena
+Website: https://arenapropk.online
+Instagram: @arenapropk
+Support: support@arenapropk.online
+
+This email was sent to: ${email}
+If you didn't sign up for this, please ignore this email.
+                        `,
+                    }),
+                });
+
+                const userData = await userResponse.json();
+
+                if (adminData.success && userData.success) {
+                    console.log('Emails sent successfully to admin and user');
+                    setIsSubmitted(true);
+                    setShowModal(true);
+                    setEmail('');
+                } else {
+                    console.error('Form submission failed:', { adminData, userData });
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Something went wrong. Please try again.');
+            }
         }
     };
 
