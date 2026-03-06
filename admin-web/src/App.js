@@ -80,6 +80,8 @@ function App() {
         <Route path="/customers" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><CustomersPage /></ProtectedRoute>} />
         <Route path="/reports" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><ReportsPage /></ProtectedRoute>} />
         <Route path="/reviews" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><ReviewsPage /></ProtectedRoute>} />
+        <Route path="/waitlist" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><WaitlistPage /></ProtectedRoute>} />
+
         <Route path="/settings" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><SettingsPage /></ProtectedRoute>} />
         <Route path="/pro-management" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><ProManagementPage /></ProtectedRoute>} />
 
@@ -102,4 +104,5 @@ function App() {
 }
 
 export default App;
+
 
