@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import './Venues.css';
 import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { venueService } from '../services/venueService';
@@ -197,6 +198,8 @@ const Venues = () => {
                     </div>
                 )}
             </main>
+
+            <Footer />
         </div>
     );
 };
