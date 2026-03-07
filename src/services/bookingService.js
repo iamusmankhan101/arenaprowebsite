@@ -39,12 +39,11 @@ export const bookingService = {
 
             // 3. Fetch existing bookings for this venue and date
             const bookingsRef = collection(db, 'bookings');
-            // Format date for query if stored as string, or handle timestamp conversion
+            // Simple query to avoid composite index requirements
             const q = query(
                 bookingsRef,
                 where('turfId', '==', venueId),
-                where('dateString', '==', dateString),
-                where('status', '!=', 'cancelled')
+                where('dateString', '==', dateString)
             );
 
             const bookingsSnap = await getDocs(q);
@@ -52,20 +51,26 @@ export const bookingService = {
 
             bookingsSnap.forEach(doc => {
                 const booking = doc.data();
-                if (booking.timeSlotId) {
-                    bookedSlotIds.add(booking.timeSlotId);
-                } else if (booking.timeSlot) {
-                    // Fallback if ID isn't used
-                    bookedSlotIds.add(booking.timeSlot);
+                if (booking.status !== 'cancelled') {
+                    if (booking.timeSlotId) {
+                        bookedSlotIds.add(booking.timeSlotId);
+                    } else if (booking.timeSlot) {
+                        bookedSlotIds.add(booking.timeSlot);
+                    }
                 }
             });
 
+            console.log(`📊 Found ${bookedSlotIds.size} booked slots for this date.`);
+
             // 4. Map and tag slots as available or booked
-            return slots.map(slot => ({
+            const mappedSlots = slots.map(slot => ({
                 ...slot,
                 isBooked: bookedSlotIds.has(slot.id) || bookedSlotIds.has(slot.startTime || slot.time),
                 price: slot.price || venueData.basePrice || 0
             }));
+
+            console.log(`✅ Returning ${mappedSlots.length} total slots (${mappedSlots.filter(s => !s.isBooked).length} available)`);
+            return mappedSlots;
 
         } catch (error) {
             console.error("Error in getAvailableSlots:", error);

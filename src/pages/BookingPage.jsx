@@ -29,10 +29,7 @@ const BookingPage = () => {
     useEffect(() => {
         const fetchVenueData = async () => {
             try {
-                // We need a specific getVenueById in venueService, 
-                // but since it's not there yet, we fetch all and find or add it
-                const venues = await venueService.getVenues();
-                const foundVenue = venues.find(v => v.id === venueId);
+                const foundVenue = await venueService.getVenueById(venueId);
                 setVenue(foundVenue);
             } catch (error) {
                 console.error("Error fetching venue:", error);
