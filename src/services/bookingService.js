@@ -92,12 +92,18 @@ export const bookingService = {
                 sport
             } = bookingData;
 
+            // Combine date string and time slot to create a proper Date object
+            // slot.startTime is usually in "HH:mm" format (e.g., "14:00")
+            const timeStr = slot.startTime || slot.time || "00:00";
+            const bookingDateTime = new Date(`${dateString}T${timeStr}:00`);
+
             const newBooking = {
                 turfId: venueId,
                 turfName: venueName,
                 dateString: dateString, // 'YYYY-MM-DD'
-                date: new Date(dateString), // For query flexibility
-                timeSlot: slot.startTime || slot.time,
+                date: bookingDateTime, // Proper local/combined date and time
+                startTime: bookingDateTime, // Some services specifically look for startTime
+                timeSlot: timeStr,
                 timeSlotId: slot.id,
                 duration: 1, // Default to 1 hour based on slot structure
                 totalAmount: slot.price,
