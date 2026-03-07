@@ -83,7 +83,7 @@ const BookingPage = () => {
     if (loading) {
         return (
             <div className="loading-screen">
-                <Loader2 className="animate-spin" size={48} color="#e8ee26" />
+                <Loader2 className="animate-spin" size={48} color="#004d43" />
                 <p>Loading Venue Details...</p>
             </div>
         );
@@ -106,7 +106,7 @@ const BookingPage = () => {
             <div className="success-screen">
                 <Navbar />
                 <div className="success-card">
-                    <CheckCircle2 color="#e8ee26" size={80} />
+                    <CheckCircle2 color="#004d43" size={80} />
                     <h2>Booking Received!</h2>
                     <p>Thank you, {customerInfo.name}. Your booking for <strong>{venue.name}</strong> on <strong>{selectedDate}</strong> at <strong>{selectedSlot.startTime || selectedSlot.time}</strong> has been submitted.</p>
                     <p>Our team will contact you shortly to confirm.</p>
@@ -118,22 +118,29 @@ const BookingPage = () => {
     }
 
     return (
-        <div className="booking-page">
+        <div className="booking-page light-theme">
             <Navbar />
 
-            <div className="booking-container">
-                <button className="back-link" onClick={() => navigate(-1)}>
-                    <ChevronLeft size={18} /> Back to Venues
-                </button>
+            {/* Hero Section */}
+            <div
+                className="booking-hero"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${venue.images?.[0] || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80'})`
+                }}
+            >
+                <div className="hero-content">
+                    <button className="back-btn-hero" onClick={() => navigate(-1)}>
+                        <ChevronLeft size={20} /> Back
+                    </button>
+                    <h1>{venue.name}</h1>
+                    <p className="hero-location"><Calendar size={20} /> {venue.location}</p>
+                </div>
+            </div>
 
+            <div className="booking-container">
                 <div className="booking-grid">
                     {/* Left Side: Details & Slot Selection */}
                     <div className="booking-details">
-                        <div className="venue-header-small">
-                            <h1>Book {venue.name}</h1>
-                            <p className="area-text"><Calendar size={18} /> {venue.location}</p>
-                        </div>
-
                         <div className="selection-section">
                             <h3 className="section-title">
                                 <span className="section-number">1</span>
@@ -221,21 +228,21 @@ const BookingPage = () => {
                                 <div className="booking-summary">
                                     <div className="summary-row">
                                         <span>Venue</span>
-                                        <span style={{ color: '#fff', fontWeight: 600 }}>{venue.name}</span>
+                                        <span style={{ color: '#004d43', fontWeight: 600 }}>{venue.name}</span>
                                     </div>
                                     <div className="summary-row">
                                         <span>Date</span>
-                                        <span style={{ color: '#fff', fontWeight: 600 }}>{selectedDate}</span>
+                                        <span style={{ color: '#004d43', fontWeight: 600 }}>{selectedDate}</span>
                                     </div>
                                     <div className="summary-row">
                                         <span>Time Slot</span>
-                                        <span style={{ color: '#fff', fontWeight: 600 }}>
+                                        <span style={{ color: '#004d43', fontWeight: 600 }}>
                                             {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
                                         </span>
                                     </div>
                                     <div className="summary-row total">
                                         <span>Total</span>
-                                        <span style={{ color: '#e8ee26' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                        <span style={{ color: '#004d43' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
                                     </div>
                                 </div>
 
