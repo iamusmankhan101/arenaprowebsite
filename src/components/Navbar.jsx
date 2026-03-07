@@ -90,7 +90,10 @@ const Navbar = ({ forceScrolled = false }) => {
 
                     <div className="mobile-menu-footer">
                         {user ? (
-                            <button className="navbar-cta mobile-cta" onClick={handleLogout}>Logout</button>
+                            <div className="mobile-user-actions">
+                                <Link to="/profile" className="navbar-cta mobile-cta secondary" onClick={closeMenu}>My Profile</Link>
+                                <button className="navbar-cta mobile-cta" onClick={handleLogout}>Logout</button>
+                            </div>
                         ) : (
                             <Link to="/login" className="navbar-cta mobile-cta" onClick={closeMenu}>Login</Link>
                         )}
@@ -104,10 +107,12 @@ const Navbar = ({ forceScrolled = false }) => {
                 <div className="navbar-actions">
                     {user ? (
                         <div className="user-profile">
-                            <div className="user-avatar" title={user.displayName || user.email}>
-                                <User size={18} />
-                                <span className="user-name-short">{user.displayName?.split(' ')[0] || 'User'}</span>
-                            </div>
+                            <Link to="/profile" className="user-avatar-link" title="My Profile">
+                                <div className="user-avatar">
+                                    <User size={18} />
+                                    <span className="user-name-short">{user.displayName?.split(' ')[0] || 'User'}</span>
+                                </div>
+                            </Link>
                             <button onClick={handleLogout} className="logout-icon-btn" title="Logout">
                                 <LogOut size={18} />
                             </button>
