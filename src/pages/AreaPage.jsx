@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import './AreaPage.css';
+import { venueService } from '../services/venueService';
 
 const VenueImageSlider = ({ images, venueName, sports }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,10 +55,29 @@ const VenueImageSlider = ({ images, venueName, sports }) => {
     );
 };
 
-const AreaPage = ({ areaName, areaDescription, venues }) => {
+const AreaPage = ({ areaName, areaDescription }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeSport, setActiveSport] = useState('All');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [liveVenues, setLiveVenues] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAreaVenues = async () => {
+            try {
+                setLoading(true);
+                const data = await venueService.getVenuesByArea(areaName);
+                setLiveVenues(data);
+            } catch (error) {
+                console.error("Failed to load area venues:", error);
+                setLiveVenues([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAreaVenues();
+    }, [areaName]);
 
     const sports = [
         { name: 'All', icon: <LayoutGrid size={18} /> },
@@ -68,13 +88,13 @@ const AreaPage = ({ areaName, areaDescription, venues }) => {
     ];
 
     const filteredVenues = useMemo(() => {
-        return venues.filter(venue => {
+        return liveVenues.filter(venue => {
             const matchesSearch = venue.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 venue.location.toLowerCase().includes(searchTerm.toLowerCase());
             const matchesSport = activeSport === 'All' || venue.sports.includes(activeSport);
             return matchesSearch && matchesSport;
         });
-    }, [searchTerm, activeSport, venues]);
+    }, [searchTerm, activeSport, liveVenues]);
 
     return (
         <div className="area-page">
@@ -132,7 +152,12 @@ const AreaPage = ({ areaName, areaDescription, venues }) => {
                     </button>
                 </div>
 
-                {filteredVenues.length > 0 ? (
+                {loading ? (
+                    <div className="loading-container">
+                        <Loader2 className="animate-spin" size={48} />
+                        <p>Loading arenas in {areaName}...</p>
+                    </div>
+                ) : filteredVenues.length > 0 ? (
                     <div className="area-grid">
                         {filteredVenues.map(venue => (
                             <div className="venue-card" key={venue.id}>
@@ -158,6 +183,7 @@ const AreaPage = ({ areaName, areaDescription, venues }) => {
                                     </div>
                                     <div className="venue-footer">
                                         <div className="venue-price">{venue.price}</div>
+                                        <button className="book-btn" onClick={() => window.location.href = '/waitlist'}>Book Now</button>
                                     </div>
                                 </div>
                             </div>

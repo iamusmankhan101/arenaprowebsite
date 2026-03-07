@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './VendorSection.css';
+import { contactService } from '../services/contactService';
 
 const VendorSection = () => {
     const [showModal, setShowModal] = useState(false);
@@ -42,34 +43,20 @@ const VendorSection = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d";
-
-        const submitFormData = new FormData();
-        submitFormData.append('access_key', ACCESS_KEY);
-        submitFormData.append('subject', 'New Demo Request - Arena Pro Vendor Panel');
-        submitFormData.append('from_name', 'Arena Pro Demo Request');
-        submitFormData.append('name', formData.name);
-        submitFormData.append('email', formData.email);
-        submitFormData.append('phone', formData.phone);
-        submitFormData.append('venue_name', formData.venueName);
-        submitFormData.append('message', formData.message);
-
         try {
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: submitFormData
+            await contactService.submitContactForm({
+                firstName: formData.name,
+                lastName: '(Vendor Demo)',
+                email: formData.email,
+                phone: formData.phone,
+                message: `Venue: ${formData.venueName}. Message: ${formData.message}`,
+                type: 'Vendor Demo Request'
             });
 
-            const data = await response.json();
-
-            if (data.success) {
-                setSubmitSuccess(true);
-                setTimeout(() => {
-                    closeModal();
-                }, 3000);
-            } else {
-                alert('Something went wrong. Please try again.');
-            }
+            setSubmitSuccess(true);
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
         } catch (error) {
             console.error('Error:', error);
             alert('Something went wrong. Please try again.');
@@ -184,7 +171,7 @@ const VendorSection = () => {
                     <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="demo-modal-close" onClick={closeModal}>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </button>
 
@@ -192,8 +179,8 @@ const VendorSection = () => {
                             <div className="demo-success-message">
                                 <div className="demo-success-icon">
                                     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="32" cy="32" r="32" fill="#e8ee26"/>
-                                        <path d="M20 32L28 40L44 24" stroke="#004d43" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <circle cx="32" cy="32" r="32" fill="#e8ee26" />
+                                        <path d="M20 32L28 40L44 24" stroke="#004d43" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
                                 <h2 className="demo-success-title">Request Received! 🎉</h2>
@@ -277,8 +264,8 @@ const VendorSection = () => {
                                         ></textarea>
                                     </div>
 
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         className="demo-submit-button"
                                         disabled={isSubmitting}
                                     >

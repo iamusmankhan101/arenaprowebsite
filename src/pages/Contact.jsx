@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import './Contact.css';
 import { Headset, MessageSquare, Mail, Facebook, Instagram, Twitter, Phone } from 'lucide-react';
+import { contactService } from '../services/contactService';
 
 const Contact = () => {
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
@@ -25,32 +26,10 @@ const Contact = () => {
         e.preventDefault();
         setStatus('loading');
 
-        const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d"; // Provided by user
-
-        const data = {
-            ...formData,
-            access_key: ACCESS_KEY,
-            subject: `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
-            to_email: "iamusmankhan101@gmail.com"
-        };
-
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            if (result.success) {
-                setStatus('success');
-                setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
-            } else {
-                setStatus('error');
-            }
+            await contactService.submitContactForm(formData);
+            setStatus('success');
+            setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
         } catch (error) {
             console.error("Error submitting form:", error);
             setStatus('error');

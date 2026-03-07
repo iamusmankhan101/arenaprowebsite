@@ -1,46 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import './Venues.css';
-import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight } from 'lucide-react';
-
-const mockVenues = [
-    {
-        id: 1,
-        name: "Super Sixes",
-        location: "Nasheman Iqbal Phase 1, Lahore",
-        rating: 4.8,
-        reviews: 156,
-        price: "1700 Pkr/Hour",
-        sports: ["Cricket", "Futsal"],
-        images: ["/image/WhatsApp Image 2026-03-02 at 3.49.53 PM.jpeg"],
-        tags: ["Indoor", "Net Practice", "Affordable"]
-    },
-    {
-        id: 2,
-        name: "Sports Pitch Arena",
-        location: "Nasheman Iqbal Phase 1, Lahore",
-        rating: 4.9,
-        reviews: 84,
-        price: "1700 Pkr/Hour",
-        sports: ["Cricket", "Futsal"],
-        images: [
-            "/image/sports pitch arena 1.png",
-            "/image/sports pitch arena.png"
-        ],
-        tags: ["Premium", "Indoor", "Professional"]
-    },
-    {
-        id: 3,
-        name: "Can Games",
-        location: "Ichhra Shershah Colony, Lahore",
-        rating: 4.7,
-        reviews: 92,
-        price: "2500 Pkr/Hour",
-        sports: ["Cricket", "Futsal"],
-        images: ["/image/WhatsApp Image 2026-02-27 at 12.58.33 AM.jpeg"],
-        tags: ["Premium", "Indoor", "Multi-Sport"]
-    }
-];
+import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { venueService } from '../services/venueService';
 
 const VenueImageSlider = ({ images, venueName, sports }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -96,6 +58,23 @@ const Venues = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeSport, setActiveSport] = useState('All');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [venues, setVenues] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchVenues = async () => {
+            try {
+                const data = await venueService.getVenues();
+                setVenues(data);
+            } catch (error) {
+                console.error("Failed to load venues:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVenues();
+    }, []);
 
     const sports = [
         { name: 'All', icon: <LayoutGrid size={18} /> },
@@ -106,13 +85,13 @@ const Venues = () => {
     ];
 
     const filteredVenues = useMemo(() => {
-        return mockVenues.filter(venue => {
+        return venues.filter(venue => {
             const matchesSearch = venue.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 venue.location.toLowerCase().includes(searchTerm.toLowerCase());
             const matchesSport = activeSport === 'All' || venue.sports.includes(activeSport);
             return matchesSearch && matchesSport;
         });
-    }, [searchTerm, activeSport]);
+    }, [searchTerm, activeSport, venues]);
 
     return (
         <div className="venues-page">
@@ -173,7 +152,12 @@ const Venues = () => {
                 </div>
 
                 {/* Venue Grid */}
-                {filteredVenues.length > 0 ? (
+                {loading ? (
+                    <div className="loading-container">
+                        <Loader2 className="animate-spin" size={48} />
+                        <p>Loading arenas...</p>
+                    </div>
+                ) : filteredVenues.length > 0 ? (
                     <div className="venues-grid">
                         {filteredVenues.map(venue => (
                             <div className="venue-card" key={venue.id}>
@@ -199,6 +183,7 @@ const Venues = () => {
                                     </div>
                                     <div className="venue-footer">
                                         <div className="venue-price">{venue.price}</div>
+                                        <button className="book-btn" onClick={() => window.location.href = '/waitlist'}>Book Now</button>
                                     </div>
                                 </div>
                             </div>
