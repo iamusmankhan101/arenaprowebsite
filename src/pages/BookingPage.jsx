@@ -27,6 +27,7 @@ const BookingPage = () => {
         phone: '',
         email: ''
     });
+    const [availableDates, setAvailableDates] = useState([]);
 
     useEffect(() => {
         if (user) {
@@ -43,6 +44,21 @@ const BookingPage = () => {
             try {
                 const foundVenue = await venueService.getVenueById(venueId);
                 setVenue(foundVenue);
+
+                // Extract available dates from dateSpecificSlots
+                if (foundVenue?.dateSpecificSlots) {
+                    const dates = Object.keys(foundVenue.dateSpecificSlots)
+                        .filter(d => new Date(d) >= new Date(new Date().toISOString().split('T')[0]))
+                        .sort();
+                    setAvailableDates(dates);
+                    // Auto-select first available date if today has no slots
+                    if (dates.length > 0) {
+                        const today = new Date().toISOString().split('T')[0];
+                        if (!foundVenue.dateSpecificSlots[today]) {
+                            setSelectedDate(dates[0]);
+                        }
+                    }
+                }
             } catch (error) {
                 console.error("Error fetching venue:", error);
             } finally {
@@ -159,6 +175,25 @@ const BookingPage = () => {
                                 <span className="section-number">1</span>
                                 Select Date
                             </h3>
+
+                            {/* Available Date Chips */}
+                            {availableDates.length > 0 && (
+                                <div className="available-dates">
+                                    <p className="available-dates-label">Available dates:</p>
+                                    <div className="date-chips">
+                                        {availableDates.map(date => (
+                                            <button
+                                                key={date}
+                                                className={`date-chip ${selectedDate === date ? 'active' : ''}`}
+                                                onClick={() => setSelectedDate(date)}
+                                            >
+                                                {new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             <div className="date-input-wrapper">
                                 <input
                                     type="date"
