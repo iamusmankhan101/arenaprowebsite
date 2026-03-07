@@ -1,29 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
 
 .booking-page {
     min-height: 100vh;
     background-color: #fcfcfc;
     color: #1a1a1a;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding-bottom: 100px;
 }
 
 /* Hero Section Styles */
 .booking-hero {
-    height: 450px;
+    height: 480px;
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .hero-content {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    padding: 0 24px;
+    padding: 0 24px 20px;
+    /* Added bottom padding to hero content */
     position: relative;
     z-index: 2;
 }
@@ -40,7 +42,7 @@
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     transition: all 0.3s ease;
 }
 
@@ -50,22 +52,24 @@
 }
 
 .hero-content h1 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 4rem;
-    font-weight: 800;
+    font-family: 'Clash Display', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
     color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .hero-location {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: #e8ee26;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding-bottom: 40px;
+    /* Added bottom padding as requested */
 }
 
 .booking-container {
@@ -107,9 +111,9 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Clash Display', sans-serif;
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 32px;
     color: #1a1a1a;
 }
@@ -125,6 +129,7 @@
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Date Picker Premium */
@@ -138,6 +143,7 @@
     border-radius: 18px;
     font-size: 1.1rem;
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     outline: none;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -198,8 +204,8 @@
 }
 
 .slot-time {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
     font-size: 1.25rem;
 }
 
@@ -207,6 +213,7 @@
     font-size: 0.95rem;
     font-weight: 600;
     color: #666;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .booked-badge {
@@ -218,6 +225,7 @@
     padding: 4px 12px;
     border-radius: 8px;
     margin-top: 4px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Sidebar Form */
@@ -230,20 +238,33 @@
 .form-group label {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    /* Increased gap */
     margin-bottom: 12px;
-    font-weight: 600;
-    color: #495057;
+    font-weight: 700;
+    /* Bold as in image */
+    color: #343a40;
+    /* Darker as in image */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.form-group label svg {
+    color: #343a40;
+    opacity: 0.7;
 }
 
 .form-group input {
     width: 100%;
-    padding: 16px 20px;
+    padding: 18px 24px;
+    /* More padding as in image */
     background: #f8f9fa;
     border: 2px solid #f1f3f5;
-    border-radius: 18px;
+    border-radius: 20px;
+    /* More rounded */
     color: #1a1a1a;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    font-family: 'Montserrat', sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -267,14 +288,15 @@
     margin-bottom: 12px;
     color: #666;
     font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .summary-row.total {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 2px solid #e9ecef;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 700;
     font-size: 1.75rem;
     color: #1a1a1a;
 }
@@ -286,9 +308,9 @@
     color: #e8ee26;
     border: none;
     border-radius: 20px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Clash Display', sans-serif;
     font-size: 1.15rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -326,6 +348,7 @@
 .loading-screen p {
     color: #004d43;
     font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .success-card {
@@ -339,6 +362,12 @@
 
 .success-card h2 {
     color: #004d43;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 700;
+}
+
+.success-card p {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .primary-btn {
@@ -346,6 +375,8 @@
     color: #e8ee26;
     border-radius: 12px;
     padding: 16px 40px;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
 }
 
 @keyframes scaleIn {
@@ -358,6 +389,74 @@
         transform: scale(1);
         opacity: 1;
     }
+}
+
+/* Hero & Grid responsiveness already handled above */
+
+/* Auth Guard Overlay */
+.auth-guard-overlay {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    border: 1px dashed #ced4da;
+    margin: 20px 0;
+}
+
+.guard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.guard-icon {
+    color: #004d43;
+    opacity: 0.8;
+}
+
+.guard-content h4 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.guard-content p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 250px;
+}
+
+.login-redirect-btn {
+    background: #004d43;
+    color: #e8ee26;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.login-redirect-btn:hover {
+    background: #003a32;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 77, 67, 0.2);
+}
+
+.signup-hint {
+    font-size: 0.85rem !important;
+    margin-top: 8px !important;
+}
+
+.signup-hint a {
+    color: #004d43;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 @media (max-width: 992px) {

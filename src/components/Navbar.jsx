@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Menu, X, Instagram, ChevronDown } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, Instagram, ChevronDown, User, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = ({ forceScrolled = false }) => {
     const [scrolled, setScrolled] = useState(forceScrolled);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [areasOpen, setAreasOpen] = useState(false);
+
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (forceScrolled) return;
@@ -21,6 +25,15 @@ const Navbar = ({ forceScrolled = false }) => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, [forceScrolled]);
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/');
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
 
     const toggleMenu = () => {
         setMobileOpen(!mobileOpen);
@@ -53,10 +66,10 @@ const Navbar = ({ forceScrolled = false }) => {
                         <Link to="/" className="nav-link" onClick={closeMenu} style={{ '--i': 0 }}>Home</Link>
                         <Link to="/how-it-works" className="nav-link" onClick={closeMenu} style={{ '--i': 1 }}>How it Works</Link>
                         <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venues</Link>
-                        
+
                         <div className="nav-dropdown" style={{ '--i': 3 }}>
-                            <button 
-                                className="nav-link dropdown-trigger" 
+                            <button
+                                className="nav-link dropdown-trigger"
                                 onClick={() => setAreasOpen(!areasOpen)}
                             >
                                 Areas <ChevronDown size={16} className={`dropdown-icon ${areasOpen ? 'open' : ''}`} />
@@ -67,6 +80,7 @@ const Navbar = ({ forceScrolled = false }) => {
                                 <Link to="/venues/dha" className="dropdown-item" onClick={closeMenu}>DHA</Link>
                                 <Link to="/venues/bahria-town" className="dropdown-item" onClick={closeMenu}>Bahria Town</Link>
                                 <Link to="/venues/wapda-town" className="dropdown-item" onClick={closeMenu}>Wapda Town</Link>
+                                <Link to="/waitlist" className="dropdown-item" onClick={closeMenu}>Waitlist</Link>
                             </div>
                         </div>
 
@@ -75,7 +89,11 @@ const Navbar = ({ forceScrolled = false }) => {
                     </div>
 
                     <div className="mobile-menu-footer">
-                        <Link to="/waitlist" className="navbar-cta mobile-cta" onClick={closeMenu}>Join Waitlist</Link>
+                        {user ? (
+                            <button className="navbar-cta mobile-cta" onClick={handleLogout}>Logout</button>
+                        ) : (
+                            <Link to="/login" className="navbar-cta mobile-cta" onClick={closeMenu}>Login</Link>
+                        )}
                         <div className="mobile-socials">
                             <a href="https://www.instagram.com/arenapropk" target="_blank" rel="noopener noreferrer" className="social-icon"><Instagram size={20} /></a>
                         </div>
@@ -83,7 +101,21 @@ const Navbar = ({ forceScrolled = false }) => {
                     </div>
                 </div>
 
-                <Link to="/waitlist" className="navbar-cta desktop-cta">Join Waitlist</Link>
+                <div className="navbar-actions">
+                    {user ? (
+                        <div className="user-profile">
+                            <div className="user-avatar" title={user.displayName || user.email}>
+                                <User size={18} />
+                                <span className="user-name-short">{user.displayName?.split(' ')[0] || 'User'}</span>
+                            </div>
+                            <button onClick={handleLogout} className="logout-icon-btn" title="Logout">
+                                <LogOut size={18} />
+                            </button>
+                        </div>
+                    ) : (
+                        <Link to="/login" className="navbar-cta desktop-cta">Login</Link>
+                    )}
+                </div>
             </div>
         </nav>
     )

@@ -358,3 +358,72 @@
         padding-bottom: 30px;
     }
 }
+
+/* Authentication Styles in Navbar */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled .user-profile {
+    background: rgba(0, 77, 67, 0.05);
+    border-color: rgba(0, 77, 67, 0.1);
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+
+.navbar.scrolled .user-avatar {
+    color: #004d43;
+}
+
+.user-name-short {
+    font-size: 0.9rem;
+    font-weight: 700;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logout-icon-btn {
+    background: none;
+    border: none;
+    color: #e8ee26;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    transition: transform 0.2s ease;
+}
+
+.navbar.scrolled .logout-icon-btn {
+    color: #004d43;
+}
+
+.logout-icon-btn:hover {
+    transform: scale(1.1);
+    color: #ff4d4d;
+}
+
+@media (max-width: 768px) {
+    .navbar-actions {
+        display: none;
+    }
+}

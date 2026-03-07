@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2, Lock } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { venueService } from '../services/venueService';
 import { bookingService } from '../services/bookingService';
+import { useAuth } from '../context/AuthContext';
 import './BookingPage.css';
 
 const BookingPage = () => {
     const { venueId } = useParams();
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const [venue, setVenue] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -25,6 +27,16 @@ const BookingPage = () => {
         phone: '',
         email: ''
     });
+
+    useEffect(() => {
+        if (user) {
+            setCustomerInfo(prev => ({
+                ...prev,
+                name: user.displayName || '',
+                email: user.email || ''
+            }));
+        }
+    }, [user]);
 
     useEffect(() => {
         const fetchVenueData = async () => {
@@ -59,7 +71,7 @@ const BookingPage = () => {
 
     const handleBooking = async (e) => {
         e.preventDefault();
-        if (!selectedSlot) return;
+        if (!selectedSlot || !user) return;
 
         setBookingLoading(true);
         try {
@@ -69,7 +81,8 @@ const BookingPage = () => {
                 dateString: selectedDate,
                 slot: selectedSlot,
                 customerInfo,
-                sport: venue.sports[0]
+                sport: venue.sports[0],
+                userId: user.uid
             });
             setBookingSuccess(true);
         } catch (error) {
@@ -108,7 +121,7 @@ const BookingPage = () => {
                 <div className="success-card">
                     <CheckCircle2 color="#004d43" size={80} />
                     <h2>Booking Received!</h2>
-                    <p>Thank you, {customerInfo.name}. Your booking for <strong>{venue.name}</strong> on <strong>{selectedDate}</strong> at <strong>{selectedSlot.startTime || selectedSlot.time}</strong> has been submitted.</p>
+                    <p>Thank you, {customerInfo.name}. Your booking for <strong>{venue.name}</strong> on <strong>{selectedDate}</strong> at <strong>{selectedSlot?.startTime || selectedSlot?.time}</strong> has been submitted.</p>
                     <p>Our team will contact you shortly to confirm.</p>
                     <button onClick={() => navigate('/venues')} className="primary-btn">Back to Venues</button>
                 </div>
@@ -186,85 +199,105 @@ const BookingPage = () => {
                         </div>
                     </div>
 
-                    {/* Right Side: Information Form */}
+                    {/* Right Side: Information Form with Guard */}
                     <div className="booking-form-container">
                         <div className="glass-card booking-form-card">
                             <h3 className="section-title">
                                 <span className="section-number">3</span>
                                 Finish Booking
                             </h3>
-                            <form onSubmit={handleBooking}>
-                                <div className="form-group">
-                                    <label><User size={16} /> Full Name</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Enter your name"
-                                        value={customerInfo.name}
-                                        onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label><Phone size={16} /> Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        required
-                                        placeholder="03xx xxxxxxx"
-                                        value={customerInfo.phone}
-                                        onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label><Mail size={16} /> Email Address</label>
-                                    <input
-                                        type="email"
-                                        required
-                                        placeholder="your@email.com"
-                                        value={customerInfo.email}
-                                        onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
-                                    />
-                                </div>
 
-                                <div className="booking-summary">
-                                    <div className="summary-row">
-                                        <span>Venue</span>
-                                        <span style={{ color: '#004d43', fontWeight: 600 }}>{venue.name}</span>
-                                    </div>
-                                    <div className="summary-row">
-                                        <span>Date</span>
-                                        <span style={{ color: '#004d43', fontWeight: 600 }}>{selectedDate}</span>
-                                    </div>
-                                    <div className="summary-row">
-                                        <span>Time Slot</span>
-                                        <span style={{ color: '#004d43', fontWeight: 600 }}>
-                                            {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
-                                        </span>
-                                    </div>
-                                    <div className="summary-row total">
-                                        <span>Total</span>
-                                        <span style={{ color: '#004d43' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                            {!user ? (
+                                <div className="auth-guard-overlay">
+                                    <div className="guard-content">
+                                        <Lock size={40} className="guard-icon" />
+                                        <h4>Sign in Required</h4>
+                                        <p>Please sign in to your accounts to continue with the booking.</p>
+                                        <button
+                                            className="login-redirect-btn"
+                                            onClick={() => navigate('/login', { state: { from: window.location } })}
+                                        >
+                                            Sign In to Book
+                                        </button>
+                                        <p className="signup-hint">Don't have an account? <Link to="/signup">Sign up</Link></p>
                                     </div>
                                 </div>
+                            ) : (
+                                <form onSubmit={handleBooking}>
+                                    <div className="form-group">
+                                        <label><User size={16} /> Full Name</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            placeholder="Enter your name"
+                                            value={customerInfo.name}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+                                            readOnly={user?.displayName}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label><Phone size={16} /> Phone Number</label>
+                                        <input
+                                            type="tel"
+                                            required
+                                            placeholder="03xx xxxxxxx"
+                                            value={customerInfo.phone}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label><Mail size={16} /> Email Address</label>
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="your@email.com"
+                                            value={customerInfo.email}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+                                            readOnly={user?.email}
+                                        />
+                                    </div>
 
-                                <button
-                                    type="submit"
-                                    className="confirm-btn"
-                                    disabled={!selectedSlot || bookingLoading}
-                                >
-                                    {bookingLoading ? (
-                                        <>
-                                            <Loader2 className="animate-spin" size={20} />
-                                            Processing...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <CheckCircle2 size={20} />
-                                            Confirm Reservation
-                                        </>
-                                    )}
-                                </button>
-                                {!selectedSlot && <p className="selection-hint">Please select a time slot to continue</p>}
-                            </form>
+                                    <div className="booking-summary">
+                                        <div className="summary-row">
+                                            <span>Venue</span>
+                                            <span style={{ color: '#004d43', fontWeight: 600 }}>{venue.name}</span>
+                                        </div>
+                                        <div className="summary-row">
+                                            <span>Date</span>
+                                            <span style={{ color: '#004d43', fontWeight: 600 }}>{selectedDate}</span>
+                                        </div>
+                                        <div className="summary-row">
+                                            <span>Time Slot</span>
+                                            <span style={{ color: '#004d43', fontWeight: 600 }}>
+                                                {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
+                                            </span>
+                                        </div>
+                                        <div className="summary-row total">
+                                            <span>Total</span>
+                                            <span style={{ color: '#004d43' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        className="confirm-btn"
+                                        disabled={!selectedSlot || bookingLoading}
+                                    >
+                                        {bookingLoading ? (
+                                            <>
+                                                <Loader2 className="animate-spin" size={20} />
+                                                Processing...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <CheckCircle2 size={20} />
+                                                Confirm Reservation
+                                            </>
+                                        )}
+                                    </button>
+                                    {!selectedSlot && <p className="selection-hint">Please select a time slot to continue</p>}
+                                </form>
+                            )}
                         </div>
                     </div>
                 </div>

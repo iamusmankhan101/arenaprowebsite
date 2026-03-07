@@ -140,7 +140,8 @@ export const bookingService = {
                 sport: sport || 'Football',
                 status: 'pending',
                 paymentStatus: 'pending',
-                userType: 'guest',
+                userId: bookingData.userId || null,
+                userType: bookingData.userId ? 'registered' : 'guest',
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             };
