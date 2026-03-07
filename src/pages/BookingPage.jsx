@@ -123,7 +123,7 @@ const BookingPage = () => {
 
             <div className="booking-container">
                 <button className="back-link" onClick={() => navigate(-1)}>
-                    <ChevronLeft size={20} /> Back
+                    <ChevronLeft size={18} /> Back to Venues
                 </button>
 
                 <div className="booking-grid">
@@ -131,11 +131,14 @@ const BookingPage = () => {
                     <div className="booking-details">
                         <div className="venue-header-small">
                             <h1>Book {venue.name}</h1>
-                            <p className="area-text"><Calendar size={16} /> {venue.location}</p>
+                            <p className="area-text"><Calendar size={18} /> {venue.location}</p>
                         </div>
 
                         <div className="selection-section">
-                            <h3>1. Select Date</h3>
+                            <h3 className="section-title">
+                                <span className="section-number">1</span>
+                                Select Date
+                            </h3>
                             <div className="date-input-wrapper">
                                 <input
                                     type="date"
@@ -148,7 +151,10 @@ const BookingPage = () => {
                         </div>
 
                         <div className="selection-section">
-                            <h3>2. Select Time Slot</h3>
+                            <h3 className="section-title">
+                                <span className="section-number">2</span>
+                                Select Time Slot
+                            </h3>
                             <div className="slots-grid">
                                 {slots.length > 0 ? (
                                     slots.map((slot) => (
@@ -160,11 +166,14 @@ const BookingPage = () => {
                                         >
                                             <span className="slot-time">{slot.startTime || slot.time}</span>
                                             <span className="slot-price">{slot.price} Pkr</span>
-                                            {slot.isBooked && <span className="booked-badge">Booked</span>}
+                                            {slot.isBooked && <span className="booked-badge">Reserved</span>}
                                         </button>
                                     ))
                                 ) : (
-                                    <p className="no-slots">No slots available for this date.</p>
+                                    <div className="glass-card no-slots-card">
+                                        <Clock size={32} opacity={0.5} />
+                                        <p>No slots available for this date.</p>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -172,8 +181,11 @@ const BookingPage = () => {
 
                     {/* Right Side: Information Form */}
                     <div className="booking-form-container">
-                        <div className="booking-form-card">
-                            <h3>3. Your Information</h3>
+                        <div className="glass-card booking-form-card">
+                            <h3 className="section-title">
+                                <span className="section-number">3</span>
+                                Finish Booking
+                            </h3>
                             <form onSubmit={handleBooking}>
                                 <div className="form-group">
                                     <label><User size={16} /> Full Name</label>
@@ -208,12 +220,22 @@ const BookingPage = () => {
 
                                 <div className="booking-summary">
                                     <div className="summary-row">
-                                        <span>Subtotal</span>
-                                        <span>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                        <span>Venue</span>
+                                        <span style={{ color: '#fff', fontWeight: 600 }}>{venue.name}</span>
+                                    </div>
+                                    <div className="summary-row">
+                                        <span>Date</span>
+                                        <span style={{ color: '#fff', fontWeight: 600 }}>{selectedDate}</span>
+                                    </div>
+                                    <div className="summary-row">
+                                        <span>Time Slot</span>
+                                        <span style={{ color: '#fff', fontWeight: 600 }}>
+                                            {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
+                                        </span>
                                     </div>
                                     <div className="summary-row total">
                                         <span>Total</span>
-                                        <span>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                        <span style={{ color: '#e8ee26' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
                                     </div>
                                 </div>
 
@@ -222,7 +244,17 @@ const BookingPage = () => {
                                     className="confirm-btn"
                                     disabled={!selectedSlot || bookingLoading}
                                 >
-                                    {bookingLoading ? <Loader2 className="animate-spin" /> : 'Confirm Booking'}
+                                    {bookingLoading ? (
+                                        <>
+                                            <Loader2 className="animate-spin" size={20} />
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <CheckCircle2 size={20} />
+                                            Confirm Reservation
+                                        </>
+                                    )}
                                 </button>
                                 {!selectedSlot && <p className="selection-hint">Please select a time slot to continue</p>}
                             </form>
