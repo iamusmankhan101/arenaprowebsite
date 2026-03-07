@@ -10,6 +10,7 @@ import Waitlist from './pages/Waitlist';
 import BookingPage from './pages/BookingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import ProfilePage from './pages/ProfilePage';
 import NotFound from './pages/NotFound';
 import JoharTown from './pages/JoharTown';
 import ModelTown from './pages/ModelTown';
@@ -34,6 +35,7 @@ function App() {
                         <Route path="/book/:venueId" element={<BookingPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignupPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />

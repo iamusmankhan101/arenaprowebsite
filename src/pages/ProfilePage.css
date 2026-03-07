@@ -1,0 +1,345 @@
+.profile-page {
+    min-height: 100vh;
+    background-color: #fcfcfc;
+    padding-bottom: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Profile Hero */
+.profile-hero {
+    background: #004d43;
+    padding: 140px 0 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(232, 238, 38, 0.15) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.profile-header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.profile-avatar-large {
+    width: 100px;
+    height: 100px;
+    background: #e8ee26;
+    color: #004d43;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 15px 35px rgba(232, 238, 38, 0.2);
+}
+
+.profile-info-main h1 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.profile-email {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.profile-logout-btn {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.profile-logout-btn:hover {
+    background: #fa5252;
+    border-color: #fa5252;
+    transform: translateY(-2px);
+}
+
+/* Tabs */
+.profile-tabs {
+    display: flex;
+    gap: 24px;
+    margin: -30px 0 48px;
+    position: relative;
+    z-index: 5;
+}
+
+.tab-btn {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 32px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: #ffffff;
+    color: #004d43;
+    border-color: #004d43;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 77, 67, 0.1);
+}
+
+.count-badge {
+    background: #f1f3f5;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.tab-btn.active .count-badge {
+    background: #004d43;
+    color: #e8ee26;
+}
+
+/* Bookings Grid */
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 32px;
+}
+
+.booking-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 32px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border-color: #004d43;
+}
+
+.booking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.booking-card-header h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.pending {
+    background: #fff9db;
+    color: #f08c00;
+}
+
+.status-badge.confirmed {
+    background: #ebfbee;
+    color: #37b24d;
+}
+
+.booking-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.info-row svg {
+    color: #004d43;
+    opacity: 0.7;
+}
+
+.booking-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid #f1f3f5;
+}
+
+.booking-price span {
+    display: block;
+    font-size: 0.8rem;
+    color: #868e96;
+    margin-bottom: 2px;
+}
+
+.booking-price strong {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #004d43;
+}
+
+.view-details-btn {
+    background: none;
+    border: none;
+    color: #004d43;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: gap 0.2s ease;
+}
+
+.view-details-btn:hover {
+    gap: 10px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 80px 0;
+    background: white;
+    border-radius: 30px;
+    border: 2px dashed #e9ecef;
+}
+
+.empty-icon {
+    width: 100px;
+    height: 100px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    color: #004d43;
+}
+
+.empty-state h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 32px;
+}
+
+.book-now-btn {
+    background: #004d43;
+    color: #e8ee26;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-now-btn:hover {
+    background: #003a32;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 77, 67, 0.2);
+}
+
+.profile-loading {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.profile-loading p {
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
+    color: #004d43;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 0 20px;
+    }
+
+    .profile-header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-logout-btn {
+        margin: 20px auto 0;
+    }
+
+    .profile-info-main h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-tabs {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .bookings-grid {
+        grid-template-columns: 1fr;
+    }
+}

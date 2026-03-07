@@ -158,5 +158,40 @@ export const bookingService = {
             console.error("Error in createBooking:", error);
             throw error;
         }
+    },
+
+    /**
+     * Fetches all bookings for a specific user.
+     */
+    async getUserBookings(userId) {
+        if (!userId) return [];
+
+        try {
+            const bookingsRef = collection(db, 'bookings');
+            const q = query(
+                bookingsRef,
+                where('userId', '==', userId)
+                // Note: Ordering will require a composite index in Firestore.
+                // We'll sort in memory for now to avoid setup hurdles for the user.
+            );
+
+            const querySnapshot = await getDocs(q);
+            const bookings = [];
+
+            querySnapshot.forEach((doc) => {
+                bookings.push({ id: doc.id, ...doc.data() });
+            });
+
+            // Sort by date (descending - newest first)
+            return bookings.sort((a, b) => {
+                const dateA = a.date?.toDate ? a.date.toDate() : new Date(a.dateString || 0);
+                const dateB = b.date?.toDate ? b.date.toDate() : new Date(b.dateString || 0);
+                return dateB - dateA;
+            });
+
+        } catch (error) {
+            console.error("Error fetching user bookings:", error);
+            throw error;
+        }
     }
 };

@@ -104,10 +104,10 @@ const Navbar = ({ forceScrolled = false }) => {
                 <div className="navbar-actions">
                     {user ? (
                         <div className="user-profile">
-                            <div className="user-avatar" title={user.displayName || user.email}>
+                            <Link to="/profile" className="user-avatar" title={user.displayName || user.email}>
                                 <User size={18} />
                                 <span className="user-name-short">{user.displayName?.split(' ')[0] || 'User'}</span>
-                            </div>
+                            </Link>
                             <button onClick={handleLogout} className="logout-icon-btn" title="Logout">
                                 <LogOut size={18} />
                             </button>
