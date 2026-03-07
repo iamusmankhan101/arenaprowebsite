@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock, Loader2, ChevronLeft, AlertCircle } from 'lucide-react';
+import { Mail, Lock, ArrowLeft, Loader2, Github } from 'lucide-react';
 import './AuthPages.css';
 
 const LoginPage = () => {
@@ -12,17 +12,15 @@ const LoginPage = () => {
 
     const { login } = useAuth();
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/venues";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
         setError('');
+        setLoading(true);
 
         try {
             await login(email, password);
-            navigate(from, { replace: true });
+            navigate('/');
         } catch (err) {
             setError('Failed to log in. Please check your credentials.');
             console.error(err);
@@ -34,43 +32,30 @@ const LoginPage = () => {
     return (
         <div className="auth-page">
             <div className="auth-split-container">
-                {/* Left Hero Side */}
-                <div
-                    className="auth-hero-side"
-                    style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=1974&auto=format&fit=crop')` }}
-                >
-                    <div className="hero-overlay-content">
-                        <h2>The Ultimate Arena Experience.</h2>
-                        <p>Sign in to access premium sports venues and manage your bookings effortlessly.</p>
-                    </div>
-                </div>
-
-                {/* Right Form Side */}
+                {/* Left Side: Form (White Background) */}
                 <div className="auth-form-side">
-                    <button className="back-btn-overlay" onClick={() => navigate('/')}>
-                        <ChevronLeft size={18} /> Back
-                    </button>
+                    <div className="auth-logo-wrapper">
+                        <Link to="/">
+                            <img src="/image/pitch it logo (500 x 200 px) (2).png" alt="ArenaPro Logo" className="auth-logo" />
+                        </Link>
+                    </div>
 
                     <div className="auth-card">
                         <div className="auth-header">
                             <h1>Welcome Back!</h1>
-                            <p>Enter your details to stay connected.</p>
+                            <p>Sign in to access your dashboard and continue capturing your sports leads.</p>
                         </div>
 
-                        {error && (
-                            <div className="auth-error">
-                                <AlertCircle size={18} /> {error}
-                            </div>
-                        )}
+                        {error && <div className="auth-error">{error}</div>}
 
                         <form onSubmit={handleSubmit} className="auth-form">
                             <div className="form-group">
-                                <label>Email address</label>
+                                <label>Email</label>
                                 <div className="input-wrapper">
                                     <Mail size={18} />
                                     <input
                                         type="email"
-                                        placeholder="Hello@arenapro.pk"
+                                        placeholder="Enter your email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
@@ -90,15 +75,63 @@ const LoginPage = () => {
                                         required
                                     />
                                 </div>
+                                <Link to="/forgot-password" size={14} className="forgot-password">Forgot Password?</Link>
                             </div>
 
                             <button type="submit" className="auth-submit-btn" disabled={loading}>
-                                {loading ? <Loader2 className="animate-spin" size={20} /> : 'Sign in'}
+                                {loading ? <Loader2 className="animate-spin" size={20} /> : 'Sign In'}
                             </button>
                         </form>
 
+                        <div className="auth-divider">OR</div>
+
+                        <div className="social-buttons">
+                            <button className="social-btn">
+                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/smartlock/google.svg" alt="Google" />
+                                Continue with Google
+                            </button>
+                            <button className="social-btn">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
+                                Continue with Apple
+                            </button>
+                        </div>
+
                         <div className="auth-footer">
-                            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                            <p>Don't have an Account? <Link to="/signup">Sign Up</Link></p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Hero (Teal Branding) */}
+                <div className="auth-hero-side">
+                    <button onClick={() => navigate('/')} className="back-btn-overlay">
+                        <ArrowLeft size={18} /> Back to website
+                    </button>
+
+                    <div className="hero-overlay-content">
+                        <h2>Revolutionize Your Game with Smarter Bookings.</h2>
+
+                        <div className="testimonial-block">
+                            <p className="testimonial-text">
+                                "ArenaPro has completely transformed how we manage our venue bookings. It's reliable, efficient, and ensures our slots are always filled with top-notch players."
+                            </p>
+                            <div className="testimonial-author">
+                                <img src="https://i.pravatar.cc/150?u=arena1" alt="Michael Carter" className="author-avatar" />
+                                <div className="author-info">
+                                    <h4>Michael Carter</h4>
+                                    <p>Venue Manager at Elite Sports Complex</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="partner-logos">
+                        <span className="partner-label">TRUSTED BY TOP VENUES</span>
+                        <div className="logo-grid">
+                            <div className="partner-logo">ARENA</div>
+                            <div className="partner-logo">FITNESS</div>
+                            <div className="partner-logo">SPORTS</div>
+                            <div className="partner-logo">PITCH</div>
                         </div>
                     </div>
                 </div>
