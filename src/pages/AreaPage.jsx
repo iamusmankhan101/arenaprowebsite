@@ -183,7 +183,7 @@ const AreaPage = ({ areaName, areaDescription }) => {
                                     </div>
                                     <div className="venue-footer">
                                         <div className="venue-price">{venue.price}</div>
-                                        <button className="book-btn" onClick={() => window.location.href = '/waitlist'}>Book Now</button>
+                                        <button className="book-btn" onClick={() => window.location.href = `/book/${venue.id}`}>Book Now</button>
                                     </div>
                                 </div>
                             </div>

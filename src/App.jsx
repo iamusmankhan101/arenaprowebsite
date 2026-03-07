@@ -6,6 +6,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Waitlist from './pages/Waitlist';
+import BookingPage from './pages/BookingPage';
 import NotFound from './pages/NotFound';
 import JoharTown from './pages/JoharTown';
 import ModelTown from './pages/ModelTown';
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/venues/dha" element={<DHA />} />
                     <Route path="/venues/bahria-town" element={<BahriaTown />} />
                     <Route path="/venues/wapda-town" element={<WapdaTown />} />
+                    <Route path="/book/:venueId" element={<BookingPage />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/contact" element={<Contact />} />
