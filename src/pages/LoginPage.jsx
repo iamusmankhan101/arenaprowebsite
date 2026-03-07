@@ -83,18 +83,6 @@ const LoginPage = () => {
                             </button>
                         </form>
 
-                        <div className="auth-divider">OR</div>
-
-                        <div className="social-buttons">
-                            <button className="social-btn">
-                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/smartlock/google.svg" alt="Google" />
-                                Continue with Google
-                            </button>
-                            <button className="social-btn">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
-                                Continue with Apple
-                            </button>
-                        </div>
 
                         <div className="auth-footer">
                             <p>Don't have an Account? <Link to="/signup">Sign Up</Link></p>
@@ -103,27 +91,11 @@ const LoginPage = () => {
                 </div>
 
                 {/* Right Side: Hero (Teal Branding) */}
-                <div className="auth-hero-side">
+                <div className="auth-hero-side" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070&auto=format&fit=crop')" }}>
                     <button onClick={() => navigate('/')} className="back-btn-overlay">
                         <ArrowLeft size={18} /> Back to website
                     </button>
 
-                    <div className="hero-overlay-content">
-                        <h2>Revolutionize Your Game with Smarter Bookings.</h2>
-
-                        <div className="testimonial-block">
-                            <p className="testimonial-text">
-                                "ArenaPro has completely transformed how we manage our venue bookings. It's reliable, efficient, and ensures our slots are always filled with top-notch players."
-                            </p>
-                            <div className="testimonial-author">
-                                <img src="https://i.pravatar.cc/150?u=arena1" alt="Michael Carter" className="author-avatar" />
-                                <div className="author-info">
-                                    <h4>Michael Carter</h4>
-                                    <p>Venue Manager at Elite Sports Complex</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div className="partner-logos">
                         <span className="partner-label">TRUSTED BY TOP VENUES</span>

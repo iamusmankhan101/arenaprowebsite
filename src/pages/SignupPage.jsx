@@ -117,18 +117,6 @@ const SignupPage = () => {
                             </button>
                         </form>
 
-                        <div className="auth-divider">OR</div>
-
-                        <div className="social-buttons">
-                            <button className="social-btn">
-                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/smartlock/google.svg" alt="Google" />
-                                Sign up with Google
-                            </button>
-                            <button className="social-btn">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
-                                Sign up with Apple
-                            </button>
-                        </div>
 
                         <div className="auth-footer">
                             <p>Already have an account? <Link to="/login">Sign In</Link></p>
@@ -137,27 +125,11 @@ const SignupPage = () => {
                 </div>
 
                 {/* Right Side: Hero (Teal Branding) */}
-                <div className="auth-hero-side">
+                <div className="auth-hero-side" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1905&auto=format&fit=crop')" }}>
                     <button onClick={() => navigate('/')} className="back-btn-overlay">
                         <ArrowLeft size={18} /> Back to website
                     </button>
 
-                    <div className="hero-overlay-content">
-                        <h2>Join the Pakistan's Premier Sports Network.</h2>
-
-                        <div className="testimonial-block">
-                            <p className="testimonial-text">
-                                "Joining ArenaPro was the best decision for our weekend cricket matches. No more calls, no more uncertainty. Just pure game time."
-                            </p>
-                            <div className="testimonial-author">
-                                <img src="https://i.pravatar.cc/150?u=arena2" alt="Ahmed Khan" className="author-avatar" />
-                                <div className="author-info">
-                                    <h4>Ahmed Khan</h4>
-                                    <p>Regular Captain at Model Town Arena</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div className="partner-logos">
                         <span className="partner-label">TRUSTED BY TOP VENUES</span>
