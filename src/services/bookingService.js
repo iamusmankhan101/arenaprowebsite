@@ -93,9 +93,31 @@ export const bookingService = {
             } = bookingData;
 
             // Combine date string and time slot to create a proper Date object
-            // slot.startTime is usually in "HH:mm" format (e.g., "14:00")
+            // slot.startTime can be "14:00" or "02:00 PM"
             const timeStr = slot.startTime || slot.time || "00:00";
-            const bookingDateTime = new Date(`${dateString}T${timeStr}:00`);
+
+            let bookingDateTime;
+            try {
+                // Try parsing common formats
+                if (timeStr.includes('AM') || timeStr.includes('PM')) {
+                    // Handle "02:00 PM" format
+                    const [time, modifier] = timeStr.split(' ');
+                    let [hours, minutes] = time.split(':');
+                    if (hours === '12') hours = '00';
+                    if (modifier === 'PM') hours = parseInt(hours, 10) + 12;
+                    bookingDateTime = new Date(`${dateString}T${hours.toString().padStart(2, '0')}:${minutes.padStart(2, '0')}:00`);
+                } else {
+                    // Handle "14:00" format
+                    bookingDateTime = new Date(`${dateString}T${timeStr}:00`);
+                }
+
+                // If invalid date, fallback to midnight local
+                if (isNaN(bookingDateTime.getTime())) {
+                    bookingDateTime = new Date(dateString);
+                }
+            } catch (e) {
+                bookingDateTime = new Date(dateString);
+            }
 
             const newBooking = {
                 turfId: venueId,
