@@ -75,7 +75,7 @@ const Navbar = ({ forceScrolled = false }) => {
                     </div>
 
                     <div className="mobile-menu-footer">
-                        <button className="navbar-cta mobile-cta" onClick={closeMenu}>Download App</button>
+                        <Link to="/waitlist" className="navbar-cta mobile-cta" onClick={closeMenu}>Join Waitlist</Link>
                         <div className="mobile-socials">
                             <a href="https://www.instagram.com/arenapropk" target="_blank" rel="noopener noreferrer" className="social-icon"><Instagram size={20} /></a>
                         </div>
@@ -83,7 +83,7 @@ const Navbar = ({ forceScrolled = false }) => {
                     </div>
                 </div>
 
-                <button className="navbar-cta desktop-cta">Download App</button>
+                <Link to="/waitlist" className="navbar-cta desktop-cta">Join Waitlist</Link>
             </div>
         </nav>
     )

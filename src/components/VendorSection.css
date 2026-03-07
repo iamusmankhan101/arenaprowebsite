@@ -43,8 +43,36 @@
     line-height: 1.6;
     color: #475569;
     /* Slate gray */
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-weight: 500;
+}
+
+.book-demo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 40px;
+    background: #004d43;
+    color: #e8ee26;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 77, 67, 0.3);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 40px;
+}
+
+.book-demo-button:hover {
+    background: #003830;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 77, 67, 0.4);
+}
+
+.book-demo-button:active {
+    transform: translateY(-1px);
 }
 
 /* Features List */
@@ -171,5 +199,196 @@
 
     .vendor-title {
         font-size: clamp(1.8rem, 6vw, 2.2rem);
+    }
+}
+
+/* Demo Modal Styles */
+.demo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.demo-modal-content {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 48px 40px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+.demo-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-modal-close:hover {
+    background: #f3f4f6;
+    color: #0a0a0a;
+}
+
+.demo-modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.demo-modal-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0a0a0a;
+    margin-bottom: 12px;
+}
+
+.demo-modal-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.demo-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.demo-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.demo-form-group label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.demo-form-group input,
+.demo-form-group textarea {
+    font-family: 'Montserrat', sans-serif;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #0a0a0a;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.demo-form-group input:focus,
+.demo-form-group textarea:focus {
+    border-color: #004d43;
+    box-shadow: 0 0 0 3px rgba(0, 77, 67, 0.1);
+}
+
+.demo-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.demo-submit-button {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding: 18px 32px;
+    background: #004d43;
+    color: #e8ee26;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 77, 67, 0.3);
+    margin-top: 8px;
+}
+
+.demo-submit-button:hover:not(:disabled) {
+    background: #003830;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 77, 67, 0.4);
+}
+
+.demo-submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Success Message */
+.demo-success-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.demo-success-icon {
+    margin-bottom: 24px;
+    animation: scaleIn 0.5s ease;
+}
+
+.demo-success-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0a0a0a;
+    margin-bottom: 16px;
+}
+
+.demo-success-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .demo-modal-content {
+        padding: 36px 24px;
+    }
+
+    .demo-modal-title {
+        font-size: 26px;
+    }
+
+    .demo-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-submit-button {
+        padding: 16px 28px;
+        font-size: 16px;
     }
 }

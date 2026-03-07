@@ -1,7 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './VendorSection.css';
 
 const VendorSection = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        venueName: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSubmitSuccess(false);
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            venueName: '',
+            message: ''
+        });
+        document.body.style.overflow = 'unset';
+    };
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const ACCESS_KEY = "4befb79f-99e8-47a2-9639-1c4fd992508d";
+
+        const submitFormData = new FormData();
+        submitFormData.append('access_key', ACCESS_KEY);
+        submitFormData.append('subject', 'New Demo Request - Arena Pro Vendor Panel');
+        submitFormData.append('from_name', 'Arena Pro Demo Request');
+        submitFormData.append('name', formData.name);
+        submitFormData.append('email', formData.email);
+        submitFormData.append('phone', formData.phone);
+        submitFormData.append('venue_name', formData.venueName);
+        submitFormData.append('message', formData.message);
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: submitFormData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitSuccess(true);
+                setTimeout(() => {
+                    closeModal();
+                }, 3000);
+            } else {
+                alert('Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section className="vendor-section" id="vendor-portal">
             <div className="vendor-container">
@@ -13,6 +89,10 @@ const VendorSection = () => {
                     <p className="vendor-description">
                         Are you managing a sports venue or running a club? Arena Pro provides a dedicated vendor panel to streamline your daily operations. Manage your facilities, track reservations in real-time, and ensure a seamless experience for your players with our comprehensive platform designed specifically for venue owners and club managers.
                     </p>
+
+                    <button onClick={openModal} className="book-demo-button">
+                        Book a Demo
+                    </button>
 
                     <div className="vendor-features">
                         {/* Feature 1 */}
@@ -97,6 +177,119 @@ const VendorSection = () => {
                     />
                 </div>
             </div>
+
+            {/* Demo Booking Modal */}
+            {showModal && (
+                <div className="demo-modal-overlay" onClick={closeModal}>
+                    <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="demo-modal-close" onClick={closeModal}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+
+                        {submitSuccess ? (
+                            <div className="demo-success-message">
+                                <div className="demo-success-icon">
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="32" cy="32" r="32" fill="#e8ee26"/>
+                                        <path d="M20 32L28 40L44 24" stroke="#004d43" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h2 className="demo-success-title">Request Received! 🎉</h2>
+                                <p className="demo-success-text">
+                                    Thank you for your interest in Arena Pro! Our team will contact you shortly to schedule your personalized demo.
+                                </p>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="demo-modal-header">
+                                    <h2 className="demo-modal-title">Book a Demo</h2>
+                                    <p className="demo-modal-subtitle">
+                                        See how Arena Pro can transform your venue management
+                                    </p>
+                                </div>
+
+                                <form onSubmit={handleSubmit} className="demo-form">
+                                    <div className="demo-form-group">
+                                        <label htmlFor="name">Full Name *</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter your full name"
+                                        />
+                                    </div>
+
+                                    <div className="demo-form-row">
+                                        <div className="demo-form-group">
+                                            <label htmlFor="email">Email *</label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="your@email.com"
+                                            />
+                                        </div>
+
+                                        <div className="demo-form-group">
+                                            <label htmlFor="phone">Phone Number *</label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="+92 300 1234567"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="demo-form-group">
+                                        <label htmlFor="venueName">Venue/Club Name *</label>
+                                        <input
+                                            type="text"
+                                            id="venueName"
+                                            name="venueName"
+                                            value={formData.venueName}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter your venue or club name"
+                                        />
+                                    </div>
+
+                                    <div className="demo-form-group">
+                                        <label htmlFor="message">Message (Optional)</label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            rows="4"
+                                            placeholder="Tell us about your venue and what you'd like to see in the demo..."
+                                        ></textarea>
+                                    </div>
+
+                                    <button 
+                                        type="submit" 
+                                        className="demo-submit-button"
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? 'Submitting...' : 'Request Demo'}
+                                    </button>
+                                </form>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
