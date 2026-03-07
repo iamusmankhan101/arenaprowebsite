@@ -114,8 +114,8 @@
 
 /* ─── Title ─── */
 .hero-title {
-    font-size: 3.2rem;
-    font-weight: 500;
+    font-size: 3.5rem;
+    font-weight: 700;
     font-family: 'Clash Display', sans-serif;
     line-height: 1.12;
     color: #ffffff;
@@ -429,7 +429,7 @@
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
     .hero-cta-group {
@@ -462,7 +462,7 @@
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .hero-subtitle br {

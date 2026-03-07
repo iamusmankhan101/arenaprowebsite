@@ -53,8 +53,8 @@
 
 .hero-content h1 {
     font-family: 'Clash Display', sans-serif;
-    font-size: 3.8rem;
-    font-weight: 500;
+    font-size: 4.5rem;
+    font-weight: 700;
     color: #ffffff;
     margin-bottom: 12px;
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -112,8 +112,8 @@
     align-items: center;
     gap: 16px;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.45rem;
-    font-weight: 500;
+    font-size: 1.6rem;
+    font-weight: 600;
     margin-bottom: 32px;
     color: #1a1a1a;
 }
@@ -206,7 +206,7 @@
 .slot-time {
     font-family: 'Clash Display', sans-serif;
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
 }
 
 .slot-price {
@@ -297,7 +297,7 @@
     border-top: 2px solid #e9ecef;
     font-family: 'Clash Display', sans-serif;
     font-weight: 700;
-    font-size: 1.55rem;
+    font-size: 1.75rem;
     color: #1a1a1a;
 }
 
@@ -417,7 +417,7 @@
 
 .guard-content h4 {
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
     color: #1a1a1a;
@@ -465,7 +465,7 @@
     }
 
     .hero-content h1 {
-        font-size: 2.6rem;
+        font-size: 3rem;
     }
 
     .booking-grid {

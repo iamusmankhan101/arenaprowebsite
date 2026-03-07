@@ -158,38 +158,5 @@ export const bookingService = {
             console.error("Error in createBooking:", error);
             throw error;
         }
-    },
-
-    /**
-     * Fetches all bookings for a specific user.
-     */
-    async getUserBookings(userId) {
-        try {
-            if (!userId) return [];
-
-            const bookingsRef = collection(db, 'bookings');
-            const q = query(
-                bookingsRef,
-                where('userId', '==', userId)
-            );
-
-            const querySnapshot = await getDocs(q);
-            const bookings = [];
-
-            querySnapshot.forEach((doc) => {
-                bookings.push({
-                    id: doc.id,
-                    ...doc.data(),
-                    // Ensure dates are parsed correctly
-                    date: doc.data().date?.toDate ? doc.data().date.toDate() : new Date(doc.data().date)
-                });
-            });
-
-            // Sort by date descending (newest first)
-            return bookings.sort((a, b) => b.date - a.date);
-        } catch (error) {
-            console.error("Error in getUserBookings:", error);
-            throw error;
-        }
     }
 };
