@@ -1,4 +1,4 @@
-import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, where, doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 export const venueService = {
