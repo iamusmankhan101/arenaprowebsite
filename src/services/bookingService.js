@@ -10,6 +10,20 @@ import {
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
+// Helper: convert 24h time "14:00" to 12h "02:00 PM"
+const convertTo12h = (timeStr) => {
+    if (!timeStr) return timeStr;
+    if (timeStr.toUpperCase().includes('AM') || timeStr.toUpperCase().includes('PM')) return timeStr;
+    try {
+        const [h, m] = timeStr.trim().split(':').map(Number);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const hour12 = h % 12 || 12;
+        return `${hour12.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} ${ampm}`;
+    } catch (e) {
+        return timeStr;
+    }
+};
+
 export const bookingService = {
     /**
      * Fetches available time slots for a specific venue and date.
@@ -65,6 +79,9 @@ export const bookingService = {
             // 4. Map and tag slots as available or booked
             const mappedSlots = slots.map(slot => ({
                 ...slot,
+                startTime: convertTo12h(slot.startTime),
+                endTime: convertTo12h(slot.endTime),
+                time: convertTo12h(slot.time),
                 isBooked: bookedSlotIds.has(slot.id) || bookedSlotIds.has(slot.startTime || slot.time),
                 price: slot.price || venueData.basePrice || 0
             }));
