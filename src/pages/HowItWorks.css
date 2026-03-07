@@ -46,7 +46,7 @@
 
 .hiw-title {
     font-size: 3.2rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #ffffff;
     line-height: 1.1;
     margin-bottom: 24px;
@@ -214,7 +214,7 @@
 .hiw-feature-card h3 {
     color: #0f172a;
     font-size: 1.45rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 18px;
     letter-spacing: -0.02em;
 }
@@ -283,7 +283,7 @@
 .hiw-process-title {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     color: #ffffff;
-    font-weight: 800;
+    font-weight: 500;
     margin-bottom: 24px;
 }
 
@@ -390,7 +390,7 @@
 .hiw-step-card h3 {
     color: #ffffff;
     font-size: 1.35rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 16px;
 }
 

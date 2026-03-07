@@ -54,7 +54,7 @@
 .hero-content h1 {
     font-family: 'Clash Display', sans-serif;
     font-size: 3.8rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #ffffff;
     margin-bottom: 12px;
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -113,7 +113,7 @@
     gap: 16px;
     font-family: 'Clash Display', sans-serif;
     font-size: 1.45rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 32px;
     color: #1a1a1a;
 }
