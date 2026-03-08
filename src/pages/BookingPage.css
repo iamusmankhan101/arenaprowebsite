@@ -385,12 +385,10 @@
 /* Loading & Success */
 .loading-screen,
 .success-screen {
-    background: #ffffff;
+    background: #f9fafb;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .loading-screen p {
@@ -401,30 +399,63 @@
 
 .success-card {
     background: white;
-    padding: 60px;
-    border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-    border: none;
+    padding: 60px 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
     animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.success-card svg {
+    margin-bottom: 24px;
 }
 
 .success-card h2 {
     color: #004d43;
     font-family: 'Clash Display', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 16px;
 }
 
 .success-card p {
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.success-card p:last-of-type {
+    margin-bottom: 32px;
+}
+
+.success-card strong {
+    color: #1f2937;
+    font-weight: 700;
 }
 
 .primary-btn {
     background: #004d43;
     color: #e8ee26;
+    border: none;
     border-radius: 12px;
     padding: 16px 40px;
-    font-family: 'Clash Display', sans-serif;
-    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.2);
+}
+
+.primary-btn:hover {
+    background: #003830;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 77, 67, 0.3);
 }
 
 @keyframes scaleIn {
@@ -529,5 +560,42 @@
 
     .booking-container {
         margin-top: -40px;
+    }
+}
+
+/* Responsive Styles for Success Card */
+@media (max-width: 768px) {
+    .success-card {
+        margin: 40px 20px;
+        padding: 40px 24px;
+    }
+
+    .success-card h2 {
+        font-size: 26px;
+    }
+
+    .success-card p {
+        font-size: 15px;
+    }
+
+    .primary-btn {
+        width: 100%;
+        padding: 14px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .success-card {
+        margin: 20px 16px;
+        padding: 32px 20px;
+    }
+
+    .success-card svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .success-card h2 {
+        font-size: 24px;
     }
 }
