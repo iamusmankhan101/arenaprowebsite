@@ -7,14 +7,17 @@ import {
   Typography,
   Box,
   Avatar,
+  Chip,
 } from '@mui/material';
 import {
   Event,
   Payments,
   LocationOn,
-  People,
   TrendingUp,
   TrendingDown,
+  AccessTime,
+  FlashOn,
+  People,
 } from '@mui/icons-material';
 import {
   XAxis,
@@ -26,6 +29,7 @@ import {
   Bar,
 } from 'recharts';
 import { fetchDashboardStats } from '../store/slices/adminSlice';
+import { format, parse } from 'date-fns';
 
 const StatCard = ({ title, value, icon, color, growth, variant = 'light' }) => {
   const isDark = variant === 'dark';
@@ -165,7 +169,7 @@ export default function DashboardPage() {
       {/* Top Stats Row */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         {/* Gradient Cards */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Total Bookings"
             value={dashboardStats.totalBookings.toLocaleString()}
@@ -175,8 +179,17 @@ export default function DashboardPage() {
             variant="gradient"
           />
         </Grid>
-
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            title="Active Sessions"
+            value={dashboardStats.activeSessions || 0}
+            icon={<FlashOn />}
+            color="#e8ee26"
+            growth={0}
+            variant="gradient"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Total Revenue"
             value={`PKR ${(dashboardStats.totalRevenue / 1000).toFixed(0)}K`}
@@ -186,7 +199,7 @@ export default function DashboardPage() {
             variant="gradient"
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Active Venues"
             value={dashboardStats.activeVenues}
@@ -261,6 +274,94 @@ export default function DashboardPage() {
           </Card>
         </Grid>
       </Grid>
+      {/* Live Sessions Row */}
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12}>
+          <Card sx={{ borderRadius: 4, boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+            <CardContent sx={{ p: 0 }}>
+              <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <FlashOn sx={{ color: '#004d43' }} />
+                  <Typography variant="h6" sx={{ fontWeight: 700 }}>Live & Upcoming Sessions</Typography>
+                </Box>
+                <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary' }}>
+                  Today, {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', overflowX: 'auto', p: 2, gap: 2 }}>
+                {dashboardStats.todayBookingsList?.length > 0 ? (
+                  dashboardStats.todayBookingsList.map((booking, index) => (
+                    <Card
+                      key={index}
+                      sx={{
+                        minWidth: 280,
+                        borderRadius: 3,
+                        bgcolor: booking.isLive ? '#004d43' : 'white',
+                        color: booking.isLive ? 'white' : 'text.primary',
+                        border: '1px solid',
+                        borderColor: booking.isLive ? '#004d43' : 'divider',
+                        flexShrink: 0
+                      }}
+                    >
+                      <CardContent sx={{ p: 2 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                          <Chip
+                            label={booking.isLive ? "LIVE NOW" : "UPCOMING"}
+                            size="small"
+                            sx={{
+                              bgcolor: booking.isLive ? '#e8ee26' : 'rgba(0,0,0,0.05)',
+                              color: booking.isLive ? '#004d43' : 'text.secondary',
+                              fontWeight: 700,
+                              fontSize: '0.65rem'
+                            }}
+                          />
+                          <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                            {(() => {
+                              const timeSlot = booking.timeSlot;
+                              if (timeSlot && timeSlot !== 'N/A') {
+                                if (timeSlot.toUpperCase().includes('AM') || timeSlot.toUpperCase().includes('PM')) {
+                                  return timeSlot;
+                                }
+                                try {
+                                  if (timeSlot.includes(' - ')) {
+                                    const [start, end] = timeSlot.split(' - ');
+                                    const formatTime = (t) => format(parse(t.trim(), 'HH:mm', new Date()), 'hh:mm a');
+                                    return `${formatTime(start)} - ${formatTime(end)}`;
+                                  }
+                                  return format(parse(timeSlot.trim(), 'HH:mm', new Date()), 'hh:mm a');
+                                } catch (e) {
+                                  return timeSlot;
+                                }
+                              }
+                              return format(new Date(booking.startTime), 'hh:mm a');
+                            })()}
+                          </Typography>
+                        </Box>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 0.5 }} noWrap>
+                          {booking.turfName || 'Venue'}
+                        </Typography>
+                        <Typography variant="body2" sx={{ opacity: 0.9, mb: 1.5 }} noWrap>
+                          {booking.customerName} • {booking.sport}
+                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <AccessTime sx={{ fontSize: 14, opacity: 0.8 }} />
+                          <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                            {booking.duration} Hour Session
+                          </Typography>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  ))
+                ) : (
+                  <Box sx={{ p: 4, width: '100%', textAlign: 'center' }}>
+                    <Typography variant="body2" color="textSecondary">No sessions scheduled for today yet.</Typography>
+                  </Box>
+                )}
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
       {/* Bottom Row - Recent Activity */}
       <Card sx={{ borderRadius: 4, boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
@@ -293,7 +394,7 @@ export default function DashboardPage() {
                     <Box sx={{ flexGrow: 1 }}>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>{activity.text}</Typography>
                       <Typography variant="caption" color="textSecondary">
-                        {activity.subText} • {new Date(activity.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {activity.subText} • {format(new Date(activity.time), 'hh:mm a')}
                       </Typography>
                     </Box>
                     <Box

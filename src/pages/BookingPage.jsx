@@ -250,7 +250,11 @@ const BookingPage = () => {
                                         <p>Please sign in to your accounts to continue with the booking.</p>
                                         <button
                                             className="login-redirect-btn"
-                                            onClick={() => navigate('/login', { state: { from: window.location } })}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                console.log('Sign in button clicked');
+                                                navigate('/login', { state: { from: window.location.pathname } });
+                                            }}
                                         >
                                             Sign In to Book
                                         </button>
