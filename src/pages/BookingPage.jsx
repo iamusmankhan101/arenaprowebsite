@@ -43,6 +43,13 @@ const BookingPage = () => {
         const fetchVenueData = async () => {
             try {
                 const foundVenue = await venueService.getVenueById(venueId);
+                
+                if (!foundVenue) {
+                    console.error("Venue not found");
+                    setLoading(false);
+                    return;
+                }
+                
                 setVenue(foundVenue);
 
                 // Extract available dates from dateSpecificSlots
@@ -66,7 +73,17 @@ const BookingPage = () => {
             }
         };
 
+        // Add timeout to prevent infinite loading
+        const timeout = setTimeout(() => {
+            if (loading) {
+                console.error("Venue loading timeout");
+                setLoading(false);
+            }
+        }, 10000); // 10 second timeout
+
         fetchVenueData();
+
+        return () => clearTimeout(timeout);
     }, [venueId]);
 
     useEffect(() => {

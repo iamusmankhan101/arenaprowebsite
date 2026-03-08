@@ -599,3 +599,48 @@
         font-size: 24px;
     }
 }
+
+/* Error Screen */
+.error-screen {
+    background: #f9fafb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.error-content {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    max-width: 500px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.error-content h1 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 24px;
+}
+
+.error-content button {
+    background: #004d43;
+    color: #e8ee26;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-content button:hover {
+    background: #003830;
+    transform: translateY(-2px);
+}
