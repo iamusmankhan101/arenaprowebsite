@@ -117,6 +117,33 @@ module.exports = async (req, res) => {
         console.log('Sending email with data:', JSON.stringify(emailData, null, 2));
         const data = await resend.emails.send(emailData);
 
+        // ✅ Send notification email to admin
+        try {
+            console.log('Sending admin notification...');
+            await resend.emails.send({
+                from: 'Arena Pro <onboarding@resend.dev>',
+                to: 'support@arenapropk.online',
+                subject: '🎉 New Waitlist Signup - Arena Pro',
+                html: `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                        <h2 style="color: #004d43;">New Waitlist Signup!</h2>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                            <p><strong>Email:</strong> ${email}</p>
+                            <p><strong>Joined:</strong> ${new Date().toLocaleString()}</p>
+                            <p><strong>Source:</strong> Arena Pro Waitlist Form</p>
+                        </div>
+                        <p style="color: #666; font-size: 14px;">
+                            This user has been automatically added to your Resend audience and received a welcome email.
+                        </p>
+                    </div>
+                `
+            });
+            console.log('Admin notification sent successfully');
+        } catch (adminEmailError) {
+            console.error('Failed to send admin notification:', adminEmailError);
+            // Don't fail the main request if admin email fails
+        }
+
         console.log('Email sent successfully:', data);
         return res.status(200).json({ success: true, data });
 
