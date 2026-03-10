@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Debug - Arena Pro</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        button { padding: 10px 20px; margin: 10px 0; background: #004d43; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #003d35; }
+        .result { margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 4px; white-space: pre-wrap; }
+        .error { background: #ffe6e6; color: #d00; }
+        .success { background: #e6ffe6; color: #080; }
+        input { padding: 8px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>Arena Pro Email Debug</h1>
+    
+    <div class="test-section">
+        <h2>1. Test API Configuration</h2>
+        <button onclick="testConfig()">Test Email Configuration</button>
+        <div id="config-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test Email Sending</h2>
+        <input type="email" id="test-email" placeholder="Enter your email to test" value="">
+        <br>
+        <button onclick="testEmailSend()">Send Test Email</button>
+        <div id="email-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Template Retrieval</h2>
+        <button onclick="testTemplate()">Get Waitlist Template</button>
+        <div id="template-result" class="result"></div>
+    </div>
+
+    <script>
+        async function testConfig() {
+            const resultDiv = document.getElementById('config-result');
+            resultDiv.textContent = 'Testing configuration...';
+            
+            try {
+                const response = await fetch('/api/test-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const result = await response.json();
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testEmailSend() {
+            const email = document.getElementById('test-email').value;
+            const resultDiv = document.getElementById('email-result');
+            
+            if (!email) {
+                resultDiv.textContent = 'Please enter an email address';
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            resultDiv.textContent = 'Sending email...';
+            
+            try {
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        templateId: 'waitlist-arena-pro',
+                        templateData: {
+                            user_email: email,
+                            discount: '20%',
+                            website_url: 'https://arenapropk.online'
+                        }
+                    })
+                });
+                
+                const result = await response.json();
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testTemplate() {
+            const resultDiv = document.getElementById('template-result');
+            resultDiv.textContent = 'Getting template...';
+            
+            try {
+                const response = await fetch('/api/get-template', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        templateId: 'waitlist-arena-pro'
+                    })
+                });
+                
+                const result = await response.json();
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -14,11 +14,11 @@ export const waitlistService = {
                 status: 'pending'
             });
 
-            // Send welcome email using Resend (with optional template)
+            // Send welcome email using Resend with Arena Pro template
             console.log('Sending welcome email to:', email);
             try {
-                // Replace 'your-template-id' with your actual Resend template ID
-                await emailService.sendWaitlistWelcomeEmail(email, 'your-template-id');
+                // Using the Arena Pro waitlist template
+                await emailService.sendWaitlistWelcomeEmail(email, 'waitlist-arena-pro');
                 console.log('Welcome email sent successfully to:', email);
             } catch (emailError) {
                 console.error('Failed to send welcome email:', emailError);

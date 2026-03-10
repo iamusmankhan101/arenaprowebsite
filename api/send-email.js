@@ -40,12 +40,16 @@ module.exports = async (req, res) => {
             return res.status(500).json({ error: 'Email service not configured' });
         }
 
+        console.log('Attempting to send email to:', email);
+        console.log('Using template ID:', templateId);
+        console.log('Template data:', templateData);
+
         let emailData;
 
         if (templateId) {
             // Use template if provided
             emailData = {
-                from: 'Arena Pro <support@arenapropk.online>',
+                from: 'Arena Pro <onboarding@resend.dev>',
                 to: [email],
                 template: templateId,
                 template_data: templateData || {}
@@ -53,7 +57,7 @@ module.exports = async (req, res) => {
         } else {
             // Fallback to direct HTML email
             emailData = {
-                from: 'Arena Pro <support@arenapropk.online>',
+                from: 'Arena Pro <onboarding@resend.dev>',
                 to: [email],
                 subject: 'Welcome to Arena Pro Waitlist! 🎉',
                 html: `
@@ -109,6 +113,7 @@ module.exports = async (req, res) => {
         }
 
         // Send email using Resend
+        console.log('Sending email with data:', JSON.stringify(emailData, null, 2));
         const data = await resend.emails.send(emailData);
 
         console.log('Email sent successfully:', data);
