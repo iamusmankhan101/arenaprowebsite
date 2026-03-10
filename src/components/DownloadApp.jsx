@@ -13,7 +13,7 @@ const DownloadApp = () => {
                         Join the Waitlist and Be the First to Book
                     </h2>
                     <p className="download-description">
-                        Sign up now to get early access to Arena Pro. Be among the first to experience seamless sports venue booking in Lahore and get 20% off your first booking.
+                        Sign up now to get early access to Arena Pro. Be among the first to experience seamless sports venue booking in Lahore and get 50% off your first booking.
                     </p>
 
                     <div className="download-buttons-group">

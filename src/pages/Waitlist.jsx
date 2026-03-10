@@ -194,7 +194,7 @@ function Waitlist() {
                         <div className="modal-benefits">
                             <div className="benefit-item">
                                 <span className="benefit-icon">✓</span>
-                                <span className="benefit-text">20% OFF your first booking</span>
+                                <span className="benefit-text">50% OFF your first booking</span>
                             </div>
                             <div className="benefit-item">
                                 <span className="benefit-icon">✓</span>
