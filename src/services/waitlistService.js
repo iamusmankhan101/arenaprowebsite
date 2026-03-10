@@ -13,13 +13,18 @@ export const waitlistService = {
                 status: 'pending'
             });
 
-            // Send email notification via Web3Forms
+            // Send notification to admin and auto-reply to user via Web3Forms
             const formData = new FormData();
             formData.append('access_key', 'ab647f2f-c25d-4cd9-ac03-d48c21f21a9a');
-            formData.append('to', email); // Changed from 'email' to 'to'
-            formData.append('from_name', 'Arena Pro Team');
-            formData.append('subject', 'Welcome to Arena Pro Waitlist! 🎉');
-            formData.append('message', `Hi there!
+            formData.append('name', 'New Waitlist Signup');
+            formData.append('email', email); // User's email (this will be the reply-to)
+            formData.append('subject', 'New Waitlist Signup - Arena Pro');
+            formData.append('message', `New user joined the waitlist: ${email}`);
+            
+            // Auto-reply configuration for user
+            formData.append('autoresponse', 'true');
+            formData.append('autoresponse_subject', 'Welcome to Arena Pro Waitlist! 🎉');
+            formData.append('autoresponse_message', `Hi there!
 
 Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
 
@@ -39,7 +44,7 @@ Website: https://arenapropk.online
 Instagram: @arenapropk
 Support: support@arenapropk.online`);
 
-            console.log('Sending email to:', email);
+            console.log('Sending waitlist signup for:', email);
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
@@ -51,7 +56,7 @@ Support: support@arenapropk.online`);
             if (!response.ok) {
                 console.error('Failed to send email notification:', result);
             } else {
-                console.log('Email sent successfully to:', email);
+                console.log('Waitlist signup processed successfully for:', email);
             }
 
             return true;
