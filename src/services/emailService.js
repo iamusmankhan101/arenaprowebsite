@@ -1,38 +1,6 @@
-// Email service using Resend API with templates
+// Email service using Resend API - simplified approach
 export const emailService = {
-    async getTemplate(templateId) {
-        try {
-            const response = await fetch('/api/get-template', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    templateId: templateId
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`API Error: ${errorData.error}`);
-            }
-
-            const result = await response.json();
-            console.log('Template retrieved successfully:', result);
-            return result;
-        } catch (error) {
-            console.error('Error getting template:', error);
-            throw error;
-        }
-    },
-
-    // Example usage function
-    async getWaitlistTemplate() {
-        // Using the actual Arena Pro waitlist template ID
-        const templateId = 'waitlist-arena-pro';
-        return await this.getTemplate(templateId);
-    },
-    async sendWaitlistWelcomeEmail(email, templateId = 'waitlist-arena-pro') {
+    async sendWaitlistWelcomeEmail(email) {
         try {
             const response = await fetch('/api/send-email', {
                 method: 'POST',
@@ -40,14 +8,7 @@ export const emailService = {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: email,
-                    templateId: templateId, // Optional: use your Resend template ID
-                    templateData: {
-                        // Add any template variables here
-                        user_email: email,
-                        discount: '20%',
-                        website_url: 'https://arenapropk.online'
-                    }
+                    email: email
                 })
             });
 
