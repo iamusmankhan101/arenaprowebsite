@@ -17,6 +17,7 @@ import ModelTown from './pages/ModelTown';
 import DHA from './pages/DHA';
 import BahriaTown from './pages/BahriaTown';
 import WapdaTown from './pages/WapdaTown';
+import GoogleAuthRelay from './pages/GoogleAuthRelay';
 
 function App() {
     return (
@@ -40,6 +41,7 @@ function App() {
                         <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/waitlist" element={<Waitlist />} />
+                        <Route path="/auth/google" element={<GoogleAuthRelay />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
