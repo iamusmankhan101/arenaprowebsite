@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
         try {
             console.log('Sending welcome email...');
             const welcomeEmailData = await resend.emails.send({
-                from: 'Arena Pro <onboarding@resend.dev>',
+                from: 'Arena Pro <support@arenapropk.online>',
                 to: [email],
                 subject: 'Welcome to Arena Pro Waitlist! 🎉',
                 html: `
@@ -133,8 +133,8 @@ module.exports = async (req, res) => {
         try {
             console.log('Sending admin notification...');
             const adminEmailData = await resend.emails.send({
-                from: 'Arena Pro <onboarding@resend.dev>',
-                to: 'support@arenapropk.online',
+                from: 'Arena Pro <support@arenapropk.online>',
+                to: 'iamusmankhan101@gmail.com', // Using your verified email
                 subject: '🎉 New Waitlist Signup - Arena Pro',
                 html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
