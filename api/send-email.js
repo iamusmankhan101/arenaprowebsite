@@ -52,16 +52,22 @@ module.exports = async (req, res) => {
         // Step 1: Add user to audience
         try {
             console.log('Adding contact to Resend audience...');
+            console.log('Using audience ID: a4e3f715-7436-48c4-9319-5fbe1f98c3b6');
+            
             const contactResult = await resend.contacts.create({
                 email: email,
                 firstName: '',
+                lastName: '',
                 unsubscribed: false,
-                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6',
+                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6'
             });
-            console.log('Contact added to audience:', contactResult);
+            
+            console.log('Contact added to audience successfully:', contactResult);
             results.audienceAdded = true;
         } catch (audienceError) {
-            console.error('Failed to add to audience:', audienceError);
+            console.error('Failed to add to audience - Full error:', audienceError);
+            console.error('Error message:', audienceError.message);
+            console.error('Error response:', audienceError.response?.data);
             results.errors.push(`Audience: ${audienceError.message}`);
         }
 

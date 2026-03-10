@@ -129,7 +129,7 @@
             resultDiv.textContent = 'Adding to audience...';
             
             try {
-                const response = await fetch('/api/add-to-audience', {
+                const response = await fetch('/api/test-audience', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
