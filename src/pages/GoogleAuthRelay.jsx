@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, getRedirectResult } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -36,24 +36,23 @@ const GoogleAuthRelay = () => {
     };
 
     useEffect(() => {
-        const checkRedirectAndSignIn = async () => {
+        let mounted = true;
+        const checkSignIn = async () => {
             try {
-                // First check if there's a redirect result
-                const redirectResult = await getRedirectResult(auth);
-                if (redirectResult) {
-                    return handleSuccess(redirectResult);
-                }
-
                 setStatus('Opening Google Sign-In...');
                 const provider = new GoogleAuthProvider();
                 const result = await signInWithPopup(auth, provider);
-                handleSuccess(result);
-                
+                if (mounted) handleSuccess(result);
             } catch (err) {
                 console.error('Google Auth Relay Error:', err);
+                if (!mounted) return;
+                
                 if (err.code === 'auth/popup-blocked') {
                     setNeedsInteraction(true);
                     setStatus('Please click the button to continue with your Google Account.');
+                } else if (err.code === 'auth/cancelled-popup-request') {
+                    // Safe to ignore if it was double-fired in strict mode
+                    console.log('Cancelled previous popup request');
                 } else {
                     setError(err.message || 'Authentication failed');
                     setStatus('Error occurred during sign-in.');
@@ -61,7 +60,11 @@ const GoogleAuthRelay = () => {
             }
         };
 
-        checkRedirectAndSignIn();
+        checkSignIn();
+        
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     return (
