@@ -14,10 +14,11 @@ export const waitlistService = {
                 status: 'pending'
             });
 
-            // Send welcome email using Resend
+            // Send welcome email using Resend (with optional template)
             console.log('Sending welcome email to:', email);
             try {
-                await emailService.sendWaitlistWelcomeEmail(email);
+                // Replace 'your-template-id' with your actual Resend template ID
+                await emailService.sendWaitlistWelcomeEmail(email, 'your-template-id');
                 console.log('Welcome email sent successfully to:', email);
             } catch (emailError) {
                 console.error('Failed to send welcome email:', emailError);
