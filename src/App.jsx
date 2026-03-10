@@ -11,7 +11,12 @@ import BookingPage from './pages/BookingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
-import GoogleAuthRelay from './pages/GoogleAuthRelay';
+import NotFound from './pages/NotFound';
+import JoharTown from './pages/JoharTown';
+import ModelTown from './pages/ModelTown';
+import DHA from './pages/DHA';
+import BahriaTown from './pages/BahriaTown';
+import WapdaTown from './pages/WapdaTown';
 
 function App() {
     return (
@@ -35,7 +40,6 @@ function App() {
                         <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/waitlist" element={<Waitlist />} />
-                        <Route path="/auth/google" element={<GoogleAuthRelay />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
