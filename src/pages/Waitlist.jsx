@@ -29,9 +29,8 @@ function Waitlist() {
     }, [searchParams, setSearchParams]);
 
     useEffect(() => {
-        // Set launch date to 24 days from now
-        const launchDate = new Date();
-        launchDate.setDate(launchDate.getDate() + 24);
+        // Set a fixed launch date (April 10, 2026 at 12:00 PM)
+        const launchDate = new Date('2026-04-10T12:00:00');
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
@@ -43,6 +42,14 @@ function Waitlist() {
                     hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
                     minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
                     seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                });
+            } else {
+                // Launch date has passed
+                setTimeLeft({
+                    days: 0,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0
                 });
             }
         }, 1000);

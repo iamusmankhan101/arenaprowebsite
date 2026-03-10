@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
             errors: []
         };
 
-        // Step 1: Add user to audience
+        // Step 1: Add user to audience (with full access API key)
         try {
             console.log('Adding contact to Resend audience...');
             console.log('Using audience ID: a4e3f715-7436-48c4-9319-5fbe1f98c3b6');
