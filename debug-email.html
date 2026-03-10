@@ -84,9 +84,14 @@
                 const result = await response.json();
                 resultDiv.textContent = JSON.stringify(result, null, 2);
                 resultDiv.className = response.ok ? 'result success' : 'result error';
+                
+                // Show response status
+                console.log('Response status:', response.status);
+                console.log('Response:', result);
             } catch (error) {
                 resultDiv.textContent = 'Error: ' + error.message;
                 resultDiv.className = 'result error';
+                console.error('Fetch error:', error);
             }
         }
 

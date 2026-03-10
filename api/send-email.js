@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { email, templateId, templateData } = req.body;
+        const { email } = req.body;
 
         // Validate required fields
         if (!email) {
@@ -40,87 +40,99 @@ module.exports = async (req, res) => {
             return res.status(500).json({ error: 'Email service not configured' });
         }
 
-        console.log('Attempting to send email to:', email);
-
-        // ✅ Add user to audience automatically (following Resend guide pattern)
-        try {
-            console.log('Adding contact to Resend audience...');
-            await resend.contacts.create({
-                email: email,
-                firstName: '', // We don't collect name in waitlist form
-                unsubscribed: false,
-                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6', // Your Arena Pro audience ID
-            });
-            console.log('Contact added to audience successfully');
-        } catch (audienceError) {
-            console.error('Failed to add to audience (continuing with email):', audienceError);
-            // Continue with email sending even if audience addition fails
-        }
-
-        // ✅ Send confirmation email to user (following Resend guide pattern)
-        const emailData = {
-            from: 'Arena Pro <onboarding@resend.dev>',
-            to: [email],
-            subject: 'Welcome to Arena Pro Waitlist! 🎉',
-            html: `
-                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
-                    <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        <div style="text-align: center; margin-bottom: 30px;">
-                            <img src="https://arenapropk.online/image/arena_pro_logo.png" alt="Arena Pro" style="height: 60px;">
-                        </div>
-                        
-                        <h1 style="color: #004d43; font-size: 28px; text-align: center; margin-bottom: 20px;">
-                            Welcome to Arena Pro! 🎉
-                        </h1>
-                        
-                        <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                            Hi there!
-                        </p>
-                        
-                        <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-                            Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
-                        </p>
-                        
-                        <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 25px 0;">
-                            <h3 style="color: #004d43; margin-bottom: 15px; font-size: 18px;">As an early member, you'll receive:</h3>
-                            <ul style="color: #333; font-size: 16px; line-height: 1.8; padding-left: 20px;">
-                                <li><strong>50% OFF</strong> your first booking</li>
-                                <li><strong>Early access</strong> to new features</li>
-                                <li><strong>Priority customer support</strong></li>
-                            </ul>
-                        </div>
-                        
-                        <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-                            We're launching soon and will notify you as soon as we're live. Get ready to own the arena!
-                        </p>
-                        
-                        <div style="text-align: center; margin: 30px 0;">
-                            <a href="https://arenapropk.online" style="background: #004d43; color: #e8ee26; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
-                                Visit Arena Pro
-                            </a>
-                        </div>
-                        
-                        <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                        
-                        <div style="text-align: center; color: #666; font-size: 14px;">
-                            <p style="margin-bottom: 10px;"><strong>Arena Pro - Book Your Game, Own The Arena</strong></p>
-                            <p style="margin-bottom: 5px;">Website: <a href="https://arenapropk.online" style="color: #004d43;">https://arenapropk.online</a></p>
-                            <p style="margin-bottom: 5px;">Instagram: <a href="https://instagram.com/arenapropk" style="color: #004d43;">@arenapropk</a></p>
-                            <p>Support: <a href="mailto:support@arenapropk.online" style="color: #004d43;">support@arenapropk.online</a></p>
-                        </div>
-                    </div>
-                </div>
-            `
+        console.log('Processing waitlist signup for:', email);
+        const results = {
+            email: email,
+            audienceAdded: false,
+            welcomeEmailSent: false,
+            adminNotificationSent: false,
+            errors: []
         };
 
-        // Send email using Resend
-        console.log('Sending email with data:', JSON.stringify(emailData, null, 2));
-        const data = await resend.emails.send(emailData);
+        // Step 1: Add user to audience
+        try {
+            console.log('Adding contact to Resend audience...');
+            const contactResult = await resend.contacts.create({
+                email: email,
+                firstName: '',
+                unsubscribed: false,
+                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6',
+            });
+            console.log('Contact added to audience:', contactResult);
+            results.audienceAdded = true;
+        } catch (audienceError) {
+            console.error('Failed to add to audience:', audienceError);
+            results.errors.push(`Audience: ${audienceError.message}`);
+        }
 
-        // ✅ Send notification email to admin
+        // Step 2: Send welcome email to user
+        try {
+            console.log('Sending welcome email...');
+            const welcomeEmailData = await resend.emails.send({
+                from: 'Arena Pro <onboarding@resend.dev>',
+                to: [email],
+                subject: 'Welcome to Arena Pro Waitlist! 🎉',
+                html: `
+                    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+                        <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <img src="https://arenapropk.online/image/arena_pro_logo.png" alt="Arena Pro" style="height: 60px;">
+                            </div>
+                            
+                            <h1 style="color: #004d43; font-size: 28px; text-align: center; margin-bottom: 20px;">
+                                Welcome to Arena Pro! 🎉
+                            </h1>
+                            
+                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+                                Hi there!
+                            </p>
+                            
+                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+                                Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
+                            </p>
+                            
+                            <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 25px 0;">
+                                <h3 style="color: #004d43; margin-bottom: 15px; font-size: 18px;">As an early member, you'll receive:</h3>
+                                <ul style="color: #333; font-size: 16px; line-height: 1.8; padding-left: 20px;">
+                                    <li><strong>50% OFF</strong> your first booking</li>
+                                    <li><strong>Early access</strong> to new features</li>
+                                    <li><strong>Priority customer support</strong></li>
+                                </ul>
+                            </div>
+                            
+                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                                We're launching soon and will notify you as soon as we're live. Get ready to own the arena!
+                            </p>
+                            
+                            <div style="text-align: center; margin: 30px 0;">
+                                <a href="https://arenapropk.online" style="background: #004d43; color: #e8ee26; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+                                    Visit Arena Pro
+                                </a>
+                            </div>
+                            
+                            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+                            
+                            <div style="text-align: center; color: #666; font-size: 14px;">
+                                <p style="margin-bottom: 10px;"><strong>Arena Pro - Book Your Game, Own The Arena</strong></p>
+                                <p style="margin-bottom: 5px;">Website: <a href="https://arenapropk.online" style="color: #004d43;">https://arenapropk.online</a></p>
+                                <p style="margin-bottom: 5px;">Instagram: <a href="https://instagram.com/arenapropk" style="color: #004d43;">@arenapropk</a></p>
+                                <p>Support: <a href="mailto:support@arenapropk.online" style="color: #004d43;">support@arenapropk.online</a></p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            });
+            console.log('Welcome email sent:', welcomeEmailData);
+            results.welcomeEmailSent = true;
+        } catch (emailError) {
+            console.error('Failed to send welcome email:', emailError);
+            results.errors.push(`Welcome email: ${emailError.message}`);
+        }
+
+        // Step 3: Send admin notification
         try {
             console.log('Sending admin notification...');
-            await resend.emails.send({
+            const adminEmailData = await resend.emails.send({
                 from: 'Arena Pro <onboarding@resend.dev>',
                 to: 'support@arenapropk.online',
                 subject: '🎉 New Waitlist Signup - Arena Pro',
@@ -138,14 +150,21 @@ module.exports = async (req, res) => {
                     </div>
                 `
             });
-            console.log('Admin notification sent successfully');
+            console.log('Admin notification sent:', adminEmailData);
+            results.adminNotificationSent = true;
         } catch (adminEmailError) {
             console.error('Failed to send admin notification:', adminEmailError);
-            // Don't fail the main request if admin email fails
+            results.errors.push(`Admin notification: ${adminEmailError.message}`);
         }
 
-        console.log('Email sent successfully:', data);
-        return res.status(200).json({ success: true, data });
+        // Return detailed results
+        const success = results.welcomeEmailSent || results.audienceAdded;
+        console.log('Final results:', results);
+        
+        return res.status(success ? 200 : 500).json({ 
+            success: success,
+            results: results
+        });
 
     } catch (error) {
         console.error('Error sending email:', error);
