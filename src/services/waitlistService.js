@@ -16,8 +16,8 @@ export const waitlistService = {
             // Send email notification via Web3Forms
             const formData = new FormData();
             formData.append('access_key', 'ab647f2f-c25d-4cd9-ac03-d48c21f21a9a');
-            formData.append('email', email);
-            formData.append('name', 'Arena Pro User');
+            formData.append('to', email); // Changed from 'email' to 'to'
+            formData.append('from_name', 'Arena Pro Team');
             formData.append('subject', 'Welcome to Arena Pro Waitlist! 🎉');
             formData.append('message', `Hi there!
 
@@ -39,13 +39,19 @@ Website: https://arenapropk.online
 Instagram: @arenapropk
 Support: support@arenapropk.online`);
 
+            console.log('Sending email to:', email);
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
             });
 
+            const result = await response.json();
+            console.log('Web3Forms response:', result);
+
             if (!response.ok) {
-                console.error('Failed to send email notification');
+                console.error('Failed to send email notification:', result);
+            } else {
+                console.log('Email sent successfully to:', email);
             }
 
             return true;
