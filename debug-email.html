@@ -33,9 +33,11 @@
     </div>
 
     <div class="test-section">
-        <h2>3. Test Template Retrieval</h2>
-        <button onclick="testTemplate()">Get Waitlist Template</button>
-        <div id="template-result" class="result"></div>
+        <h2>4. Test Audience Addition</h2>
+        <input type="email" id="audience-email" placeholder="Enter email for audience test" value="">
+        <br>
+        <button onclick="testAudience()">Add to Resend Audience</button>
+        <div id="audience-result" class="result"></div>
     </div>
 
     <script>
@@ -98,6 +100,35 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         templateId: 'waitlist-arena-pro'
+                    })
+                });
+                
+                const result = await response.json();
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result error';
+            }
+        }
+        async function testAudience() {
+            const email = document.getElementById('audience-email').value;
+            const resultDiv = document.getElementById('audience-result');
+            
+            if (!email) {
+                resultDiv.textContent = 'Please enter an email address';
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            resultDiv.textContent = 'Adding to audience...';
+            
+            try {
+                const response = await fetch('/api/add-to-audience', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email
                     })
                 });
                 

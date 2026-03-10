@@ -42,7 +42,22 @@ module.exports = async (req, res) => {
 
         console.log('Attempting to send email to:', email);
 
-        // Simple email without template - following Resend basic usage
+        // ✅ Add user to audience automatically (following Resend guide pattern)
+        try {
+            console.log('Adding contact to Resend audience...');
+            await resend.contacts.create({
+                email: email,
+                firstName: '', // We don't collect name in waitlist form
+                unsubscribed: false,
+                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6', // Your Arena Pro audience ID
+            });
+            console.log('Contact added to audience successfully');
+        } catch (audienceError) {
+            console.error('Failed to add to audience (continuing with email):', audienceError);
+            // Continue with email sending even if audience addition fails
+        }
+
+        // ✅ Send confirmation email to user (following Resend guide pattern)
         const emailData = {
             from: 'Arena Pro <onboarding@resend.dev>',
             to: [email],
@@ -69,7 +84,7 @@ module.exports = async (req, res) => {
                         <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 25px 0;">
                             <h3 style="color: #004d43; margin-bottom: 15px; font-size: 18px;">As an early member, you'll receive:</h3>
                             <ul style="color: #333; font-size: 16px; line-height: 1.8; padding-left: 20px;">
-                                <li><strong>20% OFF</strong> your first booking</li>
+                                <li><strong>50% OFF</strong> your first booking</li>
                                 <li><strong>Early access</strong> to new features</li>
                                 <li><strong>Priority customer support</strong></li>
                             </ul>

@@ -14,6 +14,16 @@ export const waitlistService = {
                 status: 'pending'
             });
 
+            // Add to Resend audience first
+            console.log('Adding to Resend audience:', email);
+            try {
+                await emailService.addToAudience(email);
+                console.log('Successfully added to Resend audience:', email);
+            } catch (audienceError) {
+                console.error('Failed to add to Resend audience:', audienceError);
+                // Continue even if audience addition fails
+            }
+
             // Send welcome email using Resend - simplified approach
             console.log('Sending welcome email to:', email);
             try {

@@ -1,5 +1,33 @@
 // Email service using Resend API - simplified approach
 export const emailService = {
+    async addToAudience(email, firstName = '', lastName = '') {
+        try {
+            const response = await fetch('/api/add-to-audience', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`API Error: ${errorData.error}`);
+            }
+
+            const result = await response.json();
+            console.log('Contact added to audience:', result);
+            return result;
+        } catch (error) {
+            console.error('Error adding to audience:', error);
+            throw error;
+        }
+    },
+
     async sendWaitlistWelcomeEmail(email) {
         try {
             const response = await fetch('/api/send-email', {
@@ -41,7 +69,7 @@ export const emailService = {
 Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
 
 As an early member, you'll receive:
-✓ 20% OFF your first booking
+✓ 50% OFF your first booking
 ✓ Early access to new features  
 ✓ Priority customer support
 
