@@ -72,7 +72,6 @@ const LoginPage = () => {
                             <label><Mail size={16} /> Email Address</label>
                             <input
                                 type="email"
-                                placeholder="name@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -83,7 +82,6 @@ const LoginPage = () => {
                             <label><Lock size={16} /> Password</label>
                             <input
                                 type="password"
-                                placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
