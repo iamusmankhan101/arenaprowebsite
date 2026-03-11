@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA7G3uLmKNCDhiyTuwK6GBbTxRJFvmGNpY",
-    authDomain: "arena-pro-97b5f.firebaseapp.com",
+    authDomain: "arenapropk.online",
     projectId: "arena-pro-97b5f",
     storageBucket: "arena-pro-97b5f.firebasestorage.app",
     messagingSenderId: "960416327217",
