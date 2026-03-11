@@ -14,7 +14,7 @@ const SignupPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const { signup } = useAuth();
+    const { signup, loginWithGoogle } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -32,6 +32,19 @@ const SignupPage = () => {
             navigate('/venues');
         } catch (err) {
             setError('Failed to create an account. ' + err.message);
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+    const handleGoogleLogin = async () => {
+        setLoading(true);
+        setError('');
+        try {
+            await loginWithGoogle();
+            navigate('/venues');
+        } catch (err) {
+            setError('Failed to sign in with Google. Please try again.');
             console.error(err);
         } finally {
             setLoading(false);
@@ -111,6 +124,18 @@ const SignupPage = () => {
 
                     <div className="auth-footer">
                         <p>Already have an account? <Link to="/login">Sign In</Link></p>
+                        
+                        <div className="auth-divider">OR</div>
+
+                        <button 
+                            type="button" 
+                            className="google-auth-btn" 
+                            onClick={handleGoogleLogin}
+                            disabled={loading}
+                        >
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+                            Sign up with Google
+                        </button>
                     </div>
                 </div>
             </div>

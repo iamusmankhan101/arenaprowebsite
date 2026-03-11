@@ -12,7 +12,7 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const { login } = useAuth();
+    const { login, loginWithGoogle } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/venues";
@@ -27,6 +27,19 @@ const LoginPage = () => {
             navigate(from, { replace: true });
         } catch (err) {
             setError('Failed to log in. Please check your credentials.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+    const handleGoogleLogin = async () => {
+        setLoading(true);
+        setError('');
+        try {
+            await loginWithGoogle();
+            navigate(from, { replace: true });
+        } catch (err) {
+            setError('Failed to sign in with Google. Please try again.');
             console.error(err);
         } finally {
             setLoading(false);
@@ -84,6 +97,18 @@ const LoginPage = () => {
 
                     <div className="auth-footer">
                         <p>Don't have an account? <Link to="/signup">Create one for free</Link></p>
+                        
+                        <div className="auth-divider">OR</div>
+
+                        <button 
+                            type="button" 
+                            className="google-auth-btn" 
+                            onClick={handleGoogleLogin}
+                            disabled={loading}
+                        >
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+                            Sign in with Google
+                        </button>
                     </div>
                 </div>
             </div>
