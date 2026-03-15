@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Download, MapPin, Star, Calendar, Users, CreditCard } from 'lucide-react';
+import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight } from 'lucide-react';
 import './IndoorCricketLahore.css';
 
 const IndoorCricketLahore = () => {
@@ -108,25 +108,42 @@ const IndoorCricketLahore = () => {
                     <h2 className="section-title">Popular Areas for Indoor Cricket Booking</h2>
                     <div className="areas-grid">
                         <div className="area-item">
+                            <div className="area-icon">
+                                <MapPin size={24} />
+                            </div>
                             <h3>Model Town Indoor Cricket</h3>
                             <p>
                                 Players from <strong>model town cricket academy</strong> and <strong>model town cricket club lahore</strong> 
-                                frequently use Arena Pro to book nearby indoor pitches. Our platform lists the most accessible venues in and around Model Town.
+                                frequently use Arena Pro to book nearby indoor pitches.
                             </p>
+                            <a href="/venues/model-town" className="area-link">
+                                Explore Model Town <ChevronRight size={16} />
+                            </a>
                         </div>
                         <div className="area-item">
+                            <div className="area-icon">
+                                <MapPin size={24} />
+                            </div>
                             <h3>Indoor Cricket in Johar Town</h3>
                             <p>
                                 Finding an <strong>indoor cricket lahore johar town</strong> has never been easier. Use our interactive map search 
-                                to find a <strong>cricket ground near me</strong> and secure your slot within seconds.
+                                to find a <strong>cricket ground near me</strong>.
                             </p>
+                            <a href="/venues/johar-town" className="area-link">
+                                Explore Johar Town <ChevronRight size={16} />
+                            </a>
                         </div>
                         <div className="area-item">
+                            <div className="area-icon">
+                                <MapPin size={24} />
+                            </div>
                             <h3>DHA & Other Hubs</h3>
                             <p>
-                                Across DHA Phase 1 to 8, Gulberg, and Bahria Town, Arena Pro connects you with the best indoor cricket hubs in Lahore. 
-                                From casual weekend games to competitive tournaments, we cover the whole city.
+                                Across DHA Phase 1 to 8, Gulberg, and Bahria Town, Arena Pro connects you with the best indoor cricket hubs in Lahore.
                             </p>
+                            <a href="/venues/dha" className="area-link">
+                                Explore DHA <ChevronRight size={16} />
+                            </a>
                         </div>
                     </div>
                 </section>
