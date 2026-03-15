@@ -18,6 +18,7 @@ import DHA from './pages/DHA';
 import BahriaTown from './pages/BahriaTown';
 import WapdaTown from './pages/WapdaTown';
 import GoogleAuthRelay from './pages/GoogleAuthRelay';
+import IndoorCricketLahore from './pages/IndoorCricketLahore';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                 <div className="app">
                     <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/lahore/indoor-cricket" element={<IndoorCricketLahore />} />
                         <Route path="/how-it-works" element={<HowItWorks />} />
                         <Route path="/venues" element={<Venues />} />
                         <Route path="/venues/johar-town" element={<JoharTown />} />

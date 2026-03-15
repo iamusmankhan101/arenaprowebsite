@@ -32,7 +32,7 @@ const Hero = () => {
 
                 {/* Subtitle */}
                 <p className="hero-subtitle">
-                    Stop searching for a football turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from an indoor cricket arena to the best padel tennis courts in lahore. <br />
+                    Stop searching for a football turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from <Link to="/lahore/indoor-cricket" style={{ color: '#e8ee26', textDecoration: 'underline' }}>indoor cricket</Link> arena to the best padel tennis courts in lahore. <br />
                 </p>
 
                 {/* CTA Button */}
