@@ -27,12 +27,12 @@ const Hero = () => {
 
                 {/* Heading */}
                 <h1 className="hero-title">
-                    Arena Pro - The #1 Sports Venue Booking Platform for Cricket Grounds & Padel Courts in Lahore.
+                    Find and Book the Best Cricket & Padel Venues in Lahore.
                 </h1>
 
                 {/* Subtitle */}
                 <p className="hero-subtitle">
-                    Stop searching for a futsal turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from an indoor cricket arena to the best padel tennis courts in lahore. <br />
+                    Stop searching for a football turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from an indoor cricket arena to the best padel tennis courts in lahore. <br />
                 </p>
 
                 {/* CTA Button */}
