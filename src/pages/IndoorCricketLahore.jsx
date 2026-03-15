@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight } from 'lucide-react';
+import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight, Loader2 } from 'lucide-react';
 import './IndoorCricketLahore.css';
+import { venueService } from '../services/venueService';
 
 const IndoorCricketLahore = () => {
+    const [liveVenues, setLiveVenues] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         // SEO Metadata Update
         document.title = "Indoor Cricket Grounds Booking in Lahore | Arena Pro";
@@ -19,34 +23,25 @@ const IndoorCricketLahore = () => {
         }
 
         window.scrollTo(0, 0);
-    }, []);
 
-    const venues = [
-        {
-            id: 'modeltown-arena',
-            name: 'Model Town Cricket Arena',
-            location: 'Model Town, Lahore',
-            rating: 4.8,
-            price: 'Rs. 3,500/hr',
-            image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=500&auto=format&fit=crop'
-        },
-        {
-            id: 'johar-town-hub',
-            name: 'Johar Town Sports Complex',
-            location: 'Johar Town, Lahore',
-            rating: 4.7,
-            price: 'Rs. 4,000/hr',
-            image: 'https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?q=80&w=500&auto=format&fit=crop'
-        },
-        {
-            id: 'dha-cricket-center',
-            name: 'DHA Phase 5 Indoor Arena',
-            location: 'DHA Phase 5, Lahore',
-            rating: 4.9,
-            price: 'Rs. 5,000/hr',
-            image: 'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?q=80&w=500&auto=format&fit=crop'
-        }
-    ];
+        const fetchVenues = async () => {
+            try {
+                setLoading(true);
+                const data = await venueService.getVenues();
+                // Filter for Cricket and make sure it's Lahore (though default service might return all active)
+                const cricketVenues = data.filter(venue => 
+                    venue.sports.includes('Cricket')
+                );
+                setLiveVenues(cricketVenues);
+            } catch (error) {
+                console.error("Failed to fetch venues:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVenues();
+    }, []);
 
     return (
         <div className="indoor-landing-page">
@@ -80,26 +75,43 @@ const IndoorCricketLahore = () => {
                         designed for the ultimate cricketing experience.
                     </p>
                     <div className="venues-grid">
-                        {venues.map(venue => (
-                            <div className="venue-card" key={venue.id}>
-                                <div className="venue-image">
-                                    <img src={venue.image} alt={`Players enjoying a match at an indoor cricket court in ${venue.location}`} />
-                                </div>
-                                <div className="venue-details">
-                                    <h3>{venue.name}</h3>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '0.9rem', marginBottom: '12px' }}>
-                                        <MapPin size={16} /> {venue.location}
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#0f172a', fontWeight: '700' }}>
-                                        <Star size={16} fill="#e8ee26" color="#e8ee26" /> {venue.rating}
-                                    </div>
-                                    <div className="venue-meta">
-                                        <span className="price">{venue.price}</span>
-                                        <button className="cta-primary" style={{ padding: '10px 20px', fontSize: '0.9rem', borderRadius: '12px' }}>Book Now</button>
-                                    </div>
-                                </div>
+                        {loading ? (
+                            <div className="loading-state" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
+                                <Loader2 size={40} className="animate-spin" style={{ color: '#004d43', marginBottom: '16px' }} />
+                                <p>Loading premium cricket arenas...</p>
                             </div>
-                        ))}
+                        ) : liveVenues.length > 0 ? (
+                            liveVenues.map(venue => (
+                                <div className="venue-card" key={venue.id}>
+                                    <div className="venue-image">
+                                        <img src={venue.images[0]} alt={`Players enjoying a match at an indoor cricket court in ${venue.location}`} />
+                                    </div>
+                                    <div className="venue-details">
+                                        <h3>{venue.name}</h3>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '0.9rem', marginBottom: '12px' }}>
+                                            <MapPin size={16} /> {venue.location}
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#0f172a', fontWeight: '700' }}>
+                                            <Star size={16} fill="#e8ee26" color="#e8ee26" /> {venue.rating}
+                                        </div>
+                                        <div className="venue-meta">
+                                            <span className="price">{venue.price}</span>
+                                            <button 
+                                                className="cta-primary" 
+                                                style={{ padding: '10px 20px', fontSize: '0.9rem', borderRadius: '12px' }}
+                                                onClick={() => window.location.href = `/book/${venue.id}`}
+                                            >
+                                                Book Now
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="no-venues" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
+                                <p>No cricket venues found at the moment. Please check back later!</p>
+                            </div>
+                        )}
                     </div>
                 </section>
 
