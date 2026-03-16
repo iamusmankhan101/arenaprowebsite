@@ -39,15 +39,27 @@ const Footer = () => {
                     <div className="footer-col">
                         <h4 className="footer-heading">Sports</h4>
                         <ul className="footer-links">
-                            <li><Link to="/venues">Indoor Cricket</Link></li>
-                            <li><Link to="/venues">Futsal</Link></li>
-                            <li><Link to="/venues">Padel</Link></li>
-                            <li><Link to="/venues">Tennis</Link></li>
-                            <li><Link to="/venues">Badminton</Link></li>
+                            <li><Link to="/lahore/indoor-cricket">Indoor Cricket</Link></li>
+                            <li><Link to="/lahore/futsal-ground">Futsal</Link></li>
+                            <li><Link to="/lahore/padel-court">Padel</Link></li>
+                            <li><Link to="/sports-venue-booking">Tennis</Link></li>
+                            <li><Link to="/lahore/badminton-court">Badminton</Link></li>
                         </ul>
                     </div>
 
-                    {/* Column 4: Contact Info */}
+                    {/* Column 4: Popular Areas */}
+                    <div className="footer-col">
+                        <h4 className="footer-heading">Popular Areas</h4>
+                        <ul className="footer-links">
+                            <li><Link to="/venues/johar-town">Johar Town</Link></li>
+                            <li><Link to="/venues/model-town">Model Town</Link></li>
+                            <li><Link to="/venues/dha">DHA</Link></li>
+                            <li><Link to="/venues/bahria-town">Bahria Town</Link></li>
+                            <li><Link to="/venues/wapda-town">Wapda Town</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 5: Contact Info */}
                     <div className="footer-col">
                         <h4 className="footer-heading">Contact Us</h4>
                         <ul className="footer-contact-list">
