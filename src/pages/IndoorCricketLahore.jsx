@@ -14,11 +14,11 @@ const IndoorCricketLahore = () => {
         document.title = "Indoor Cricket Grounds Booking in Lahore | Arena Pro";
         const metaDescription = document.querySelector('meta[name="description"]');
         if (metaDescription) {
-            metaDescription.setAttribute("content", "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking in Model Town, Johar Town, and more. Download the app today!");
+            metaDescription.setAttribute("content", "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking in Model Town, Johar Town, and more. Join the waitlist today!");
         } else {
             const meta = document.createElement('meta');
             meta.name = "description";
-            meta.content = "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking in Model Town, Johar Town, and more. Download the app today!";
+            meta.content = "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking in Model Town, Johar Town, and more. Join the waitlist today!";
             document.head.appendChild(meta);
         }
 
@@ -57,7 +57,7 @@ const IndoorCricketLahore = () => {
                     </p>
                     <div className="cta-group">
                         <a href="/waitlist" className="cta-primary">
-                            <Download size={20} /> Download App to Book
+                            <Download size={20} /> Join Waitlist
                         </a>
                         <a href="/venues" className="cta-secondary">
                             View Cricket Grounds
