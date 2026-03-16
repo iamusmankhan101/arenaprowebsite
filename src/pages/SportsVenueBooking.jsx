@@ -126,23 +126,34 @@ const SportsVenueBooking = () => {
                                 <div className="venue-card" key={venue.id}>
                                     <div className="venue-image">
                                         <img src={venue.images[0]} alt={`${venue.name} sports facility in ${venue.location}`} />
+                                        {venue.rating > 4.7 && <span className="venue-badge">Top Rated</span>}
                                     </div>
                                     <div className="venue-details">
-                                        <h3>{venue.name}</h3>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '0.9rem', marginBottom: '12px' }}>
-                                            <MapPin size={16} /> {venue.location}
+                                        <div className="venue-header">
+                                            <h3>{venue.name}</h3>
+                                            <div className="venue-rating">
+                                                <Star size={16} fill="#e8ee26" color="#e8ee26" /> 
+                                                <span>{venue.rating}</span>
+                                            </div>
                                         </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#0f172a', fontWeight: '700' }}>
-                                            <Star size={16} fill="#e8ee26" color="#e8ee26" /> {venue.rating}
+                                        <div className="venue-info">
+                                            <div className="info-item">
+                                                <MapPin size={16} /> <span>{venue.location}</span>
+                                            </div>
+                                            <div className="info-item">
+                                                <Users size={16} /> <span>Perfect for Team Play</span>
+                                            </div>
                                         </div>
                                         <div className="venue-meta">
-                                            <span className="price">{venue.price}</span>
+                                            <div className="price-tag">
+                                                <span className="label">Starts from</span>
+                                                <span className="price">{venue.price}</span>
+                                            </div>
                                             <button 
-                                                className="cta-primary" 
-                                                style={{ padding: '10px 20px', fontSize: '0.9rem', borderRadius: '12px' }}
+                                                className="cta-primary booking-btn" 
                                                 onClick={() => window.location.href = `/book/${venue.id}`}
                                             >
-                                                Book Now
+                                                Book Arena <ChevronRight size={16} />
                                             </button>
                                         </div>
                                     </div>
