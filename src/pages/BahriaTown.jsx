@@ -5,7 +5,7 @@ const BahriaTown = () => {
     return (
         <AreaPage
             areaName="Bahria Town"
-            areaDescription="Book sports venues in Bahria Town. Modern facilities with cricket, futsal, and tennis courts."
+            areaDescription="Top-rated sports grounds in Bahria Town Lahore. Find and book indoor cricket, football, and badminton courts near you in Bahria Town."
         />
     );
 };

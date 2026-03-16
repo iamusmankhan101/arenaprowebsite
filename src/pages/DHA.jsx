@@ -5,7 +5,7 @@ const DHA = () => {
     return (
         <AreaPage
             areaName="DHA"
-            areaDescription="Explore elite sports venues in DHA. Premium facilities for cricket, futsal, padel, and tennis."
+            areaDescription="Premium sports venue booking in DHA Lahore. Book padel courts, futsal grounds, and cricket nets in DHA Phase 1-8 instantly."
         />
     );
 };

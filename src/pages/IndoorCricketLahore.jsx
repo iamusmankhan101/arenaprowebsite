@@ -18,7 +18,7 @@ const IndoorCricketLahore = () => {
         } else {
             const meta = document.createElement('meta');
             meta.name = "description";
-            meta.content = "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking in Model Town, Johar Town, and more. Join the waitlist today!";
+            meta.content = "Looking for the best indoor cricket in Lahore? Use Arena Pro for instant cricket grounds booking, indoor cricket nets, and cricket academy sessions in Model Town, Johar Town, and more. Join the waitlist today!";
             document.head.appendChild(meta);
         }
 

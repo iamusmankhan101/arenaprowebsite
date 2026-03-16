@@ -27,7 +27,7 @@ const SportsVenueBooking = () => {
         // SEO Metadata Update
         document.title = "Sports Venue Booking in Lahore | Book Padel, Cricket, Futsal | Arena Pro";
         const metaDescription = document.querySelector('meta[name="description"]');
-        const content = "Looking for premium sports venue booking in Lahore? Use Arena Pro to instantly book padel courts, cricket grounds, and futsal turf. Real-time availability and best rates.";
+        const content = "Looking for premium sports venue booking in Lahore? Use Arena Pro for online ground booking of padel courts, cricket grounds, and futsal turf. Real-time availability and best rates in Johar Town, DHA, and Gulberg.";
         
         if (metaDescription) {
             metaDescription.setAttribute("content", content);
@@ -73,7 +73,7 @@ const SportsVenueBooking = () => {
             {/* Premium Hero Section */}
             <header className="sports-hero">
                 <div className="sports-hero-content">
-                    <h1>Top-Rated <span className="highlight">Sports Venue Booking</span> in Lahore</h1>
+                    <h1>Online <span className="highlight">Sports Venue Booking</span> in Lahore</h1>
                     <p>
                         Experience the ultimate thrill of sports. Use Arena Pro to find and book premium 
                         <strong> padel courts, cricket grounds, and football turf</strong> instantly. 

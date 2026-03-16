@@ -20,6 +20,9 @@ import WapdaTown from './pages/WapdaTown';
 import GoogleAuthRelay from './pages/GoogleAuthRelay';
 import IndoorCricketLahore from './pages/IndoorCricketLahore';
 import SportsVenueBooking from './pages/SportsVenueBooking';
+import PadelCourtLahore from './pages/PadelCourtLahore';
+import FutsalGroundLahore from './pages/FutsalGroundLahore';
+import BadmintonBookingLahore from './pages/BadmintonBookingLahore';
 
 function App() {
     return (
@@ -29,6 +32,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/lahore/indoor-cricket" element={<IndoorCricketLahore />} />
+                        <Route path="/lahore/padel-court" element={<PadelCourtLahore />} />
+                        <Route path="/lahore/futsal-ground" element={<FutsalGroundLahore />} />
+                        <Route path="/lahore/badminton-court" element={<BadmintonBookingLahore />} />
                         <Route path="/sports-venue-booking" element={<SportsVenueBooking />} />
                         <Route path="/how-it-works" element={<HowItWorks />} />
                         <Route path="/venues" element={<Venues />} />

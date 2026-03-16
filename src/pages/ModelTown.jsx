@@ -5,7 +5,7 @@ const ModelTown = () => {
     return (
         <AreaPage
             areaName="Model Town"
-            areaDescription="Find top-rated sports facilities in Model Town. Professional venues for cricket, futsal, and more."
+            areaDescription="The best sports facility booking in Model Town. Find indoor cricket nets and football turf near Model Town Cricket Club and Academy."
         />
     );
 };

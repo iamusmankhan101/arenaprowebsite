@@ -5,7 +5,7 @@ const JoharTown = () => {
     return (
         <AreaPage
             areaName="Johar Town"
-            areaDescription="Discover premium sports venues in Johar Town. Book Indoor cricket nets, futsal courts, and more."
+            areaDescription="Discover premium sports venues in Johar Town. Book indoor cricket nets, futsal grounds, and football turf near you in Johar Town instantly."
         />
     );
 };

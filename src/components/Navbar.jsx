@@ -8,6 +8,7 @@ const Navbar = ({ forceScrolled = false }) => {
     const [scrolled, setScrolled] = useState(forceScrolled);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [areasOpen, setAreasOpen] = useState(false);
+    const [sportsOpen, setSportsOpen] = useState(false);
 
     const { user, logout } = useAuth();
     const navigate = useNavigate();
@@ -68,6 +69,21 @@ const Navbar = ({ forceScrolled = false }) => {
                         <Link to="/venues" className="nav-link" onClick={closeMenu} style={{ '--i': 2 }}>Venues</Link>
 
                         <div className="nav-dropdown" style={{ '--i': 3 }}>
+                            <button
+                                className="nav-link dropdown-trigger"
+                                onClick={() => setSportsOpen(!sportsOpen)}
+                            >
+                                Sports <ChevronDown size={16} className={`dropdown-icon ${sportsOpen ? 'open' : ''}`} />
+                            </button>
+                            <div className={`dropdown-menu ${sportsOpen ? 'open' : ''}`}>
+                                <Link to="/lahore/indoor-cricket" className="dropdown-item" onClick={closeMenu}>Indoor Cricket</Link>
+                                <Link to="/lahore/padel-court" className="dropdown-item" onClick={closeMenu}>Padel Court</Link>
+                                <Link to="/lahore/futsal-ground" className="dropdown-item" onClick={closeMenu}>Futsal Ground</Link>
+                                <Link to="/lahore/badminton-court" className="dropdown-item" onClick={closeMenu}>Badminton</Link>
+                            </div>
+                        </div>
+
+                        <div className="nav-dropdown" style={{ '--i': 4 }}>
                             <button
                                 className="nav-link dropdown-trigger"
                                 onClick={() => setAreasOpen(!areasOpen)}
