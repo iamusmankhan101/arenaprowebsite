@@ -10,13 +10,13 @@ import {
     Trophy, 
     Target, 
     Award, 
-    Users, 
-    Calendar, 
-    CreditCard, 
-    Zap 
+    Users,
+    Calendar,
+    CreditCard
 } from 'lucide-react';
 import './SportsVenueBooking.css';
 import { venueService } from '../services/venueService';
+import VenueCard from '../components/VenueCard';
 
 const SportsVenueBooking = () => {
     const [venues, setVenues] = useState([]);
@@ -123,30 +123,7 @@ const SportsVenueBooking = () => {
                     ) : filteredVenues.length > 0 ? (
                         <div className="venues-grid">
                             {filteredVenues.map(venue => (
-                                <div className="venue-card" key={venue.id}>
-                                    <div className="venue-image">
-                                        <img src={venue.images[0]} alt={`${venue.name} sports facility in ${venue.location}`} />
-                                    </div>
-                                    <div className="venue-details">
-                                        <h3>{venue.name}</h3>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '0.9rem', marginBottom: '12px' }}>
-                                            <MapPin size={16} /> {venue.location}
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#0f172a', fontWeight: '700' }}>
-                                            <Star size={16} fill="#e8ee26" color="#e8ee26" /> {venue.rating}
-                                        </div>
-                                        <div className="venue-meta">
-                                            <span className="price">{venue.price}</span>
-                                            <button 
-                                                className="cta-primary" 
-                                                style={{ padding: '10px 20px', fontSize: '0.9rem', borderRadius: '12px' }}
-                                                onClick={() => window.location.href = `/book/${venue.id}`}
-                                            >
-                                                Book Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <VenueCard key={venue.id} venue={venue} />
                             ))}
                         </div>
                     ) : (

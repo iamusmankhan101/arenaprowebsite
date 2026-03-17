@@ -31,10 +31,10 @@ function App() {
                 <div className="app">
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/lahore/indoor-cricket" element={<IndoorCricketLahore />} />
-                        <Route path="/lahore/padel-court" element={<PadelCourtLahore />} />
-                        <Route path="/lahore/futsal-ground" element={<FutsalGroundLahore />} />
-                        <Route path="/lahore/badminton-court" element={<BadmintonBookingLahore />} />
+                        <Route path="/indoor-cricket-lahore" element={<IndoorCricketLahore />} />
+                        <Route path="/padel-court-lahore" element={<PadelCourtLahore />} />
+                        <Route path="/futsal-ground-lahore" element={<FutsalGroundLahore />} />
+                        <Route path="/badminton-court-lahore" element={<BadmintonBookingLahore />} />
                         <Route path="/sports-venue-booking" element={<SportsVenueBooking />} />
                         <Route path="/how-it-works" element={<HowItWorks />} />
                         <Route path="/venues" element={<Venues />} />

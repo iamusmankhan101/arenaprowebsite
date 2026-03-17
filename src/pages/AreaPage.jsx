@@ -4,56 +4,9 @@ import Footer from '../components/Footer';
 import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import './AreaPage.css';
 import { venueService } from '../services/venueService';
+import VenueCard from '../components/VenueCard';
 
-const VenueImageSlider = ({ images, venueName, sports }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const goToPrev = (e) => {
-        e.stopPropagation();
-        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    };
-
-    const goToNext = (e) => {
-        e.stopPropagation();
-        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    };
-
-    return (
-        <div className="venue-image-slider">
-            <div className="slider-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                {images.map((img, idx) => (
-                    <img key={idx} src={img} alt={`${venueName} ${idx + 1}`} className="slider-image" />
-                ))}
-            </div>
-
-            {images.length > 1 && (
-                <>
-                    <button className="slider-nav prev" onClick={goToPrev} aria-label="Previous image">
-                        <ChevronLeft size={20} />
-                    </button>
-                    <button className="slider-nav next" onClick={goToNext} aria-label="Next image">
-                        <ChevronRight size={20} />
-                    </button>
-                    <div className="slider-indicators">
-                        {images.map((_, idx) => (
-                            <div
-                                key={idx}
-                                className={`indicator ${idx === currentIndex ? 'active' : ''}`}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setCurrentIndex(idx);
-                                }}
-                            />
-                        ))}
-                    </div>
-                </>
-            )}
-            <div className="venue-sport-tag">
-                {sports.join(' / ')}
-            </div>
-        </div>
-    );
-};
+// Local VenueImageSlider removed in favor of VenueCard component
 
 const AreaPage = ({ areaName, areaDescription }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -160,33 +113,7 @@ const AreaPage = ({ areaName, areaDescription }) => {
                 ) : filteredVenues.length > 0 ? (
                     <div className="area-grid">
                         {filteredVenues.map(venue => (
-                            <div className="venue-card" key={venue.id}>
-                                <div className="venue-image">
-                                    <VenueImageSlider images={venue.images} venueName={venue.name} sports={venue.sports} />
-                                </div>
-                                <div className="venue-info">
-                                    <div className="venue-header">
-                                        <h3>{venue.name}</h3>
-                                        <div className="venue-rating">
-                                            <Star size={14} fill="#e8ee26" color="#e8ee26" />
-                                            <span>{venue.rating}</span>
-                                        </div>
-                                    </div>
-                                    <div className="venue-loc">
-                                        <MapPin size={14} />
-                                        <span>{venue.location}</span>
-                                    </div>
-                                    <div className="venue-tags">
-                                        {venue.tags.map(tag => (
-                                            <span key={tag} className="tag">{tag}</span>
-                                        ))}
-                                    </div>
-                                    <div className="venue-footer">
-                                        <div className="venue-price">{venue.price}</div>
-                                        <button className="book-btn" onClick={() => window.location.href = `/book/${venue.id}`}>Book Now</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <VenueCard key={venue.id} venue={venue} />
                         ))}
                     </div>
                 ) : (

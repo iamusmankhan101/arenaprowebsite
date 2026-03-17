@@ -76,10 +76,10 @@ const Navbar = ({ forceScrolled = false }) => {
                                 Sports <ChevronDown size={16} className={`dropdown-icon ${sportsOpen ? 'open' : ''}`} />
                             </button>
                             <div className={`dropdown-menu ${sportsOpen ? 'open' : ''}`}>
-                                <Link to="/lahore/indoor-cricket" className="dropdown-item" onClick={closeMenu}>Indoor Cricket</Link>
-                                <Link to="/lahore/padel-court" className="dropdown-item" onClick={closeMenu}>Padel Court</Link>
-                                <Link to="/lahore/futsal-ground" className="dropdown-item" onClick={closeMenu}>Futsal Ground</Link>
-                                <Link to="/lahore/badminton-court" className="dropdown-item" onClick={closeMenu}>Badminton</Link>
+                                <Link to="/indoor-cricket-lahore" className="dropdown-item" onClick={closeMenu}>Indoor Cricket</Link>
+                                <Link to="/padel-court-lahore" className="dropdown-item" onClick={closeMenu}>Padel Court</Link>
+                                <Link to="/futsal-ground-lahore" className="dropdown-item" onClick={closeMenu}>Futsal Ground</Link>
+                                <Link to="/badminton-court-lahore" className="dropdown-item" onClick={closeMenu}>Badminton</Link>
                             </div>
                         </div>
 
