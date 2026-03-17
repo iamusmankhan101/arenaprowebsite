@@ -20,12 +20,21 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [timedOut, setTimedOut] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
         });
+
+        // Safety timeout: If Firebase takes > 6 seconds, show a skip option
+        const timeoutId = setTimeout(() => {
+            if (loading) {
+                console.warn('🕒 Auth initialization taking longer than expected...');
+                setTimedOut(true);
+            }
+        }, 6000);
 
         // Handle redirect result
         const handleRedirect = async () => {
@@ -41,8 +50,12 @@ export const AuthProvider = ({ children }) => {
         };
         handleRedirect();
 
-        return () => unsubscribe();
-    }, []);
+        return () => {
+            unsubscribe();
+            clearTimeout(timeoutId);
+        };
+    }, [loading]);
+
     const saveUserToFirestore = async (user, name) => {
         if (!user) return;
         
@@ -50,8 +63,6 @@ export const AuthProvider = ({ children }) => {
             const userRef = doc(db, 'users', user.uid);
             const userSnap = await getDoc(userRef);
             
-            // Only update if user doesn't exist or we want to ensure latest info
-            // For signup, we definitely want to set it
             const userData = {
                 uid: user.uid,
                 email: user.email,
@@ -75,10 +86,7 @@ export const AuthProvider = ({ children }) => {
     const signup = async (email, password, name) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCredential.user, { displayName: name });
-        
-        // Sync to Firestore
         await saveUserToFirestore(userCredential.user, name);
-        
         return userCredential;
     };
 
@@ -101,7 +109,6 @@ export const AuthProvider = ({ children }) => {
 
         try {
             const result = await signInWithPopup(auth, provider);
-            // Sync to Firestore
             if (result.user) {
                 await saveUserToFirestore(result.user, result.user.displayName);
             }
@@ -110,9 +117,6 @@ export const AuthProvider = ({ children }) => {
             if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
                 console.log('Popup blocked or cancelled, falling back to redirect...');
                 return signInWithRedirect(auth, provider);
-            }
-            if (err.code === 'auth/unauthorized-domain') {
-                console.error('DOMAN AUTHORIZATION REQUIRED: Please add you domain to Firebase authorized domains.');
             }
             throw err;
         }
@@ -138,21 +142,65 @@ export const AuthProvider = ({ children }) => {
                     height: '100vh',
                     backgroundColor: '#004d43',
                     color: 'white',
-                    fontFamily: 'sans-serif'
+                    fontFamily: 'Montserrat, sans-serif',
+                    textAlign: 'center',
+                    padding: '20px'
                 }}>
                     <div style={{
-                        width: '40px',
-                        height: '40px',
-                        border: '4px solid rgba(255,255,255,0.3)',
-                        borderTop: '4px solid white',
+                        width: '50px',
+                        height: '50px',
+                        border: '4px solid rgba(255,255,255,0.1)',
+                        borderTop: '4px solid #e8e435',
                         borderRadius: '50%',
-                        animation: 'spin 1s linear infinite'
+                        animation: 'spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite',
+                        marginBottom: '20px'
                     }}></div>
-                    <p style={{ marginTop: '20px', fontSize: '1.1em' }}>Loading Arena Pro...</p>
+                    
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Arena Pro</h2>
+                    <p style={{ opacity: 0.8, marginBottom: '20px' }}>Setting up your personalized sports experience...</p>
+                    
+                    {timedOut && (
+                        <div style={{ 
+                            marginTop: '20px', 
+                            animation: 'fadeIn 0.5s ease' 
+                        }}>
+                            <p style={{ fontSize: '0.9rem', color: '#ffcc00', marginBottom: '15px' }}>
+                                This is taking longer than usual. It might be due to a slow internet connection.
+                            </p>
+                            <button 
+                                onClick={() => setLoading(false)}
+                                style={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    border: '1px solid white',
+                                    padding: '10px 20px',
+                                    borderRadius: '30px',
+                                    fontSize: '0.9rem',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = 'white';
+                                    e.target.style.color = '#004d43';
+                                }}
+                                onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.color = 'white';
+                                }}
+                            >
+                                Skip & Enter Site
+                            </button>
+                        </div>
+                    )}
+
                     <style>{`
                         @keyframes spin {
                             0% { transform: rotate(0deg); }
                             100% { transform: rotate(360deg); }
+                        }
+                        @keyframes fadeIn {
+                            from { opacity: 0; transform: translateY(10px); }
+                            to { opacity: 1; transform: translateY(0); }
                         }
                     `}</style>
                 </div>
