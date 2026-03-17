@@ -10,7 +10,8 @@ import {
     signInWithRedirect,
     getRedirectResult
 } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
+import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -30,8 +31,9 @@ export const AuthProvider = ({ children }) => {
         const handleRedirect = async () => {
             try {
                 const result = await getRedirectResult(auth);
-                if (result) {
+                if (result && result.user) {
                     console.log('Successfully signed in via redirect');
+                    await saveUserToFirestore(result.user, result.user.displayName);
                 }
             } catch (err) {
                 console.error('Redirect result error:', err);
@@ -41,15 +43,49 @@ export const AuthProvider = ({ children }) => {
 
         return () => unsubscribe();
     }, []);
+    const saveUserToFirestore = async (user, name) => {
+        if (!user) return;
+        
+        try {
+            const userRef = doc(db, 'users', user.uid);
+            const userSnap = await getDoc(userRef);
+            
+            // Only update if user doesn't exist or we want to ensure latest info
+            // For signup, we definitely want to set it
+            const userData = {
+                uid: user.uid,
+                email: user.email,
+                fullName: name || user.displayName || 'ArenaPro User',
+                displayName: name || user.displayName || 'ArenaPro User',
+                photoURL: user.photoURL || null,
+                createdAt: userSnap.exists() ? userSnap.data().createdAt : serverTimestamp(),
+                updatedAt: serverTimestamp(),
+                status: 'active',
+                isActive: true,
+                phoneNumber: user.phoneNumber || null,
+            };
+
+            await setDoc(userRef, userData, { merge: true });
+            console.log('✅ User data synced to Firestore');
+        } catch (error) {
+            console.error('❌ Error syncing user to Firestore:', error);
+        }
+    };
 
     const signup = async (email, password, name) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCredential.user, { displayName: name });
+        
+        // Sync to Firestore
+        await saveUserToFirestore(userCredential.user, name);
+        
         return userCredential;
     };
 
-    const login = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password);
+    const login = async (email, password) => {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        await saveUserToFirestore(result.user, result.user.displayName);
+        return result;
     };
 
     const logout = () => {
@@ -64,7 +100,12 @@ export const AuthProvider = ({ children }) => {
         }
 
         try {
-            return await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, provider);
+            // Sync to Firestore
+            if (result.user) {
+                await saveUserToFirestore(result.user, result.user.displayName);
+            }
+            return result;
         } catch (err) {
             if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
                 console.log('Popup blocked or cancelled, falling back to redirect...');

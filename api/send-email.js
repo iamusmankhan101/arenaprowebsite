@@ -21,17 +21,11 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { email } = req.body;
+        const { email, type, bookingData } = req.body;
 
-        // Validate required fields
+        // Validate basic required fields
         if (!email) {
             return res.status(400).json({ error: 'Email is required' });
-        }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({ error: 'Invalid email format' });
         }
 
         // Check if Resend API key is available
@@ -40,143 +34,148 @@ module.exports = async (req, res) => {
             return res.status(500).json({ error: 'Email service not configured' });
         }
 
-        console.log('Processing waitlist signup for:', email);
-        const results = {
-            email: email,
-            audienceAdded: false,
-            welcomeEmailSent: false,
-            adminNotificationSent: false,
-            errors: []
-        };
+        const emailType = type || 'waitlist'; // Default to waitlist for backward compatibility
+        console.log(`Processing ${emailType} request for:`, email);
 
-        // Step 1: Add user to audience (with full access API key)
-        try {
-            console.log('Adding contact to Resend audience...');
-            console.log('Using audience ID: a4e3f715-7436-48c4-9319-5fbe1f98c3b6');
-            
-            const contactResult = await resend.contacts.create({
-                email: email,
-                firstName: '',
-                lastName: '',
-                unsubscribed: false,
-                audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6'
-            });
-            
-            console.log('Contact added to audience successfully:', contactResult);
-            results.audienceAdded = true;
-        } catch (audienceError) {
-            console.error('Failed to add to audience - Full error:', audienceError);
-            console.error('Error message:', audienceError.message);
-            console.error('Error response:', audienceError.response?.data);
-            results.errors.push(`Audience: ${audienceError.message}`);
-        }
+        if (emailType === 'waitlist') {
+            // --- WAITLIST LOGIC ---
+            const results = {
+                email,
+                audienceAdded: false,
+                welcomeEmailSent: false,
+                adminNotificationSent: false,
+                errors: []
+            };
 
-        // Step 2: Send welcome email to user
-        try {
-            console.log('Sending welcome email...');
-            const welcomeEmailData = await resend.emails.send({
-                from: 'Arena Pro <support@arenapropk.online>',
-                to: [email],
-                subject: 'Welcome to Arena Pro Waitlist! 🎉',
-                html: `
-                    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
-                        <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                            <div style="text-align: center; margin-bottom: 30px;">
-                                <img src="https://arenapropk.online/image/arena_pro_logo.png" alt="Arena Pro" style="height: 60px;">
-                            </div>
-                            
-                            <h1 style="color: #004d43; font-size: 28px; text-align: center; margin-bottom: 20px;">
-                                Welcome to Arena Pro! 🎉
-                            </h1>
-                            
-                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                                Hi there!
-                            </p>
-                            
-                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-                                Thank you for joining the Arena Pro waitlist! You're now on the list to be among the first to experience seamless sports venue booking in Lahore.
-                            </p>
-                            
-                            <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 25px 0;">
-                                <h3 style="color: #004d43; margin-bottom: 15px; font-size: 18px;">As an early member, you'll receive:</h3>
-                                <ul style="color: #333; font-size: 16px; line-height: 1.8; padding-left: 20px;">
+            // 1. Add to audience
+            try {
+                await resend.contacts.create({
+                    email: email,
+                    audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6'
+                });
+                results.audienceAdded = true;
+            } catch (err) {
+                results.errors.push(`Audience: ${err.message}`);
+            }
+
+            // 2. Welcome Email
+            try {
+                await resend.emails.send({
+                    from: 'Arena Pro <support@arenapropk.online>',
+                    to: [email],
+                    subject: 'Welcome to Arena Pro Waitlist! 🎉',
+                    html: `
+                        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <h1 style="color: #004d43;">Welcome to Arena Pro! 🎉</h1>
+                            <p>Thank you for joining our waitlist! You're now on the list to experience seamless sports venue booking in Lahore.</p>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                <h3 style="color: #004d43;">Early member benefits:</h3>
+                                <ul>
                                     <li><strong>50% OFF</strong> your first booking</li>
-                                    <li><strong>Early access</strong> to new features</li>
-                                    <li><strong>Priority customer support</strong></li>
+                                    <li>Early access to new features</li>
                                 </ul>
                             </div>
-                            
-                            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-                                We're launching soon and will notify you as soon as we're live. Get ready to own the arena!
-                            </p>
-                            
-                            <div style="text-align: center; margin: 30px 0;">
-                                <a href="https://arenapropk.online" style="background: #004d43; color: #e8ee26; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
-                                    Visit Arena Pro
-                                </a>
-                            </div>
-                            
-                            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                            
-                            <div style="text-align: center; color: #666; font-size: 14px;">
-                                <p style="margin-bottom: 10px;"><strong>Arena Pro - Book Your Game, Own The Arena</strong></p>
-                                <p style="margin-bottom: 5px;">Website: <a href="https://arenapropk.online" style="color: #004d43;">https://arenapropk.online</a></p>
-                                <p style="margin-bottom: 5px;">Instagram: <a href="https://instagram.com/arenapropk" style="color: #004d43;">@arenapropk</a></p>
-                                <p>Support: <a href="mailto:support@arenapropk.online" style="color: #004d43;">support@arenapropk.online</a></p>
-                            </div>
+                            <p>We'll notify you as soon as we're live!</p>
                         </div>
-                    </div>
-                `
-            });
-            console.log('Welcome email sent:', welcomeEmailData);
-            results.welcomeEmailSent = true;
-        } catch (emailError) {
-            console.error('Failed to send welcome email:', emailError);
-            results.errors.push(`Welcome email: ${emailError.message}`);
-        }
+                    `
+                });
+                results.welcomeEmailSent = true;
+            } catch (err) {
+                results.errors.push(`Email: ${err.message}`);
+            }
 
-        // Step 3: Send admin notification
-        try {
-            console.log('Sending admin notification...');
-            const adminEmailData = await resend.emails.send({
+            // 3. Admin Notification
+            try {
+                await resend.emails.send({
+                    from: 'Arena Pro <support@arenapropk.online>',
+                    to: 'iamusmankhan101@gmail.com',
+                    subject: 'New Waitlist Signup',
+                    html: `<p>New waitlist signup: <strong>${email}</strong></p>`
+                });
+                results.adminNotificationSent = true;
+            } catch (err) {
+                results.errors.push(`Admin: ${err.message}`);
+            }
+
+            return res.status(200).json({ success: true, results });
+
+        } else if (emailType === 'booking') {
+            // --- BOOKING CONFIRMATION LOGIC ---
+            if (!bookingData) {
+                return res.status(400).json({ error: 'Booking data is required for confirmation emails' });
+            }
+
+            const { venueName, date, time, customerName, totalAmount } = bookingData;
+
+            // 1. Send Confirmation to User
+            const userEmailPromise = resend.emails.send({
                 from: 'Arena Pro <support@arenapropk.online>',
-                to: 'iamusmankhan101@gmail.com', // Using your verified email
-                subject: '🎉 New Waitlist Signup - Arena Pro',
+                to: [email],
+                subject: `Booking Confirmation: ${venueName} 🏟️`,
                 html: `
-                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                        <h2 style="color: #004d43;">New Waitlist Signup!</h2>
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                            <p><strong>Email:</strong> ${email}</p>
-                            <p><strong>Joined:</strong> ${new Date().toLocaleString()}</p>
-                            <p><strong>Source:</strong> Arena Pro Waitlist Form</p>
+                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 12px; overflow: hidden;">
+                        <div style="background: #004d43; color: white; padding: 30px; text-align: center;">
+                            <h1 style="margin: 0;">Reservation Received!</h1>
+                            <p style="opacity: 0.9;">Your game is almost ready.</p>
                         </div>
-                        <p style="color: #666; font-size: 14px;">
-                            This user has been automatically added to your Resend audience and received a welcome email.
-                        </p>
+                        <div style="padding: 30px; color: #333;">
+                            <p>Hi <strong>${customerName}</strong>,</p>
+                            <p>Your booking request for <strong>${venueName}</strong> has been received and is currently being processed.</p>
+                            
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                <h3 style="margin-top: 0; color: #004d43;">Booking Details:</h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr><td style="padding: 8px 0; color: #666;">Venue:</td><td style="padding: 8px 0; font-weight: bold;">${venueName}</td></tr>
+                                    <tr><td style="padding: 8px 0; color: #666;">Date:</td><td style="padding: 8px 0; font-weight: bold;">${date}</td></tr>
+                                    <tr><td style="padding: 8px 0; color: #666;">Time:</td><td style="padding: 8px 0; font-weight: bold;">${time}</td></tr>
+                                    <tr><td style="padding: 8px 0; color: #666;">Amount:</td><td style="padding: 8px 0; font-weight: bold;">PKR ${totalAmount}</td></tr>
+                                </table>
+                            </div>
+
+                            <p style="color: #666; font-size: 14px;">Our representative will contact you shortly on your provided phone number to confirm the final details.</p>
+                            
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="https://arenapropk.online" style="background: #004d43; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;">Visit Website</a>
+                            </div>
+                        </div>
+                        <div style="background: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; color: #999;">
+                            <p>© ${new Date().getFullYear()} Arena Pro. All rights reserved.</p>
+                        </div>
                     </div>
                 `
             });
-            console.log('Admin notification sent:', adminEmailData);
-            results.adminNotificationSent = true;
-        } catch (adminEmailError) {
-            console.error('Failed to send admin notification:', adminEmailError);
-            results.errors.push(`Admin notification: ${adminEmailError.message}`);
-        }
 
-        // Return detailed results
-        const success = results.welcomeEmailSent || results.audienceAdded;
-        console.log('Final results:', results);
-        
-        return res.status(success ? 200 : 500).json({ 
-            success: success,
-            results: results
-        });
+            // 2. Send Alert to Admin
+            const adminEmailPromise = resend.emails.send({
+                from: 'Arena Pro <support@arenapropk.online>',
+                to: 'iamusmankhan101@gmail.com',
+                subject: `New Booking Request: ${venueName}`,
+                html: `
+                    <div style="font-family: sans-serif; padding: 20px;">
+                        <h2 style="color: #004d43;">New Booking Alert!</h2>
+                        <p>A new booking has been made on the website.</p>
+                        <ul>
+                            <li><strong>Customer:</strong> ${customerName}</li>
+                            <li><strong>Email:</strong> ${email}</li>
+                            <li><strong>Venue:</strong> ${venueName}</li>
+                            <li><strong>Date:</strong> ${date}</li>
+                            <li><strong>Time:</strong> ${time}</li>
+                            <li><strong>Amount:</strong> PKR ${totalAmount}</li>
+                        </ul>
+                        <p>Please check the admin panel for details.</p>
+                    </div>
+                `
+            });
+
+            await Promise.all([userEmailPromise, adminEmailPromise]);
+            return res.status(200).json({ success: true, message: 'Booking emails sent' });
+
+        } else {
+            return res.status(400).json({ error: 'Invalid email type' });
+        }
 
     } catch (error) {
-        console.error('Error sending email:', error);
-        return res.status(500).json({ 
-            error: 'Failed to send email', 
-            details: error.message 
-        });
+        console.error('Error in send-email API:', error);
+        return res.status(500).json({ error: 'Internal server error', details: error.message });
     }
 };

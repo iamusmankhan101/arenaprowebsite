@@ -102,5 +102,41 @@ Support: support@arenapropk.online`);
                 throw new Error('All email services failed');
             }
         }
+    },
+
+    async sendBookingEmail(bookingData) {
+        try {
+            console.log('Sending booking confirmation email for:', bookingData.customerInfo.email);
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: bookingData.customerInfo.email,
+                    type: 'booking',
+                    bookingData: {
+                        venueName: bookingData.venueName,
+                        date: bookingData.dateString,
+                        time: bookingData.slot.startTime || bookingData.slot.time,
+                        customerName: bookingData.customerInfo.name,
+                        totalAmount: bookingData.slot.price
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`API Error: ${errorData.error}`);
+            }
+
+            const result = await response.json();
+            console.log('Booking email sent successfully:', result);
+            return result;
+        } catch (error) {
+            console.error('Error sending booking email:', error);
+            // We don't throw here to avoid breaking the UI success state if only email fails
+            return { success: false, error: error.message };
+        }
     }
 };

@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { venueService } from '../services/venueService';
 import { bookingService } from '../services/bookingService';
+import { emailService } from '../services/emailService';
 import { useAuth } from '../context/AuthContext';
 import './BookingPage.css';
 
@@ -108,7 +109,7 @@ const BookingPage = () => {
 
         setBookingLoading(true);
         try {
-            await bookingService.createBooking({
+            const bookingResponse = await bookingService.createBooking({
                 venueId,
                 venueName: venue.name,
                 dateString: selectedDate,
@@ -117,6 +118,15 @@ const BookingPage = () => {
                 sport: venue.sports[0],
                 userId: user.uid
             });
+
+            // Trigger Email Confirmation (don't await to keep UI snappy)
+            emailService.sendBookingEmail({
+                venueName: venue.name,
+                dateString: selectedDate,
+                slot: selectedSlot,
+                customerInfo
+            }).catch(err => console.error("Async email error:", err));
+
             setBookingSuccess(true);
         } catch (error) {
             alert("Booking failed. Please try again.");
