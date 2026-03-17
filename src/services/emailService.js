@@ -135,8 +135,49 @@ Support: support@arenapropk.online`);
             return result;
         } catch (error) {
             console.error('Error sending booking email:', error);
-            // We don't throw here to avoid breaking the UI success state if only email fails
-            return { success: false, error: error.message };
+            
+            // Fallback to Web3Forms if Resend fails (matches waitlist configuration)
+            try {
+                console.log('Falling back to Web3Forms for booking...');
+                const formData = new FormData();
+                formData.append('access_key', 'ab647f2f-c25d-4cd9-ac03-d48c21f21a9a');
+                formData.append('name', 'Arena Pro Booking');
+                formData.append('email', bookingData.customerInfo.email);
+                formData.append('subject', `Booking Received: ${bookingData.venueName}`);
+                formData.append('message', `
+New Booking Request:
+Venue: ${bookingData.venueName}
+Customer: ${bookingData.customerInfo.name}
+Email: ${bookingData.customerInfo.email}
+Phone: ${bookingData.customerInfo.phone}
+Date: ${bookingData.dateString}
+Time: ${bookingData.slot.startTime || bookingData.slot.time}
+Amount: PKR ${bookingData.slot.price}
+                `);
+                
+                // Enable autoresponse to send confirmation to user
+                formData.append('autoresponse', 'true');
+                formData.append('autoresponse_subject', `We received your booking! 🏟️`);
+                formData.append('autoresponse_message', `Hi ${bookingData.customerInfo.name},
+
+Thank you for booking with Arena Pro! We've received your request for ${bookingData.venueName} on ${bookingData.dateString} at ${bookingData.slot.startTime || bookingData.slot.time}.
+
+Our team will contact you shortly to confirm the details.
+
+Best regards,
+The Arena Pro Team`);
+
+                const fallbackResponse = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const fallbackResult = await fallbackResponse.json();
+                return { success: true, data: fallbackResult, method: 'web3forms' };
+            } catch (fallbackError) {
+                console.error('Both Resend and Web3Forms failed for booking:', fallbackError);
+                return { success: false, error: 'All email services failed' };
+            }
         }
     }
 };

@@ -167,6 +167,20 @@ module.exports = async (req, res) => {
                 `
             });
 
+            // 1. Add to audience (Optional but recommended for consistency)
+            try {
+                await resend.contacts.create({
+                    email: email,
+                    firstName: customerName.split(' ')[0] || '',
+                    lastName: customerName.split(' ').slice(1).join(' ') || '',
+                    audienceId: 'a4e3f715-7436-48c4-9319-5fbe1f98c3b6'
+                });
+            } catch (err) {
+                console.warn('Audience addition failed for booking:', err.message);
+                // Continue sending emails even if audience addition fails
+            }
+
+            // 2. Send emails
             await Promise.all([userEmailPromise, adminEmailPromise]);
             return res.status(200).json({ success: true, message: 'Booking emails sent' });
 
