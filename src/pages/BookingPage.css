@@ -110,9 +110,9 @@
 .section-title {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     font-weight: 500;
     margin-bottom: 32px;
     color: #1a1a1a;
@@ -122,12 +122,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     background: #004d43;
     color: #e8ee26;
-    border-radius: 10px;
-    font-size: 0.8rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
 }
