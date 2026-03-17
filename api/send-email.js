@@ -111,36 +111,29 @@ module.exports = async (req, res) => {
             const userEmailPromise = resend.emails.send({
                 from: 'Arena Pro <support@arenapropk.online>',
                 to: [email],
-                subject: `Booking Confirmation: ${venueName} 🏟️`,
+                subject: `Arena Pro Booking Confirmation: ${venueName} - ${date}`,
                 html: `
-                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 12px; overflow: hidden;">
-                        <div style="background: #004d43; color: white; padding: 30px; text-align: center;">
-                            <h1 style="margin: 0;">Reservation Received!</h1>
-                            <p style="opacity: 0.9;">Your game is almost ready.</p>
+                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
+                        <h2 style="color: #004d43;">Booking Confirmation</h2>
+                        <p>Hi ${customerName},</p>
+                        <p>This email is to confirm your booking at <strong>${venueName}</strong> through Arena Pro. We’ve got you all set for a late-night session!</p>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #eee;">
+                            <h3 style="margin-top: 0; color: #004d43; border-bottom: 2px solid #004d43; padding-bottom: 10px;">Here are your booking details:</h3>
+                            <p style="margin: 10px 0;"><strong>Date:</strong> ${date}</p>
+                            <p style="margin: 10px 0;"><strong>Time:</strong> ${time}</p>
+                            <p style="margin: 10px 0;"><strong>Location:</strong> ${venueName}</p>
+                            <p style="margin: 10px 0;"><strong>Platform:</strong> Booked via Arena Pro</p>
                         </div>
-                        <div style="padding: 30px; color: #333;">
-                            <p>Hi <strong>${customerName}</strong>,</p>
-                            <p>Your booking request for <strong>${venueName}</strong> has been received and is currently being processed.</p>
-                            
-                            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                                <h3 style="margin-top: 0; color: #004d43;">Booking Details:</h3>
-                                <table style="width: 100%; border-collapse: collapse;">
-                                    <tr><td style="padding: 8px 0; color: #666;">Venue:</td><td style="padding: 8px 0; font-weight: bold;">${venueName}</td></tr>
-                                    <tr><td style="padding: 8px 0; color: #666;">Date:</td><td style="padding: 8px 0; font-weight: bold;">${date}</td></tr>
-                                    <tr><td style="padding: 8px 0; color: #666;">Time:</td><td style="padding: 8px 0; font-weight: bold;">${time}</td></tr>
-                                    <tr><td style="padding: 8px 0; color: #666;">Amount:</td><td style="padding: 8px 0; font-weight: bold;">PKR ${totalAmount}</td></tr>
-                                </table>
-                            </div>
 
-                            <p style="color: #666; font-size: 14px;">Our representative will contact you shortly on your provided phone number to confirm the final details.</p>
-                            
-                            <div style="text-align: center; margin-top: 30px;">
-                                <a href="https://arenapropk.online" style="background: #004d43; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;">Visit Website</a>
-                            </div>
-                        </div>
-                        <div style="background: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; color: #999;">
-                            <p>© ${new Date().getFullYear()} Arena Pro. All rights reserved.</p>
-                        </div>
+                        <p>Please ensure you arrive a few minutes early to check in at the front desk. If you need to make any changes or cancellations, you can manage your reservation directly through the Arena Pro app.</p>
+                        
+                        <p style="font-weight: bold; font-size: 1.1em; color: #004d43; margin-top: 30px;">Enjoy your game!</p>
+                        
+                        <p style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                            Best regards,<br>
+                            <strong>Arena Pro Team</strong>
+                        </p>
                     </div>
                 `
             });
