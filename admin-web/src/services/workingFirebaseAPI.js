@@ -1,6 +1,13 @@
 import { getDocs, addDoc, doc, getDoc, updateDoc, query, orderBy, collection, collectionGroup, deleteDoc, where, Timestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
+const stripPastDates = (dateSpecificSlots = {}) => {
+  const today = new Date().toISOString().split('T')[0];
+  return Object.fromEntries(
+    Object.entries(dateSpecificSlots).filter(([date]) => date >= today)
+  );
+};
+
 const initFirebase = () => {
   return db;
 };
@@ -646,8 +653,8 @@ export const workingAdminAPI = {
         },
         // Time slots - use processed selected slots
         timeSlots: processedTimeSlots,
-        // Include date-specific slots if provided
-        ...(venueData.dateSpecificSlots && { dateSpecificSlots: venueData.dateSpecificSlots }),
+        // Include date-specific slots if provided (strip past dates before saving)
+        ...(venueData.dateSpecificSlots && { dateSpecificSlots: stripPastDates(venueData.dateSpecificSlots) }),
         // Include discount percentage
         discountPercentage: Number(venueData.discountPercentage) || 0,
         // Vendor Link
@@ -760,8 +767,8 @@ export const workingAdminAPI = {
         },
         // Time slots - use processed selected slots
         timeSlots: processedTimeSlots,
-        // Include date-specific slots if provided
-        ...(venueData.dateSpecificSlots && { dateSpecificSlots: venueData.dateSpecificSlots }),
+        // Include date-specific slots if provided (strip past dates before saving)
+        ...(venueData.dateSpecificSlots && { dateSpecificSlots: stripPastDates(venueData.dateSpecificSlots) }),
         // Include discount percentage
         discountPercentage: Number(venueData.discountPercentage) || 0,
         // Vendor Link

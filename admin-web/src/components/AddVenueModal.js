@@ -119,7 +119,12 @@ export default function AddVenueModal({ open, onClose, editVenue = null, vendorI
           selected: slot.selected !== false // Default to selected unless explicitly false
         })) : [],
         selectedDate: new Date().toISOString().split('T')[0],
-        dateSpecificSlots: editVenue.dateSpecificSlots || {},
+        dateSpecificSlots: editVenue.dateSpecificSlots
+            ? Object.fromEntries(
+                Object.entries(editVenue.dateSpecificSlots)
+                    .filter(([date]) => date >= new Date().toISOString().split('T')[0])
+              )
+            : {},
         contactPhone: editVenue.contactPhone || editVenue.contact?.phoneNumber || '',
         discountPercentage: (editVenue.discountPercentage || 0).toString()
       });
