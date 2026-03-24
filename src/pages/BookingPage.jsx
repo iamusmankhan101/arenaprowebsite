@@ -56,16 +56,41 @@ const BookingPage = () => {
 
                 // Extract available dates from dateSpecificSlots
                 if (foundVenue?.dateSpecificSlots) {
+                    const now = new Date();
+                    const todayStr = now.toISOString().split('T')[0];
+
                     const dates = Object.keys(foundVenue.dateSpecificSlots)
-                        .filter(d => new Date(d) >= new Date(new Date().toISOString().split('T')[0]))
+                        .filter(d => {
+                            if (d > todayStr) return true;   // future date — always show
+                            if (d < todayStr) return false;  // past date — always hide
+                            // d === today: only show if at least one slot hasn't started yet
+                            const slots = foundVenue.dateSpecificSlots[d] || [];
+                            return slots.some(slot => {
+                                const timeStr = slot.startTime || slot.time || '';
+                                if (!timeStr) return false;
+                                // Parse slot time and compare with current time
+                                let slotHour = 0, slotMin = 0;
+                                const upper = timeStr.toUpperCase();
+                                if (upper.includes('AM') || upper.includes('PM')) {
+                                    const [t, modifier] = timeStr.trim().split(' ');
+                                    let [h, m] = t.split(':').map(Number);
+                                    if (modifier?.toUpperCase() === 'PM' && h !== 12) h += 12;
+                                    if (modifier?.toUpperCase() === 'AM' && h === 12) h = 0;
+                                    slotHour = h; slotMin = m;
+                                } else {
+                                    [slotHour, slotMin] = timeStr.split(':').map(Number);
+                                }
+                                const slotMinutes = slotHour * 60 + slotMin;
+                                const nowMinutes = now.getHours() * 60 + now.getMinutes();
+                                return slotMinutes > nowMinutes;
+                            });
+                        })
                         .sort();
+
                     setAvailableDates(dates);
-                    // Auto-select first available date if today has no slots
-                    if (dates.length > 0) {
-                        const today = new Date().toISOString().split('T')[0];
-                        if (!foundVenue.dateSpecificSlots[today]) {
-                            setSelectedDate(dates[0]);
-                        }
+                    // Auto-select first available date
+                    if (dates.length > 0 && !dates.includes(todayStr)) {
+                        setSelectedDate(dates[0]);
                     }
                 }
             } catch (error) {

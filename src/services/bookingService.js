@@ -77,14 +77,37 @@ export const bookingService = {
             console.log(`📊 Found ${bookedSlotIds.size} booked slots for this date.`);
 
             // 4. Map and tag slots as available or booked
-            const mappedSlots = slots.map(slot => ({
-                ...slot,
-                startTime: convertTo12h(slot.startTime),
-                endTime: convertTo12h(slot.endTime),
-                time: convertTo12h(slot.time),
-                isBooked: bookedSlotIds.has(slot.id) || bookedSlotIds.has(slot.startTime || slot.time),
-                price: slot.price || venueData.basePrice || 0
-            }));
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+            const mappedSlots = slots
+                .map(slot => ({
+                    ...slot,
+                    startTime: convertTo12h(slot.startTime),
+                    endTime: convertTo12h(slot.endTime),
+                    time: convertTo12h(slot.time),
+                    isBooked: bookedSlotIds.has(slot.id) || bookedSlotIds.has(slot.startTime || slot.time),
+                    price: slot.price || venueData.basePrice || 0
+                }))
+                .filter(slot => {
+                    // For today, hide slots whose start time has already passed
+                    if (dateString !== todayStr) return true;
+                    const timeStr = slot.startTime || slot.time || '';
+                    if (!timeStr) return true;
+                    const upper = timeStr.toUpperCase();
+                    let slotHour = 0, slotMin = 0;
+                    if (upper.includes('AM') || upper.includes('PM')) {
+                        const [t, modifier] = timeStr.trim().split(' ');
+                        let [h, m] = t.split(':').map(Number);
+                        if (modifier?.toUpperCase() === 'PM' && h !== 12) h += 12;
+                        if (modifier?.toUpperCase() === 'AM' && h === 12) h = 0;
+                        slotHour = h; slotMin = m;
+                    } else {
+                        [slotHour, slotMin] = timeStr.split(':').map(Number);
+                    }
+                    return (slotHour * 60 + slotMin) > nowMinutes;
+                });
 
             console.log(`✅ Returning ${mappedSlots.length} total slots (${mappedSlots.filter(s => !s.isBooked).length} available)`);
             return mappedSlots;
