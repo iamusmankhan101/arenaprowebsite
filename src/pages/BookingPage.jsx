@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2, Lock } from 'lucide-react';
+import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2, Lock, CreditCard, Banknote } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { venueService } from '../services/venueService';
@@ -29,6 +29,7 @@ const BookingPage = () => {
         email: ''
     });
     const [availableDates, setAvailableDates] = useState([]);
+    const [paymentMethod, setPaymentMethod] = useState('venue'); // 'advance' | 'venue'
 
     useEffect(() => {
         if (user) {
@@ -103,6 +104,11 @@ const BookingPage = () => {
         fetchSlots();
     }, [venueId, selectedDate]);
 
+    const fullPrice = selectedSlot ? selectedSlot.price : 0;
+    const discountedTotal = selectedSlot ? Math.round(fullPrice * 0.9) : 0;
+    const advanceAmount = 500;
+    const remainingAtVenue = selectedSlot ? discountedTotal - advanceAmount : 0;
+
     const handleBooking = async (e) => {
         e.preventDefault();
         if (!selectedSlot || !user) return;
@@ -122,7 +128,10 @@ const BookingPage = () => {
                 slot: selectedSlot,
                 customerInfo,
                 sport: venue.sports[0],
-                userId: user.uid
+                userId: user.uid,
+                paymentMethod,
+                amountPaid: paymentMethod === 'advance' ? advanceAmount : 0,
+                totalAmount: paymentMethod === 'advance' ? discountedTotal : fullPrice,
             });
 
             // Trigger Email Confirmation (don't await to keep UI snappy)
@@ -332,6 +341,33 @@ const BookingPage = () => {
                                         />
                                     </div>
 
+                                    {/* Payment Options */}
+                                    <div className="payment-options-section">
+                                        <p className="payment-options-label">Payment Method</p>
+                                        <div className="payment-options-grid">
+                                            <button
+                                                type="button"
+                                                className={`payment-option-card ${paymentMethod === 'advance' ? 'active' : ''}`}
+                                                onClick={() => setPaymentMethod('advance')}
+                                            >
+                                                <CreditCard size={22} />
+                                                <span className="payment-option-title">Pay Rs. 500 Now</span>
+                                                <span className="payment-option-badge discount">10% OFF</span>
+                                                <span className="payment-option-desc">Pay advance online & save 10% on total</span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={`payment-option-card ${paymentMethod === 'venue' ? 'active' : ''}`}
+                                                onClick={() => setPaymentMethod('venue')}
+                                            >
+                                                <Banknote size={22} />
+                                                <span className="payment-option-title">Pay at Venue</span>
+                                                <span className="payment-option-badge">Full Price</span>
+                                                <span className="payment-option-desc">Pay the full amount when you arrive</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div className="booking-summary">
                                         <div className="summary-row">
                                             <span>Venue</span>
@@ -347,9 +383,33 @@ const BookingPage = () => {
                                                 {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
                                             </span>
                                         </div>
+                                        {paymentMethod === 'advance' && selectedSlot && (
+                                            <>
+                                                <div className="summary-row">
+                                                    <span>Original Price</span>
+                                                    <span style={{ textDecoration: 'line-through', color: '#aaa' }}>{fullPrice} Pkr</span>
+                                                </div>
+                                                <div className="summary-row" style={{ color: '#2e7d32' }}>
+                                                    <span>10% Discount</span>
+                                                    <span>- {fullPrice - discountedTotal} Pkr</span>
+                                                </div>
+                                                <div className="summary-row">
+                                                    <span>Pay Now (Advance)</span>
+                                                    <span style={{ color: '#004d43', fontWeight: 600 }}>{advanceAmount} Pkr</span>
+                                                </div>
+                                                <div className="summary-row">
+                                                    <span>Remaining at Venue</span>
+                                                    <span style={{ color: '#004d43', fontWeight: 600 }}>{remainingAtVenue} Pkr</span>
+                                                </div>
+                                            </>
+                                        )}
                                         <div className="summary-row total">
                                             <span>Total</span>
-                                            <span style={{ color: '#004d43' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                            <span style={{ color: '#004d43' }}>
+                                                {selectedSlot
+                                                    ? `${paymentMethod === 'advance' ? discountedTotal : fullPrice} Pkr`
+                                                    : '0 Pkr'}
+                                            </span>
                                         </div>
                                     </div>
 
@@ -366,7 +426,7 @@ const BookingPage = () => {
                                         ) : (
                                             <>
                                                 <CheckCircle2 size={20} />
-                                                Confirm Reservation
+                                                {paymentMethod === 'advance' ? `Pay Rs. 500 & Confirm` : 'Confirm Reservation'}
                                             </>
                                         )}
                                     </button>
