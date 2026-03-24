@@ -1,8 +1,9 @@
 import { collection, getDocs, query, orderBy, where, doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { todayPKT } from '../utils/dateUtils';
 
 const filterPastDates = (dateSpecificSlots = {}) => {
-    const today = new Date().toISOString().split('T')[0];
+    const today = todayPKT();
     return Object.fromEntries(
         Object.entries(dateSpecificSlots).filter(([date]) => date >= today)
     );

@@ -8,6 +8,7 @@ import {
     doc,
     getDoc
 } from 'firebase/firestore';
+import { todayPKT, currentMinutesPKT } from '../utils/dateUtils';
 import { db } from '../config/firebase';
 
 // Helper: convert 24h time "14:00" to 12h "02:00 PM"
@@ -77,9 +78,8 @@ export const bookingService = {
             console.log(`📊 Found ${bookedSlotIds.size} booked slots for this date.`);
 
             // 4. Map and tag slots as available or booked
-            const now = new Date();
-            const todayStr = now.toISOString().split('T')[0];
-            const nowMinutes = now.getHours() * 60 + now.getMinutes();
+            const todayStr = todayPKT();
+            const nowMinutes = currentMinutesPKT();
 
             const mappedSlots = slots
                 .map(slot => ({
