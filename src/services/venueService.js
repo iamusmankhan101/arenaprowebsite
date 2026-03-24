@@ -7,6 +7,8 @@ const filterPastDates = (dateSpecificSlots = {}) => {
         Object.entries(dateSpecificSlots).filter(([date]) => date >= today)
     );
 };
+
+export const venueService = {
     async getVenues() {
         try {
             const venuesRef = collection(db, 'venues');
