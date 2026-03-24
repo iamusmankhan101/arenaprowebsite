@@ -104,7 +104,7 @@ const BlogPost = () => {
 
             {/* Hero */}
             <section className="blogpost-hero">
-                {post.image && (
+                {post.image?.asset && (
                     <div className="blogpost-hero-bg">
                         <img src={urlFor(post.image).width(1400).url()} alt={post.title} />
                         <div className="blogpost-hero-overlay" />

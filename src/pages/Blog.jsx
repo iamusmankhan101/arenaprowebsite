@@ -91,7 +91,7 @@ const Blog = () => {
                                 key={post._id}
                             >
                                 <div className="blog-card-image">
-                                    {post.image ? (
+                                    {post.image?.asset ? (
                                         <img
                                             src={urlFor(post.image).width(600).height(340).url()}
                                             alt={post.title}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { client, urlFor } from './sanity';
+import { client, urlFor } from '../lib/sanityClient';
 
 const BlogList = () => {
     const [posts, setPosts] = useState([]);

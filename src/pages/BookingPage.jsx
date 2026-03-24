@@ -107,6 +107,12 @@ const BookingPage = () => {
         e.preventDefault();
         if (!selectedSlot || !user) return;
 
+        const today = new Date().toISOString().split('T')[0];
+        if (selectedDate < today) {
+            alert("You cannot book a slot for a past date.");
+            return;
+        }
+
         setBookingLoading(true);
         try {
             const bookingResponse = await bookingService.createBooking({
@@ -226,7 +232,10 @@ const BookingPage = () => {
                                     type="date"
                                     value={selectedDate}
                                     min={new Date().toISOString().split('T')[0]}
-                                    onChange={(e) => setSelectedDate(e.target.value)}
+                                    onChange={(e) => {
+                                    const today = new Date().toISOString().split('T')[0];
+                                    if (e.target.value >= today) setSelectedDate(e.target.value);
+                                }}
                                     className="date-picker"
                                 />
                             </div>
