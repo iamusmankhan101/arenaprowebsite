@@ -1,7 +1,12 @@
 import { collection, getDocs, query, orderBy, where, doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-export const venueService = {
+const filterPastDates = (dateSpecificSlots = {}) => {
+    const today = new Date().toISOString().split('T')[0];
+    return Object.fromEntries(
+        Object.entries(dateSpecificSlots).filter(([date]) => date >= today)
+    );
+};
     async getVenues() {
         try {
             const venuesRef = collection(db, 'venues');
@@ -22,7 +27,7 @@ export const venueService = {
                     images: Array.isArray(data.images) && data.images.length > 0 ? data.images : ["/image/placeholder.png"],
                     tags: Array.isArray(data.facilities) ? data.facilities.slice(0, 3) : ["Premium", "Professional"],
                     timeSlots: data.timeSlots || [],
-                    dateSpecificSlots: data.dateSpecificSlots || {}
+                    dateSpecificSlots: filterPastDates(data.dateSpecificSlots)
                 });
             });
 
@@ -47,6 +52,7 @@ export const venueService = {
                     price: `${data.basePrice || 0} Pkr/Hour`,
                     sports: Array.isArray(data.sports) ? data.sports : [],
                     images: Array.isArray(data.images) && data.images.length > 0 ? data.images : ["/image/placeholder.png"],
+                    dateSpecificSlots: filterPastDates(data.dateSpecificSlots),
                 };
             }
             return null;
@@ -84,7 +90,7 @@ export const venueService = {
                     images: Array.isArray(data.images) && data.images.length > 0 ? data.images : ["/image/placeholder.png"],
                     tags: Array.isArray(data.facilities) ? data.facilities.slice(0, 3) : ["Premium", "Professional"],
                     timeSlots: data.timeSlots || [],
-                    dateSpecificSlots: data.dateSpecificSlots || {}
+                    dateSpecificSlots: filterPastDates(data.dateSpecificSlots)
                 });
                 // }
             });
