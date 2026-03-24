@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { venueService } from '../services/venueService';
 import { bookingService } from '../services/bookingService';
 import { emailService } from '../services/emailService';
+import { whatsappService } from '../services/whatsappService';
 import { useAuth } from '../context/AuthContext';
 import './BookingPage.css';
 
@@ -132,6 +133,18 @@ const BookingPage = () => {
                 slot: selectedSlot,
                 customerInfo
             }).catch(err => console.error("Async email error:", err));
+
+            // Trigger WhatsApp Notification if phone is provided
+            if (customerInfo.phone) {
+                whatsappService.sendBookingNotification({
+                    customerName: customerInfo.name,
+                    phone: customerInfo.phone,
+                    venueName: venue.name,
+                    date: selectedDate,
+                    time: selectedSlot.startTime || selectedSlot.time,
+                    amount: selectedSlot.price
+                });
+            }
 
             setBookingSuccess(true);
         } catch (error) {

@@ -31,6 +31,7 @@ import {
   Refresh,
   WhatsApp,
   EventNote,
+  CreditCard,
 } from '@mui/icons-material';
 import { DataGrid } from '@mui/x-data-grid';
 import { fetchBookings, updateBookingStatus } from '../store/slices/adminSlice';
@@ -84,6 +85,10 @@ const ActionMenu = ({ booking, onAction }) => {
             Confirm
           </MenuItem>
         )}
+        <MenuItem onClick={() => handleAction('mark_paid')}>
+          <CreditCard sx={{ mr: 1, fontSize: 16 }} />
+          Mark as Paid
+        </MenuItem>
         <MenuItem onClick={() => handleAction('cancel')}>
           <Cancel sx={{ mr: 1, fontSize: 16 }} />
           Cancel
@@ -91,6 +96,10 @@ const ActionMenu = ({ booking, onAction }) => {
         <MenuItem onClick={() => handleAction('contact')}>
           <Phone sx={{ mr: 1, fontSize: 16 }} />
           Contact Customer
+        </MenuItem>
+        <MenuItem onClick={() => handleAction('whatsapp_customer')}>
+          <WhatsApp sx={{ mr: 1, fontSize: 16, color: '#25D366' }} />
+          WhatsApp Customer
         </MenuItem>
         <MenuItem onClick={() => handleAction('whatsapp')}>
           <WhatsApp sx={{ mr: 1, fontSize: 16, color: booking.venueOwnerPhone ? '#25D366' : 'action.disabled' }} />
@@ -161,10 +170,31 @@ export default function BookingsPage() {
       dispatch(updateBookingStatus({ bookingId, status: 'confirmed' }));
     } else if (action === 'cancel') {
       dispatch(updateBookingStatus({ bookingId, status: 'cancelled' }));
+    } else if (action === 'mark_paid') {
+      dispatch(updateBookingStatus({ bookingId, paymentStatus: 'paid' }));
     } else if (action === 'contact') {
       const booking = bookings.data.find(b => b.id === bookingId);
       setSelectedBooking(booking);
       setDialogOpen(true);
+    } else if (action === 'whatsapp_customer') {
+      const booking = bookings.data.find(b => b.id === bookingId);
+      if (booking?.customerPhone) {
+        const phone = booking.customerPhone.replace(/\D/g, '');
+        const normalized = phone.startsWith('0') ? '92' + phone.slice(1) : phone;
+        const message = encodeURIComponent(
+          `*Arena Pro – Booking Confirmation* 🏟️\n\n` +
+          `Hi ${booking.customerName}! Your booking details:\n\n` +
+          `📍 *Venue:* ${booking.turfName}\n` +
+          `📅 *Date:* ${format(new Date(booking.dateTime), 'MMM dd, yyyy')}\n` +
+          `⏰ *Time:* ${booking.timeSlot}\n` +
+          `💰 *Amount:* PKR ${booking.totalAmount}\n` +
+          `📋 *Status:* ${booking.status?.toUpperCase()}\n\n` +
+          `For any queries, reply to this message. Thank you! 🙏`
+        );
+        window.open(`https://wa.me/${normalized}?text=${message}`, '_blank');
+      } else {
+        alert('No phone number found for this customer.');
+      }
     } else if (action === 'whatsapp') {
       const booking = bookings.data.find(b => b.id === bookingId);
       if (booking && booking.venueOwnerPhone) {
@@ -554,7 +584,7 @@ export default function BookingsPage() {
           {selectedBooking && (
             <Box sx={{ pt: 1 }}>
               <Alert severity="info" sx={{ mb: 2 }}>
-                Customer contact information for booking #{selectedBooking.bookingId}
+                Booking #{selectedBooking.bookingId} — {selectedBooking.turfName}
               </Alert>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -571,6 +601,31 @@ export default function BookingsPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDialogOpen(false)}>Close</Button>
+          {selectedBooking?.customerPhone && (
+            <Button
+              variant="contained"
+              startIcon={<WhatsApp />}
+              sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#1ebe57' } }}
+              onClick={() => {
+                const phone = selectedBooking.customerPhone.replace(/\D/g, '');
+                const normalized = phone.startsWith('0') ? '92' + phone.slice(1) : phone;
+                const message = encodeURIComponent(
+                  `*Arena Pro – Booking Confirmation* 🏟️\n\n` +
+                  `Hi ${selectedBooking.customerName}! Your booking details:\n\n` +
+                  `📍 *Venue:* ${selectedBooking.turfName}\n` +
+                  `📅 *Date:* ${format(new Date(selectedBooking.dateTime), 'MMM dd, yyyy')}\n` +
+                  `⏰ *Time:* ${selectedBooking.timeSlot}\n` +
+                  `💰 *Amount:* PKR ${selectedBooking.totalAmount}\n` +
+                  `📋 *Status:* ${selectedBooking.status?.toUpperCase()}\n\n` +
+                  `For any queries, reply to this message. Thank you! 🙏`
+                );
+                window.open(`https://wa.me/${normalized}?text=${message}`, '_blank');
+                setDialogOpen(false);
+              }}
+            >
+              WhatsApp Customer
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Box>
