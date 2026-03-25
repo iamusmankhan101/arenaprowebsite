@@ -78,6 +78,7 @@ const Navbar = ({ forceScrolled = false }) => {
                             <div className={`dropdown-menu ${sportsOpen ? 'open' : ''}`}>
                                 <Link to="/indoor-cricket-lahore" className="dropdown-item" onClick={closeMenu}>Indoor Cricket</Link>
                                 <Link to="/padel-court-lahore" className="dropdown-item" onClick={closeMenu}>Padel Court</Link>
+                                <Link to="/padel-tennis-near-me" className="dropdown-item" onClick={closeMenu}>Padel Tennis Near Me</Link>
                                 <Link to="/futsal-ground-lahore" className="dropdown-item" onClick={closeMenu}>Futsal Ground</Link>
                                 <Link to="/badminton-court-lahore" className="dropdown-item" onClick={closeMenu}>Badminton</Link>
                             </div>

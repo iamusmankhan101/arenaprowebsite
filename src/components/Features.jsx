@@ -64,7 +64,7 @@ const Features = () => {
                         <div className="feature-number">04</div>
                         <div className="mofin-text-top">
                             <h3 className="mofin-title">Interactive Map Search</h3>
-                            <p className="mofin-desc">Geolocation-based venue finder to instantly discover a football turf near me or the closest padel courts near me.</p>
+                            <p className="mofin-desc">Geolocation-based venue finder to instantly discover <strong>padel tennis near me</strong>, a football turf near me, or the closest padel courts in Lahore.</p>
                         </div>
                         <div className="mofin-visual-center">
                             <img

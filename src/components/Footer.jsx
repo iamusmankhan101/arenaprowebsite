@@ -39,11 +39,11 @@ const Footer = () => {
                     <div className="footer-col">
                         <h4 className="footer-heading">Sports</h4>
                         <ul className="footer-links">
-                            <li><Link to="/lahore/indoor-cricket">Indoor Cricket</Link></li>
-                            <li><Link to="/lahore/futsal-ground">Futsal</Link></li>
-                            <li><Link to="/lahore/padel-court">Padel</Link></li>
-                            <li><Link to="/sports-venue-booking">Tennis</Link></li>
-                            <li><Link to="/lahore/badminton-court">Badminton</Link></li>
+                            <li><Link to="/indoor-cricket-lahore">Indoor Cricket</Link></li>
+                            <li><Link to="/futsal-ground-lahore">Futsal</Link></li>
+                            <li><Link to="/padel-court-lahore">Padel Court</Link></li>
+                            <li><Link to="/padel-tennis-near-me">Padel Tennis Near Me</Link></li>
+                            <li><Link to="/badminton-court-lahore">Badminton</Link></li>
                         </ul>
                     </div>
 
