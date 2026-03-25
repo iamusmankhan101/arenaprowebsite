@@ -23,7 +23,7 @@
 
 .padel-hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                     url('https://images.unsplash.com/photo-1626225967045-9410dd99670e?q=80&w=2070&auto=format&fit=crop') !important;
+                     url('/image/padel_court.webp') !important;
 }
 
 .badminton-hero {
