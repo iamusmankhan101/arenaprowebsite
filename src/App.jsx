@@ -1,5 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { useEffect } from 'react';
+
+function ScrollToTop() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+}
 import HomePage from './pages/HomePage';
 import HowItWorks from './pages/HowItWorks';
 import Venues from './pages/Venues';
@@ -29,6 +38,7 @@ function App() {
     return (
         <AuthProvider>
             <Router>
+                <ScrollToTop />
                 <div className="app">
                     <Routes>
                         <Route path="/" element={<HomePage />} />
