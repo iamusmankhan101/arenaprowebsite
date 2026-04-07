@@ -160,7 +160,7 @@ const Contact = () => {
                                     </div>
                                     <div className="info-text">
                                         <span className="info-label">Phone:</span>
-                                        <span className="info-value">0339 0078965</span>
+                                        <span className="info-value">0305 8562523</span>
                                     </div>
                                 </div>
 
