@@ -29,8 +29,8 @@ function Waitlist() {
     }, [searchParams, setSearchParams]);
 
     useEffect(() => {
-        // Set a fixed launch date (April 10, 2026 at 12:00 PM)
-        const launchDate = new Date('2026-04-10T12:00:00');
+        // Set a fixed launch date (May 10, 2026 at 12:00 PM)
+        const launchDate = new Date('2026-05-10T12:00:00');
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
