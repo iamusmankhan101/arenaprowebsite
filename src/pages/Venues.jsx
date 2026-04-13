@@ -5,10 +5,17 @@ import './Venues.css';
 import { Search, MapPin, Star, Clock, Trophy, Filter, X, LayoutGrid, Award, Disc, Target, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { venueService } from '../services/venueService';
 import VenueCard from '../components/VenueCard';
+import useSEO from '../hooks/useSEO';
 
 // Local VenueImageSlider removed in favor of VenueCard component
 
 const Venues = () => {
+    useSEO(
+        'Sports Venues in Lahore | Book Futsal, Cricket & Padel Courts',
+        'Find the best sports venues across Lahore. Browse and book premium padel courts, futsal grounds, and indoor cricket facilities with Arena Pro.',
+        'https://arenapropk.online/venues'
+    );
+
     const [searchTerm, setSearchTerm] = useState('');
     const [activeSport, setActiveSport] = useState('All');
     const [isFilterOpen, setIsFilterOpen] = useState(false);

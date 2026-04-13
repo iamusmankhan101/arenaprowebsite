@@ -3,8 +3,15 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './HowItWorks.css';
 import { Search, CalendarClock, Trophy, Download, UserPlus, Compass, MapPin, CheckCircle, Calendar } from 'lucide-react';
+import useSEO from '../hooks/useSEO';
 
 const HowItWorks = () => {
+    useSEO(
+        'How It Works | Arena Pro Sports Venue Booking',
+        'Learn how to book your favorite sports venues with Arena Pro. A step-by-step guide to finding and booking indoor cricket, futsal, and padel courts.',
+        'https://arenapropk.online/how-it-works'
+    );
+
     return (
         <div className="how-it-works-page">
             <Navbar />
