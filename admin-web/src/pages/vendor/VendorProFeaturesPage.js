@@ -74,7 +74,7 @@ export default function VendorProFeaturesPage() {
     const [copied, setCopied] = useState(false);
 
     const handleCopyAccount = () => {
-        navigator.clipboard.writeText('03058562523');
+        navigator.clipboard.writeText('03712524553');
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -436,7 +436,7 @@ export default function VendorProFeaturesPage() {
                                             border: '2px dashed #004d43'
                                         }}>
                                             <Typography variant="h5" fontWeight={800} sx={{ color: '#004d43', letterSpacing: 2 }}>
-                                                0305-8562523
+                                                0371-2524553
                                             </Typography>
                                             <Tooltip title={copied ? "Copied!" : "Copy Account #"}>
                                                 <Button
