@@ -12,9 +12,9 @@ const PadelCourtLahore = () => {
 
     useEffect(() => {
         // SEO Metadata Update
-        document.title = "Padel Court Booking in Lahore | Best Padel Clubs | Arena Pro";
+        document.title = "Book Padel Court Online Pakistan | Best Padel Clubs in Lahore | Arena Pro";
         const metaDescription = document.querySelector('meta[name="description"]');
-        const description = "Looking for the best padel courts in Lahore? Book premium padel clubs in Gulberg, DHA, and Model Town instantly through Arena Pro. Join the waitlist for exclusive access!";
+        const description = "Looking to book padel court online Pakistan? Book premium padel clubs in Gulberg, DHA, and Model Town in Lahore instantly through Arena Pro.";
         if (metaDescription) {
             metaDescription.setAttribute("content", description);
         } else {
@@ -54,7 +54,7 @@ const PadelCourtLahore = () => {
                 <div className="indoor-hero-content">
                     <h1>Premium <span className="highlight">Padel Court Booking</span> in Lahore</h1>
                     <p>
-                        Discover the fastest-growing sport in the world. Use Arena Pro to find and book 
+                        Discover the fastest-growing sport in the world. If you want to <strong>book padel court online Pakistan</strong>, use Arena Pro to find and reserve 
                         <strong> professional padel courts</strong> in Lahore's top neighborhoods. 
                         No phone calls required - just tap and play.
                     </p>
