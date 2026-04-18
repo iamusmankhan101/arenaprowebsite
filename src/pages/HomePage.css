@@ -1,0 +1,109 @@
+.homepage-sports-section {
+    background: #f8fafc;
+    padding: 80px 24px;
+}
+
+.homepage-sports-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.homepage-sports-title {
+    font-size: 2.5rem;
+    font-family: 'Clash Display', sans-serif;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.homepage-sports-sub {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homepage-sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.homepage-sport-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 28px;
+    border-radius: 24px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    text-decoration: none;
+    color: #0f172a;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.homepage-sport-card:hover {
+    border-color: #004d43;
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 77, 67, 0.12);
+}
+
+.homepage-sport-emoji {
+    font-size: 3rem;
+}
+
+.homepage-sport-label {
+    font-size: 1.4rem;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+.homepage-sport-desc {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.homepage-sport-anchor {
+    color: #004d43;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.homepage-sports-footer-links {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.homepage-sport-util-link {
+    color: #004d43;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.homepage-sport-util-link:hover {
+    border-color: #004d43;
+}
+
+@media (max-width: 768px) {
+    .homepage-sports-title {
+        font-size: 2rem;
+    }
+
+    .homepage-sports-section {
+        padding: 60px 16px;
+    }
+}

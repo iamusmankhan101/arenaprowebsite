@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Breadcrumb from '../components/Breadcrumb';
+import MoreSports from '../components/MoreSports';
 import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight, Loader2 } from 'lucide-react';
 import './IndoorCricketLahore.css'; // Reusing styles for consistency
 import { venueService } from '../services/venueService';
@@ -52,6 +54,7 @@ const FutsalGroundLahore = () => {
             {/* Hero Section */}
             <header className="indoor-hero futsal-hero">
                 <div className="indoor-hero-content">
+                    <Breadcrumb crumbs={[{ label: 'Home', path: '/' }, { label: 'Futsal Grounds', path: '/futsal-ground-lahore' }]} />
                     <h1>Top-Rated <span className="highlight">Futsal Ground Booking</span> in Lahore</h1>
                     <p>
                         Elevate your game on Lahore's finest football turf. Use Arena Pro to find and book 
@@ -134,6 +137,8 @@ const FutsalGroundLahore = () => {
                         </div>
                     </div>
                 </section>
+
+                <MoreSports currentSport="futsal" />
             </main>
 
             <Footer />

@@ -1,0 +1,45 @@
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+}
+
+.breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.breadcrumb-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+    color: #e8ee26;
+}
+
+.breadcrumb-sep {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb-current {
+    color: #e8ee26;
+    font-weight: 600;
+}

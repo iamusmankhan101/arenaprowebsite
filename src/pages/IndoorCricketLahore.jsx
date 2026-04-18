@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Breadcrumb from '../components/Breadcrumb';
+import MoreSports from '../components/MoreSports';
 import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight, Loader2 } from 'lucide-react';
 import './IndoorCricketLahore.css';
 import { venueService } from '../services/venueService';
@@ -51,6 +53,7 @@ const IndoorCricketLahore = () => {
             {/* Hero Section */}
             <header className="indoor-hero">
                 <div className="indoor-hero-content">
+                    <Breadcrumb crumbs={[{ label: 'Home', path: '/' }, { label: 'Indoor Cricket', path: '/indoor-cricket-lahore' }]} />
                     <h1>Top-Rated <span className="highlight">Cricket Grounds Booking</span> in Lahore</h1>
                     <p>
                         Experience the thrill of cricket without the heat or rain. Use Arena Pro to find and book a premium 
@@ -178,6 +181,8 @@ const IndoorCricketLahore = () => {
                         </div>
                     </div>
                 </section>
+
+                <MoreSports currentSport="cricket" />
             </main>
 
             <Footer />

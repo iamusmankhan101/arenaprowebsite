@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Breadcrumb from '../components/Breadcrumb';
+import MoreSports from '../components/MoreSports';
 import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight, Loader2 } from 'lucide-react';
 import './IndoorCricketLahore.css'; // Reusing styles for consistency
 import { venueService } from '../services/venueService';
@@ -52,6 +54,7 @@ const PadelCourtLahore = () => {
             {/* Hero Section */}
             <header className="indoor-hero padel-hero">
                 <div className="indoor-hero-content">
+                    <Breadcrumb crumbs={[{ label: 'Home', path: '/' }, { label: 'Padel Courts', path: '/padel-court-lahore' }]} />
                     <h1>Premium <span className="highlight">Padel Court Booking</span> in Lahore</h1>
                     <p>
                         Discover the fastest-growing sport in the world. If you want to <strong>book padel court online Pakistan</strong>, use Arena Pro to find and reserve 
@@ -135,6 +138,18 @@ const PadelCourtLahore = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* Canonical signal to /padel-tennis-near-me */}
+                <section className="section" style={{ textAlign: 'center', paddingTop: 0 }}>
+                    <p style={{ color: '#64748b' }}>
+                        Looking for courts by area?{' '}
+                        <a href="/padel-tennis-near-me" style={{ color: '#004d43', fontWeight: 700 }}>
+                            Find padel tennis near you →
+                        </a>
+                    </p>
+                </section>
+
+                <MoreSports currentSport="padel" />
             </main>
 
             <Footer />

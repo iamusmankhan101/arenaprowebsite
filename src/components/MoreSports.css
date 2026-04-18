@@ -1,0 +1,72 @@
+.more-sports-section {
+    background: white;
+    border-radius: 30px;
+    padding: 60px 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.more-sports-title {
+    font-size: 2rem;
+    font-family: 'Clash Display', sans-serif;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.more-sports-sub {
+    color: #64748b;
+    margin-bottom: 36px;
+    font-size: 1rem;
+}
+
+.more-sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.more-sports-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 32px 24px;
+    border-radius: 20px;
+    border: 2px solid #f1f5f9;
+    background: #f8fafc;
+    text-decoration: none;
+    color: #0f172a;
+    transition: all 0.3s ease;
+}
+
+.more-sports-card:hover {
+    border-color: #004d43;
+    background: #f0fdf4;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 77, 67, 0.1);
+}
+
+.more-sports-emoji {
+    font-size: 2.5rem;
+}
+
+.more-sports-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+}
+
+.more-sports-anchor {
+    font-size: 0.85rem;
+    color: #004d43;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .more-sports-section {
+        padding: 40px 20px;
+    }
+}

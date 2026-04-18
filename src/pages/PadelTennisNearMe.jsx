@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Download, MapPin, Star, Calendar, Users, CreditCard, ChevronRight, Loader2 } from 'lucide-react';
-import './IndoorCricketLahore.css'; // Reusing styles for consistency
+import Breadcrumb from '../components/Breadcrumb';
+import { MapPin, ChevronRight, Loader2 } from 'lucide-react';
+import './IndoorCricketLahore.css';
 import { venueService } from '../services/venueService';
 import VenueCard from '../components/VenueCard';
+
+const AREAS = [
+    { name: 'DHA', slug: 'dha', desc: 'Phases 1–8, premium clubs with professional glass courts and floodlighting.' },
+    { name: 'Gulberg', slug: null, desc: 'Central Lahore\'s most popular padel destination, close to offices and restaurants.' },
+    { name: 'Johar Town', slug: 'johar-town', desc: 'Affordable courts with great facilities, ideal for regular weekly sessions.' },
+    { name: 'Model Town', slug: 'model-town', desc: 'Family-friendly clubs with coaching available for all skill levels.' },
+    { name: 'Bahria Town', slug: 'bahria-town', desc: 'Modern sports complexes with multiple courts and ample parking.' },
+];
 
 const PadelTennisNearMe = () => {
     const [liveVenues, setLiveVenues] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [activeArea, setActiveArea] = useState('All');
 
     useEffect(() => {
-        // SEO Metadata Update
-        document.title = "Padel Tennis Near Me | Best Padel Clubs in Lahore | Arena Pro";
+        document.title = "Padel Tennis Near Me — Find Courts in Your Area | Arena Pro";
         const metaDescription = document.querySelector('meta[name="description"]');
-        const description = "Looking for padel tennis near me? Discover and book the best padel tennis courts in Lahore instantly. Join Arena Pro for premium padel club access in DHA, Gulberg, and more.";
+        const description = "Find padel tennis near you in Lahore. Browse courts by area — DHA, Gulberg, Johar Town, Model Town, and Bahria Town. Instant booking with Arena Pro.";
         if (metaDescription) {
             metaDescription.setAttribute("content", description);
         } else {
@@ -24,17 +33,11 @@ const PadelTennisNearMe = () => {
             document.head.appendChild(meta);
         }
 
-        window.scrollTo(0, 0);
-
         const fetchVenues = async () => {
             try {
                 setLoading(true);
                 const data = await venueService.getVenues();
-                // Filter for Padel
-                const padelVenues = data.filter(venue => 
-                    venue.sports.includes('Padel')
-                );
-                setLiveVenues(padelVenues);
+                setLiveVenues(data.filter(v => v.sports.includes('Padel')));
             } catch (error) {
                 console.error("Failed to fetch venues:", error);
             } finally {
@@ -45,141 +48,132 @@ const PadelTennisNearMe = () => {
         fetchVenues();
     }, []);
 
+    const filteredVenues = activeArea === 'All'
+        ? liveVenues
+        : liveVenues.filter(v => v.location.toLowerCase().includes(activeArea.toLowerCase()));
+
     return (
         <div className="indoor-landing-page">
             <Navbar />
 
-            {/* Hero Section */}
             <header className="indoor-hero padel-hero">
                 <div className="indoor-hero-content">
-                    <h1>Best <span className="highlight">Padel Tennis Near Me</span> in Lahore</h1>
+                    <Breadcrumb crumbs={[
+                        { label: 'Home', path: '/' },
+                        { label: 'Padel Courts', path: '/padel-court-lahore' },
+                        { label: 'Near Me', path: '/padel-tennis-near-me' },
+                    ]} />
+                    <h1>Find <span className="highlight">Padel Tennis Near Me</span> in Lahore</h1>
                     <p>
-                        Searching for <strong>padel tennis near me</strong>? Arena Pro is your ultimate destination to find and book 
-                        top-tier padel courts in Lahore. Experience the thrill of padel at premium clubs with instant booking.
+                        Use Arena Pro to locate padel courts in your area. Filter by neighbourhood and book instantly — no phone calls needed.
                     </p>
-                    <div className="cta-group">
-                        <a href="/waitlist" className="cta-primary">
-                            <Download size={20} /> Join Waitlist
+                    {/* Canonical signal to pillar page */}
+                    <p style={{ marginTop: '12px', fontSize: '0.95rem', opacity: 0.85 }}>
+                        Want to see all padel venues?{' '}
+                        <a href="/padel-court-lahore" style={{ color: '#e8ee26', fontWeight: 700, textDecoration: 'underline' }}>
+                            Browse all padel courts in Lahore →
                         </a>
-                        <a href="/venues" className="cta-secondary">
-                            Explore Padel Courts
-                        </a>
-                    </div>
+                    </p>
                 </div>
             </header>
 
             <main className="indoor-container">
-                {/* Venues Sneak Peek */}
+
+                {/* Area Filter */}
+                <section className="areas-section">
+                    <h2 className="section-title">Find Padel Courts by Area</h2>
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '40px' }}>
+                        {['All', ...AREAS.map(a => a.name)].map(area => (
+                            <button
+                                key={area}
+                                onClick={() => setActiveArea(area)}
+                                style={{
+                                    padding: '10px 22px',
+                                    borderRadius: '50px',
+                                    border: '2px solid',
+                                    borderColor: activeArea === area ? '#004d43' : '#e2e8f0',
+                                    background: activeArea === area ? '#004d43' : 'white',
+                                    color: activeArea === area ? 'white' : '#0f172a',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s',
+                                    fontFamily: 'Montserrat, sans-serif',
+                                }}
+                            >
+                                {area}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="areas-grid">
+                        {AREAS.map(area => (
+                            <div key={area.name} className="area-item">
+                                <div className="area-icon"><MapPin size={24} /></div>
+                                <h3>Padel in {area.name}</h3>
+                                <p>{area.desc}</p>
+                                {area.slug ? (
+                                    <a href={`/venues/${area.slug}`} className="area-link">
+                                        Explore {area.name} <ChevronRight size={16} />
+                                    </a>
+                                ) : (
+                                    <a href="/venues" className="area-link">
+                                        Browse venues <ChevronRight size={16} />
+                                    </a>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Filtered Venues */}
                 <section className="section">
-                    <h2 className="section-title">Best Padel Tennis Near Me in Lahore</h2>
-                    <p style={{ textAlign: 'center', marginBottom: '40px', color: '#64748b', maxWidth: '800px', margin: '0 auto 40px' }}>
-                        Discover premium padel facilities with professional glass walls, international-standard turf, and floodlighting 
-                        designed for the perfect match. Experience the best "padel tennis near me" with Arena Pro.
-                    </p>
+                    <h2 className="section-title">
+                        {activeArea === 'All' ? 'All Padel Courts in Lahore' : `Padel Courts in ${activeArea}`}
+                    </h2>
                     <div className="venues-grid">
                         {loading ? (
-                            <div className="loading-state" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
+                            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
                                 <Loader2 size={40} className="animate-spin" style={{ color: '#004d43', marginBottom: '16px' }} />
-                                <p>Finding padel tennis courts near you...</p>
+                                <p>Finding padel courts near you...</p>
                             </div>
-                        ) : liveVenues.length > 0 ? (
-                            liveVenues.map(venue => (
+                        ) : filteredVenues.length > 0 ? (
+                            filteredVenues.map(venue => (
                                 <VenueCard key={venue.id} venue={venue} />
                             ))
                         ) : (
-                            <div className="no-venues" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
-                                <p>No padel tennis venues found at the moment. Please check back later!</p>
+                            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
+                                <p>No padel courts found in {activeArea}. <button onClick={() => setActiveArea('All')} style={{ color: '#004d43', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}>View all areas</button></p>
                             </div>
                         )}
                     </div>
                 </section>
 
-                {/* Popular Areas Section */}
-                <section className="areas-section">
-                    <h2 className="section-title">Popular Areas for Padel Tennis Near Me</h2>
-                    <div className="areas-grid">
-                        <div className="area-item">
-                            <div className="area-icon">
-                                <MapPin size={24} />
-                            </div>
-                            <h3>Padel in Gulberg</h3>
-                            <p>
-                                Looking for <strong>padel tennis near me</strong> in Gulberg? Book the most popular clubs 
-                                in the heart of Lahore instantly.
-                            </p>
-                            <a href="/venues" className="area-link">
-                                Explore Gulberg <ChevronRight size={16} />
-                            </a>
-                        </div>
-                        <div className="area-item">
-                            <div className="area-icon">
-                                <MapPin size={24} />
-                            </div>
-                            <h3>DHA Padel Clubs</h3>
-                            <p>
-                                From Phase 1 to Phase 8, find premium <strong>padel tennis near me</strong> in DHA. 
-                                Secure your court at professional facilities.
-                            </p>
-                            <a href="/venues/dha" className="area-link">
-                                Explore DHA <ChevronRight size={16} />
-                            </a>
-                        </div>
-                        <div className="area-item">
-                            <div className="area-icon">
-                                <MapPin size={24} />
-                            </div>
-                            <h3>Model Town & Johar Town</h3>
-                            <p>
-                                Get the best rates for <strong>padel tennis near me</strong> in Model Town and Johar Town's 
-                                top sports complexes.
-                            </p>
-                            <a href="/venues/model-town" className="area-link">
-                                Explore Areas <ChevronRight size={16} />
-                            </a>
-                        </div>
+                {/* Bottom canonical CTA */}
+                <section className="section" style={{ textAlign: 'center', paddingTop: 0 }}>
+                    <div style={{ background: '#f0fdf4', borderRadius: '20px', padding: '40px', border: '1px solid #bbf7d0' }}>
+                        <h3 style={{ fontFamily: 'Clash Display, sans-serif', marginBottom: '12px', color: '#0f172a' }}>
+                            Looking for the full padel experience?
+                        </h3>
+                        <p style={{ color: '#64748b', marginBottom: '20px' }}>
+                            See all padel venues, pricing, rules, and FAQs on our main padel page.
+                        </p>
+                        <a
+                            href="/padel-court-lahore"
+                            style={{
+                                display: 'inline-block',
+                                background: '#004d43',
+                                color: 'white',
+                                padding: '14px 32px',
+                                borderRadius: '50px',
+                                fontWeight: 700,
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Browse all padel courts in Lahore →
+                        </a>
                     </div>
                 </section>
 
-                {/* Why Arena Pro */}
-                <section className="section bg-light">
-                    <h2 className="section-title">Why Book Padel Tennis with Arena Pro?</h2>
-                    <div className="features-list">
-                        <div className="feature-box">
-                            <Calendar size={32} color="#004d43" style={{ marginBottom: '20px' }} />
-                            <h4>Instant Confirmation</h4>
-                            <p>Real-time booking means your court is reserved the moment you click. No more waiting for callbacks.</p>
-                        </div>
-                        <div className="feature-box">
-                            <Users size={32} color="#004d43" style={{ marginBottom: '20px' }} />
-                            <h4>Find Partners</h4>
-                            <p>Connect with other players searching for "padel tennis near me" and join the local community matching.</p>
-                        </div>
-                        <div className="feature-box">
-                            <CreditCard size={32} color="#004d43" style={{ marginBottom: '20px' }} />
-                            <h4>Seamless Payments</h4>
-                            <p>Secure online payments and split-bill options make organizing your weekly padel match a breeze.</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* FAQ Section */}
-                <section className="section">
-                    <h2 className="section-title">Padel Tennis FAQs</h2>
-                    <div className="faq-container">
-                        <div className="faq-item">
-                            <h3>Where can I find padel tennis near me in Lahore?</h3>
-                            <p>Arena Pro covers all major areas in Lahore including DHA (Phases 1-8), Gulberg, Model Town, and Johar Town. Simply use our map to find the closest court.</p>
-                        </div>
-                        <div className="faq-item">
-                            <h3>Is padel tennis expensive to play?</h3>
-                            <p>Padel is very affordable when playing with friends. Most courts in Lahore range from Rs. 4,000 to Rs. 8,000 per hour, which is split between 4 players.</p>
-                        </div>
-                        <div className="faq-item">
-                            <h3>How can I book a padel court?</h3>
-                            <p>You can book directly through the Arena Pro app or website. Choose your preferred venue, time slot, and confirm your booking instantly.</p>
-                        </div>
-                    </div>
-                </section>
             </main>
 
             <Footer />
