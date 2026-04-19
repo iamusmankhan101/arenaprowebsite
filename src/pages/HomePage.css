@@ -128,29 +128,32 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 28px;
-    background: rgba(0, 77, 67, 0.05);
-    color: #004d43;
+    padding: 14px 32px;
+    background: #004d43;
+    color: #ffffff;
     font-weight: 700;
     text-decoration: none;
     font-size: 1rem;
     border-radius: 100px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.1);
 }
 
 .homepage-sport-util-link svg {
     transition: transform 0.3s ease;
+    stroke: #ffffff;
 }
 
 .homepage-sport-util-link:hover {
-    background: #004d43;
-    color: white;
+    background: #00362f;
+    color: #e8ee26;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 77, 67, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 77, 67, 0.2);
 }
 
 .homepage-sport-util-link:hover svg {
     transform: translateX(4px);
+    stroke: #e8ee26;
 }
 
 @media (max-width: 768px) {
