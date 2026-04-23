@@ -61,10 +61,12 @@ function HomePage() {
                                     <label className="search-form-label">Where</label>
                                     <div className="search-form-input-wrapper">
                                         <select className="search-form-select">
-                                            <option>All cities</option>
-                                            <option>Lahore</option>
-                                            <option>Karachi</option>
-                                            <option>Islamabad</option>
+                                            <option>All areas</option>
+                                            <option>Johar Town</option>
+                                            <option>Model Town</option>
+                                            <option>DHA</option>
+                                            <option>Gulberg</option>
+                                            <option>Bahria Town</option>
                                         </select>
                                         <svg className="search-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
