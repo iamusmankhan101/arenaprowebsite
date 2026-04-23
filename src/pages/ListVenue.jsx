@@ -124,7 +124,6 @@ const ListVenue = () => {
                         <div className="list-venue-form-card">
                             <div className="form-header">
                                 <h2>Create your listing</h2>
-                                <span className="form-badge">90 sec</span>
                             </div>
                             <p className="form-subtitle">
                                 We'll help you set everything up after signup. No technical work needed.
