@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Features from '../components/Features';
 import Steps from '../components/Steps';
@@ -11,12 +11,47 @@ import useSEO from '../hooks/useSEO';
 import './HomePage.css';
 
 function HomePage() {
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useState({
+        date: '23/04/2026',
+        area: 'All areas',
+        sport: 'All sports'
+    });
+
     useSEO(
         'Arena Pro - Book Futsal, Padel & Indoor Cricket Venues in Lahore',
         'Discover and book top sports venues with Arena Pro. Find a futsal court near me, padel courts near you, or indoor cricket in Lahore. Easy cricket grounds booking!',
         'https://arenapropk.online/'
     );
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        
+        // Build query parameters
+        const params = new URLSearchParams();
+        
+        if (searchParams.area !== 'All areas') {
+            params.append('location', searchParams.area);
+        }
+        
+        if (searchParams.sport !== 'All sports') {
+            params.append('sport', searchParams.sport);
+        }
+        
+        if (searchParams.date) {
+            params.append('date', searchParams.date);
+        }
+        
+        // Navigate to venues page with query parameters
+        navigate(`/venues?${params.toString()}`);
+    };
+
+    const handleInputChange = (field, value) => {
+        setSearchParams(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
     return (
         <div className="home-page">
             <Navbar />
@@ -38,7 +73,7 @@ function HomePage() {
                         <h3 className="homepage-sports-card-title">Plan Your Game</h3>
                         
                         {/* Search Form */}
-                        <div className="homepage-search-form">
+                        <form className="homepage-search-form" onSubmit={handleSearch}>
                             <div className="search-form-row">
                                 <div className="search-form-field">
                                     <label className="search-form-label">When</label>
@@ -47,7 +82,8 @@ function HomePage() {
                                             type="text" 
                                             className="search-form-input" 
                                             placeholder="23/04/2026"
-                                            readOnly
+                                            value={searchParams.date}
+                                            onChange={(e) => handleInputChange('date', e.target.value)}
                                         />
                                         <svg className="search-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -60,7 +96,11 @@ function HomePage() {
                                 <div className="search-form-field">
                                     <label className="search-form-label">Where</label>
                                     <div className="search-form-input-wrapper">
-                                        <select className="search-form-select">
+                                        <select 
+                                            className="search-form-select"
+                                            value={searchParams.area}
+                                            onChange={(e) => handleInputChange('area', e.target.value)}
+                                        >
                                             <option>All areas</option>
                                             <option>Johar Town</option>
                                             <option>Model Town</option>
@@ -78,7 +118,11 @@ function HomePage() {
                             <div className="search-form-field">
                                 <label className="search-form-label">Sport</label>
                                 <div className="search-form-input-wrapper">
-                                    <select className="search-form-select">
+                                    <select 
+                                        className="search-form-select"
+                                        value={searchParams.sport}
+                                        onChange={(e) => handleInputChange('sport', e.target.value)}
+                                    >
                                         <option>All sports</option>
                                         <option>Futsal</option>
                                         <option>Padel</option>
@@ -90,14 +134,10 @@ function HomePage() {
                                 </div>
                             </div>
 
-                            <Link to="/venues" className="search-form-button">
+                            <button type="submit" className="search-form-button">
                                 SEARCH VENUES
-                            </Link>
-
-                            <p className="search-form-hint">
-                                Choose a venue next — you'll pick your session length and exact start time on the booking screen.
-                            </p>
-                        </div>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './Venues.css';
@@ -10,6 +11,8 @@ import useSEO from '../hooks/useSEO';
 // Local VenueImageSlider removed in favor of VenueCard component
 
 const Venues = () => {
+    const [searchParams] = useSearchParams();
+    
     useSEO(
         'Sports Venues in Lahore | Book Futsal, Cricket & Padel Courts',
         'Find the best sports venues across Lahore. Browse and book premium padel courts, futsal grounds, and indoor cricket facilities with Arena Pro.',
@@ -21,6 +24,20 @@ const Venues = () => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [venues, setVenues] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Apply URL parameters on mount
+    useEffect(() => {
+        const sportParam = searchParams.get('sport');
+        const locationParam = searchParams.get('location');
+        
+        if (sportParam) {
+            setActiveSport(sportParam);
+        }
+        
+        if (locationParam) {
+            setSearchTerm(locationParam);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const fetchVenues = async () => {
