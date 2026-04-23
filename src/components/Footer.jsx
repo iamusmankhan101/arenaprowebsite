@@ -39,12 +39,6 @@ const Footer = () => {
                                 <Instagram size={18} />
                             </a>
                         </div>
-                        <div className="footer-product-by">
-                            <p className="product-label">PRODUCT BY</p>
-                            <p className="product-name">The Web Xperts</p>
-                            <a href="mailto:hello@thewebxperts.co" className="product-email">hello@thewebxperts.co</a>
-                            <a href="https://thewebxperts.co" target="_blank" rel="noopener noreferrer" className="product-link">thewebxperts.co</a>
-                        </div>
                     </div>
 
                     {/* Column 2: Explore */}
