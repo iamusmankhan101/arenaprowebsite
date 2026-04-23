@@ -49,9 +49,6 @@ const Footer = () => {
                             <li><Link to="/padel-court-lahore">Padel</Link></li>
                             <li><Link to="/indoor-cricket-lahore">Cricket</Link></li>
                             <li><Link to="/futsal-ground-lahore">Futsal</Link></li>
-                            <li><Link to="/venues">Pickleball</Link></li>
-                            <li><Link to="/venues">Beach volleyball</Link></li>
-                            <li><Link to="/">Search on home</Link></li>
                         </ul>
                     </div>
 
