@@ -68,7 +68,7 @@
     color: white;
     margin-bottom: 20px;
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .homepage-sports-title .highlight {
@@ -80,6 +80,7 @@
     font-size: 1rem;
     margin-bottom: 0;
     line-height: 1.7;
+    font-weight: 600;
 }
 
 .homepage-sports-right {
