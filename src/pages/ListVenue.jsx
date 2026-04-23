@@ -45,7 +45,7 @@ const ListVenue = () => {
         // Handle form submission
     };
 
-    const facilities = ['Padel', 'Cricket', 'Futsal', 'Pickleball', 'Beach volleyball', 'Multiple sports'];
+    const facilities = ['Padel', 'Cricket', 'Futsal'];
     const cities = ['Lahore', 'Karachi', 'Islamabad', 'Rawalpindi', 'Faisalabad'];
 
     return (
@@ -96,10 +96,6 @@ const ListVenue = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <Link to="/waitlist" className="list-venue-cta-btn">
-                            GET STARTED (FREE)
-                        </Link>
 
                         <div className="list-venue-features">
                             <div className="feature-item">
@@ -225,10 +221,6 @@ const ListVenue = () => {
                                 <button type="submit" className="form-submit-btn">
                                     START GETTING BOOKINGS
                                 </button>
-
-                                <p className="form-footer-text">
-                                    Join early partner venues across Pakistan 🇵🇰
-                                </p>
                             </form>
 
                             <div className="what-happens-next">
