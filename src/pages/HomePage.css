@@ -17,11 +17,11 @@
     bottom: 0;
     background-image: 
         url('/image/2025-10-13.webp'),
-        linear-gradient(135deg, rgba(0, 77, 67, 0.92) 0%, rgba(0, 61, 53, 0.95) 100%);
+        linear-gradient(135deg, rgba(0, 77, 67, 0.75) 0%, rgba(0, 61, 53, 0.8) 100%);
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
-    opacity: 0.4;
+    opacity: 0.6;
     z-index: 0;
 }
 
