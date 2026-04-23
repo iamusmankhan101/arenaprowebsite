@@ -16,6 +16,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Waitlist from './pages/Waitlist';
+import ListVenue from './pages/ListVenue';
 import BookingPage from './pages/BookingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -63,6 +64,7 @@ function App() {
                         <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/waitlist" element={<Waitlist />} />
+                        <Route path="/list-venue" element={<ListVenue />} />
                         <Route path="/auth/google" element={<GoogleAuthRelay />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
