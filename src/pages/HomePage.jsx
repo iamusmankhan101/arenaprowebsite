@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
 import Features from '../components/Features';
 import Steps from '../components/Steps';
 import AppGallery from '../components/AppGallery';
@@ -64,7 +63,6 @@ function HomePage() {
     return (
         <div className="home-page">
             <Navbar />
-            <Hero />
             <Features />
 
             {/* Tier 1 — In-body sport links (SEO silo entry points) */}
