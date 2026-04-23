@@ -80,27 +80,65 @@ function HomePage() {
 
                     <div className="homepage-sports-right">
                         <h3 className="homepage-sports-card-title">Plan Your Game</h3>
-                        <div className="homepage-sports-grid">
-                            {SPORT_LINKS.map(sport => (
-                                <Link key={sport.path} to={sport.path} className="homepage-sport-card">
-                                    <div className="homepage-sport-icon-wrapper">
-                                        <div className="homepage-sport-emoji">{sport.svgIcon}</div>
+                        
+                        {/* Search Form */}
+                        <div className="homepage-search-form">
+                            <div className="search-form-row">
+                                <div className="search-form-field">
+                                    <label className="search-form-label">When</label>
+                                    <div className="search-form-input-wrapper">
+                                        <input 
+                                            type="text" 
+                                            className="search-form-input" 
+                                            placeholder="23/04/2026"
+                                            readOnly
+                                        />
+                                        <svg className="search-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                                        </svg>
                                     </div>
-                                    <div className="homepage-sport-content">
-                                        <h4 className="homepage-sport-label">{sport.label}</h4>
-                                        <p className="homepage-sport-desc">{sport.desc}</p>
+                                </div>
+                                <div className="search-form-field">
+                                    <label className="search-form-label">Where</label>
+                                    <div className="search-form-input-wrapper">
+                                        <select className="search-form-select">
+                                            <option>All cities</option>
+                                            <option>Lahore</option>
+                                            <option>Karachi</option>
+                                            <option>Islamabad</option>
+                                        </select>
+                                        <svg className="search-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
                                     </div>
-                                    <span className="homepage-sport-arrow">→</span>
-                                </Link>
-                            ))}
-                        </div>
-                        <div className="homepage-sports-footer-links">
-                            <Link to="/venues" className="homepage-sport-util-link">
-                                Browse all sports venues →
+                                </div>
+                            </div>
+
+                            <div className="search-form-field">
+                                <label className="search-form-label">Sport</label>
+                                <div className="search-form-input-wrapper">
+                                    <select className="search-form-select">
+                                        <option>All sports</option>
+                                        <option>Futsal</option>
+                                        <option>Padel</option>
+                                        <option>Indoor Cricket</option>
+                                    </select>
+                                    <svg className="search-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <Link to="/venues" className="search-form-button">
+                                SEARCH VENUES
                             </Link>
-                            <Link to="/how-it-works" className="homepage-sport-util-link">
-                                See how Arena Pro works →
-                            </Link>
+
+                            <p className="search-form-hint">
+                                Choose a venue next — you'll pick your session length and exact start time on the booking screen.
+                            </p>
                         </div>
                     </div>
                 </div>
