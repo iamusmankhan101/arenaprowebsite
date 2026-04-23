@@ -182,7 +182,7 @@
     width: 100%;
     padding: 18px;
     background: #e9ee26;
-    color: white;
+    color: #004d43;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -196,9 +196,10 @@
 }
 
 .search-form-button:hover {
-    background: #f4511e;
+    background: #004d43;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
+    color: #e8ee26;
 }
 
 .search-form-hint {
