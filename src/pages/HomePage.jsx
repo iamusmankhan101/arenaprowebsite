@@ -10,49 +10,6 @@ import Footer from '../components/Footer';
 import useSEO from '../hooks/useSEO';
 import './HomePage.css';
 
-const SPORT_LINKS = [
-    {
-        path: '/futsal-ground-lahore',
-        anchor: 'Book futsal grounds in Lahore',
-        svgIcon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 12l3.5-2m-3.5 2v4.5m0-4.5l-3.5-2"></path>
-                <path d="M15.5 10l2.5 1.5m-11.5-1.5L4 11.5"></path>
-                <path d="M12 16.5L10 21m2-4.5l2 4.5"></path>
-            </svg>
-        ),
-        label: 'Futsal',
-        desc: 'Premium football turf in Johar Town, DHA & Model Town',
-    },
-    {
-        path: '/padel-court-lahore',
-        anchor: 'Find padel courts near you',
-        svgIcon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M18.36 5.64a9 9 0 1 0-12.72 12.72"></path>
-                <path d="M15.54 8.46a5 5 0 1 0-7.07 7.08"></path>
-            </svg>
-        ),
-        label: 'Padel',
-        desc: 'International-standard padel clubs across Lahore',
-    },
-    {
-        path: '/indoor-cricket-lahore',
-        anchor: 'Reserve indoor cricket venues',
-        svgIcon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 4l6 6-9 9-6-6 9-9z"></path>
-                <path d="M4 20l5-5"></path>
-                <circle cx="17" cy="17" r="2"></circle>
-            </svg>
-        ),
-        label: 'Indoor Cricket',
-        desc: 'Air-conditioned cricket arenas with professional pitches',
-    },
-];
-
 function HomePage() {
     useSEO(
         'Arena Pro - Book Futsal, Padel & Indoor Cricket Venues in Lahore',
@@ -70,11 +27,10 @@ function HomePage() {
                     <div className="homepage-sports-left">
                         <span className="homepage-sports-eyebrow">Pakistan · Padel & Cricket</span>
                         <h1 className="homepage-sports-title">
-                            Book Your Game<br />
-                            <span className="highlight">In Seconds</span>
+                            Find and Book the Best Cricket & Padel Venues in Lahore.
                         </h1>
                         <p className="homepage-sports-sub">
-                            Search by city and date, explore top sports, then lock a slot and finish on WhatsApp with the venue — fast, clear, no guesswork.
+                            Searching for <strong>padel tennis near me</strong>? Stop searching for a football turf near me or the top padel courts. Arena Pro connects you with premium facilities instantly. Find everything from <Link to="/indoor-cricket-lahore" style={{ color: '#e8ee26', textDecoration: 'underline' }}>indoor cricket</Link> arena to the best padel tennis courts in lahore.
                         </p>
                     </div>
 
