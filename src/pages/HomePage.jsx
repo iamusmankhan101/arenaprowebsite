@@ -70,36 +70,41 @@ function HomePage() {
             {/* Tier 1 — In-body sport links (SEO silo entry points) */}
             <section className="homepage-sports-section">
                 <div className="homepage-sports-inner">
-                    <div className="homepage-sports-header">
-                        <h2 className="homepage-sports-title">Explore Sports in Lahore</h2>
+                    <div className="homepage-sports-left">
+                        <span className="homepage-sports-eyebrow">Pakistan · Padel & Cricket</span>
+                        <h2 className="homepage-sports-title">
+                            Book Your Game<br />
+                            <span className="highlight">In Seconds</span>
+                        </h2>
                         <p className="homepage-sports-sub">
-                            Arena Pro covers the top sports venues across the city. Pick your sport and book instantly.
+                            Search by city and date, explore top sports, then lock a slot and finish on WhatsApp with the venue — fast, clear, no guesswork.
                         </p>
                     </div>
-                    <div className="homepage-sports-grid">
-                        {SPORT_LINKS.map(sport => (
-                            <Link key={sport.path} to={sport.path} className="homepage-sport-card">
-                                <div className="homepage-sport-icon-wrapper">
-                                    <div className="homepage-sport-emoji">{sport.svgIcon}</div>
-                                </div>
-                                <h3 className="homepage-sport-label">{sport.label}</h3>
-                                <p className="homepage-sport-desc">{sport.desc}</p>
-                                <span className="homepage-sport-anchor">
-                                    {sport.anchor} 
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </span>
+
+                    <div className="homepage-sports-right">
+                        <h3 className="homepage-sports-card-title">Plan Your Game</h3>
+                        <div className="homepage-sports-grid">
+                            {SPORT_LINKS.map(sport => (
+                                <Link key={sport.path} to={sport.path} className="homepage-sport-card">
+                                    <div className="homepage-sport-icon-wrapper">
+                                        <div className="homepage-sport-emoji">{sport.svgIcon}</div>
+                                    </div>
+                                    <div className="homepage-sport-content">
+                                        <h4 className="homepage-sport-label">{sport.label}</h4>
+                                        <p className="homepage-sport-desc">{sport.desc}</p>
+                                    </div>
+                                    <span className="homepage-sport-arrow">→</span>
+                                </Link>
+                            ))}
+                        </div>
+                        <div className="homepage-sports-footer-links">
+                            <Link to="/venues" className="homepage-sport-util-link">
+                                Browse all sports venues →
                             </Link>
-                        ))}
-                    </div>
-                    <div className="homepage-sports-footer-links">
-                        <Link to="/venues" className="homepage-sport-util-link">
-                            Browse all sports venues
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </Link>
-                        <Link to="/how-it-works" className="homepage-sport-util-link">
-                            See how Arena Pro works
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </Link>
+                            <Link to="/how-it-works" className="homepage-sport-util-link">
+                                See how Arena Pro works →
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
