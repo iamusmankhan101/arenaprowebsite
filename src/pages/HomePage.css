@@ -227,6 +227,11 @@
         font-size: 2rem;
     }
 
+    .homepage-sports-sub {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
     .homepage-sports-right {
         padding: 28px 20px;
     }
