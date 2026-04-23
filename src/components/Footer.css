@@ -7,7 +7,7 @@
 
 /* ─── CTA Banner ─── */
 .footer-cta-banner {
-    background: #1a1a1a;
+    background: #004d43;
     padding: 40px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -66,14 +66,15 @@
 }
 
 .footer-cta-btn.primary {
-    background: #ff5722;
-    color: white;
+    background: #e8ee26;
+    color: #004d43;
+    font-weight: 700;
 }
 
 .footer-cta-btn.primary:hover {
-    background: #f4511e;
+    background: #d4da1f;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
+    box-shadow: 0 8px 20px rgba(232, 238, 38, 0.3);
 }
 
 .footer-cta-btn.secondary {
@@ -186,12 +187,12 @@
 }
 
 .footer-links a.highlight-link {
-    color: #ff5722;
+    color: #e8ee26;
     font-weight: 600;
 }
 
 .footer-links a.highlight-link:hover {
-    color: #f4511e;
+    color: #d4da1f;
 }
 
 /* ─── Socials ─── */
@@ -246,14 +247,14 @@
 .product-email {
     display: block;
     font-size: 0.85rem;
-    color: #ff5722;
+    color: #e8ee26;
     text-decoration: none;
     margin-bottom: 4px;
     transition: color 0.2s ease;
 }
 
 .product-email:hover {
-    color: #f4511e;
+    color: #d4da1f;
 }
 
 .product-link {
