@@ -13,7 +13,7 @@ import './HomePage.css';
 function HomePage() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useState({
-        date: '23/04/2026',
+        date: '',
         area: 'All areas',
         sport: 'All sports'
     });
@@ -79,9 +79,8 @@ function HomePage() {
                                     <label className="search-form-label">When</label>
                                     <div className="search-form-input-wrapper">
                                         <input 
-                                            type="text" 
+                                            type="date" 
                                             className="search-form-input" 
-                                            placeholder="23/04/2026"
                                             value={searchParams.date}
                                             onChange={(e) => handleInputChange('date', e.target.value)}
                                         />
