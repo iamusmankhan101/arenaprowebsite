@@ -63,17 +63,16 @@ function HomePage() {
     return (
         <div className="home-page">
             <Navbar />
-            <Features />
-
-            {/* Tier 1 — In-body sport links (SEO silo entry points) */}
+            
+            {/* Hero Section - Book Your Game */}
             <section className="homepage-sports-section">
                 <div className="homepage-sports-inner">
                     <div className="homepage-sports-left">
                         <span className="homepage-sports-eyebrow">Pakistan · Padel & Cricket</span>
-                        <h2 className="homepage-sports-title">
+                        <h1 className="homepage-sports-title">
                             Book Your Game<br />
                             <span className="highlight">In Seconds</span>
-                        </h2>
+                        </h1>
                         <p className="homepage-sports-sub">
                             Search by city and date, explore top sports, then lock a slot and finish on WhatsApp with the venue — fast, clear, no guesswork.
                         </p>
@@ -106,6 +105,8 @@ function HomePage() {
                     </div>
                 </div>
             </section>
+
+            <Features />
 
             <Steps />
             <AppGallery />

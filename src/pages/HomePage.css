@@ -1,9 +1,9 @@
 .homepage-sports-section {
     position: relative;
-    min-height: 700px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 24px;
+    padding: 140px 24px 100px;
     overflow: hidden;
     background: linear-gradient(135deg, #004d43 0%, #003d35 50%, #002d28 100%);
 }
