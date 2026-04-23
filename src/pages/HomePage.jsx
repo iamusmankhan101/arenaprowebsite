@@ -25,7 +25,7 @@ function HomePage() {
             <section className="homepage-sports-section">
                 <div className="homepage-sports-inner">
                     <div className="homepage-sports-left">
-                        <span className="homepage-sports-eyebrow">Pakistan · Padel & Cricket</span>
+                        <span className="homepage-sports-eyebrow">Arena Pro</span>
                         <h1 className="homepage-sports-title">
                             Find and Book the Best Cricket & Padel Venues in Lahore.
                         </h1>
