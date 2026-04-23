@@ -16,7 +16,7 @@
     right: 0;
     bottom: 0;
     background-image: 
-        url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2070&auto=format&fit=crop'),
+        url('/image/2025-10-13.webp'),
         linear-gradient(135deg, rgba(0, 77, 67, 0.92) 0%, rgba(0, 61, 53, 0.95) 100%);
     background-size: cover;
     background-position: center;
