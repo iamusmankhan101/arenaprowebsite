@@ -6,6 +6,20 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="footer">
+            {/* CTA Banner for Venue Owners */}
+            <div className="footer-cta-banner">
+                <div className="footer-cta-content">
+                    <div className="footer-cta-text">
+                        <span className="footer-cta-label">FOR VENUE OWNERS</span>
+                        <h3 className="footer-cta-title">List free. Get discovered. Take bookings on WhatsApp.</h3>
+                    </div>
+                    <div className="footer-cta-buttons">
+                        <Link to="/waitlist" className="footer-cta-btn primary">LIST YOUR VENUE</Link>
+                        <Link to="/waitlist" className="footer-cta-btn secondary">PARTNER WITH US</Link>
+                    </div>
+                </div>
+            </div>
+
             <div className="footer-container">
                 <div className="footer-grid">
                     {/* Column 1: Brand */}
@@ -14,82 +28,64 @@ const Footer = () => {
                             <img src="/image/pitch it logo (500 x 200 px) (2).png" alt="ArenaPro" className="footer-logo-img" />
                         </div>
                         <p className="footer-desc">
-                            Discover and book top sports venues instantly. From futsal courts and padel to indoor cricket — Arena Pro is your all-in-one sports booking app in Lahore.
+                            Discover padel, cricket, futsal, pickleball, and beach volleyball venues in Pakistan. Pick a time, reserve your slot, and confirm with the venue on WhatsApp.
                         </p>
+                        <div className="footer-contact-item">
+                            <Phone size={16} />
+                            <a href="tel:+923712524553">+92 371 2524553</a>
+                        </div>
                         <div className="footer-socials">
                             <a href="https://www.instagram.com/arenapropk" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                                 <Instagram size={18} />
                             </a>
                         </div>
+                        <div className="footer-product-by">
+                            <p className="product-label">PRODUCT BY</p>
+                            <p className="product-name">The Web Xperts</p>
+                            <a href="mailto:hello@thewebxperts.co" className="product-email">hello@thewebxperts.co</a>
+                            <a href="https://thewebxperts.co" target="_blank" rel="noopener noreferrer" className="product-link">thewebxperts.co</a>
+                        </div>
                     </div>
 
-                    {/* Column 2: Quick Links */}
+                    {/* Column 2: Explore */}
                     <div className="footer-col">
-                        <h4 className="footer-heading">Quick Links</h4>
+                        <h4 className="footer-heading">EXPLORE</h4>
                         <ul className="footer-links">
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/how-it-works">How It Works</Link></li>
-                            <li><Link to="/venues">Venues</Link></li>
-                            <li><Link to="/blog">Blog</Link></li>
-                            <li><Link to="/contact">Contact Us</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Column 3: Sports */}
-                    <div className="footer-col">
-                        <h4 className="footer-heading">Sports</h4>
-                        <ul className="footer-links">
-                            <li><Link to="/indoor-cricket-lahore">Indoor Cricket</Link></li>
+                            <li><Link to="/venues">All venues</Link></li>
+                            <li><Link to="/padel-court-lahore">Padel</Link></li>
+                            <li><Link to="/indoor-cricket-lahore">Cricket</Link></li>
                             <li><Link to="/futsal-ground-lahore">Futsal</Link></li>
-                            <li><Link to="/padel-court-lahore">Padel Court</Link></li>
-                            <li><Link to="/padel-tennis-near-me">Padel Tennis Near Me</Link></li>
-                            <li><Link to="/badminton-court-lahore">Badminton</Link></li>
+                            <li><Link to="/venues">Pickleball</Link></li>
+                            <li><Link to="/venues">Beach volleyball</Link></li>
+                            <li><Link to="/">Search on home</Link></li>
                         </ul>
                     </div>
 
-                    {/* Column 4: Popular Areas */}
+                    {/* Column 3: For Business */}
                     <div className="footer-col">
-                        <h4 className="footer-heading">Popular Areas</h4>
+                        <h4 className="footer-heading">FOR BUSINESS</h4>
                         <ul className="footer-links">
-                            <li><Link to="/venues/johar-town">Johar Town</Link></li>
-                            <li><Link to="/venues/model-town">Model Town</Link></li>
-                            <li><Link to="/venues/dha">DHA</Link></li>
-                            <li><Link to="/venues/bahria-town">Bahria Town</Link></li>
-                            <li><Link to="/venues/wapda-town">Wapda Town</Link></li>
+                            <li><Link to="/waitlist" className="highlight-link">Partner with us →</Link></li>
+                            <li><Link to="/waitlist">List your venue</Link></li>
+                            <li><Link to="/waitlist">Venue sign in</Link></li>
+                            <li><Link to="/faq">Owner FAQ</Link></li>
                         </ul>
                     </div>
 
-                    {/* Column 5: Contact Info */}
+                    {/* Column 4: Legal & Help */}
                     <div className="footer-col">
-                        <h4 className="footer-heading">Contact Us</h4>
-                        <ul className="footer-contact-list">
-                            <li>
-                                <Phone size={16} />
-                                <a href="tel:+923712524553">0371 2524553</a>
-                            </li>
-                            <li>
-                                <Mail size={16} />
-                                <a href="mailto:support@arenapropk.online">support@arenapropk.online</a>
-                            </li>
-                            <li>
-                                <MapPin size={16} />
-                                <span>Lahore, Punjab, Pakistan</span>
-                            </li>
+                        <h4 className="footer-heading">LEGAL & HELP</h4>
+                        <ul className="footer-links">
+                            <li><Link to="/privacy">Privacy policy</Link></li>
+                            <li><Link to="/terms">Terms & conditions</Link></li>
+                            <li><Link to="/faq">FAQs</Link></li>
+                            <li><Link to="/contact">Contact</Link></li>
                         </ul>
-
-                        <a
-                            href="https://play.google.com/store"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="footer-download-btn"
-                        >
-                            <img src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png" alt="Get it on Google Play" className="footer-playstore-img" />
-                        </a>
                     </div>
                 </div>
 
                 <div className="footer-bottom">
-                    <p className="copyright">© 2026 ArenaPro. All rights reserved | Made with ❤️ By Werzio</p>
+                    <p className="copyright">© 2026 ArenaPro. All rights reserved</p>
                 </div>
             </div>
         </footer>
