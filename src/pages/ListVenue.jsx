@@ -50,7 +50,7 @@ const ListVenue = () => {
 
     return (
         <div className="list-venue-page">
-            <Navbar />
+            <Navbar forceScrolled={true} />
 
             <div className="list-venue-container">
                 <div className="list-venue-content">
