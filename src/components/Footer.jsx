@@ -15,7 +15,6 @@ const Footer = () => {
                     </div>
                     <div className="footer-cta-buttons">
                         <Link to="/list-venue" className="footer-cta-btn primary">LIST YOUR VENUE</Link>
-                        <Link to="/list-venue" className="footer-cta-btn secondary">PARTNER WITH US</Link>
                     </div>
                 </div>
             </div>
@@ -56,7 +55,6 @@ const Footer = () => {
                     <div className="footer-col">
                         <h4 className="footer-heading">FOR BUSINESS</h4>
                         <ul className="footer-links">
-                            <li><Link to="/list-venue" className="highlight-link">Partner with us →</Link></li>
                             <li><Link to="/list-venue">List your venue</Link></li>
                             <li><Link to="/waitlist">Venue sign in</Link></li>
                             <li><Link to="/faq">Owner FAQ</Link></li>
