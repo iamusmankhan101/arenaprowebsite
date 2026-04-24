@@ -34,7 +34,9 @@ function HomePage() {
         const fetchVenues = async () => {
             try {
                 const data = await venueService.getVenues();
-                setVenues(data.slice(0, 6)); // Show only first 6 venues
+                const venueData = data.slice(0, 6);
+                // Duplicate venues for infinite scroll
+                setVenues([...venueData, ...venueData, ...venueData]);
             } catch (error) {
                 console.error("Failed to load venues:", error);
             } finally {
@@ -75,16 +77,31 @@ function HomePage() {
     };
 
     const nextSlide = () => {
-        if (currentSlide < venues.length - 3) {
-            setCurrentSlide((prev) => prev + 1);
-        }
+        setCurrentSlide((prev) => prev + 1);
     };
 
     const prevSlide = () => {
-        if (currentSlide > 0) {
-            setCurrentSlide((prev) => prev - 1);
-        }
+        setCurrentSlide((prev) => prev - 1);
     };
+
+    // Reset position when reaching cloned sections
+    useEffect(() => {
+        if (venues.length === 0) return;
+        
+        const originalLength = venues.length / 3;
+        
+        if (currentSlide >= originalLength * 2) {
+            // At the end, jump back to middle section
+            setTimeout(() => {
+                setCurrentSlide(originalLength);
+            }, 600);
+        } else if (currentSlide < 0) {
+            // Before the start, jump to middle section
+            setTimeout(() => {
+                setCurrentSlide(originalLength - 1);
+            }, 0);
+        }
+    }, [currentSlide, venues.length]);
     return (
         <div className="home-page">
             <Navbar />
