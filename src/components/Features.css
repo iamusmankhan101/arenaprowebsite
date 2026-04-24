@@ -1,15 +1,45 @@
-/* ═══════════════════════════════ FEATURES SECTION ═══════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   FEATURES SECTION — Enhanced
+═══════════════════════════════════════════════════════ */
+
 .features {
     position: relative;
     z-index: 10;
-    padding: 120px 24px;
-    background: #fafafa;
+    padding: 130px 24px;
+    background: #f5f5f2;
     font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+/* Soft background orbs */
+.features-bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
+    opacity: 0.45;
+}
+.features-bg-orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #cdec6a 0%, transparent 70%);
+    top: -120px;
+    right: -100px;
+}
+.features-bg-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,77,67,0.15) 0%, transparent 70%);
+    bottom: -80px;
+    left: -80px;
 }
 
 .features-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* ── Header ── */
@@ -19,480 +49,741 @@
 }
 
 .features-eyebrow {
-    display: inline-block;
-    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: #004d43;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     padding: 8px 20px;
     background: rgba(0, 77, 67, 0.08);
     border-radius: 50px;
-    border: 1px solid rgba(0, 77, 67, 0.12);
+    border: 1px solid rgba(0, 77, 67, 0.15);
 }
 
 .features-title {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
     font-weight: 700;
     font-family: 'Clash Display', sans-serif;
     color: #1a1a1a;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .highlight-text {
     color: #004d43;
-    font-weight: 600;
 }
 
 .features-subtitle {
-    font-size: 1.05rem;
-    color: #777;
-    max-width: 520px;
+    font-size: 1rem;
+    color: #888;
+    max-width: 480px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
-/* ── Grid Layout ── */
+/* ── Grid ── */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 24px;
+    gap: 20px;
 }
 
 /* ── Base Card ── */
 .feature-card {
-    border-radius: 24px;
+    border-radius: 28px;
     padding: 36px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.4s ease;
-    min-height: 320px;
+    min-height: 300px;
+    /* Entrance animation */
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+        box-shadow 0.35s ease;
+}
+
+.feature-card.card-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .feature-card:hover {
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
     transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 }
 
-/* ── Feature Number Badge ── */
+.feature-card.card-visible:hover {
+    transform: translateY(-6px);
+}
+
+/* Feature Number */
 .feature-number {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    padding: 5px 12px;
-    border-radius: 20px;
-    z-index: 5;
-    letter-spacing: 0.5px;
-    color: rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    bottom: 28px;
+    right: 28px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-family: 'Clash Display', sans-serif;
+    color: rgba(0, 0, 0, 0.04);
+    line-height: 1;
+    letter-spacing: -2px;
+    pointer-events: none;
+    user-select: none;
+}
+.feature-number-light {
+    color: rgba(255,255,255,0.07);
+}
+.feature-number-muted {
+    color: rgba(255,255,255,0.05);
 }
 
 /* ── Icon Wraps ── */
 .card-icon-wrap {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
     flex-shrink: 0;
 }
+.card-icon-lime-dark   { background: #004d43;  color: #cdec6a; }
+.card-icon-dark-solid  { background: #1a1a1a;  color: #e8ee26; }
+.card-icon-green-soft  { background: rgba(0,77,67,0.1); color: #004d43; }
+.card-icon-white-soft  { background: rgba(255,255,255,0.18); color: #fff; }
+.card-icon-yellow-glow { background: rgba(232,238,38,0.15); color: #e8ee26; }
 
-.card-icon-accent {
-    background: rgba(232, 238, 38, 0.2);
-    color: #004d43;
-}
-
-.card-icon-green {
-    background: rgba(0, 77, 67, 0.12);
-    color: #004d43;
-}
-
-.card-icon-dark {
-    background: rgba(26, 26, 26, 0.08);
-    color: #1a1a1a;
-}
-
-.card-icon-white {
-    background: rgba(255, 255, 255, 0.25);
-    color: #fff;
-}
-
-.card-icon-lime {
-    background: rgba(205, 236, 106, 0.3);
-    color: #2d5a1e;
-}
-
-/* ── Text ── */
+/* Text */
 .card-heading {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 700;
     font-family: 'Clash Display', sans-serif;
     margin-bottom: 10px;
     line-height: 1.2;
 }
-
 .card-desc {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    opacity: 0.8;
-    max-width: 340px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    opacity: 0.75;
+    max-width: 360px;
 }
 
-/* ═══════════════════════════════ CARD VARIANTS ═══════════════════════════════ */
-
-/* ── 1. Instant Booking (Hero card — spans 2 cols) ── */
+/* ═══════════════════════════════════════════════════════
+   CARD 1 — INSTANT BOOKING (2-col hero)
+═══════════════════════════════════════════════════════ */
 .card-instant-booking {
     grid-column: 1 / 3;
-    grid-row: 1 / 2;
     background: #ffffff;
-    border: 1px solid #eee;
+    border: 1px solid #ebebeb;
     flex-direction: row;
-    align-items: flex-start;
-    gap: 40px;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-.card-instant-booking .card-heading {
-    color: #1a1a1a;
-}
-
-.card-instant-booking .card-desc {
-    color: #555;
-}
-
-.card-instant-booking .feature-number {
-    color: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.06);
-}
-
-.card-instant-booking .card-text {
+.card-left {
     flex: 1;
-}
-
-/* Decorative slot list */
-.card-decoration-booking {
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-width: 200px;
-    margin-top: 10px;
+    justify-content: center;
+    border-right: 1px solid #f0f0f0;
 }
 
-.decoration-slot {
+.card-left .card-heading { color: #1a1a1a; }
+.card-left .card-desc    { color: #666; }
+
+.card-right {
+    width: 400px;
+    flex-shrink: 0;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+}
+
+/* Inline tags */
+.card-tag-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.inline-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 50px;
+    background: rgba(0,77,67,0.06);
+    color: #004d43;
+    border: 1px solid rgba(0,77,67,0.12);
+    letter-spacing: 0.3px;
+}
+
+/* Slot card */
+.slot-card {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.slot-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
-    background: #f7f7f7;
-    border-radius: 14px;
-    border: 1px solid #eee;
-    transition: all 0.3s ease;
+    margin-bottom: 16px;
 }
-
-.decoration-slot.active-slot {
-    background: #004d43;
-    border-color: #004d43;
-}
-
-.active-slot .slot-time {
-    color: #fff;
+.slot-card-label {
+    font-size: 0.72rem;
     font-weight: 700;
-}
-
-.active-slot .slot-available {
-    background: #e8ee26;
-    color: #004d43;
-}
-
-.slot-time {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #333;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.slot-status {
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
+    color: #999;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
-
-.slot-available {
-    background: rgba(0, 77, 67, 0.1);
+.slot-card-sport {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: #004d43;
 }
+.sport-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.sport-padel { background: #cdec6a; }
 
-.slot-booked {
-    background: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
+.slot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* slightly more gap based on image */
 }
 
-/* ── 2. Discover Venues ── */
+.slot-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 12px 10px 28px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    height: 96px;
+}
+.slot-item-available { background: #fbfbfb; border: 1px solid #f2f2f2; }
+.slot-item-booked    { background: #fffcfc; border: 1px solid #ffebeb; }
+.slot-item-active    { background: #004d43; border: 1px solid #004d43; }
+
+.slot-item-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+.slot-icon { font-size: 0.9rem; } /* fallback */
+.slot-time-stack {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.1;
+    color: #1a1a1a;
+}
+.slot-item-active .slot-time-stack  { color: #fff; }
+.slot-item-booked .slot-time-stack  { color: #cd6060; } /* red-ish color for time */
+
+.slot-pill-large {
+    height: 100%;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.25;
+    flex-shrink: 0;
+}
+.slot-pill-available { background: #f4f6f7; color: #1a1a1a; }
+.slot-pill-booked    { background: #ffffff; color: #9a9a9a; opacity: 0.8; }
+
+
+/* Based on image: 
+   AVAILABLE -> white/light-gray pill, dark text "AVAILABLE" 
+   BOOKED -> white pill, bordered?, reddish text "BOOKED"? 
+   Wait, the image showed booked pill as: light greyish and text is red, but wait. Let me use solid backgrounds for the pills. */
+.slot-pill-available { background: #f7fbfa; color: #1a1a1a; }
+.slot-pill-booked    { background: #fffdfd; color: #5a5a5a; }
+.slot-pill-active    { background: #f6f8f7; color: #1a1a1a; }
+
+/* The pulse dot for book now */
+.slot-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #688a83; /* muted green dot from image */
+    margin-bottom: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CARD 2 — DISCOVER (lime)
+═══════════════════════════════════════════════════════ */
 .card-discover {
+    background: #cdec6a;
     grid-column: 3 / 4;
     grid-row: 1 / 2;
-    background: #cdec6a;
+}
+.card-discover .card-heading { color: #1a1a1a; }
+.card-discover .card-desc    { color: #3a4a20; opacity: 1; }
+
+.discover-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 24px;
+}
+.location-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #2d4010;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+.location-pill:hover {
+    background: rgba(255,255,255,0.75);
+}
+.active-pill {
+    background: #004d43;
+    color: #cdec6a;
+    border-color: #004d43;
+}
+.active-pill:hover {
+    background: #003d35;
 }
 
-.card-discover .card-heading {
-    color: #1a1a1a;
-}
-
-.card-discover .card-desc {
-    color: #333;
-}
-
-.card-discover .feature-number {
-    color: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.06);
-}
-
-/* ── 3. Real-Time Availability ── */
+/* ═══════════════════════════════════════════════════════
+   CARD 3 — REAL-TIME (white)
+═══════════════════════════════════════════════════════ */
 .card-realtime {
+    background: #ffffff;
+    border: 1px solid #ebebeb;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
-    background: #ffffff;
-    border: 1px solid #eee;
+}
+.card-realtime .card-heading { color: #1a1a1a; }
+.card-realtime .card-desc    { color: #666; }
+
+.realtime-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 24px;
+    background: rgba(0,77,67,0.04);
+    border: 1px solid rgba(0,77,67,0.1);
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+.live-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+    animation: live-pulse 2s ease-in-out infinite;
+}
+@keyframes live-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+}
+.live-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #004d43;
+    flex: 1;
+}
+.live-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #004d43;
+    background: rgba(0,77,67,0.1);
+    padding: 4px 10px;
+    border-radius: 50px;
 }
 
-.card-realtime .card-heading {
-    color: #1a1a1a;
-}
-
-.card-realtime .card-desc {
-    color: #555;
-}
-
-.card-realtime .feature-number {
-    color: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.06);
-}
-
-/* ── 4. Verified & Trusted (Wide card — spans 2 cols) ── */
+/* ═══════════════════════════════════════════════════════
+   CARD 4 — VERIFIED (dark green, 2-col)
+═══════════════════════════════════════════════════════ */
 .card-verified {
     grid-column: 2 / 4;
     grid-row: 2 / 3;
     background: #004d43;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding: 44px 44px;
 }
+.card-verified .card-heading { color: #ffffff; }
+.card-verified .card-desc    { color: rgba(255,255,255,0.7); opacity: 1; }
 
-.card-verified .card-heading {
-    color: #ffffff;
-}
-
-.card-verified .card-desc {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.card-verified .feature-number {
-    color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Verified Badges */
-.card-verified-badges {
+.verified-inner {
+    flex: 1;
     display: flex;
-    gap: 12px;
-    margin-top: auto;
-    padding-top: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.verified-badge {
+/* Checklist */
+.verified-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+.verified-check-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8rem;
+    gap: 10px;
+    font-size: 0.82rem;
     font-weight: 600;
-    backdrop-filter: blur(4px);
-    transition: background 0.3s ease;
+    color: rgba(255,255,255,0.85);
+}
+.check-icon { color: #cdec6a; flex-shrink: 0; }
+
+/* Score badge */
+.verified-score-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 28px 32px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
+.score-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(#e8ee26 330deg, rgba(255,255,255,0.1) 0deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.score-ring::before {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #004d43;
+}
+.score-val {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Clash Display', sans-serif;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+}
+.score-label {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+.score-stars {
+    display: flex;
+    gap: 2px;
+}
+.score-sub {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.3px;
 }
 
-.verified-badge:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* ── 5. Payments ── */
+/* ═══════════════════════════════════════════════════════
+   CARD 5 — PAYMENTS (white)
+═══════════════════════════════════════════════════════ */
 .card-payments {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
     background: #ffffff;
-    border: 1px solid #eee;
+    border: 1px solid #ebebeb;
+}
+.card-payments .card-heading { color: #1a1a1a; }
+.card-payments .card-desc    { color: #666; }
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+.pay-method {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-radius: 12px;
+    min-width: 64px;
+    height: 44px;
+    transition: all 0.25s ease;
+}
+.pay-method:hover {
+    border-color: #004d43;
+    background: rgba(0,77,67,0.04);
+    transform: translateY(-2px);
+}
+.pay-logo {
+    height: 22px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(0.2);
+}
+.pay-cash {
+    display: flex;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #444;
 }
 
-.card-payments .card-heading {
-    color: #1a1a1a;
-}
-
-.card-payments .card-desc {
-    color: #555;
-}
-
-.card-payments .feature-number {
-    color: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.06);
-}
-
-/* ── 6. Smart Scheduling ── */
+/* ═══════════════════════════════════════════════════════
+   CARD 6 — SCHEDULING (dark, 2-col)
+═══════════════════════════════════════════════════════ */
 .card-scheduling {
     grid-column: 2 / 4;
     grid-row: 3 / 4;
     background: #1a1a1a;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+.card-scheduling .card-heading { color: #ffffff; }
+.card-scheduling .card-desc    { color: rgba(255,255,255,0.55); opacity: 1; }
+.card-scheduling .card-icon-wrap { margin-bottom: 0; }
+
+/* Mini Calendar */
+.scheduling-mini-cal {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 20px 24px;
+    min-width: 220px;
+}
+.cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.cal-month {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Clash Display', sans-serif;
+}
+.cal-icon { color: rgba(255,255,255,0.4); }
+.cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    text-align: center;
+}
+.cal-day-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 4px;
+}
+.cal-day-num {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 auto;
+}
+.cal-day-num:hover { background: rgba(255,255,255,0.1); }
+.cal-day-active {
+    background: #e8ee26 !important;
+    color: #1a1a1a !important;
+    font-weight: 800;
+}
+.cal-day-booked {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.3);
 }
 
-.card-scheduling .card-heading {
-    color: #ffffff;
+/* Flex wrapper for scheduling card content */
+.card-scheduling > .card-icon-wrap {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    margin-bottom: 0;
+}
+.card-scheduling > .card-text {
+    padding-left: 0;
+    margin-top: 80px;
+    flex: 1;
+}
+.card-scheduling > .scheduling-mini-cal {
+    margin-top: 0;
 }
 
-.card-scheduling .card-desc {
-    color: rgba(255, 255, 255, 0.65);
+/* Fix scheduling card layout */
+.card-scheduling {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 0;
+}
+.card-scheduling > .card-icon-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    position: static;
+    margin-bottom: 16px;
+    align-self: start;
+}
+.card-scheduling > .card-text {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+    padding: 0;
+}
+.card-scheduling > .scheduling-mini-cal {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    margin-left: 32px;
+}
+.card-scheduling > .feature-number {
+    grid-column: 1 / 3;
+    grid-row: 2;
 }
 
-.card-scheduling .feature-number {
-    color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.08);
-}
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
 
-.card-scheduling .card-icon-accent {
-    background: rgba(232, 238, 38, 0.15);
-    color: #e8ee26;
-}
+    .card-instant-booking { grid-column: 1 / 3; flex-direction: column; }
+    .card-left { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 32px; }
+    .card-right { width: 100%; padding: 24px 32px 32px; background: transparent; }
 
-/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+    .card-discover  { grid-column: 1 / 2; grid-row: auto; }
+    .card-realtime  { grid-column: 2 / 3; grid-row: auto; }
 
-@media (max-width: 1024px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Adjust card spans for 2 columns */
-    .card-instant-booking {
+    .card-verified  {
         grid-column: 1 / 3;
+        grid-row: auto;
         flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+    }
+    .verified-score-badge {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
         gap: 24px;
     }
 
-    .card-discover {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .card-realtime {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .card-verified {
-        grid-column: 1 / 3;
-        grid-row: auto;
-    }
-
-    .card-payments {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
+    .card-payments   { grid-column: 1 / 2; grid-row: auto; }
     .card-scheduling {
-        grid-column: auto;
+        grid-column: 2 / 3;
         grid-row: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
     }
-
-    .card-decoration-booking {
-        min-width: auto;
-    }
+    .card-scheduling > .scheduling-mini-cal { margin-left: 0; width: 100%; }
 }
 
 @media (max-width: 768px) {
-    .features {
-        padding: 80px 16px;
-    }
-
-    .features-header {
-        margin-bottom: 48px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
+    .features { padding: 80px 16px; }
+    .features-header { margin-bottom: 48px; }
+    .features-grid { grid-template-columns: 1fr; gap: 14px; }
 
     .card-instant-booking,
     .card-verified,
-    .card-scheduling {
-        grid-column: auto;
-    }
+    .card-scheduling { grid-column: auto; }
 
-    .card-instant-booking {
-        flex-direction: column;
-        gap: 24px;
-    }
+    .card-verified { padding: 32px 28px; }
+    .verified-score-badge { flex-direction: row; gap: 20px; }
 
-    .feature-card {
-        min-height: auto;
-        padding: 28px 24px;
-    }
+    .feature-card { min-height: auto; padding: 28px 24px; }
+    .card-heading { font-size: 1.2rem; }
+    .card-desc    { font-size: 0.85rem; }
 
-    .card-heading {
-        font-size: 1.2rem;
-    }
+    .card-discover { grid-column: auto; grid-row: auto; }
+    .card-realtime { grid-column: auto; grid-row: auto; }
+    .card-payments { grid-column: auto; grid-row: auto; }
 
-    .card-desc {
-        font-size: 0.85rem;
-    }
+    .scheduling-mini-cal { width: 100%; }
 
-    .card-icon-wrap {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        margin-bottom: 20px;
-    }
-
-    .card-verified-badges {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .verified-badge {
-        width: fit-content;
-    }
-
-    .features-subtitle {
-        font-size: 0.95rem;
-    }
+    .slot-card { box-shadow: none; }
+    .feature-number { font-size: 2.5rem; bottom: 16px; right: 16px; }
 }
 
 @media (max-width: 480px) {
-    .features {
-        padding: 60px 16px;
-    }
-
-    .features-title {
-        font-size: 1.8rem;
-    }
-
-    .decoration-slot {
-        padding: 12px 14px;
-    }
-
-    .slot-time {
-        font-size: 0.8rem;
-    }
+    .features { padding: 60px 14px; }
+    .features-title { font-size: 2rem; }
+    .card-verified { flex-direction: column; }
+    .verified-score-badge { flex-direction: column; gap: 12px; }
+    .payment-methods { gap: 8px; }
+    .cal-days { gap: 4px; }
+    .cal-day-num { width: 24px; height: 24px; font-size: 0.7rem; }
 }
