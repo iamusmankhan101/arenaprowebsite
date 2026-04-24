@@ -201,7 +201,7 @@ function HomePage() {
                             <div 
                                 className="venues-carousel-track"
                                 style={{ 
-                                    transform: `translateX(-${currentSlide * (100 / 3)}%)`,
+                                    transform: `translateX(calc(-${currentSlide} * (33.333% + 8px)))`,
                                     transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                                 }}
                             >
