@@ -21,7 +21,7 @@ function HomePage() {
         sport: 'All sports'
     });
     const [venues, setVenues] = useState([]);
-    const [currentSlide, setCurrentSlide] = useState(6); // Start at middle set
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [loading, setLoading] = useState(true);
     const [isTransitioning, setIsTransitioning] = useState(true);
 
@@ -89,31 +89,31 @@ function HomePage() {
 
     // Reset position when reaching cloned sections
     useEffect(() => {
-        if (venues.length === 0) return;
+        if (venues.length === 0 || !isTransitioning) return;
         
         const originalLength = venues.length / 3;
         
-        // When we reach the end of the second set, jump to the start of middle set
-        if (currentSlide >= originalLength * 2) {
+        // When we reach the end of the first set, jump to the start of second set
+        if (currentSlide >= originalLength) {
             setTimeout(() => {
                 setIsTransitioning(false);
-                setCurrentSlide(originalLength);
+                setCurrentSlide(0);
             }, 600);
             setTimeout(() => {
                 setIsTransitioning(true);
             }, 650);
         } 
-        // When we go before the first set, jump to the end of middle set
-        else if (currentSlide < originalLength) {
+        // When we go before 0, jump to the end of first set
+        else if (currentSlide < 0) {
             setTimeout(() => {
                 setIsTransitioning(false);
-                setCurrentSlide(originalLength * 2 - 1);
+                setCurrentSlide(originalLength - 1);
             }, 600);
             setTimeout(() => {
                 setIsTransitioning(true);
             }, 650);
         }
-    }, [currentSlide, venues.length]);
+    }, [currentSlide, venues.length, isTransitioning]);
     return (
         <div className="home-page">
             <Navbar />
