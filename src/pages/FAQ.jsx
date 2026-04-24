@@ -7,28 +7,52 @@ import './FAQ.css';
 
 const faqData = [
     {
-        question: "How do I book a sports venue using Arena Pro?",
-        answer: "Booking is incredibly simple. Just open the app, search for the sport you want to play, select your preferred time slot, and confirm. Whether you are looking for an indoor cricket court near me or the top padel courts, you can secure your spot in seconds."
+        question: "What is Arena Pro?",
+        answer: "Arena Pro is a sports venue booking platform that allows users to easily find and book sports grounds online, including football, cricket, padel, and other facilities across Pakistan."
     },
     {
-        question: "What types of sports facilities can I find on the app?",
-        answer: "Arena Pro connects you with a wide variety of premium facilities. You can instantly discover a football turf near me, top-tier tennis courts in Lahore, and the best indoor cricket arenas. We partner with top locations, including premium DHA Lahore venues."
+        question: "How does Arena Pro work?",
+        answer: "Arena Pro lets you browse available sports venues, check real-time availability, and instantly book your preferred ground through the app or website without making multiple calls."
     },
     {
-        question: "I don't have a full team. Can I find other players on the app?",
-        answer: 'Absolutely. Arena Pro features a dedicated "Challenge Mode" & "Squad Builder." You can create your own team, track your win rate, and challenge other local squads to a match at your favorite cricket ground near me or local futsal turf.'
+        question: "Can I book sports grounds online in Pakistan using Arena Pro?",
+        answer: "Yes, Arena Pro provides a seamless online sports ground booking experience in Pakistan, helping you reserve football grounds, cricket grounds, and other sports venues in just a few clicks."
     },
     {
-        question: "How do I know my booking is fully confirmed?",
-        answer: "The moment you book your venue through the app, you will receive a real-time instant notification. Your slot is immediately secured in the venue's system, eliminating any chance of double-booking."
+        question: "What types of sports venues can I book on Arena Pro?",
+        answer: "You can book a variety of sports facilities including football grounds, cricket grounds, padel courts, futsal arenas, and both indoor and outdoor sports venues."
     },
     {
-        question: "Can I see what amenities a venue offers before booking?",
-        answer: "Yes! Every listing features Premium Venue Insights. Before finalizing your cricket grounds booking in Lahore, you can view detailed venue profiles, check player reviews, and look at amenity icons (like parking, water, and lighting) to ensure it meets your standards."
+        question: "Is Arena Pro available in my city?",
+        answer: "Arena Pro is expanding rapidly across major cities in Pakistan, including Lahore, Karachi, and Islamabad. More locations are being added regularly."
     },
     {
-        question: "I manage a sports club. Can I list my facility on Arena Pro?",
-        answer: "Yes, we provide a comprehensive vendor panel specifically for venues and clubs. Whether you manage a dedicated cricket ground indoor facility or multiple futsal turfs, our platform gives you efficient booking management, daily reporting, and real-time revenue tracking to streamline your operations."
+        question: "Do I need to create an account to book a sports venue?",
+        answer: "Yes, creating an account on Arena Pro allows you to manage bookings, track your match history, and receive updates about available slots and offers."
+    },
+    {
+        question: "Can I check real-time availability of sports grounds?",
+        answer: "Absolutely! Arena Pro provides real-time availability so you can instantly see which grounds are free and book them without delays."
+    },
+    {
+        question: "How can I pay for my booking on Arena Pro?",
+        answer: "Arena Pro supports multiple payment options, including online payments and cash options, depending on the venue."
+    },
+    {
+        question: "Can I cancel or reschedule my booking?",
+        answer: "Yes, you can cancel or reschedule your booking based on the venue’s cancellation policy listed on the platform."
+    },
+    {
+        question: "Is Arena Pro free to use?",
+        answer: "Yes, browsing and searching for sports venues on Arena Pro is completely free. You only pay when you confirm a booking."
+    },
+    {
+        question: "Why should I use Arena Pro instead of calling venues?",
+        answer: "Arena Pro saves time by eliminating the need for multiple calls. You get instant booking, real-time availability, and a hassle-free experience all in one place."
+    },
+    {
+        question: "Can sports venue owners list their grounds on Arena Pro?",
+        answer: "Yes, venue owners can partner with Arena Pro to list their sports facilities, manage bookings, and increase visibility to potential customers."
     }
 ];
 

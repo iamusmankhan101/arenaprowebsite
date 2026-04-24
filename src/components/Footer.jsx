@@ -57,7 +57,7 @@ const Footer = () => {
                         <ul className="footer-links">
                             <li><Link to="/list-venue">List your venue</Link></li>
                             <li><a href="https://admin.arenapropk.online" target="_blank" rel="noopener noreferrer">Vendor Portal</a></li>
-                            <li><Link to="/faq">Owner FAQ</Link></li>
+
                         </ul>
                     </div>
 
