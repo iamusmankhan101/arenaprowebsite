@@ -30,7 +30,6 @@ const Steps = () => {
             if (i < cards.length - 1) {
                 gsap.to(card, {
                     scale: 0.95,
-                    filter: "brightness(0.95)",
                     scrollTrigger: {
                         trigger: cards[i + 1],
                         start: 'top bottom',
