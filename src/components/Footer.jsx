@@ -56,7 +56,7 @@ const Footer = () => {
                         <h4 className="footer-heading">FOR BUSINESS</h4>
                         <ul className="footer-links">
                             <li><Link to="/list-venue">List your venue</Link></li>
-                            <li><Link to="/waitlist">Venue sign in</Link></li>
+                            <li><a href="https://admin.arenapropk.online" target="_blank" rel="noopener noreferrer">Vendor Portal</a></li>
                             <li><Link to="/faq">Owner FAQ</Link></li>
                         </ul>
                     </div>
