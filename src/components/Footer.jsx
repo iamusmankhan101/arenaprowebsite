@@ -11,7 +11,7 @@ const Footer = () => {
                 <div className="footer-cta-content">
                     <div className="footer-cta-text">
                         <span className="footer-cta-label">FOR VENUE OWNERS</span>
-                        <h3 className="footer-cta-title">List free. Get discovered. Take bookings on WhatsApp.</h3>
+                        <h3 className="footer-cta-title">List free. Get discovered. Take bookings on Easily.</h3>
                     </div>
                     <div className="footer-cta-buttons">
                         <Link to="/list-venue" className="footer-cta-btn primary">LIST YOUR VENUE</Link>

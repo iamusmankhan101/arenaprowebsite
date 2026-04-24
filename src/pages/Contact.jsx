@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import './Contact.css';
 import { Headset, MessageSquare, Mail, Facebook, Instagram, Twitter, Phone } from 'lucide-react';
 import { contactService } from '../services/contactService';
@@ -90,36 +91,35 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label>Email</label>
+                                <div className="form-group full-width">
+                                    <label>Email</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group full-width">
+                                    <label>Contact Details</label>
+                                    <div className="phone-input-wrapper">
+                                        <div className="country-prefix">
+                                            <span>+92</span>
+                                            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 1L5 5L9 1" stroke="#0F172A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </div>
                                         <input
-                                            type="email"
-                                            name="email"
-                                            placeholder="Enter your email"
-                                            value={formData.email}
+                                            type="tel"
+                                            name="phone"
+                                            placeholder="Enter your contact number"
+                                            value={formData.phone}
                                             onChange={handleChange}
                                             required
                                         />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Contact Details</label>
-                                        <div className="phone-input-wrapper">
-                                            <div className="country-prefix">
-                                                <span>+92</span>
-                                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1 1L5 5L9 1" stroke="#0F172A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            </div>
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                placeholder="Enter your contact number"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                        </div>
                                     </div>
                                 </div>
 
@@ -190,6 +190,8 @@ const Contact = () => {
                     </div>
                 </div>
             </main>
+
+            <Footer />
         </div>
     );
 };

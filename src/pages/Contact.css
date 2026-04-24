@@ -1,7 +1,8 @@
 .contact-page {
     min-height: 100vh;
     background-color: #f8fafc;
-    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
 }
 
 .contact-hero {
@@ -39,11 +40,12 @@
 
 .contact-container {
     max-width: 1100px;
-    margin: -80px auto 0;
+    margin: -80px auto 80px;
     /* Pull card over hero */
     padding: 0 20px;
     position: relative;
     z-index: 2;
+    flex: 1;
 }
 
 .contact-card {
@@ -57,7 +59,7 @@
 /* Form Section */
 .contact-form-section {
     flex: 1.4;
-    padding: 60px;
+    padding: 60px 60px 30px 60px;
 }
 
 .contact-form-section h2 {
@@ -328,7 +330,7 @@
 .contact-socials a:hover {
     opacity: 1;
     transform: scale(1.1);
-    color: #004d43;
+    color: #e0ee26;
 }
 
 /* Responsive */
