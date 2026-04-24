@@ -75,11 +75,15 @@ function HomePage() {
     };
 
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % Math.max(1, venues.length - 2));
+        if (currentSlide < venues.length - 3) {
+            setCurrentSlide((prev) => prev + 1);
+        }
     };
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + Math.max(1, venues.length - 2)) % Math.max(1, venues.length - 2));
+        if (currentSlide > 0) {
+            setCurrentSlide((prev) => prev - 1);
+        }
     };
     return (
         <div className="home-page">
@@ -196,7 +200,10 @@ function HomePage() {
                         <div className="venues-carousel">
                             <div 
                                 className="venues-carousel-track"
-                                style={{ transform: `translateX(-${currentSlide * 33.333}%)` }}
+                                style={{ 
+                                    transform: `translateX(-${currentSlide * (100 / 3)}%)`,
+                                    transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                                }}
                             >
                                 {venues.map((venue) => (
                                     <div key={venue.id} className="venue-carousel-item">
