@@ -21,8 +21,9 @@ function HomePage() {
         sport: 'All sports'
     });
     const [venues, setVenues] = useState([]);
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(6); // Start at middle set
     const [loading, setLoading] = useState(true);
+    const [isTransitioning, setIsTransitioning] = useState(true);
 
     useSEO(
         'Arena Pro - Book Futsal, Padel & Indoor Cricket Venues in Lahore',
@@ -77,10 +78,12 @@ function HomePage() {
     };
 
     const nextSlide = () => {
+        setIsTransitioning(true);
         setCurrentSlide((prev) => prev + 1);
     };
 
     const prevSlide = () => {
+        setIsTransitioning(true);
         setCurrentSlide((prev) => prev - 1);
     };
 
@@ -90,16 +93,25 @@ function HomePage() {
         
         const originalLength = venues.length / 3;
         
+        // When we reach the end of the second set, jump to the start of middle set
         if (currentSlide >= originalLength * 2) {
-            // At the end, jump back to middle section
             setTimeout(() => {
+                setIsTransitioning(false);
                 setCurrentSlide(originalLength);
             }, 600);
-        } else if (currentSlide < 0) {
-            // Before the start, jump to middle section
             setTimeout(() => {
-                setCurrentSlide(originalLength - 1);
-            }, 0);
+                setIsTransitioning(true);
+            }, 650);
+        } 
+        // When we go before the first set, jump to the end of middle set
+        else if (currentSlide < originalLength) {
+            setTimeout(() => {
+                setIsTransitioning(false);
+                setCurrentSlide(originalLength * 2 - 1);
+            }, 600);
+            setTimeout(() => {
+                setIsTransitioning(true);
+            }, 650);
         }
     }, [currentSlide, venues.length]);
     return (
@@ -219,11 +231,11 @@ function HomePage() {
                                 className="venues-carousel-track"
                                 style={{ 
                                     transform: `translateX(calc(-${currentSlide} * (33.333% + 8px)))`,
-                                    transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                                    transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none'
                                 }}
                             >
-                                {venues.map((venue) => (
-                                    <div key={venue.id} className="venue-carousel-item">
+                                {venues.map((venue, index) => (
+                                    <div key={`${venue.id}-${index}`} className="venue-carousel-item">
                                         <VenueCard venue={venue} />
                                     </div>
                                 ))}
