@@ -314,11 +314,16 @@
     color: #333;
 }
 
-.carousel-btn:hover {
+.carousel-btn:hover:not(:disabled) {
     background: #004d43;
     border-color: #004d43;
     color: white;
     transform: scale(1.05);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
 
 .venues-carousel {
@@ -330,12 +335,10 @@
 .venues-carousel-track {
     display: flex;
     gap: 24px;
-    width: fit-content;
 }
 
 .venue-carousel-item {
-    width: calc((100vw - 48px - 48px) / 3);
-    max-width: calc((1300px - 48px) / 3);
+    width: calc((100% - 48px) / 3);
     flex-shrink: 0;
 }
 
@@ -372,8 +375,7 @@
 /* Responsive for Our Venues */
 @media (max-width: 1024px) {
     .venue-carousel-item {
-        width: calc((100vw - 32px - 24px) / 2);
-        max-width: none;
+        width: calc((100% - 24px) / 2);
     }
 
     .our-venues-title {
@@ -393,8 +395,7 @@
     }
 
     .venue-carousel-item {
-        width: calc(100vw - 32px);
-        max-width: none;
+        width: 100%;
     }
 
     .our-venues-title {

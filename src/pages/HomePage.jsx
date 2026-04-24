@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Features from '../components/Features';
@@ -23,7 +23,9 @@ function HomePage() {
     const [venues, setVenues] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [isTransitioning, setIsTransitioning] = useState(true);
+    const [slidesVisible, setSlidesVisible] = useState(3);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
     useSEO(
         'Arena Pro - Book Futsal, Padel & Indoor Cricket Venues in Lahore',
@@ -35,10 +37,7 @@ function HomePage() {
         const fetchVenues = async () => {
             try {
                 const data = await venueService.getVenues();
-                const venueData = data.slice(0, 6);
-                // Create enough copies for smooth infinite scroll
-                setVenues([...venueData, ...venueData]);
-                // Start at the beginning of first set
+                setVenues(data.slice(0, 6));
                 setCurrentSlide(0);
             } catch (error) {
                 console.error("Failed to load venues:", error);
@@ -79,42 +78,48 @@ function HomePage() {
         }));
     };
 
-    const nextSlide = () => {
-        setIsTransitioning(true);
-        setCurrentSlide((prev) => prev + 1);
-    };
-
-    const prevSlide = () => {
-        setIsTransitioning(true);
-        setCurrentSlide((prev) => prev - 1);
-    };
-
-    // Reset position when reaching cloned sections
+    // Responsive slides count
     useEffect(() => {
-        if (venues.length === 0) return;
-        
-        const originalLength = venues.length / 2; // Half because we doubled the array
-        
-        // When we've scrolled through all original cards, reset to start
-        if (currentSlide >= originalLength && isTransitioning) {
-            const timer = setTimeout(() => {
-                setIsTransitioning(false);
-                setCurrentSlide(0);
-                setTimeout(() => setIsTransitioning(true), 50);
-            }, 600);
-            return () => clearTimeout(timer);
+        const updateSlidesVisible = () => {
+            if (window.innerWidth <= 768) setSlidesVisible(1);
+            else if (window.innerWidth <= 1024) setSlidesVisible(2);
+            else setSlidesVisible(3);
+        };
+        updateSlidesVisible();
+        window.addEventListener('resize', updateSlidesVisible);
+        return () => window.removeEventListener('resize', updateSlidesVisible);
+    }, []);
+
+    const maxSlide = Math.max(0, venues.length - slidesVisible);
+
+    // Clamp currentSlide when slidesVisible changes
+    useEffect(() => {
+        setCurrentSlide(prev => Math.min(prev, maxSlide));
+    }, [maxSlide]);
+
+    const nextSlide = useCallback(() => {
+        setCurrentSlide(prev => Math.min(prev + 1, maxSlide));
+    }, [maxSlide]);
+
+    const prevSlide = useCallback(() => {
+        setCurrentSlide(prev => Math.max(prev - 1, 0));
+    }, []);
+
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const diff = touchStartX.current - touchEndX.current;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
         }
-        
-        // When going backwards past 0, jump to the end of first set
-        if (currentSlide < 0 && isTransitioning) {
-            const timer = setTimeout(() => {
-                setIsTransitioning(false);
-                setCurrentSlide(originalLength - 1);
-                setTimeout(() => setIsTransitioning(true), 50);
-            }, 600);
-            return () => clearTimeout(timer);
-        }
-    }, [currentSlide, venues.length, isTransitioning]);
+    };
     return (
         <div className="home-page">
             <Navbar />
@@ -213,10 +218,10 @@ function HomePage() {
                             <p className="our-venues-subtitle">Discover premium sports facilities across Lahore</p>
                         </div>
                         <div className="carousel-controls">
-                            <button className="carousel-btn" onClick={prevSlide} aria-label="Previous">
+                            <button className="carousel-btn" onClick={prevSlide} aria-label="Previous" disabled={currentSlide === 0}>
                                 <ChevronLeft size={24} />
                             </button>
-                            <button className="carousel-btn" onClick={nextSlide} aria-label="Next">
+                            <button className="carousel-btn" onClick={nextSlide} aria-label="Next" disabled={currentSlide >= maxSlide}>
                                 <ChevronRight size={24} />
                             </button>
                         </div>
@@ -227,16 +232,21 @@ function HomePage() {
                             <p>Loading venues...</p>
                         </div>
                     ) : venues.length > 0 ? (
-                        <div className="venues-carousel">
+                        <div 
+                            className="venues-carousel"
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                        >
                             <div 
                                 className="venues-carousel-track"
                                 style={{ 
-                                    transform: `translateX(calc(-${currentSlide} * (33.333% + 8px)))`,
-                                    transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none'
+                                    transform: `translateX(calc(${-currentSlide} * (100% + 24px) / ${slidesVisible}))`,
+                                    transition: 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                                 }}
                             >
-                                {venues.map((venue, index) => (
-                                    <div key={`${venue.id}-${index}`} className="venue-carousel-item">
+                                {venues.map((venue) => (
+                                    <div key={venue.id} className="venue-carousel-item">
                                         <VenueCard venue={venue} />
                                     </div>
                                 ))}
