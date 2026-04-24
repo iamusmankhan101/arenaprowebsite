@@ -1,10 +1,10 @@
+/* ═══════════════════════════════ FEATURES SECTION ═══════════════════════════════ */
 .features {
     position: relative;
     z-index: 10;
-    padding: 100px 24px;
-    background: var(--white);
-    font-family: var(--font-family);
-    margin-top: 0px;
+    padding: 120px 24px;
+    background: #fafafa;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .features-container {
@@ -12,626 +12,487 @@
     margin: 0 auto;
 }
 
+/* ── Header ── */
 .features-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 72px;
+}
+
+.features-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #004d43;
+    margin-bottom: 20px;
+    padding: 8px 20px;
+    background: rgba(0, 77, 67, 0.08);
+    border-radius: 50px;
+    border: 1px solid rgba(0, 77, 67, 0.12);
 }
 
 .features-title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 600;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700;
     font-family: 'Clash Display', sans-serif;
-    color: #1f1f1f;
-    line-height: 1.2;
+    color: #1a1a1a;
+    line-height: 1.15;
+    margin-bottom: 16px;
 }
 
-/* --- Specific Text Highlight --- */
 .highlight-text {
     color: #004d43;
-    /* Muted gray for "Standout Features" per reference */
-    font-weight: 500;
-
+    font-weight: 600;
 }
 
+.features-subtitle {
+    font-size: 1.05rem;
+    color: #777;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Grid Layout ── */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    padding-bottom: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 24px;
 }
 
-/* --- Base Card --- */
+/* ── Base Card ── */
 .feature-card {
-    border-radius: 32px;
-    /* Large rounded corners */
-    padding: 40px;
+    border-radius: 24px;
+    padding: 36px;
     position: relative;
     overflow: hidden;
     display: flex;
-    transition: transform 0.3s ease;
-    min-height: 380px;
-    font-family: var(--font-family);
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.4s ease;
+    min-height: 320px;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 }
 
+/* ── Feature Number Badge ── */
 .feature-number {
     position: absolute;
-    top: 24px;
-    right: 24px;
-    font-size: 0.9rem;
+    top: 20px;
+    right: 20px;
+    font-size: 0.8rem;
     font-weight: 800;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 20px;
     z-index: 5;
-    backdrop-filter: blur(4px);
     letter-spacing: 0.5px;
-}
-
-/* Dark text for light cards */
-.mofin-blue .feature-number,
-.mofin-gray-wide .feature-number,
-.mofin-gray-tall .feature-number,
-.mofin-yellow .feature-number,
-.mofin-purple .feature-number {
-    color: rgba(31, 31, 31, 0.6);
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Light text for dark cards */
-.mofin-green .feature-number {
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.1);
+    color: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.mofin-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    font-family: 'Clash Display', sans-serif;
-    color: #ffffff;
-    margin-bottom: 12px;
-}
-
-.mofin-desc {
-    font-size: 0.95rem;
-    color: #ffffff;
-    line-height: 1.5;
-    max-width: 280px;
-}
-
-/* --- 1. MOFIN Blue (Booking) --- */
-.mofin-blue {
-    background: #cdec6a;
-    grid-column: 1 / 2;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.mofin-content {
-    position: relative;
-    z-index: 2;
-}
-
-.mofin-title-large {
-    font-size: 4rem;
-    font-weight: 600;
-    font-family: 'Clash Display', sans-serif;
-    color: rgba(255, 255, 255, 0.4);
-    line-height: 0.9;
-    margin-bottom: 24px;
-    letter-spacing: -2px;
-    mix-blend-mode: overlay;
-}
-
-.mofin-bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 9rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.1);
-    z-index: 1;
-    pointer-events: none;
-    white-space: nowrap;
-}
-
-.mofin-btn-dark {
-    background: #1f1f1f;
-    color: #fff;
-    padding: 16px 32px;
-    border-radius: 40px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-top: 10px;
-    cursor: pointer;
-    border: none;
-}
-
-/* --- 2. Gray Wide (Challenge) --- */
-.mofin-gray-wide {
-    background: #ffffff;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: space-between;
-}
-
-.mofin-gray-wide .mofin-title,
-.mofin-gray-wide .mofin-desc {
-    color: #1f1f1f;
-}
-
-.mofin-text-col {
-    flex: 1;
-    z-index: 2;
-    padding-top: 20px;
-}
-
-.mofin-visual-right {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.mofin-phone-mockup {
-    width: 220px;
-    height: 380px;
-    background: #fff;
-    border-radius: 36px;
-    border: 8px solid #1f1f1f;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
-    position: absolute;
-    right: -30px;
-    bottom: -60px;
-}
-
-.mp-screen {
-    padding: 18px;
-}
-
-.mp-header {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    margin-bottom: 24px;
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
-
-.mp-content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.mp-card {
-    background: #F8F9FA;
-    padding: 16px;
+/* ── Icon Wraps ── */
+.card-icon-wrap {
+    width: 56px;
+    height: 56px;
     border-radius: 16px;
     display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.mp-avatar {
-    width: 36px;
-    height: 36px;
-    background: #E0E0E0;
-    border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    margin-bottom: 24px;
+    flex-shrink: 0;
 }
 
-.mp-lines {
+.card-icon-accent {
+    background: rgba(232, 238, 38, 0.2);
+    color: #004d43;
+}
+
+.card-icon-green {
+    background: rgba(0, 77, 67, 0.12);
+    color: #004d43;
+}
+
+.card-icon-dark {
+    background: rgba(26, 26, 26, 0.08);
+    color: #1a1a1a;
+}
+
+.card-icon-white {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+
+.card-icon-lime {
+    background: rgba(205, 236, 106, 0.3);
+    color: #2d5a1e;
+}
+
+/* ── Text ── */
+.card-heading {
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    opacity: 0.8;
+    max-width: 340px;
+}
+
+/* ═══════════════════════════════ CARD VARIANTS ═══════════════════════════════ */
+
+/* ── 1. Instant Booking (Hero card — spans 2 cols) ── */
+.card-instant-booking {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    background: #ffffff;
+    border: 1px solid #eee;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.card-instant-booking .card-heading {
+    color: #1a1a1a;
+}
+
+.card-instant-booking .card-desc {
+    color: #555;
+}
+
+.card-instant-booking .feature-number {
+    color: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+.card-instant-booking .card-text {
+    flex: 1;
+}
+
+/* Decorative slot list */
+.card-decoration-booking {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-}
-
-.mpl {
-    height: 8px;
-    background: #E0E0E0;
-    border-radius: 4px;
-}
-
-.mpl-1 {
-    width: 80px;
-}
-
-.mpl-2 {
-    width: 50px;
-}
-
-.mp-stat-row {
-    text-align: center;
+    gap: 10px;
+    min-width: 200px;
     margin-top: 10px;
 }
 
-.mp-stat {
-    display: inline-block;
-    background: #fff;
-    color: #1f1f1f;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* --- 3. Gray Tall (Insights) --- */
-.mofin-gray-tall {
-    background: #ffffff;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    grid-column: 1 / 2;
-    flex-direction: column;
-}
-
-.mofin-gray-tall .mofin-title,
-.mofin-gray-tall .mofin-desc {
-    color: #1f1f1f;
-}
-
-.mofin-text-top {
-    margin-bottom: 40px;
-}
-
-.mofin-visual-bottom {
-    flex: 1;
-    position: relative;
+.decoration-slot {
     display: flex;
-    align-items: flex-end;
-}
-
-.mofin-float-card {
-    background: #fff;
-    border-radius: 24px;
-    padding: 28px;
-    width: 100%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-    position: relative;
-    bottom: -20px;
-    /* Slight cut-off at bottom like reference */
-    left: 20px;
-}
-
-.mfc-header {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: #f7f7f7;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
 }
 
-.mfc-icon {
-    font-size: 2rem;
-    background: #FEF3C7;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-}
-
-.mfc-info {
-    flex: 1;
-    margin-left: 16px;
-}
-
-.mfc-title {
-    font-weight: 700;
-    font-size: 1rem;
-    color: #1f1f1f;
-    margin-bottom: 4px;
-}
-
-.mfc-sub {
-    font-size: 0.8rem;
-    color: #888;
-    font-weight: 600;
-}
-
-.mfc-price {
-    font-weight: 800;
-    font-size: 1.1rem;
-}
-
-.mfc-body {
-    display: flex;
-    gap: 8px;
-}
-
-.mfc-tag {
-    background: #F3F4F6;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    color: #555;
-    font-weight: 600;
-}
-
-/* --- 4. Green (Map) --- */
-.mofin-green {
+.decoration-slot.active-slot {
     background: #004d43;
-    grid-column: 2 / 3;
-    flex-direction: column;
+    border-color: #004d43;
 }
 
-.mofin-visual-center {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-}
-
-.mofin-dark-card {
-    background: #1f1f1f;
-    border-radius: 24px;
-    padding: 24px;
-    width: 260px;
-    height: 160px;
+.active-slot .slot-time {
     color: #fff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.mdc-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    opacity: 0.6;
-    font-weight: 600;
-}
-
-.mdc-content {
-    text-align: left;
-}
-
-.mdc-loc {
-    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 4px;
 }
 
-.mofin-node {
-    position: absolute;
-    width: 44px;
-    height: 44px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    font-size: 1.2rem;
-    z-index: 1;
+.active-slot .slot-available {
+    background: #e8ee26;
+    color: #004d43;
 }
 
-.node-1 {
-    top: 0;
-    left: 10%;
+.slot-time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.node-2 {
-    bottom: 20px;
-    right: 10%;
+.slot-status {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
 }
 
-.node-3 {
-    top: 40%;
-    right: -20px;
-    opacity: 0.8;
+.slot-available {
+    background: rgba(0, 77, 67, 0.1);
+    color: #004d43;
 }
 
-/* --- 5. Pastel Variants --- */
-.mofin-yellow {
+.slot-booked {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* ── 2. Discover Venues ── */
+.card-discover {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
     background: #cdec6a;
-    /* Make these minimal/compact if needed, or keeping full size for grid consistency */
 }
 
-.mofin-purple {
+.card-discover .card-heading {
+    color: #1a1a1a;
+}
+
+.card-discover .card-desc {
+    color: #333;
+}
+
+.card-discover .feature-number {
+    color: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ── 3. Real-Time Availability ── */
+.card-realtime {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
     background: #ffffff;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
 }
 
-.mofin-purple .mofin-title,
-.mofin-purple .mofin-desc {
-    color: #1f1f1f;
+.card-realtime .card-heading {
+    color: #1a1a1a;
 }
 
-.mofin-visual-right-small {
+.card-realtime .card-desc {
+    color: #555;
+}
+
+.card-realtime .feature-number {
+    color: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ── 4. Verified & Trusted (Wide card — spans 2 cols) ── */
+.card-verified {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    background: #004d43;
+}
+
+.card-verified .card-heading {
+    color: #ffffff;
+}
+
+.card-verified .card-desc {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.card-verified .feature-number {
+    color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Verified Badges */
+.card-verified-badges {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 24px;
+    flex-wrap: wrap;
+}
+
+.verified-badge {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    position: absolute;
-    right: 40px;
-    bottom: 40px;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    transition: background 0.3s ease;
 }
 
-.mofin-coin,
-.mofin-bell {
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+.verified-badge:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.mofin-challenge-image {
-    width: 140%;
-    height: 140%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: -15%;
-    bottom: -5%;
+/* ── 5. Payments ── */
+.card-payments {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    background: #ffffff;
+    border: 1px solid #eee;
 }
 
-.mofin-challenge-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.card-payments .card-heading {
+    color: #1a1a1a;
 }
 
-.mofin-map-image {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
+.card-payments .card-desc {
+    color: #555;
 }
 
-.refer-earn-visual {
-    right: -5px;
-    bottom: -130px;
+.card-payments .feature-number {
+    color: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.06);
 }
 
-.mofin-refer-image {
-    width: 400px;
-    height: 400px;
-    object-fit: contain;
+/* ── 6. Smart Scheduling ── */
+.card-scheduling {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    background: #1a1a1a;
 }
 
-.alerts-visual {
-    right: 90px;
-    bottom: -20px;
+.card-scheduling .card-heading {
+    color: #ffffff;
 }
 
-.mofin-alerts-image {
-    width: 320px;
-    height: auto;
-    object-fit: contain;
+.card-scheduling .card-desc {
+    color: rgba(255, 255, 255, 0.65);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+.card-scheduling .feature-number {
+    color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.card-scheduling .card-icon-accent {
+    background: rgba(232, 238, 38, 0.15);
+    color: #e8ee26;
+}
+
+/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+
+@media (max-width: 1024px) {
     .features-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .mofin-blue,
-    .mofin-gray-wide,
-    .mofin-gray-tall,
-    .mofin-green {
+    /* Adjust card spans for 2 columns */
+    .card-instant-booking {
+        grid-column: 1 / 3;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .card-discover {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .card-realtime {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .card-verified {
+        grid-column: 1 / 3;
+        grid-row: auto;
+    }
+
+    .card-payments {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .card-scheduling {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .card-decoration-booking {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .features {
+        padding: 80px 16px;
+    }
+
+    .features-header {
+        margin-bottom: 48px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-instant-booking,
+    .card-verified,
+    .card-scheduling {
         grid-column: auto;
     }
 
-    .mofin-gray-wide,
-    .mofin-yellow,
-    .mofin-purple {
+    .card-instant-booking {
         flex-direction: column;
+        gap: 24px;
     }
 
-    .mofin-phone-mockup {
-        right: 0;
-        bottom: -20px;
-        transform: rotate(0);
-        position: relative;
-        margin: 0 auto;
+    .feature-card {
+        min-height: auto;
+        padding: 28px 24px;
     }
 
-    .mofin-visual-right {
-        justify-content: center;
-        margin-top: 40px;
-        min-height: 250px;
+    .card-heading {
+        font-size: 1.2rem;
     }
 
-    .mofin-challenge-image {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        right: 0;
-        bottom: 0;
+    .card-desc {
+        font-size: 0.85rem;
     }
 
-    .mofin-visual-right-small {
-        position: relative;
-        right: 0;
-        bottom: 0;
-        margin-top: 30px;
-        width: 100%;
+    .card-icon-wrap {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        margin-bottom: 20px;
     }
 
-    .mofin-visual-right-small img {
-        width: 250px;
-        height: 250px;
+    .card-verified-badges {
+        flex-direction: column;
+        gap: 8px;
     }
 
-    .alerts-visual {
-        right: 0;
-        bottom: 0;
-        margin-top: 20px;
-        justify-content: center;
+    .verified-badge {
+        width: fit-content;
     }
 
-    .refer-earn-visual {
-        right: 0;
-        bottom: 0;
+    .features-subtitle {
+        font-size: 0.95rem;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .features {
         padding: 60px 16px;
     }
 
     .features-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
-    .feature-card {
-        padding: 30px 24px;
-        min-height: auto;
+    .decoration-slot {
+        padding: 12px 14px;
     }
 
-    .mofin-title-large {
-        font-size: 3rem;
-    }
-
-    .mofin-bg-text {
-        font-size: 5rem;
-    }
-
-    .mofin-visual-right-small img {
-        width: 180px;
-        height: auto;
-    }
-
-    .mofin-map-image {
-        width: 100%;
-    }
-
-    .mofin-alerts-image {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-    }
-
-    .mofin-refer-image {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-    }
-
-    .mfc-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .mfc-price {
-        align-self: flex-start;
+    .slot-time {
+        font-size: 0.8rem;
     }
 }

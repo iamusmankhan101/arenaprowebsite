@@ -1,104 +1,134 @@
 import React from 'react';
+import { Calendar, MapPin, Clock, ShieldCheck, CreditCard, Star, Search, Zap } from 'lucide-react';
 import './Features.css';
 
 const Features = () => {
     return (
-        <section className="features">
+        <section className="features" id="features">
             <div className="features-container">
                 <header className="features-header">
-
+                    <span className="features-eyebrow">Why Arena Pro</span>
                     <h2 className="features-title">
-                        Elevate Your<br />
-                        <span className="highlight-text">Sports Experience</span>
+                        Everything You Need to<br />
+                        <span className="highlight-text">Book & Play</span>
                     </h2>
+                    <p className="features-subtitle">
+                        From discovering venues to confirming your slot — Arena Pro makes every step seamless.
+                    </p>
                 </header>
 
                 <div className="features-grid">
-                    {/* 1. MOFIN Blue Style - Smart Booking */}
-                    <div className="feature-card mofin-blue">
-                        <div className="mofin-content">
-                            <h3 className="mofin-title-large">SMART<br />BOOKING</h3>
-                            <p className="mofin-desc">Get the app</p>
-                            <button className="mofin-btn-dark">Download Now</button>
+                    {/* 1. Instant Booking — Large hero card */}
+                    <div className="feature-card card-instant-booking">
+                        <div className="card-icon-wrap card-icon-accent">
+                            <Zap size={28} />
                         </div>
-                        {/* Big distinct background text */}
-                        <div className="mofin-bg-text">BOOK</div>
+                        <div className="card-text">
+                            <h3 className="card-heading">Instant Booking</h3>
+                            <p className="card-desc">
+                                No calls, no waiting. Browse available time slots and confirm your booking in seconds — all from your browser.
+                            </p>
+                        </div>
+                        <div className="card-decoration card-decoration-booking">
+                            <div className="decoration-slot">
+                                <span className="slot-time">06:00 PM</span>
+                                <span className="slot-status slot-available">Available</span>
+                            </div>
+                            <div className="decoration-slot">
+                                <span className="slot-time">07:00 PM</span>
+                                <span className="slot-status slot-booked">Booked</span>
+                            </div>
+                            <div className="decoration-slot active-slot">
+                                <span className="slot-time">08:00 PM</span>
+                                <span className="slot-status slot-available">Available</span>
+                            </div>
+                        </div>
                         <div className="feature-number">01</div>
                     </div>
 
-                    {/* 2. Financial Analytics Style - Challenge Mode */}
-                    <div className="feature-card mofin-gray-wide">
-                        <div className="feature-number">02</div>
-                        <div className="mofin-text-col">
-                            <h3 className="mofin-title">Challenge Mode</h3>
-                            <p className="mofin-desc">Create teams, challenge local squads to indoor cricket, padel or futsal matches, and track professional stats like Win Rate.</p>
+                    {/* 2. Discover Venues — Standard card */}
+                    <div className="feature-card card-discover">
+                        <div className="card-icon-wrap card-icon-green">
+                            <Search size={28} />
                         </div>
-                        <div className="mofin-visual-right">
-                            <div className="mofin-challenge-image">
-                                <img
-                                    src="/image/Copy of arena pro logoqr (1).png"
-                                    alt="Challenge Mode Interface"
-                                />
+                        <div className="card-text">
+                            <h3 className="card-heading">Discover Venues</h3>
+                            <p className="card-desc">
+                                Explore top-rated padel courts, futsal grounds, and cricket nets across Lahore — filtered by area, sport, and availability.
+                            </p>
+                        </div>
+                        <div className="feature-number">02</div>
+                    </div>
+
+                    {/* 3. Real-Time Availability */}
+                    <div className="feature-card card-realtime">
+                        <div className="card-icon-wrap card-icon-dark">
+                            <Clock size={28} />
+                        </div>
+                        <div className="card-text">
+                            <h3 className="card-heading">Real-Time Availability</h3>
+                            <p className="card-desc">
+                                See live slot availability for every venue. No more calling ahead — what you see is what's open.
+                            </p>
+                        </div>
+                        <div className="feature-number">03</div>
+                    </div>
+
+                    {/* 4. Verified Venues — Wide card */}
+                    <div className="feature-card card-verified">
+                        <div className="card-icon-wrap card-icon-white">
+                            <ShieldCheck size={28} />
+                        </div>
+                        <div className="card-text">
+                            <h3 className="card-heading">Verified & Trusted</h3>
+                            <p className="card-desc">
+                                Every venue on Arena Pro is personally verified. Accurate photos, honest pricing, and genuine reviews you can trust.
+                            </p>
+                        </div>
+                        <div className="card-verified-badges">
+                            <div className="verified-badge">
+                                <ShieldCheck size={16} />
+                                <span>Verified Photos</span>
+                            </div>
+                            <div className="verified-badge">
+                                <Star size={16} />
+                                <span>Rated 4.5+</span>
+                            </div>
+                            <div className="verified-badge">
+                                <MapPin size={16} />
+                                <span>Location Checked</span>
                             </div>
                         </div>
-                    </div>
-
-                    {/* 3. Smart Savings Style - Venue Insights */}
-                    <div className="feature-card mofin-gray-tall">
-                        <div className="feature-number">03</div>
-                        <div className="mofin-text-top">
-                            <h3 className="mofin-title">Premium Venue Insights</h3>
-                            <p className="mofin-desc">Detailed profiles for the best padel courts in Lahore, cricket grounds, and premium turfs, complete with amenity icons and reviews.</p>
-                        </div>
-                        <div className="mofin-visual-bottom" style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '100%', paddingBottom: '20px' }}>
-                            <img
-                                src="/image/GHJK.png"
-                                alt="Premium Venue Insights"
-                                style={{ width: '90%', height: 'auto', borderRadius: '16px', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))' }}
-                            />
-                        </div>
-                    </div>
-
-                    {/* 4. Expense Tracking Style - Map Search */}
-                    <div className="feature-card mofin-green">
                         <div className="feature-number">04</div>
-                        <div className="mofin-text-top">
-                            <h3 className="mofin-title">Interactive Map Search</h3>
-                            <p className="mofin-desc">Geolocation-based venue finder to instantly discover <strong>padel tennis near me</strong>, a football turf near me, or the closest padel courts in Lahore.</p>
-                        </div>
-                        <div className="mofin-visual-center">
-                            <img
-                                className="mofin-map-image"
-                                src="/image/Copy of arena pro logoqr (2).png"
-                                alt="Interactive Map Search Interface"
-                            />
-                        </div>
                     </div>
 
-                    {/* 5. Refer & Earn (Pastel Yellow - Bonus) */}
-                    <div className="feature-card mofin-yellow">
+                    {/* 5. Easy Payments */}
+                    <div className="feature-card card-payments">
+                        <div className="card-icon-wrap card-icon-lime">
+                            <CreditCard size={28} />
+                        </div>
+                        <div className="card-text">
+                            <h3 className="card-heading">Flexible Payments</h3>
+                            <p className="card-desc">
+                                Pay securely online or at the venue. We support all major payment methods for a hassle-free experience.
+                            </p>
+                        </div>
                         <div className="feature-number">05</div>
-                        <div className="mofin-text-col">
-                            <h3 className="mofin-title">Refer & Earn</h3>
-                            <p className="mofin-desc">Invite friends, earn Rs. 200 instantly.</p>
-                        </div>
-                        <div className="mofin-visual-right-small refer-earn-visual">
-                            <img className="mofin-refer-image" src="/image/refer.png" alt="Refer and Earn" />
-                        </div>
                     </div>
 
-                    {/* 6. Real-Time Alerts (Pastel Purple - Bonus) */}
-                    <div className="feature-card mofin-purple" style={{ background: 'transparent', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}>
+                    {/* 6. Smart Scheduling */}
+                    <div className="feature-card card-scheduling">
+                        <div className="card-icon-wrap card-icon-accent">
+                            <Calendar size={28} />
+                        </div>
+                        <div className="card-text">
+                            <h3 className="card-heading">Smart Scheduling</h3>
+                            <p className="card-desc">
+                                Pick your date, choose your time, select your sport — and you're in. The simplest way to plan your next game.
+                            </p>
+                        </div>
                         <div className="feature-number">06</div>
-                        <div className="mofin-text-col">
-                            <h3 className="mofin-title" style={{ color: '#1f1f1f' }}>Real-Time Alerts</h3>
-                            <p className="mofin-desc" style={{ color: '#1f1f1f' }}>Instant confirmations for your cricket grounds booking so you never miss a match.</p>
-                        </div>
-                        <div className="mofin-visual-right-small alerts-visual">
-                            <img className="mofin-alerts-image" src="/image/D.png" alt="Real-Time Alerts" />
-                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
