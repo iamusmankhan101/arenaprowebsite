@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Features from '../components/Features';
@@ -7,6 +7,9 @@ import AppGallery from '../components/AppGallery';
 import VendorSection from '../components/VendorSection';
 import DownloadApp from '../components/DownloadApp';
 import Footer from '../components/Footer';
+import VenueCard from '../components/VenueCard';
+import { venueService } from '../services/venueService';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import './HomePage.css';
 
@@ -17,12 +20,30 @@ function HomePage() {
         area: 'All areas',
         sport: 'All sports'
     });
+    const [venues, setVenues] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useSEO(
         'Arena Pro - Book Futsal, Padel & Indoor Cricket Venues in Lahore',
         'Discover and book top sports venues with Arena Pro. Find a futsal court near me, padel courts near you, or indoor cricket in Lahore. Easy cricket grounds booking!',
         'https://arenapropk.online/'
     );
+
+    useEffect(() => {
+        const fetchVenues = async () => {
+            try {
+                const data = await venueService.getVenues();
+                setVenues(data.slice(0, 6)); // Show only first 6 venues
+            } catch (error) {
+                console.error("Failed to load venues:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVenues();
+    }, []);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -51,6 +72,14 @@ function HomePage() {
             ...prev,
             [field]: value
         }));
+    };
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % Math.max(1, venues.length - 2));
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + Math.max(1, venues.length - 2)) % Math.max(1, venues.length - 2));
     };
     return (
         <div className="home-page">
@@ -137,6 +166,55 @@ function HomePage() {
                                 SEARCH VENUES
                             </button>
                         </form>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Venues Section */}
+            <section className="our-venues-section">
+                <div className="our-venues-container">
+                    <div className="our-venues-header">
+                        <div>
+                            <h2 className="our-venues-title">Our Venues</h2>
+                            <p className="our-venues-subtitle">Discover premium sports facilities across Lahore</p>
+                        </div>
+                        <div className="carousel-controls">
+                            <button className="carousel-btn" onClick={prevSlide} aria-label="Previous">
+                                <ChevronLeft size={24} />
+                            </button>
+                            <button className="carousel-btn" onClick={nextSlide} aria-label="Next">
+                                <ChevronRight size={24} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {loading ? (
+                        <div className="venues-loading">
+                            <p>Loading venues...</p>
+                        </div>
+                    ) : venues.length > 0 ? (
+                        <div className="venues-carousel">
+                            <div 
+                                className="venues-carousel-track"
+                                style={{ transform: `translateX(-${currentSlide * 33.333}%)` }}
+                            >
+                                {venues.map((venue) => (
+                                    <div key={venue.id} className="venue-carousel-item">
+                                        <VenueCard venue={venue} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="no-venues">
+                            <p>No venues available at the moment.</p>
+                        </div>
+                    )}
+
+                    <div className="our-venues-footer">
+                        <Link to="/venues" className="view-all-btn">
+                            View All Venues
+                        </Link>
                     </div>
                 </div>
             </section>
