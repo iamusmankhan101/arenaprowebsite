@@ -36,8 +36,10 @@ function HomePage() {
             try {
                 const data = await venueService.getVenues();
                 const venueData = data.slice(0, 6);
-                // Duplicate venues for infinite scroll
-                setVenues([...venueData, ...venueData, ...venueData]);
+                // Create enough copies for smooth infinite scroll
+                setVenues([...venueData, ...venueData]);
+                // Start at the beginning of first set
+                setCurrentSlide(0);
             } catch (error) {
                 console.error("Failed to load venues:", error);
             } finally {
@@ -89,29 +91,28 @@ function HomePage() {
 
     // Reset position when reaching cloned sections
     useEffect(() => {
-        if (venues.length === 0 || !isTransitioning) return;
+        if (venues.length === 0) return;
         
-        const originalLength = venues.length / 3;
+        const originalLength = venues.length / 2; // Half because we doubled the array
         
-        // When we reach the end of the first set, jump to the start of second set
-        if (currentSlide >= originalLength) {
-            setTimeout(() => {
+        // When we've scrolled through all original cards, reset to start
+        if (currentSlide >= originalLength && isTransitioning) {
+            const timer = setTimeout(() => {
                 setIsTransitioning(false);
                 setCurrentSlide(0);
+                setTimeout(() => setIsTransitioning(true), 50);
             }, 600);
-            setTimeout(() => {
-                setIsTransitioning(true);
-            }, 650);
-        } 
-        // When we go before 0, jump to the end of first set
-        else if (currentSlide < 0) {
-            setTimeout(() => {
+            return () => clearTimeout(timer);
+        }
+        
+        // When going backwards past 0, jump to the end of first set
+        if (currentSlide < 0 && isTransitioning) {
+            const timer = setTimeout(() => {
                 setIsTransitioning(false);
                 setCurrentSlide(originalLength - 1);
+                setTimeout(() => setIsTransitioning(true), 50);
             }, 600);
-            setTimeout(() => {
-                setIsTransitioning(true);
-            }, 650);
+            return () => clearTimeout(timer);
         }
     }, [currentSlide, venues.length, isTransitioning]);
     return (
