@@ -118,182 +118,213 @@
     position: relative;
 }
 
-/* ─── Step 1: Download ─── */
-.step1-phone {
-    width: 150px;
-    height: 200px;
-    background: #1a1a2e;
-    border-radius: 24px;
-    padding: 6px;
-    position: relative;
-    border: 2px solid #000;
-}
-
-.step1-phone-screen {
-    background: #fff;
+/* ═══════════════════════════ NEW CSS WEB MOCKUPS ═════════════════════════════ */
+.mockup-scene {
     width: 100%;
-    height: 100%;
-    border-radius: 18px;
-    padding: 12px;
-    text-align: left;
-}
-
-.step1-greeting {
-    font-size: 0.6rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #1a1a2e;
-}
-
-.step1-stats-row {
-    display: flex;
-    gap: 6px;
-}
-
-.step1-stat-box {
-    flex: 1;
-    height: 28px;
-    background: #f0f0f5;
-    border-radius: 6px;
-}
-
-.step1-badge {
-    position: absolute;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.step1-badge.app-store {
-    top: 10px;
-    right: -20px;
-    background: #1a1a2e;
-    color: #fff;
-}
-
-.step1-badge.play-store {
-    bottom: 30px;
-    left: -20px;
-    background: #fff;
-    color: #1a1a2e;
-    border: 1px solid #eee;
-}
-
-/* ─── Step 2: Account ─── */
-.step2-profile-card {
-    background: #fff;
+    height: 240px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
     border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
-    width: 260px;
-    text-align: left;
-}
-
-.step2-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.step2-avatar {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, #c0c0c0, #888);
-    border-radius: 50%;
-}
-
-.step2-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1a1a2e;
-}
-
-.step2-email {
-    font-size: 0.7rem;
-    color: #999;
-}
-
-.step2-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    background: #f8f8fa;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #1a1a2e;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.step2-option:hover {
-    background: #f0f0f5;
-}
-
-.step2-icon {
-    font-size: 1rem;
-}
-
-/* ─── Step 3: Get to work ─── */
-.step3-task-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
-    width: 260px;
-    text-align: left;
-}
-
-.step3-label {
-    font-size: 0.55rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #aaa;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
-
-.step3-task {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #1a1a2e;
-    border-bottom: 1px solid #f2f2f5;
-}
-
-.step3-task:last-child {
-    border-bottom: none;
-}
-
-.step3-check {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+.mockup-scene-alt {
+    background: #f8f9fa;
+}
+.mockup-scene-dark {
+    background: #fbfbfb;
 }
 
-.step3-check.done {
-    background: #34c759;
-    border-color: #34c759;
+/* ─── Step 1: Search Mockup ─── */
+.mockup-search-container {
+    width: 100%;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.mockup-search-bar {
+    background: #fff;
+    border-radius: 50px;
+    padding: 8px 8px 8px 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 77, 67, 0.08);
+}
+.mockup-icon {
+    color: #888;
+    margin-right: 12px;
+}
+.mockup-placeholder {
+    font-size: 0.75rem;
+    color: #999;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mockup-search-btn {
+    background: #004d43;
+    color: #cdec6a;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.mockup-tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.mockup-tag {
+    background: rgba(255, 255, 255, 0.6);
+    color: #333;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.mockup-tag.active {
+    background: #004d43;
+    color: #fff;
+    border-color: #004d43;
 }
 
-.step3-check.done::after {
-    content: '✓';
-    color: white;
-    font-size: 10px;
+/* ─── Step 2: Calendar Slot Mockup ─── */
+.mockup-calendar {
+    background: #fff;
+    width: 100%;
+    max-width: 220px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+.mc-header {
+    background: #fbfbfb;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+.mc-slots {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.mc-slot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #f8f8fa;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+.mc-slot.active {
+    background: #004d43;
+    border-color: #004d43;
+}
+.mc-time {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+.mc-slot.active .mc-time {
+    color: #fff;
+}
+.mc-status {
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.05);
+    color: #666;
+}
+.mc-slot.active .mc-status {
+    background: #e8ee26;
+    color: #004d43;
+}
+
+/* ─── Step 3: Ticket Mockup ─── */
+.mockup-ticket {
+    background: #fff;
+    width: 100%;
+    max-width: 220px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.mockup-ticket::before,
+.mockup-ticket::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    width: 20px;
+    height: 20px;
+    background: #fbfbfb; /* match mockup-scene-dark bg */
+    border-radius: 50%;
+}
+.mockup-ticket::before { left: -10px; }
+.mockup-ticket::after { right: -10px; }
+
+.mt-top {
+    padding: 24px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.mt-success-icon {
+    width: 32px;
+    height: 32px;
+    background: #cdec6a;
+    color: #004d43;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+}
+.mt-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+.mt-divider {
+    height: 0;
+    border-top: 2px dashed #eee;
+    margin: 0 16px;
+}
+.mt-bottom {
+    padding: 16px 20px 24px;
+    text-align: center;
+}
+.mt-venue {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+.mt-details {
+    font-size: 0.65rem;
+    color: #888;
+    font-weight: 500;
 }
 
 /* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */

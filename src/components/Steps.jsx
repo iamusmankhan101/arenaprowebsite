@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Search, CalendarCheck, Trophy } from 'lucide-react';
 import './Steps.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +30,7 @@ const Steps = () => {
             if (i < cards.length - 1) {
                 gsap.to(card, {
                     scale: 0.95,
-                    opacity: 0.7,
+                    filter: "brightness(0.95)",
                     scrollTrigger: {
                         trigger: cards[i + 1],
                         start: 'top bottom',
@@ -55,7 +56,7 @@ const Steps = () => {
                     </h2>
                     <p className="steps-subtitle">
                         Your path to the perfect game starts here.<br />
-                        Download, connect, and play.
+                        Search, book, and play effortlessly.
                     </p>
                 </div>
 
@@ -65,15 +66,24 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[0] = el)}>
                         <div className="step-number">1</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step1-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img
-                                    src="/image/pngtree-google-play-app-icon-vector-png-image_9183316.png"
-                                    alt="Get it on Google Play"
-                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
-                                />
+                            <div className="step-visual step1-visual">
+                                <div className="mockup-scene">
+                                    <div className="mockup-search-container">
+                                        <div className="mockup-search-bar">
+                                            <Search size={14} className="mockup-icon" />
+                                            <span className="mockup-placeholder">Padel in Lahore...</span>
+                                            <div className="mockup-search-btn">Search</div>
+                                        </div>
+                                        <div className="mockup-tags">
+                                            <span className="mockup-tag">Padel</span>
+                                            <span className="mockup-tag active">Football</span>
+                                            <span className="mockup-tag">Cricket</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 className="step-card-title">Get the App</h3>
-                            <p className="step-card-desc">Grab Arena Pro from your app store and put the ultimate sports booking app right in your pocket.</p>
+                            <h3 className="step-card-title">Find Your Venue</h3>
+                            <p className="step-card-desc">Browse top-rated courts and turfs near you. Use smart filters like location and sport to find exactly what you need.</p>
                         </div>
                     </div>
 
@@ -81,15 +91,28 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[1] = el)}>
                         <div className="step-number">2</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step2-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img
-                                    src="/image/fd.png"
-                                    alt="Create an account profile preview"
-                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
-                                />
+                            <div className="step-visual step2-visual">
+                                <div className="mockup-scene mockup-scene-alt">
+                                    <div className="mockup-calendar">
+                                        <div className="mc-header">
+                                            <span>Today's Available Slots</span>
+                                            <CalendarCheck size={14} className="mockup-icon" />
+                                        </div>
+                                        <div className="mc-slots">
+                                            <div className="mc-slot">
+                                                <span className="mc-time">05:00 PM</span>
+                                                <span className="mc-status">Booked</span>
+                                            </div>
+                                            <div className="mc-slot active">
+                                                <span className="mc-time">06:00 PM</span>
+                                                <span className="mc-status">Book Now</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 className="step-card-title">Create an account</h3>
-                            <p className="step-card-desc">Sign up in seconds to personalize your profile and easily manage your cricket grounds booking in Lahore.</p>
+                            <h3 className="step-card-title">Book Your Slot</h3>
+                            <p className="step-card-desc">Check real-time availability and confirm your booking instantly. Secure your spot without making a single phone call.</p>
                         </div>
                     </div>
 
@@ -97,15 +120,23 @@ const Steps = () => {
                     <div className="step-card" ref={el => (cardsRef.current[2] = el)}>
                         <div className="step-number">3</div>
                         <div className="step-card-inner">
-                            <div className="step-visual step3-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img
-                                    src="/image/saa.png"
-                                    alt="Discover Arena Pro"
-                                    style={{ width: '50%', height: 'auto', objectFit: 'contain' }}
-                                />
+                            <div className="step-visual step3-visual">
+                                <div className="mockup-scene mockup-scene-dark">
+                                    <div className="mockup-ticket">
+                                        <div className="mt-top">
+                                            <div className="mt-success-icon">✓</div>
+                                            <span className="mt-title">Booking Confirmed</span>
+                                        </div>
+                                        <div className="mt-divider"></div>
+                                        <div className="mt-bottom">
+                                            <div className="mt-venue">Arena Pro Turf</div>
+                                            <div className="mt-details">Today, 06:00 PM</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 className="step-card-title">Discover Arena Pro</h3>
-                            <p className="step-card-desc">Unlock a new level of play. Find a football turf near me, book top padel courts in Lahore, and meet your next teammates.</p>
+                            <h3 className="step-card-title">Play and Dominate</h3>
+                            <p className="step-card-desc">Show up and hit the ground running. We've handled all the logistics so your only focus is bringing your A-game.</p>
                         </div>
                     </div>
                 </div>
