@@ -757,6 +757,10 @@
     background: #f8f9fa;
 }
 
+.payment-type-option input[type="radio"] {
+    display: none;
+}
+
 .payment-type-option:hover {
     border-color: #004d43;
     background: white;
