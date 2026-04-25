@@ -15,15 +15,15 @@ const AREAS = [
     { name: 'Bahria Town', slug: 'bahria-town', desc: 'Modern sports complexes with multiple courts and ample parking.' },
 ];
 
-const PadelTennisNearMe = () => {
+const PadelCourtsNearMe = () => {
     const [liveVenues, setLiveVenues] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeArea, setActiveArea] = useState('All');
 
     useEffect(() => {
-        document.title = "Padel Tennis Near Me — Find Courts in Your Area | Arena Pro";
+        document.title = "Padel Courts Near Me — Find the Best Courts in Lahore | Arena Pro";
         const metaDescription = document.querySelector('meta[name="description"]');
-        const description = "Find padel tennis near you in Lahore. Browse courts by area — DHA, Gulberg, Johar Town, Model Town, and Bahria Town. Instant booking with Arena Pro.";
+        const description = "Looking for padel courts near me? Find and instantly book the best padel clubs in DHA, Gulberg, and more with Arena Pro.";
         if (metaDescription) {
             metaDescription.setAttribute("content", description);
         } else {
@@ -61,9 +61,9 @@ const PadelTennisNearMe = () => {
                     <Breadcrumb crumbs={[
                         { label: 'Home', path: '/' },
                         { label: 'Padel Courts', path: '/padel-court-lahore' },
-                        { label: 'Near Me', path: '/padel-tennis-near-me' },
+                        { label: 'Near Me', path: '/padel-courts-near-me' },
                     ]} />
-                    <h1>Find <span className="highlight">Padel Tennis Near Me</span> in Lahore</h1>
+                    <h1>Find <span className="highlight">Padel Courts Near Me</span> in Lahore</h1>
                     <p>
                         Use Arena Pro to locate padel courts in your area. Filter by neighbourhood and book instantly — no phone calls needed.
                     </p>
@@ -181,4 +181,4 @@ const PadelTennisNearMe = () => {
     );
 };
 
-export default PadelTennisNearMe;
+export default PadelCourtsNearMe;

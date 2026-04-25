@@ -33,7 +33,7 @@ import SportsVenueBooking from './pages/SportsVenueBooking';
 import PadelCourtLahore from './pages/PadelCourtLahore';
 import FutsalGroundLahore from './pages/FutsalGroundLahore';
 import BadmintonBookingLahore from './pages/BadmintonBookingLahore';
-import PadelTennisNearMe from './pages/PadelTennisNearMe';
+import PadelCourtsNearMe from './pages/PadelCourtsNearMe';
 import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -48,7 +48,7 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/indoor-cricket-lahore" element={<IndoorCricketLahore />} />
                         <Route path="/padel-court-lahore" element={<PadelCourtLahore />} />
-                        <Route path="/padel-tennis-near-me" element={<PadelTennisNearMe />} />
+                        <Route path="/padel-courts-near-me" element={<PadelCourtsNearMe />} />
                         <Route path="/futsal-ground-lahore" element={<FutsalGroundLahore />} />
                         <Route path="/badminton-court-lahore" element={<BadmintonBookingLahore />} />
                         <Route path="/sports-venue-booking" element={<SportsVenueBooking />} />
