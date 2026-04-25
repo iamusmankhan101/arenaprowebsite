@@ -3,7 +3,7 @@
 
 .booking-page {
     min-height: 100vh;
-    background-color: #fcfcfc;
+    background: linear-gradient(135deg, #f5f7fa 0%, #f9fafb 100%);
     color: #1a1a1a;
     font-family: 'Montserrat', sans-serif;
     padding-bottom: 100px;
@@ -100,21 +100,27 @@
 
 .selection-section {
     background: white;
-    padding: 32px;
-    border-radius: 28px;
-    border: 1px solid #eeeeee;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    padding: 36px;
+    border-radius: 24px;
+    border: none;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.selection-section:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
 }
 
 .section-title {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 500;
-    margin-bottom: 32px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 28px;
     color: #1a1a1a;
 }
 
@@ -122,14 +128,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    background: #004d43;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #004d43 0%, #003a32 100%);
     color: #e8ee26;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
     font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.2);
 }
 
 /* Date Picker Premium */
@@ -206,36 +213,55 @@
 /* Slots Grid Premium */
 .slots-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
 }
 
 .slot-pill {
     background: #f8f9fa;
-    border: 1px solid #eeeeee;
-    padding: 24px 16px;
-    border-radius: 24px;
+    border: 2px solid #e9ecef;
+    padding: 20px 14px;
+    border-radius: 16px;
     color: #1a1a1a;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 6px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.slot-pill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 77, 67, 0.05) 0%, rgba(0, 77, 67, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slot-pill:hover:not(:disabled)::before {
+    opacity: 1;
 }
 
 .slot-pill:hover:not(:disabled) {
     background: #ffffff;
     border-color: #004d43;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 77, 67, 0.08);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 77, 67, 0.12);
 }
 
 .slot-pill.active {
-    background: #004d43;
+    background: linear-gradient(135deg, #004d43 0%, #003a32 100%);
     color: #ffffff;
     border-color: #004d43;
-    box-shadow: 0 10px 25px rgba(0, 77, 67, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 77, 67, 0.25);
+    transform: translateY(-2px);
 }
 
 .slot-pill.active .slot-price {
@@ -244,24 +270,28 @@
 }
 
 .slot-pill.booked {
-    background: #f1f3f5;
+    background: #f8f9fa;
     border-color: #e9ecef;
     color: #adb5bd;
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .slot-time {
     font-family: 'Clash Display', sans-serif;
-    font-weight: 600;
-    font-size: 1.25rem;
+    font-weight: 700;
+    font-size: 1.15rem;
+    position: relative;
+    z-index: 1;
 }
 
 .slot-price {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: #666;
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+    z-index: 1;
 }
 
 .booked-badge {
@@ -280,7 +310,8 @@
 .booking-form-card {
     position: sticky;
     top: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .form-group label {
@@ -351,28 +382,46 @@
 
 .confirm-btn {
     width: 100%;
-    padding: 22px;
-    background: #004d43;
+    padding: 20px;
+    background: linear-gradient(135deg, #004d43 0%, #003a32 100%);
     color: #e8ee26;
     border: none;
-    border-radius: 20px;
+    border-radius: 16px;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 25px rgba(0, 77, 67, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 77, 67, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(232, 238, 38, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.confirm-btn:hover:not(:disabled)::before {
+    left: 100%;
 }
 
 .confirm-btn:hover:not(:disabled) {
-    background: #003a32;
+    background: linear-gradient(135deg, #003a32 0%, #002a24 100%);
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 77, 67, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 77, 67, 0.3);
 }
 
 .confirm-btn:disabled {
@@ -658,16 +707,17 @@
 
 /* ═══════════════════════════════ PAYMENT SECTION ═══════════════════════════════ */
 .payment-section {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid #e5e5e5;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 2px solid #f1f3f5;
 }
 
 .payment-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    font-family: 'Clash Display', sans-serif;
 }
 
 .payment-method-group {
@@ -680,17 +730,26 @@
 .payment-option {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
-    border: 2px solid #e5e5e5;
-    border-radius: 12px;
+    gap: 14px;
+    padding: 18px;
+    border: 2px solid #e9ecef;
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    background: #f8f9fa;
 }
 
 .payment-option:hover {
     border-color: #004d43;
-    background: #f9fafb;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.08);
+    transform: translateX(4px);
+}
+
+.payment-option:has(input[type="radio"]:checked) {
+    border-color: #004d43;
+    background: rgba(0, 77, 67, 0.04);
+    box-shadow: 0 4px 16px rgba(0, 77, 67, 0.12);
 }
 
 .payment-option input[type="radio"] {
@@ -734,34 +793,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 16px;
-    border: 2px solid #e5e5e5;
-    border-radius: 12px;
+    gap: 10px;
+    padding: 18px;
+    border: 2px solid #e9ecef;
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    background: #f8f9fa;
 }
 
 .payment-type-option:hover {
     border-color: #004d43;
-    background: #f9fafb;
-}
-
-.payment-type-option input[type="radio"] {
-    display: none;
-}
-
-.payment-type-option input[type="radio"]:checked ~ .payment-type-content {
-    color: #004d43;
-}
-
-.payment-type-option input[type="radio"]:checked + .payment-type-content {
-    color: #004d43;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 77, 67, 0.08);
+    transform: translateY(-2px);
 }
 
 .payment-type-option:has(input[type="radio"]:checked) {
     border-color: #004d43;
-    background: rgba(0, 77, 67, 0.05);
+    background: rgba(0, 77, 67, 0.06);
+    box-shadow: 0 4px 16px rgba(0, 77, 67, 0.12);
 }
 
 .payment-type-content {
