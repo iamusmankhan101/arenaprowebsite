@@ -31,6 +31,8 @@ const BookingPage = () => {
         email: ''
     });
     const [availableDates, setAvailableDates] = useState([]);
+    const [paymentMethod, setPaymentMethod] = useState('advance'); // 'advance' or 'full'
+    const [paymentType, setPaymentType] = useState('easypaisa'); // 'easypaisa' or 'bank'
 
     useEffect(() => {
         if (user) {
@@ -382,10 +384,91 @@ const BookingPage = () => {
                                                 {selectedSlot ? (selectedSlot.startTime || selectedSlot.time) : 'Not selected'}
                                             </span>
                                         </div>
-                                        <div className="summary-row total">
-                                            <span>Total</span>
-                                            <span style={{ color: '#004d43' }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
+                                        <div className="summary-row">
+                                            <span>Slot Price</span>
+                                            <span style={{ color: '#666', fontWeight: 600 }}>{selectedSlot ? `${selectedSlot.price} Pkr` : '0 Pkr'}</span>
                                         </div>
+                                        <div className="summary-row total">
+                                            <span>Amount to Pay</span>
+                                            <span style={{ color: '#004d43' }}>
+                                                {selectedSlot ? `${paymentMethod === 'advance' ? Math.round(selectedSlot.price * 0.15) : selectedSlot.price} Pkr` : '0 Pkr'}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Payment Options */}
+                                    <div className="payment-section">
+                                        <h4 className="payment-title">Payment Options</h4>
+                                        
+                                        {/* Payment Method Selection */}
+                                        <div className="payment-method-group">
+                                            <label className="payment-option">
+                                                <input
+                                                    type="radio"
+                                                    name="paymentMethod"
+                                                    value="advance"
+                                                    checked={paymentMethod === 'advance'}
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
+                                                <div className="payment-option-content">
+                                                    <span className="payment-option-title">15% Advance Payment</span>
+                                                    <span className="payment-option-desc">
+                                                        Pay {selectedSlot ? Math.round(selectedSlot.price * 0.15) : 0} Pkr now, rest at venue
+                                                    </span>
+                                                </div>
+                                            </label>
+
+                                            <label className="payment-option">
+                                                <input
+                                                    type="radio"
+                                                    name="paymentMethod"
+                                                    value="full"
+                                                    checked={paymentMethod === 'full'}
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
+                                                <div className="payment-option-content">
+                                                    <span className="payment-option-title">Pay Full Amount</span>
+                                                    <span className="payment-option-desc">
+                                                        Pay {selectedSlot ? selectedSlot.price : 0} Pkr online
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        {/* Payment Type Selection */}
+                                        <div className="payment-type-group">
+                                            <label className="payment-type-option">
+                                                <input
+                                                    type="radio"
+                                                    name="paymentType"
+                                                    value="easypaisa"
+                                                    checked={paymentType === 'easypaisa'}
+                                                    onChange={(e) => setPaymentType(e.target.value)}
+                                                />
+                                                <div className="payment-type-content">
+                                                    <img src="/image/Easypaisa-logo.png" alt="Easypaisa" className="payment-logo" />
+                                                    <span>Easypaisa</span>
+                                                </div>
+                                            </label>
+
+                                            <label className="payment-type-option">
+                                                <input
+                                                    type="radio"
+                                                    name="paymentType"
+                                                    value="bank"
+                                                    checked={paymentType === 'bank'}
+                                                    onChange={(e) => setPaymentType(e.target.value)}
+                                                />
+                                                <div className="payment-type-content">
+                                                    <span className="bank-icon">🏦</span>
+                                                    <span>Bank Transfer</span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <p className="payment-note">
+                                            After booking, you'll receive payment instructions via WhatsApp and email.
+                                        </p>
                                     </div>
 
                                     <button
