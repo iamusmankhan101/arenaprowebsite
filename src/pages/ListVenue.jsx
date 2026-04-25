@@ -71,7 +71,7 @@ const ListVenue = () => {
                                     <Check size={20} />
                                 </div>
                                 <div className="benefit-text">
-                                    <h3>No card</h3>
+                                    <h3>No Fees</h3>
                                     <p>Free to list your venue</p>
                                 </div>
                             </div>

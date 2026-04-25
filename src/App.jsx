@@ -35,6 +35,8 @@ import FutsalGroundLahore from './pages/FutsalGroundLahore';
 import BadmintonBookingLahore from './pages/BadmintonBookingLahore';
 import PadelTennisNearMe from './pages/PadelTennisNearMe';
 import FAQ from './pages/FAQ';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 function App() {
     return (
@@ -65,6 +67,8 @@ function App() {
                         <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/faq" element={<FAQ />} />
+                        <Route path="/privacy" element={<PrivacyPolicy />} />
+                        <Route path="/terms" element={<TermsAndConditions />} />
                         <Route path="/waitlist" element={<Waitlist />} />
                         <Route path="/list-venue" element={<ListVenue />} />
                         <Route path="/auth/google" element={<GoogleAuthRelay />} />
