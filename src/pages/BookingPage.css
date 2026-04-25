@@ -115,8 +115,8 @@
     align-items: center;
     gap: 12px;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     margin-bottom: 24px;
     color: #1a1a1a;
 }
@@ -130,8 +130,8 @@
     background: #004d43;
     color: #ffffff;
     border-radius: 8px;
-    font-size: 0.65rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 600;
     font-family: 'Montserrat', sans-serif;
 }
 
