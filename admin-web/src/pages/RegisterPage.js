@@ -10,6 +10,10 @@ import {
     IconButton,
     CircularProgress,
     Fade,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
 } from '@mui/material';
 import {
     Visibility,
@@ -26,7 +30,7 @@ export default function RegisterPage({ onSwitchToLogin }) {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'vendor', // Only vendor registration allowed
+        role: 'vendor', // Default to vendor, but allow admin selection
     });
     const [localError, setLocalError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -294,6 +298,49 @@ export default function RegisterPage({ onSwitchToLogin }) {
                                     },
                                 }}
                             />
+
+                            <Typography
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '0.875rem',
+                                    color: '#1a1a1a',
+                                    mb: 1,
+                                }}
+                            >
+                                Account Type
+                            </Typography>
+                            <FormControl 
+                                fullWidth
+                                sx={{
+                                    mb: 2.5,
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 2,
+                                        backgroundColor: '#f9fafb',
+                                        '& fieldset': {
+                                            borderColor: '#e5e7eb',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#004d43',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#004d43',
+                                            borderWidth: 2,
+                                        },
+                                    },
+                                }}
+                            >
+                                <InputLabel>Select Role</InputLabel>
+                                <Select
+                                    name="role"
+                                    value={formData.role}
+                                    onChange={handleChange}
+                                    label="Select Role"
+                                    required
+                                >
+                                    <MenuItem value="vendor">Vendor</MenuItem>
+                                    <MenuItem value="admin">Admin</MenuItem>
+                                </Select>
+                            </FormControl>
 
                             <Typography
                                 sx={{
