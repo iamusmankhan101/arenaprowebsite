@@ -44,6 +44,13 @@ const BookingPage = () => {
         }
     }, [user]);
 
+    // Scroll to top when booking is successful
+    useEffect(() => {
+        if (bookingSuccess) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [bookingSuccess]);
+
     useEffect(() => {
         const fetchVenueData = async () => {
             try {
@@ -192,7 +199,7 @@ const BookingPage = () => {
     if (!venue) {
         return (
             <div className="error-screen">
-                <Navbar />
+                <Navbar forceScrolled={true} />
                 <div className="error-content">
                     <h1>Venue Not Found</h1>
                     <button onClick={() => navigate('/venues')}>Back to Venues</button>
@@ -204,7 +211,7 @@ const BookingPage = () => {
     if (bookingSuccess) {
         return (
             <div className="success-screen">
-                <Navbar />
+                <Navbar forceScrolled={true} />
                 <div className="success-card">
                     <CheckCircle2 color="#004d43" size={80} />
                     <h2>Booking Received!</h2>
@@ -219,7 +226,7 @@ const BookingPage = () => {
 
     return (
         <div className="booking-page light-theme">
-            <Navbar />
+            <Navbar forceScrolled={true} />
 
             {/* Hero Section */}
             <div
