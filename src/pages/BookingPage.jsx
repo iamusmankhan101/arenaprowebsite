@@ -466,9 +466,47 @@ const BookingPage = () => {
                                             </label>
                                         </div>
 
-                                        <p className="payment-note">
-                                            After booking, you'll receive payment instructions via WhatsApp and email.
-                                        </p>
+                                        {/* Payment Details - shown based on selected type */}
+                                        {paymentType === 'easypaisa' && (
+                                            <div className="payment-details-card easypaisa-details">
+                                                <div className="payment-details-header">
+                                                    <img src="/image/Easypaisa-logo.png" alt="Easypaisa" className="payment-details-logo" />
+                                                    <span>Send payment to</span>
+                                                </div>
+                                                <div className="payment-details-row">
+                                                    <span className="payment-details-label">Account Name</span>
+                                                    <span className="payment-details-value">Muhammad Usman Khan</span>
+                                                </div>
+                                                <div className="payment-details-row">
+                                                    <span className="payment-details-label">Mobile Number</span>
+                                                    <span className="payment-details-value highlight">0305-8562523</span>
+                                                </div>
+                                                <p className="payment-details-note">Send the exact amount and share screenshot via WhatsApp to confirm.</p>
+                                            </div>
+                                        )}
+
+                                        {paymentType === 'bank' && (
+                                            <div className="payment-details-card bank-details">
+                                                <div className="payment-details-header">
+                                                    <span className="bank-icon-lg">🏦</span>
+                                                    <span>Bank Transfer Details</span>
+                                                </div>
+                                                <div className="payment-details-row">
+                                                    <span className="payment-details-label">Bank</span>
+                                                    <span className="payment-details-value">Bank Alfalah</span>
+                                                </div>
+                                                <div className="payment-details-row">
+                                                    <span className="payment-details-label">Account No.</span>
+                                                    <span className="payment-details-value highlight">56565002675200</span>
+                                                </div>
+                                                <div className="payment-details-row">
+                                                    <span className="payment-details-label">Account Name</span>
+                                                    <span className="payment-details-value">Muhammad Usman Khan</span>
+                                                </div>
+                                                <p className="payment-details-note">Transfer the exact amount and share receipt via WhatsApp to confirm.</p>
+                                            </div>
+                                        )}
+
                                     </div>
 
                                     <button

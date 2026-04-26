@@ -806,3 +806,93 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ═══════════════════════════════ PAYMENT DETAILS CARD ═══════════════════════════════ */
+.payment-details-card {
+    margin-top: 14px;
+    border-radius: 14px;
+    padding: 18px;
+    animation: fadeSlideIn 0.25s ease;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.easypaisa-details {
+    background: #f0faf4;
+    border: 1.5px solid #34c471;
+}
+
+.bank-details {
+    background: #f0f6ff;
+    border: 1.5px solid #4a90d9;
+}
+
+.payment-details-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.payment-details-logo {
+    height: 22px;
+    width: auto;
+    object-fit: contain;
+}
+
+.bank-icon-lg {
+    font-size: 22px;
+}
+
+.payment-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.payment-details-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.payment-details-value {
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.payment-details-value.highlight {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #004d43;
+    letter-spacing: 0.5px;
+}
+
+.payment-details-note {
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-top: 12px;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+}
