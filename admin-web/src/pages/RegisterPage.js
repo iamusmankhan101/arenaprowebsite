@@ -109,7 +109,7 @@ export default function RegisterPage({ onSwitchToLogin }) {
             >
                 <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
                     <img
-                        src="/logo.png"
+                        src="/arena-pro-logo.png"
                         alt="Arena Pro"
                         style={{
                             width: 180,
@@ -137,6 +137,7 @@ export default function RegisterPage({ onSwitchToLogin }) {
                             maxWidth: 400,
                             lineHeight: 1.7,
                             fontSize: '1rem',
+                            textAlign: 'center',
                         }}
                     >
                         Manage your sports venues with ease. Arena Pro admin panel helps you streamline bookings and operations.

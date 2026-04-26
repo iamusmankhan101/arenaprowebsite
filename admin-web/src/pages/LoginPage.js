@@ -80,7 +80,7 @@ export default function LoginPage({ onSwitchToRegister }) {
       >
         <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <img
-            src="/logo.png"
+            src="/arena-pro-logo.png"
             alt="Arena Pro"
             style={{
               width: 180,
@@ -105,9 +105,10 @@ export default function LoginPage({ onSwitchToRegister }) {
             variant="body1"
             sx={{
               color: 'rgba(255,255,255,0.8)',
-              maxWidth: 400,
+              maxWidth: 590,
               lineHeight: 1.7,
               fontSize: '1rem',
+              textAlign: 'center',
             }}
           >
             Manage your sports venues with ease. Arena Pro admin panel helps you streamline bookings and operations.
@@ -360,27 +361,7 @@ export default function LoginPage({ onSwitchToRegister }) {
 
             <Divider sx={{ my: 3, borderColor: '#e5e7eb' }} />
 
-            <Button
-              variant="outlined"
-              onClick={() => window.open('https://arenapro.pk/ArenaPro.apk', '_blank')}
-              sx={{
-                width: '100%',
-                borderRadius: 2,
-                py: 1.2,
-                color: '#004d43',
-                borderColor: '#004d43',
-                borderWidth: 2,
-                textTransform: 'none',
-                fontWeight: 600,
-                '&:hover': {
-                  borderColor: '#003830',
-                  bgcolor: 'rgba(0, 77, 67, 0.04)',
-                  borderWidth: 2,
-                }
-              }}
-            >
-              Download Android App (APK)
-            </Button>
+           
           </Box>
         </Box>
       </Box>
