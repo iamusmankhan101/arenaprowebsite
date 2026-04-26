@@ -271,18 +271,6 @@ const BookingPage = () => {
                                     </div>
                                 </div>
                             )}
-
-                            <div className="date-input-wrapper">
-                                <input
-                                    type="date"
-                                    value={selectedDate}
-                                    min={todayPKT()}
-                                    onChange={(e) => {
-                                    if (e.target.value >= todayPKT()) setSelectedDate(e.target.value);
-                                }}
-                                    className="date-picker"
-                                />
-                            </div>
                         </div>
 
                         <div className="selection-section">
