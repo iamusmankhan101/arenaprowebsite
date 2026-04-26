@@ -301,6 +301,38 @@ export default function AddVenueModal({ open, onClose, editVenue = null, vendorI
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.openTime, formData.closeTime, formData.slotDuration]);
 
+  // Auto-generate next 7 days when operating hours are properly set (for new venues)
+  useEffect(() => {
+    // Only auto-generate for new venues (not editing) and when we have valid operating hours
+    if (!isEditing && formData.openTime && formData.closeTime && 
+        formData.openTime !== '00:00' && formData.closeTime !== '00:00' &&
+        Object.keys(formData.dateSpecificSlots).length === 0) {
+      
+      const today = new Date();
+      const newDateSlots = {};
+      
+      for (let i = 0; i < 7; i++) {
+        const currentDate = new Date(today);
+        currentDate.setDate(today.getDate() + i);
+        const dateString = currentDate.toISOString().split('T')[0];
+        
+        const newSlots = generateAllPossibleSlots().map(slot => ({
+          ...slot,
+          id: `${dateString}-${slot.id}`,
+          date: dateString,
+          selected: true
+        }));
+        
+        newDateSlots[dateString] = newSlots;
+      }
+      
+      setFormData(prev => ({
+        ...prev,
+        dateSpecificSlots: newDateSlots
+      }));
+    }
+  }, [formData.openTime, formData.closeTime, isEditing, generateAllPossibleSlots, formData.dateSpecificSlots]);
+
 
 
 
