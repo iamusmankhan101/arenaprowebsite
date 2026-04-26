@@ -74,131 +74,126 @@ export default function RegisterPage({ onSwitchToLogin }) {
         }));
     };
 
-    const textFieldStyle = {
-        mb: 2.5,
-        '& .MuiInputLabel-root': {
-            color: '#004d43',
-            fontWeight: 600,
-            fontSize: '0.95rem',
-            '&.Mui-focused': {
-                color: '#004d43',
-            },
-            '&.MuiInputLabel-shrink': {
-                color: '#004d43',
-            }
-        },
-        '& .MuiOutlinedInput-root': {
-            borderRadius: '25px',
-            backgroundColor: 'rgba(255,255,255,0.98)',
-            backdropFilter: 'blur(10px)',
-            '& fieldset': {
-                borderColor: 'rgba(0,77,67,0.2)',
-            },
-            '&:hover fieldset': {
-                borderColor: 'rgba(0,77,67,0.4)',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: '#004d43',
-                borderWidth: 2,
-            },
-        },
-        '& .MuiInputBase-input': {
-            px: 3,
-            py: 1.8,
-            fontSize: '0.95rem',
-            color: '#004d43',
-            '&::placeholder': {
-                color: 'rgba(0,77,67,0.5)',
-                opacity: 1,
-            }
-        },
-    };
-
     return (
         <Box
             sx={{
                 minHeight: '100vh',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'linear-gradient(135deg, #004d43 0%, #00332d 100%)',
-                position: 'relative',
-                py: 4,
-                px: 2,
+                flexDirection: { xs: 'column', md: 'row' },
                 overflow: 'hidden',
             }}
         >
-            <Fade in={true} timeout={1000}>
-                <Box
-                    sx={{
-                        width: '100%',
-                        maxWidth: 500,
-                        zIndex: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center'
-                    }}
-                >
-                    {/* Logo */}
-                    <Box sx={{ mb: 2 }}>
-                        <img
-                            src="/logo.png"
-                            alt="Arena Pro"
-                            style={{
-                                width: 200,
-                                height: 200,
-                                objectFit: 'contain',
-                            }}
-                        />
-                    </Box>
-
-                    {/* Header Text */}
+            {/* Left Side - Branding */}
+            <Box
+                sx={{
+                    flex: { xs: '0 0 auto', md: 1 },
+                    background: 'linear-gradient(135deg, #004d43 0%, #003830 50%, #002b26 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: { xs: 4, md: 6 },
+                    position: 'relative',
+                    minHeight: { xs: '200px', md: '100vh' },
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'radial-gradient(circle at 30% 50%, rgba(232, 238, 38, 0.1) 0%, transparent 50%)',
+                        pointerEvents: 'none',
+                    }
+                }}
+            >
+                <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+                    <img
+                        src="/logo.png"
+                        alt="Arena Pro"
+                        style={{
+                            width: 180,
+                            height: 180,
+                            objectFit: 'contain',
+                            marginBottom: 24,
+                        }}
+                    />
                     <Typography
-                        variant="h4"
+                        variant="h3"
                         sx={{
                             fontWeight: 800,
                             color: '#ffffff',
-                            mb: 1,
-                            textAlign: 'center',
-                            textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                            fontSize: { xs: '1.75rem', sm: '2.25rem' },
+                            mb: 2,
+                            fontSize: { xs: '2rem', md: '2.5rem' },
+                            letterSpacing: '-0.5px',
                         }}
                     >
-                        Create Account
+                        Fast, Efficient and Productive
                     </Typography>
                     <Typography
-                        variant="subtitle1"
+                        variant="body1"
                         sx={{
                             color: 'rgba(255,255,255,0.8)',
-                            mb: 4,
-                            textAlign: 'center',
-                            fontWeight: 500
+                            maxWidth: 400,
+                            lineHeight: 1.7,
+                            fontSize: '1rem',
                         }}
                     >
-                        Join the Arena Pro network today
+                        Manage your sports venues with ease. Arena Pro admin panel helps you streamline bookings and operations.
                     </Typography>
+                </Box>
+            </Box>
 
-                    {/* Form Container */}
+            {/* Right Side - Form */}
+            <Box
+                sx={{
+                    flex: { xs: '1', md: 1 },
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: { xs: 3, sm: 4, md: 6 },
+                    background: 'linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%)',
+                }}
+            >
+                <Fade in={true} timeout={800}>
                     <Box
                         sx={{
                             width: '100%',
-                            p: { xs: 3, sm: 4 },
-                            borderRadius: 6,
-                            bgcolor: 'rgba(255,255,255,0.05)',
-                            backdropFilter: 'blur(20px)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                            maxWidth: 480,
+                            background: '#ffffff',
+                            borderRadius: 4,
+                            padding: { xs: 3, sm: 5 },
+                            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
                         }}
                     >
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                fontWeight: 700,
+                                color: '#1a1a1a',
+                                mb: 1,
+                                fontSize: { xs: '1.75rem', sm: '2rem' },
+                            }}
+                        >
+                            Sign Up
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                color: '#6b7280',
+                                mb: 4,
+                            }}
+                        >
+                            Join the Arena Pro network today
+                        </Typography>
+
                         {(error || localError) && (
                             <Alert
                                 severity="error"
                                 sx={{
                                     mb: 3,
-                                    borderRadius: 3,
-                                    bgcolor: 'rgba(211, 47, 47, 0.1)',
-                                    color: '#ffcdd2',
-                                    '& .MuiAlert-icon': { color: '#ef5350' }
+                                    borderRadius: 2,
+                                    '& .MuiAlert-icon': { color: '#d32f2f' }
                                 }}
                             >
                                 {localError || error}
@@ -206,32 +201,111 @@ export default function RegisterPage({ onSwitchToLogin }) {
                         )}
 
                         <Box component="form" onSubmit={handleSubmit}>
+                            <Typography
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '0.875rem',
+                                    color: '#1a1a1a',
+                                    mb: 1,
+                                }}
+                            >
+                                Full Name
+                            </Typography>
                             <TextField
                                 fullWidth
-                                label="Full Name"
                                 name="fullName"
                                 value={formData.fullName}
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter your full name"
-                                sx={textFieldStyle}
+                                sx={{
+                                    mb: 2.5,
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 2,
+                                        backgroundColor: '#f9fafb',
+                                        '& fieldset': {
+                                            borderColor: '#e5e7eb',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#004d43',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#004d43',
+                                            borderWidth: 2,
+                                        },
+                                    },
+                                    '& .MuiInputBase-input': {
+                                        px: 2,
+                                        py: 1.5,
+                                        fontSize: '0.95rem',
+                                        color: '#1a1a1a',
+                                        '&::placeholder': {
+                                            color: '#9ca3af',
+                                            opacity: 1,
+                                        }
+                                    },
+                                }}
                             />
 
+                            <Typography
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '0.875rem',
+                                    color: '#1a1a1a',
+                                    mb: 1,
+                                }}
+                            >
+                                Email
+                            </Typography>
                             <TextField
                                 fullWidth
-                                label="Email Address"
                                 name="email"
                                 type="email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter your email"
-                                sx={textFieldStyle}
+                                sx={{
+                                    mb: 2.5,
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 2,
+                                        backgroundColor: '#f9fafb',
+                                        '& fieldset': {
+                                            borderColor: '#e5e7eb',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#004d43',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#004d43',
+                                            borderWidth: 2,
+                                        },
+                                    },
+                                    '& .MuiInputBase-input': {
+                                        px: 2,
+                                        py: 1.5,
+                                        fontSize: '0.95rem',
+                                        color: '#1a1a1a',
+                                        '&::placeholder': {
+                                            color: '#9ca3af',
+                                            opacity: 1,
+                                        }
+                                    },
+                                }}
                             />
 
+                            <Typography
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '0.875rem',
+                                    color: '#1a1a1a',
+                                    mb: 1,
+                                }}
+                            >
+                                Password
+                            </Typography>
                             <TextField
                                 fullWidth
-                                label="Password"
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
                                 value={formData.password}
@@ -244,19 +318,65 @@ export default function RegisterPage({ onSwitchToLogin }) {
                                             <IconButton
                                                 onClick={() => setShowPassword(!showPassword)}
                                                 edge="end"
-                                                sx={{ mr: 1, color: '#004d43' }}
+                                                sx={{ color: '#6b7280' }}
                                             >
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                             </IconButton>
                                         </InputAdornment>
                                     ),
                                 }}
-                                sx={textFieldStyle}
+                                sx={{
+                                    mb: 1,
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 2,
+                                        backgroundColor: '#f9fafb',
+                                        '& fieldset': {
+                                            borderColor: '#e5e7eb',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#004d43',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#004d43',
+                                            borderWidth: 2,
+                                        },
+                                    },
+                                    '& .MuiInputBase-input': {
+                                        px: 2,
+                                        py: 1.5,
+                                        fontSize: '0.95rem',
+                                        color: '#1a1a1a',
+                                        '&::placeholder': {
+                                            color: '#9ca3af',
+                                            opacity: 1,
+                                        }
+                                    },
+                                }}
                             />
 
+                            <Typography
+                                variant="caption"
+                                sx={{
+                                    color: '#6b7280',
+                                    display: 'block',
+                                    mb: 2.5,
+                                }}
+                            >
+                                Use 8 or more characters with a mix of letters, numbers & symbols.
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '0.875rem',
+                                    color: '#1a1a1a',
+                                    mb: 1,
+                                }}
+                            >
+                                Repeat Password
+                            </Typography>
                             <TextField
                                 fullWidth
-                                label="Confirm Password"
                                 name="confirmPassword"
                                 type={showConfirmPassword ? 'text' : 'password'}
                                 value={formData.confirmPassword}
@@ -269,14 +389,40 @@ export default function RegisterPage({ onSwitchToLogin }) {
                                             <IconButton
                                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                                 edge="end"
-                                                sx={{ mr: 1, color: '#004d43' }}
+                                                sx={{ color: '#6b7280' }}
                                             >
                                                 {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                                             </IconButton>
                                         </InputAdornment>
                                     ),
                                 }}
-                                sx={textFieldStyle}
+                                sx={{
+                                    mb: 3,
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 2,
+                                        backgroundColor: '#f9fafb',
+                                        '& fieldset': {
+                                            borderColor: '#e5e7eb',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#004d43',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#004d43',
+                                            borderWidth: 2,
+                                        },
+                                    },
+                                    '& .MuiInputBase-input': {
+                                        px: 2,
+                                        py: 1.5,
+                                        fontSize: '0.95rem',
+                                        color: '#1a1a1a',
+                                        '&::placeholder': {
+                                            color: '#9ca3af',
+                                            opacity: 1,
+                                        }
+                                    },
+                                }}
                             />
 
                             <Button
@@ -285,50 +431,48 @@ export default function RegisterPage({ onSwitchToLogin }) {
                                 variant="contained"
                                 disabled={loading}
                                 sx={{
-                                    mt: 2,
-                                    mb: 2,
-                                    borderRadius: '25px',
-                                    py: 1.8,
+                                    borderRadius: 2,
+                                    py: 1.5,
                                     fontSize: '1rem',
-                                    fontWeight: 800,
+                                    fontWeight: 700,
                                     textTransform: 'none',
-                                    background: 'linear-gradient(135deg, #e8ee26 0%, #d4db1c 100%)',
-                                    color: '#004d43',
-                                    boxShadow: '0 6px 25px rgba(232, 238, 38, 0.3)',
+                                    background: '#004d43',
+                                    color: '#ffffff',
+                                    boxShadow: '0 4px 12px rgba(0, 77, 67, 0.2)',
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
-                                        background: 'linear-gradient(135deg, #d4db1c 0%, #c0c614 100%)',
-                                        boxShadow: '0 8px 30px rgba(232, 238, 38, 0.4)',
-                                        transform: 'translateY(-2px)',
+                                        background: '#003830',
+                                        boxShadow: '0 6px 16px rgba(0, 77, 67, 0.3)',
+                                        transform: 'translateY(-1px)',
                                     },
                                     '&.Mui-disabled': {
-                                        background: 'rgba(232, 238, 38, 0.5)',
-                                        color: 'rgba(0, 77, 67, 0.5)',
+                                        background: '#e5e7eb',
+                                        color: '#9ca3af',
                                     },
                                 }}
                             >
                                 {loading ? (
-                                    <CircularProgress size={24} sx={{ color: '#004d43' }} />
+                                    <CircularProgress size={24} sx={{ color: '#ffffff' }} />
                                 ) : (
-                                    'Create Account'
+                                    'Sign Up'
                                 )}
                             </Button>
                         </Box>
 
                         <Box sx={{ textAlign: 'center', mt: 3 }}>
-                            <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                            <Typography variant="body2" sx={{ color: '#6b7280' }}>
                                 Already have an account?{' '}
                                 <Box
                                     component="span"
                                     onClick={onSwitchToLogin}
                                     sx={{
-                                        color: '#e8ee26',
-                                        fontWeight: 800,
+                                        color: '#004d43',
+                                        fontWeight: 700,
                                         cursor: 'pointer',
-                                        textDecoration: 'underline',
-                                        textUnderlineOffset: '3px',
+                                        textDecoration: 'none',
                                         '&:hover': {
                                             opacity: 0.8,
+                                            textDecoration: 'underline',
                                         },
                                     }}
                                 >
@@ -337,8 +481,8 @@ export default function RegisterPage({ onSwitchToLogin }) {
                             </Typography>
                         </Box>
                     </Box>
-                </Box>
-            </Fade>
+                </Fade>
+            </Box>
         </Box>
     );
 }
