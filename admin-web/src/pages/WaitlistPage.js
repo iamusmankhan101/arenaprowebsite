@@ -75,7 +75,7 @@ const WaitlistPage = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \waitlist-\.csv\;
+    a.download = 'waitlist-export.csv';
     a.click();
   };
 

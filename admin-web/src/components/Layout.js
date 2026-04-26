@@ -40,7 +40,7 @@ import {
   Inventory2,
   WhatsApp,
   Campaign,
-, Email
+  Email
 } from '@mui/icons-material';
 import { logoutAdmin } from '../store/slices/authSlice';
 
