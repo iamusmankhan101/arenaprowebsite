@@ -33,6 +33,10 @@ const Footer = () => {
                             <Phone size={16} />
                             <a href="tel:+923712524553">+92 371 2524553</a>
                         </div>
+                        <div className="footer-contact-item">
+                            <Mail size={16} />
+                            <a href="mailto:support@arenapropk.online">support@arenapropk.online</a>
+                        </div>
                         <div className="footer-socials">
                             <a href="https://www.instagram.com/arenapropk" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                                 <Instagram size={18} />
