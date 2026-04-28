@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2, Lock } from 'lucide-react';
+import { Calendar, Clock, User, Phone, Mail, ChevronLeft, Loader2, CheckCircle2, Lock, Upload, X } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { venueService } from '../services/venueService';
@@ -33,6 +33,11 @@ const BookingPage = () => {
     const [availableDates, setAvailableDates] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState('advance'); // 'advance' or 'full'
     const [paymentType, setPaymentType] = useState('easypaisa'); // 'easypaisa' or 'bank'
+    
+    // Screenshot upload states
+    const [showUploadModal, setShowUploadModal] = useState(false);
+    const [uploadedScreenshot, setUploadedScreenshot] = useState(null);
+    const [uploadLoading, setUploadLoading] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -139,24 +144,39 @@ const BookingPage = () => {
         e.preventDefault();
         if (!selectedSlot || !user) return;
 
-        const now = new Date();
         const today = todayPKT();
         if (selectedDate < today) {
             alert("You cannot book a slot for a past date.");
             return;
         }
 
+        // If payment method requires screenshot (easypaisa or bank), show upload modal
+        if (paymentType === 'easypaisa' || paymentType === 'bank') {
+            setShowUploadModal(true);
+            return;
+        }
+
+        // For other payment methods, proceed directly
+        await processBooking();
+    };
+
+    const processBooking = async () => {
         setBookingLoading(true);
         try {
-            const bookingResponse = await bookingService.createBooking({
+            const bookingData = {
                 venueId,
                 venueName: venue.name,
                 dateString: selectedDate,
                 slot: selectedSlot,
                 customerInfo,
                 sport: venue.sports[0],
-                userId: user.uid
-            });
+                userId: user.uid,
+                paymentMethod,
+                paymentType,
+                paymentScreenshot: uploadedScreenshot // Include screenshot if uploaded
+            };
+
+            const bookingResponse = await bookingService.createBooking(bookingData);
 
             // Trigger Email Confirmation (don't await to keep UI snappy)
             emailService.sendBookingEmail({
@@ -179,12 +199,40 @@ const BookingPage = () => {
             }
 
             setBookingSuccess(true);
+            setShowUploadModal(false);
         } catch (error) {
             alert("Booking failed. Please try again.");
             console.error(error);
         } finally {
             setBookingLoading(false);
         }
+    };
+
+    const handleScreenshotUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setUploadedScreenshot({
+                        file: file,
+                        preview: e.target.result,
+                        name: file.name
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please upload an image file (JPG, PNG, etc.)');
+            }
+        }
+    };
+
+    const handleConfirmWithScreenshot = async () => {
+        if (!uploadedScreenshot) {
+            alert('Please upload a payment screenshot first.');
+            return;
+        }
+        await processBooking();
     };
 
     if (loading) {
@@ -528,6 +576,130 @@ const BookingPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Screenshot Upload Modal */}
+            {showUploadModal && (
+                <div className="upload-modal-overlay">
+                    <div className="upload-modal">
+                        <div className="upload-modal-header">
+                            <h3>Upload Payment Screenshot</h3>
+                            <button 
+                                className="close-modal-btn"
+                                onClick={() => setShowUploadModal(false)}
+                            >
+                                <X size={24} />
+                            </button>
+                        </div>
+                        
+                        <div className="upload-modal-content">
+                            <div className="payment-info">
+                                {paymentType === 'easypaisa' ? (
+                                    <div className="payment-details-display">
+                                        <img src="/image/Easypaisa-logo.png" alt="Easypaisa" className="payment-logo-large" />
+                                        <div className="payment-info-row">
+                                            <span>Account Name:</span>
+                                            <strong>Muhammad Usman Khan</strong>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Mobile Number:</span>
+                                            <strong>0305-8562523</strong>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Amount to Send:</span>
+                                            <strong className="amount-highlight">
+                                                {selectedSlot ? `${paymentMethod === 'advance' ? Math.round(selectedSlot.price * 0.15) : selectedSlot.price} PKR` : '0 PKR'}
+                                            </strong>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="payment-details-display">
+                                        <div className="bank-header">
+                                            <span className="bank-icon-large">🏦</span>
+                                            <span>Bank Transfer</span>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Bank:</span>
+                                            <strong>Bank Alfalah</strong>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Account No.:</span>
+                                            <strong>56565002675200</strong>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Account Name:</span>
+                                            <strong>Muhammad Usman Khan</strong>
+                                        </div>
+                                        <div className="payment-info-row">
+                                            <span>Amount to Transfer:</span>
+                                            <strong className="amount-highlight">
+                                                {selectedSlot ? `${paymentMethod === 'advance' ? Math.round(selectedSlot.price * 0.15) : selectedSlot.price} PKR` : '0 PKR'}
+                                            </strong>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="upload-section">
+                                <p className="upload-instruction">
+                                    Please send the payment and upload a screenshot of the transaction:
+                                </p>
+                                
+                                <div className="upload-area">
+                                    <input
+                                        type="file"
+                                        id="screenshot-upload"
+                                        accept="image/*"
+                                        onChange={handleScreenshotUpload}
+                                        style={{ display: 'none' }}
+                                    />
+                                    <label htmlFor="screenshot-upload" className="upload-label">
+                                        <Upload size={32} />
+                                        <span>Click to upload screenshot</span>
+                                        <small>JPG, PNG, or other image formats</small>
+                                    </label>
+                                </div>
+
+                                {uploadedScreenshot && (
+                                    <div className="uploaded-preview">
+                                        <img 
+                                            src={uploadedScreenshot.preview} 
+                                            alt="Payment Screenshot" 
+                                            className="screenshot-preview"
+                                        />
+                                        <p className="upload-success">✅ Screenshot uploaded: {uploadedScreenshot.name}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="upload-modal-footer">
+                            <button 
+                                className="cancel-btn"
+                                onClick={() => setShowUploadModal(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                className="confirm-booking-btn"
+                                onClick={handleConfirmWithScreenshot}
+                                disabled={!uploadedScreenshot || bookingLoading}
+                            >
+                                {bookingLoading ? (
+                                    <>
+                                        <Loader2 className="animate-spin" size={20} />
+                                        Processing...
+                                    </>
+                                ) : (
+                                    <>
+                                        <CheckCircle2 size={20} />
+                                        Confirm Booking
+                                    </>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>

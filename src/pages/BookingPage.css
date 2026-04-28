@@ -896,3 +896,267 @@
     padding-top: 10px;
     border-top: 1px solid rgba(0,0,0,0.07);
 }
+/* ═══════════════════════════════ SCREENSHOT UPLOAD MODAL ═══════════════════════════════ */
+.upload-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.upload-modal {
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.upload-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+}
+
+.upload-modal-header h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #004d43;
+    margin: 0;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.upload-modal-content {
+    padding: 0 24px;
+}
+
+.payment-details-display {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.payment-logo-large {
+    height: 32px;
+    width: auto;
+    margin-bottom: 16px;
+}
+
+.bank-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #004d43;
+    margin-bottom: 16px;
+}
+
+.bank-icon-large {
+    font-size: 32px;
+}
+
+.payment-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.payment-info-row span {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.payment-info-row strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.amount-highlight {
+    color: #004d43 !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+}
+
+.upload-section {
+    margin-bottom: 24px;
+}
+
+.upload-instruction {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 16px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 32px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #004d43;
+    background: rgba(0, 77, 67, 0.02);
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.upload-label span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #004d43;
+}
+
+.upload-label small {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.uploaded-preview {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.screenshot-preview {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 12px;
+}
+
+.upload-success {
+    color: #059669;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.upload-modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 12px 24px;
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background: #e5e7eb;
+}
+
+.confirm-booking-btn {
+    flex: 2;
+    padding: 12px 24px;
+    background: #004d43;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.confirm-booking-btn:hover:not(:disabled) {
+    background: #003830;
+    transform: translateY(-1px);
+}
+
+.confirm-booking-btn:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .upload-modal {
+        margin: 10px;
+        max-height: 95vh;
+    }
+    
+    .upload-modal-header,
+    .upload-modal-content,
+    .upload-modal-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .upload-modal-footer {
+        flex-direction: column;
+    }
+    
+    .screenshot-preview {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}
